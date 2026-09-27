@@ -139,8 +139,10 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal li > ul, .reveal li > ol { margin-top: 12px; }
 
 /* lista de tarefas (- [ ]) */
-.reveal li:has(> input[type="checkbox"])::before { display: none; }
-.reveal li:has(> input[type="checkbox"]) { padding-left: 0; }
+/* o Pandoc envolve o checkbox num <label>, então o input não é filho direto do li */
+.reveal li:has(input[type="checkbox"])::before { display: none; }
+.reveal li:has(input[type="checkbox"]) { padding-left: 0; }
+.reveal li label:has(input[type="checkbox"]) { display: flex; align-items: baseline; }
 .reveal li > input[type="checkbox"],
 .reveal .slides ul.task-list li input[type="checkbox"] {
   appearance: none;
