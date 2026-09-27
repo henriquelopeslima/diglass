@@ -1,0 +1,10 @@
+---
+title: "Full Cycle"
+format: html
+---
+
+Slides do minicurso **Full Cycle**.
+
+## Aulas
+
+- [Aula 1 – Introdução](aulas/01-introducao.html)

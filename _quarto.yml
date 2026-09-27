@@ -1,0 +1,14 @@
+project:
+  type: default
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "aulas/*.qmd"
+
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    transition: slide
+    incremental: false
+    footer: "Full Cycle"
