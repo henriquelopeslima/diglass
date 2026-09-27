@@ -1,9 +1,12 @@
 project:
-  type: default
+  type: website
   output-dir: _site
   render:
     - "*.qmd"
     - "aulas/*.qmd"
+
+website:
+  title: "Full Cycle"
 
 format:
   revealjs:
