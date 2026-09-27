@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
-  <title>Full Cycle – Aula 2 — Git e GitHub ⚙️</title>
+  <title>Full Cycle – Seminários</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -33,72 +33,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -198,239 +132,171 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Aula 2 — Git e GitHub ⚙️</h1>
-  <p class="subtitle">Full Cycle · Módulo 1 — Engenharia de Software e IA Aplicada</p>
+  <h1 class="title">Seminários</h1>
+  <p class="subtitle">Módulo 1 · Encontro 6 — Cada dupla apresenta 1 princípio e 1 pattern, com a IA sorteada</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="objetivo-de-aprendizagem" class="slide level2 smaller">
-<h2>Objetivo de aprendizagem</h2>
-<p>Ao final desta aula, você deve ser capaz de:</p>
+<section id="hoje" class="slide level2">
+<h2>Hoje</h2>
 <ul>
-<li>Compreender a diferença entre Git e GitHub</li>
-<li>Dominar o fluxo local (<code>add</code> / <code>commit</code> / <code>log</code>)</li>
-<li>Colaborar via repositórios remotos (<code>push</code> / <code>pull</code> / <code>clone</code>)</li>
-<li>Trabalhar com branches e Pull Requests</li>
-<li>Resolver conflitos e aplicar versionamento semântico</li>
+<li><strong>Seminários:</strong> 20 min por dupla + 5 min de perguntas</li>
+<li><strong>Fechamento:</strong> feedback geral e comparativo das IAs</li>
 </ul>
+<p><strong>Saída:</strong> decisões técnicas <strong>defendidas em voz alta</strong></p>
 </section>
-<section id="fundamentos-de-versionamento" class="slide level2">
-<h2>Fundamentos de versionamento</h2>
-<ul>
-<li>Controle de versão substitui o caos de arquivos <code>-v2-final-FINAL</code></li>
-<li>Guarda <strong>snapshots navegáveis</strong> do código</li>
-<li><strong>Git</strong> roda localmente vs.&nbsp;<strong>GitHub</strong> hospeda e facilita colaboração
-<ul>
-<li>Analogia: gravador de áudio vs.&nbsp;servidor de streaming</li>
-</ul></li>
-<li>Git grava <strong>snapshots completos</strong> a cada commit (não apenas diffs), reaproveitando arquivos inalterados</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Seu Nome"</span></span>
-<span id="cb1-2"><a aria-label="2"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"voce@email.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="workflow-local-staging-area" class="slide level2">
-<h2>Workflow local — Staging Area</h2>
-<p>O conceito mais importante do Git:</p>
-<p><code>Workspace → (git add) → Staging → (git commit) → Histórico</code></p>
-<p>Permite commits pequenos e focados.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="fu">git</span> init</span>
-<span id="cb2-2"><a aria-label="2"></a><span class="fu">git</span> add .</span>
-<span id="cb2-3"><a aria-label="3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: primeira versao"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="comandos-do-dia-a-dia" class="slide level2 smaller">
-<h2>Comandos do dia a dia</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-label="1"></a><span class="fu">git</span> add <span class="op">&lt;</span>arquivo<span class="op">&gt;</span></span>
-<span id="cb3-2"><a aria-label="2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"mensagem"</span></span>
-<span id="cb3-3"><a aria-label="3"></a><span class="fu">git</span> diff              <span class="co"># mudanças ainda não staged</span></span>
-<span id="cb3-4"><a aria-label="4"></a><span class="fu">git</span> diff <span class="at">--staged</span>     <span class="co"># mudanças já staged</span></span>
-<span id="cb3-5"><a aria-label="5"></a><span class="fu">git</span> log</span>
-<span id="cb3-6"><a aria-label="6"></a><span class="fu">git</span> log <span class="at">--oneline</span></span>
-<span id="cb3-7"><a aria-label="7"></a><span class="fu">git</span> show HEAD</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="desfazendo-mudanças" class="slide level2 smaller">
-<h2>Desfazendo mudanças</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-label="1"></a><span class="fu">git</span> restore <span class="op">&lt;</span>arquivo<span class="op">&gt;</span>          <span class="co"># antes do add</span></span>
-<span id="cb4-2"><a aria-label="2"></a><span class="fu">git</span> restore <span class="at">--staged</span> <span class="op">&lt;</span>arquivo<span class="op">&gt;</span> <span class="co"># depois do add, antes do commit</span></span>
-<span id="cb4-3"><a aria-label="3"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1        <span class="co"># desfaz o commit, mantém as mudanças staged</span></span>
-<span id="cb4-4"><a aria-label="4"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1        <span class="co"># ⚠️ destrutivo: descarta as mudanças</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="compartilhamento-github" class="slide level2">
-<h2>Compartilhamento (GitHub)</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-label="1"></a><span class="fu">git</span> remote add origin <span class="op">&lt;</span>url<span class="op">&gt;</span></span>
-<span id="cb5-2"><a aria-label="2"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
-<span id="cb5-3"><a aria-label="3"></a></span>
-<span id="cb5-4"><a aria-label="4"></a><span class="fu">git</span> push <span class="at">-u</span> origin main   <span class="co"># -u na primeira vez, para rastrear a branch</span></span>
-<span id="cb5-5"><a aria-label="5"></a><span class="fu">git</span> push origin main</span>
-<span id="cb5-6"><a aria-label="6"></a></span>
-<span id="cb5-7"><a aria-label="7"></a><span class="fu">git</span> clone <span class="op">&lt;</span>url<span class="op">&gt;</span></span>
-<span id="cb5-8"><a aria-label="8"></a><span class="fu">git</span> pull origin main       <span class="co"># = fetch + merge</span></span>
-<span id="cb5-9"><a aria-label="9"></a></span>
-<span id="cb5-10"><a aria-label="10"></a><span class="fu">git</span> status</span>
-<span id="cb5-11"><a aria-label="11"></a><span class="fu">git</span> branch <span class="at">-a</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="colaboração-em-equipe-branches" class="slide level2">
-<h2>Colaboração em equipe — Branches</h2>
-<ul>
-<li>Branches como <strong>universos paralelos</strong></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-label="1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/minha-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Convenção de nomes: <code>feature/</code>, <code>fix/</code>, <code>docs/</code></li>
-</ul>
-<p><strong>Pull Request:</strong> pedido formal de incorporação à <code>main</code>, com code review, discussão e histórico registrado.</p>
-</section>
-<section id="merge-vs.-rebase" class="slide level2">
-<h2>merge vs.&nbsp;rebase</h2>
-<ul>
-<li><code>git merge</code> — mais seguro para iniciantes, preserva o histórico real</li>
-<li><code>git rebase</code> — histórico mais limpo, mas <strong>reescreve commits</strong></li>
-</ul>
-<p><strong>Fluxo típico completo:</strong></p>
-<p><code>checkout main → pull → branch → commits → push → PR → review → merge → limpeza da branch</code></p>
-</section>
-<section id="boas-práticas-conventional-commits" class="slide level2 smaller">
-<h2>Boas práticas — Conventional Commits</h2>
-<p><code>feat:</code> <code>fix:</code> <code>docs:</code> <code>test:</code> <code>refactor:</code> <code>perf:</code></p>
-<ul>
-<li>Commits pequenos e focados</li>
-<li>Mensagens que explicam o <strong>porquê</strong></li>
-<li>Nunca commitar código quebrado</li>
-<li>Uso de <code>.gitignore</code></li>
-</ul>
-</section>
-<section id="resolução-de-conflitos" class="slide level2">
-<h2>Resolução de conflitos</h2>
-<p>Marcadores de conflito:</p>
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-sua versão
-=======
-versão remota
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre>
-<p>Resolução manual → <code>git add</code> → commit de merge.</p>
-<p><strong>Como evitar:</strong> <code>git pull</code> frequente, commits pequenos, comunicação de equipe.</p>
-</section>
-<section id="versionamento-semântico-semver" class="slide level2">
-<h2>Versionamento semântico (SemVer)</h2>
-<p><strong>Por que versionar:</strong> rastreabilidade, reversão segura, coordenação de deploys, debugging mais rápido.</p>
-<p><strong>Formato: MAJOR.MINOR.PATCH</strong></p>
-<ul>
-<li><strong>MAJOR</strong> — mudança incompatível (<em>breaking change</em>)</li>
-<li><strong>MINOR</strong> — nova funcionalidade compatível</li>
-<li><strong>PATCH</strong> — correção de bug sem afetar comportamento</li>
-</ul>
-</section>
-<section id="semver-pré-releases-e-regra-fundamental" class="slide level2">
-<h2>SemVer — pré-releases e regra fundamental</h2>
-<p>Pré-releases:</p>
-<p><code>-alpha.N &lt; -beta.N &lt; -rc.N &lt; versão final</code></p>
-<p><strong>Regra fundamental:</strong> ao incrementar um número, os números à direita voltam a zero.</p>
-<p><code>1.2.3 → 1.3.0 → 2.0.0</code></p>
-</section>
-<section id="atividade-prática-sugerida" class="slide level2">
-<h2>Atividade prática sugerida</h2>
+<section id="as-regras" class="slide level2">
+<h2>As regras</h2>
 <ol type="1">
-<li>Criar um repositório</li>
-<li>Simular colaboração em duplas via branches e Pull Request</li>
-<li>Provocar e resolver um conflito de merge proposital</li>
-<li>Versionar 3 releases fictícias usando SemVer</li>
+<li>Ordem sorteada</li>
+<li><strong>20 minutos</strong> de apresentação, <strong>5</strong> de perguntas</li>
+<li>O tempo é respeitado</li>
+<li><strong>Todos avaliam</strong>, todos perguntam</li>
 </ol>
-<p><strong>Avaliação:</strong> Questionário — Aula 2 (Moodle)</p>
 </section>
-<section id="material-complementar" class="slide level2">
-<h2>Material complementar</h2>
-<p>Ferramentas visuais como alternativa à CLI:</p>
-<ul>
-<li>GitHub Desktop</li>
-<li>Integração Git do VS Code</li>
-<li>GitKraken</li>
-</ul>
+<section id="o-que-cada-dupla-apresenta" class="slide level2">
+<h2>O que cada dupla apresenta</h2>
+<ol type="1">
+<li><strong>Contexto</strong> do problema</li>
+<li><strong>1 princípio</strong> aplicado</li>
+<li><strong>1 pattern</strong> aplicado</li>
+<li><strong>Uso da IA:</strong> prompts e ajustes</li>
+<li><strong>Demonstração</strong> do código</li>
+<li><strong>Prós e contras</strong> da IA</li>
+</ol>
 </section>
-<section id="exemplo-prático-guiado" class="slide level2 smaller">
-<h2>💻 Exemplo prático guiado</h2>
-<p>Continuando o <strong>Diário de Café</strong>, agora vamos desenvolver a feature de <strong>cupping</strong> (avaliação sensorial) usando o fluxo completo de branch + PR:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-label="1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb8-2"><a aria-label="2"></a><span class="fu">git</span> pull origin main</span>
-<span id="cb8-3"><a aria-label="3"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/formulario-cupping</span>
-<span id="cb8-4"><a aria-label="4"></a></span>
-<span id="cb8-5"><a aria-label="5"></a><span class="co"># ... implementa o formulário sensorial (fragrancia, sabor, acidez, corpo, docura) ...</span></span>
-<span id="cb8-6"><a aria-label="6"></a><span class="fu">git</span> add src/cupping/</span>
-<span id="cb8-7"><a aria-label="7"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: adicionar formulario de avaliacao sensorial SCA"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="ajuste-após-revisão" class="slide level2">
-<h2>Ajuste após revisão</h2>
-<p>Revisão do colega pede ajuste no arredondamento da nota:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a aria-label="1"></a><span class="fu">git</span> add src/cupping/calculo-nota.ts</span>
-<span id="cb9-2"><a aria-label="2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"fix: corrigir arredondamento da nota final do cupping"</span></span>
-<span id="cb9-3"><a aria-label="3"></a></span>
-<span id="cb9-4"><a aria-label="4"></a><span class="fu">git</span> push <span class="at">-u</span> origin feature/formulario-cupping</span>
-<span id="cb9-5"><a aria-label="5"></a><span class="co"># abre Pull Request no GitHub, colega revisa e aprova, faz-se o merge</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="conflito-proposital" class="slide level2 smaller">
-<h2>Conflito proposital</h2>
-<p>Enquanto isso, outro colega mexeu na mesma função de cálculo de nota em <code>main</code>, trocando a média simples por uma média ponderada:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-label="1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Git marca o conflito direto no arquivo:</p>
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-const nota = (fragancia + sabor + acidez + corpo + docura) / 5;
-=======
-const nota = fragancia * 0.2 + sabor * 0.3 + acidez * 0.2 + corpo * 0.15 + docura * 0.15;
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre>
-</section>
-<section id="resolvendo-o-conflito" class="slide level2">
-<h2>Resolvendo o conflito</h2>
-<p>Decidimos manter a versão ponderada (mais fiel ao protocolo SCA real):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-label="1"></a><span class="co"># edita o arquivo, mantendo só a linha ponderada</span></span>
-<span id="cb12-2"><a aria-label="2"></a><span class="fu">git</span> add src/cupping/calculo-nota.ts</span>
-<span id="cb12-3"><a aria-label="3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"merge: resolver conflito mantendo formula ponderada SCA"</span></span>
-<span id="cb12-4"><a aria-label="4"></a><span class="fu">git</span> push origin feature/formulario-cupping</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="versionamento-semântico-do-projeto-real" class="slide level2 smaller">
-<h2>Versionamento semântico do projeto real</h2>
+<section id="como-vamos-avaliar" class="slide level2">
+<h2>Como vamos avaliar</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Tag</th>
-<th>O que mudou</th>
-<th>Tipo</th>
+<th>Critério</th>
+<th>Peso</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>v0.1.0</code></td>
-<td>Catálogo básico de cafés e insumos</td>
-<td>MINOR (primeira entrega)</td>
+<td><strong>Uso consciente da IA</strong></td>
+<td>30%</td>
 </tr>
 <tr class="even">
-<td><code>v0.2.0</code></td>
-<td>Registro de receitas de extração</td>
-<td>MINOR (compatível)</td>
+<td><strong>Coerência técnica</strong></td>
+<td>30%</td>
 </tr>
 <tr class="odd">
-<td><code>v1.0.0</code></td>
-<td>Cupping SCA completo e estável</td>
-<td>MAJOR (primeira versão estável)</td>
+<td><strong>Clareza</strong></td>
+<td>20%</td>
 </tr>
 <tr class="even">
-<td><code>v1.0.1</code></td>
-<td>Correção do arredondamento da nota</td>
-<td>PATCH</td>
+<td>Demonstração do código</td>
+<td>15%</td>
 </tr>
 <tr class="odd">
-<td><code>v2.0.0</code></td>
-<td>Novo formato de receita exige campos obrigatórios que não existiam antes</td>
-<td>MAJOR (breaking change)</td>
+<td>Tempo</td>
+<td>5%</td>
 </tr>
 </tbody>
 </table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-label="1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.0.0 <span class="at">-m</span> <span class="st">"Cupping SCA completo e estavel"</span></span>
-<span id="cb13-2"><a aria-label="2"></a><span class="fu">git</span> push origin v1.0.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="o-papel-da-audiência" class="slide level2">
+<h2>O papel da audiência</h2>
+<ul>
+<li><strong>Avalie</strong> cada seminário na sua ficha</li>
+<li>Faça <strong>1 pergunta</strong> por seminário</li>
+<li>Aponte <strong>1 lugar</strong> onde o pattern <strong>não</strong> seria necessário</li>
+</ul>
+<p>Ouvir com atenção também é uma entrega.</p>
+</section>
+<section id="mini-desafio-avaliador-ativo" class="slide level2">
+<h2>Mini desafio · Avaliador ativo</h2>
+<ol type="1">
+<li><strong>Ficha de avaliação</strong> por dupla</li>
+<li><strong>Pergunta certeira</strong>: 1 por seminário</li>
+<li><strong>Advogado do diabo</strong>: quando não usaria o pattern?</li>
+</ol>
+<p><em>Extra: uma pergunta sobre a <strong>IA</strong>, e não sobre o código.</em></p>
+</section>
+<section id="perguntas-para-aprofundar" class="slide level2">
+<h2>Perguntas para aprofundar</h2>
+<ul>
+<li><strong>O que a IA errou?</strong> Como vocês perceberam?</li>
+<li>Sem a IA, chegariam à <strong>mesma decisão</strong>?</li>
+<li>Em que situação <strong>não</strong> usariam esse pattern?</li>
+<li>O que mudou <strong>depois do ajuste manual</strong>?</li>
+<li>Qual <strong>prompt</strong> rendeu mais? E o pior?</li>
+</ul>
+</section>
+<section id="fechamento" class="slide level2">
+<h2>Fechamento</h2>
+</section>
+<section id="o-que-levamos-do-módulo" class="slide level2">
+<h2>O que levamos do módulo</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Encontro</th>
+<th>Tema</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E01</td>
+<td>Docker: ambiente igual para todos</td>
+</tr>
+<tr class="even">
+<td>E02</td>
+<td>Scrum, Git, PR e code review</td>
+</tr>
+<tr class="odd">
+<td>E03</td>
+<td>POO e SOLID</td>
+</tr>
+<tr class="even">
+<td>E04</td>
+<td>Design Patterns</td>
+</tr>
+<tr class="odd">
+<td>E05</td>
+<td>IA e padrões de persistência</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mini-desafio-minhas-regras-de-uso-de-ia" class="slide level2">
+<h2>Mini desafio · Minhas regras de uso de IA</h2>
+<p>Escreva <strong>3 regras</strong> para o seu uso de IA daqui para frente.</p>
+<p>Ex.: <em>“Só aceito código que sei explicar.”</em></p>
+<p><em>Extra: qual regra você já quebrou?</em></p>
+</section>
+<section id="a-frase-do-módulo" class="slide level2">
+<h2>A frase do módulo</h2>
+<blockquote>
+<p>A IA acelera quem já sabe pensar.</p>
+</blockquote>
+<p>Não quem terceiriza decisões.</p>
+</section>
+<section id="próximo-módulo-testes" class="slide level2">
+<h2>Próximo módulo: testes</h2>
+<ul>
+<li><strong>Composição</strong> e <strong>DIP</strong> deixam o código testável</li>
+<li>O <strong>Repository em memória</strong> roda sem banco</li>
+<li>A <strong>regra de negócio</strong> isolada é fácil de testar</li>
+</ul>
+<p>Vamos provar que <strong>funciona</strong>, e automatizar.</p>
+</section>
+<section id="dever-de-casa" class="slide level2">
+<h2>Dever de casa</h2>
+<ol type="1">
+<li><strong>Ajuste o código</strong> conforme o feedback recebido</li>
+<li><strong>Consolide</strong> os aprendizados no projeto</li>
+<li><strong>Revise</strong> as decisões feitas com apoio da IA</li>
+</ol>
+</section>
+<section id="próximo-módulo-qualidade-de-software-e-testes" class="slide level2">
+<h2>Próximo módulo · Qualidade de software e testes</h2>
+<p>Cultura de testes e pirâmide de testes.</p>
 
 
 </section>

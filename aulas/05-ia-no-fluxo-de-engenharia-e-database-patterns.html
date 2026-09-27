@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
-  <title>Full Cycle – Aula 3 — Programação Orientada a Objetos 💻</title>
+  <title>Full Cycle – IA no fluxo de engenharia</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -198,195 +198,419 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Aula 3 — Programação Orientada a Objetos 💻</h1>
-  <p class="subtitle">Full Cycle · Módulo 1 — Engenharia de Software e IA Aplicada</p>
+  <h1 class="title">IA no fluxo de engenharia</h1>
+  <p class="subtitle">Módulo 1 · Encontro 5 — E patterns de persistência</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="objetivo-de-aprendizagem" class="slide level2 smaller">
-<h2>Objetivo de aprendizagem</h2>
-<p>Ao final desta aula, você deve ser capaz de:</p>
+<section id="na-aula-passada" class="slide level2">
+<h2>Na aula passada</h2>
 <ul>
-<li>Reconhecer que POO é um <strong>paradigma</strong> (não uma sintaxe)</li>
-<li>Identificar e aplicar os <strong>4 pilares</strong> em pelo menos duas linguagens diferentes</li>
-<li>Entender quando preferir <strong>composição</strong> a <strong>herança</strong></li>
+<li><strong>Strategy</strong>, <strong>Factory</strong>, <strong>Decorator</strong>, <strong>Adapter</strong>, <strong>Observer</strong></li>
+<li>Pattern <strong>pela dor</strong>, e não pelo catálogo</li>
 </ul>
 </section>
-<section id="introdução" class="slide level2">
-<h2>Introdução</h2>
+<section id="hoje" class="slide level2">
+<h2>Hoje</h2>
 <ul>
-<li>POO é uma forma de pensar sobre código que <strong>transcende a linguagem</strong></li>
-<li>Um conceito como Encapsulamento é idêntico em TypeScript, PHP e Java — muda a sintaxe, não a intenção</li>
-<li>Esta aula apresenta os 4 pilares com exemplos comparáveis em <strong>TypeScript, PHP e Java</strong></li>
+<li><strong>Bloco 1:</strong> onde a IA ajuda · prompts · ferramentas</li>
+<li><strong>Bloco 2:</strong> Active Record vs Repository · CQRS · decidir</li>
+<li><strong>Desafio:</strong> persistência do projeto <strong>com IA</strong></li>
 </ul>
+<p><strong>Saída:</strong> uma decisão <strong>sua</strong>, registrada</p>
 </section>
-<section id="pilar-1-encapsulamento" class="slide level2">
-<h2>Pilar 1 — Encapsulamento</h2>
+<section id="onde-a-ia-ajuda-e-atrapalha" class="slide level2">
+<h2>Onde a IA ajuda e atrapalha</h2>
+</section>
+<section id="ajuda-e-atrapalha" class="slide level2">
+<h2>Ajuda e atrapalha</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Ajuda</th>
+<th>Atrapalha</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Explicar código e erros</td>
+<td>Decidir a arquitetura sozinha</td>
+</tr>
+<tr class="even">
+<td>Rascunho de testes</td>
+<td>Inventar APIs que não existem</td>
+</tr>
+<tr class="odd">
+<td>Sugerir alternativas</td>
+<td>Sugerir versões antigas</td>
+</tr>
+<tr class="even">
+<td>Gerar diagramas</td>
+<td>Propor overengineering</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="riscos-de-copiar-e-colar" class="slide level2">
+<h2>Riscos de copiar e colar</h2>
 <ul>
-<li>Agrupar dados e comportamentos numa classe e controlar o acesso via modificadores de visibilidade</li>
-<li><strong>Benefícios:</strong>
-<ul>
-<li>Proteção de dados (validação antes de mudar)</li>
-<li>Controle de estado</li>
-<li>Flexibilidade de implementação</li>
-<li>Manutenção de invariantes (ex.: saldo nunca negativo)</li>
-</ul></li>
-<li>Modificadores de acesso (<code>public</code>, <code>protected</code>, <code>private</code>) — sintaxe idêntica nas 3 linguagens, mesmo significado</li>
+<li>Código que <strong>parece certo</strong> e está errado</li>
+<li><strong>Segredos</strong> e dados pessoais colados no chat</li>
+<li>Código de <strong>licença ou origem</strong> desconhecida</li>
+<li>Menos <strong>raciocínio</strong> seu, com o tempo</li>
 </ul>
+<p>Nunca cole <code>.env</code>, tokens nem dados de clientes.</p>
 </section>
-<section id="pilar-2-herança" class="slide level2">
-<h2>Pilar 2 — Herança</h2>
-<ul>
-<li>Reaproveitar atributos/métodos de outra classe e criar hierarquias conceituais</li>
-</ul>
-<p>⚠️ <strong>Armadilha:</strong> cadeias longas (<code>Veiculo → Terrestre → Automóvel → Carro → Ferrari</code>) geram alto acoplamento e fragilizam testes.</p>
-<p>✅ <strong>Solução:</strong> hierarquias rasas (máx. 2–3 níveis) e preferir <strong>composição</strong> (“tem um”) a <strong>herança</strong> (“é um”) para capacidades adicionais.</p>
-</section>
-<section id="pilar-3-polimorfismo" class="slide level2">
-<h2>Pilar 3 — Polimorfismo</h2>
-<ul>
-<li>Um mesmo método se comporta de formas diferentes conforme a classe que o implementa</li>
-<li>Elimina cadeias de <code>if/else</code> baseadas em tipo</li>
-</ul>
-<p><strong>Sem polimorfismo:</strong> cada tipo novo exige alterar todo o código cliente.</p>
-<p><strong>Com polimorfismo:</strong> cada tipo sabe se comportar via um contrato comum (interface/classe abstrata).</p>
-</section>
-<section id="pilar-4-abstração" class="slide level2">
-<h2>Pilar 4 — Abstração</h2>
-<ul>
-<li>Esconder complexidade e expor uma interface simples
-<ul>
-<li><code>bd.buscar("usuarios")</code> em vez de gerenciar TCP/SQL diretamente</li>
-</ul></li>
-</ul>
-<p><strong>Diferença-chave:</strong> Encapsulamento protege dados; Abstração simplifica a interação.</p>
-</section>
-<section id="integrando-os-4-pilares-folha-de-pagamento" class="slide level2 smaller">
-<h2>Integrando os 4 pilares — Folha de Pagamento</h2>
-<ul>
-<li><strong>Abstração:</strong> classe abstrata <code>Funcionario</code> define o contrato</li>
-<li><strong>Herança:</strong> especializações rasas (<code>Gerente</code>, <code>Developer</code>)</li>
-<li><strong>Encapsulamento:</strong> acesso seguro ao salário via getters</li>
-<li><strong>Polimorfismo:</strong> <code>calcularBonus()</code> se comporta diferente por tipo</li>
-</ul>
-<p>Boas práticas relacionadas: <strong>Alta Coesão</strong>, <strong>Baixo Acoplamento</strong>, <strong>Responsabilidade Única (SRP)</strong>.</p>
-</section>
-<section id="atividade-prática-sugerida" class="slide level2">
-<h2>Atividade prática sugerida</h2>
-<p>Modelar o sistema de folha de pagamento (ou domínio similar) implementando os 4 pilares na linguagem de preferência, comparando depois com a implementação de um colega em outra linguagem.</p>
-<p><strong>Avaliação:</strong> Questionário — Aula 3 (Moodle)</p>
-</section>
-<section id="referências-recomendadas" class="slide level2">
-<h2>Referências recomendadas</h2>
-<ul>
-<li><em>The Object-Oriented Thought Process</em> — Matt Weisfeld</li>
-<li><em>Clean Code</em> — Robert C. Martin</li>
-<li><em>Design Patterns</em> — Gang of Four</li>
-<li><em>SOLID Principles and Object-Oriented Design</em> — Pluralsight</li>
-</ul>
-</section>
-<section id="exemplo-prático-guiado" class="slide level2">
-<h2>💻 Exemplo prático guiado</h2>
-<p>Modelando o <strong>Diário de Café</strong> em POO — polimorfismo nos métodos de extração:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource typescript number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb1-1"><a aria-label="1"></a><span class="kw">abstract</span> <span class="kw">class</span> MetodoExtracao {</span>
-<span id="cb1-2"><a aria-label="2"></a>  <span class="kw">constructor</span>(<span class="kw">protected</span> proporcaoAguaCafe<span class="op">:</span> <span class="dt">number</span>) {}</span>
-<span id="cb1-3"><a aria-label="3"></a>  <span class="kw">abstract</span> <span class="fu">preparar</span>(doseGramas<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb1-4"><a aria-label="4"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="polimorfismo-métodos-de-extração" class="slide level2 smaller">
-<h2>Polimorfismo — métodos de extração</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource typescript number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb2-1"><a aria-label="1"></a><span class="kw">class</span> V60 <span class="kw">extends</span> MetodoExtracao {</span>
-<span id="cb2-2"><a aria-label="2"></a>  <span class="fu">preparar</span>(doseGramas<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> {</span>
-<span id="cb2-3"><a aria-label="3"></a>    <span class="kw">const</span> agua <span class="op">=</span> doseGramas <span class="op">*</span> <span class="kw">this</span><span class="op">.</span><span class="at">proporcaoAguaCafe</span><span class="op">;</span></span>
-<span id="cb2-4"><a aria-label="4"></a>    <span class="cf">return</span> <span class="vs">`V60: despeje </span><span class="sc">${</span>agua<span class="sc">}</span><span class="vs">ml de agua sobre </span><span class="sc">${</span>doseGramas<span class="sc">}</span><span class="vs">g de cafe moido medio-fino, em espiral, por ~2:30min.`</span><span class="op">;</span></span>
-<span id="cb2-5"><a aria-label="5"></a>  }</span>
-<span id="cb2-6"><a aria-label="6"></a>}</span>
-<span id="cb2-7"><a aria-label="7"></a></span>
-<span id="cb2-8"><a aria-label="8"></a><span class="kw">class</span> Aeropress <span class="kw">extends</span> MetodoExtracao {</span>
-<span id="cb2-9"><a aria-label="9"></a>  <span class="fu">preparar</span>(doseGramas<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> {</span>
-<span id="cb2-10"><a aria-label="10"></a>    <span class="kw">const</span> agua <span class="op">=</span> doseGramas <span class="op">*</span> <span class="kw">this</span><span class="op">.</span><span class="at">proporcaoAguaCafe</span><span class="op">;</span></span>
-<span id="cb2-11"><a aria-label="11"></a>    <span class="cf">return</span> <span class="vs">`Aeropress: infusao de </span><span class="sc">${</span>doseGramas<span class="sc">}</span><span class="vs">g de cafe com </span><span class="sc">${</span>agua<span class="sc">}</span><span class="vs">ml de agua por 1min, depois prense por 30s.`</span><span class="op">;</span></span>
-<span id="cb2-12"><a aria-label="12"></a>  }</span>
-<span id="cb2-13"><a aria-label="13"></a>}</span>
-<span id="cb2-14"><a aria-label="14"></a></span>
-<span id="cb2-15"><a aria-label="15"></a><span class="kw">class</span> PrensaFrancesa <span class="kw">extends</span> MetodoExtracao {</span>
-<span id="cb2-16"><a aria-label="16"></a>  <span class="fu">preparar</span>(doseGramas<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> {</span>
-<span id="cb2-17"><a aria-label="17"></a>    <span class="kw">const</span> agua <span class="op">=</span> doseGramas <span class="op">*</span> <span class="kw">this</span><span class="op">.</span><span class="at">proporcaoAguaCafe</span><span class="op">;</span></span>
-<span id="cb2-18"><a aria-label="18"></a>    <span class="cf">return</span> <span class="vs">`Prensa Francesa: cafe grosso, </span><span class="sc">${</span>agua<span class="sc">}</span><span class="vs">ml de agua, 4min de infusao antes de prensar.`</span><span class="op">;</span></span>
-<span id="cb2-19"><a aria-label="19"></a>  }</span>
-<span id="cb2-20"><a aria-label="20"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="por-que-isso-importa" class="slide level2">
-<h2>Por que isso importa</h2>
-<p>O código que chama <code>metodo.preparar(dose)</code> <strong>nunca</strong> precisa saber qual subclasse está usando — cada método de extração sabe se comportar sozinho.</p>
+<section id="a-regra-do-curso" class="slide level2">
+<h2>A regra do curso</h2>
 <blockquote>
-<p>Existe também um exemplo equivalente em Java/PHP na aula original, com a mesma ideia por trás de sintaxes diferentes.</p>
+<p>A IA sugere. Você decide.</p>
+</blockquote>
+<p>A IA acelera quem já sabe pensar. Não quem terceiriza decisões.</p>
+<p>Se o erro for para produção, <strong>de quem é o erro?</strong> De quem fez o merge.</p>
+</section>
+<section id="mini-desafio-ajuda-ou-risco" class="slide level2">
+<h2>Mini desafio · Ajuda ou risco</h2>
+<p>Classifique cada uso:</p>
+<ol type="1">
+<li>Pedir a explicação de um <strong>stack trace</strong></li>
+<li>Colar o <strong><code>.env</code></strong> para “ajudar a depurar”</li>
+<li>Deixar a IA <strong>escolher o banco</strong> sozinha</li>
+<li>Gerar o <strong>rascunho</strong> de um teste e revisar</li>
+</ol>
+</section>
+<section id="prompts-técnicos" class="slide level2">
+<h2>Prompts técnicos</h2>
+</section>
+<section id="anatomia-de-um-bom-prompt" class="slide level2">
+<h2>Anatomia de um bom prompt</h2>
+<ol type="1">
+<li><strong>Papel:</strong> quem a IA deve ser</li>
+<li><strong>Contexto:</strong> domínio, regras, volume, equipe, prazo</li>
+<li><strong>Tarefa:</strong> o que você quer</li>
+<li><strong>Restrições:</strong> o que não pode</li>
+<li><strong>Formato:</strong> como responder</li>
+</ol>
+</section>
+<section id="prompt-ruim-prompt-bom" class="slide level2 smaller">
+<h2>Prompt ruim, prompt bom</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a aria-label="1"></a>faz um repository pra mim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a aria-label="1"></a>Papel: dev backend sênior em PHP.</span>
+<span id="cb2-2"><a aria-label="2"></a>Contexto: pedidos de e-commerce, 3 devs, SQLite.</span>
+<span id="cb2-3"><a aria-label="3"></a>Tarefa: salvar Order sem acoplar o domínio ao banco.</span>
+<span id="cb2-4"><a aria-label="4"></a>Restrições: sem framework; testável sem banco.</span>
+<span id="cb2-5"><a aria-label="5"></a>Peça: 3 alternativas com prós, contras e quando NÃO usar.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="contexto-muda-a-resposta" class="slide level2 smaller">
+<h2>Contexto muda a resposta</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Informe</th>
+<th>Porque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Volume</strong> de dados</td>
+<td>Define se precisa escalar</td>
+</tr>
+<tr class="even">
+<td><strong>Equipe</strong> e prazo</td>
+<td>Define a complexidade aceitável</td>
+</tr>
+<tr class="odd">
+<td><strong>Regras</strong> de negócio</td>
+<td>Define o modelo</td>
+</tr>
+<tr class="even">
+<td><strong>Restrições</strong></td>
+<td>Evita a solução “bonita” impossível</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="itere-e-peça-o-contraditório" class="slide level2">
+<h2>Itere e peça o contraditório</h2>
+<ul>
+<li>Peça <strong>alternativas</strong>, e não “a melhor”</li>
+<li>Peça os <strong>riscos</strong> e <strong>quando não usar</strong></li>
+<li>Pergunte: <em>“o que você não sabe sobre o meu contexto?”</em></li>
+<li>A <strong>segunda</strong> pergunta vale mais que a primeira</li>
+</ul>
+</section>
+<section id="mini-desafio-reescreva-o-prompt" class="slide level2">
+<h2>Mini desafio · Reescreva o prompt</h2>
+<p>Melhore este prompt:</p>
+<p><code>faz um repository pra mim</code></p>
+<p>Inclua <strong>contexto</strong>, <strong>restrições</strong> e o <strong>formato</strong> da resposta.</p>
+<p><em>Extra: peça os riscos da sugestão.</em></p>
+</section>
+<section id="ferramentas-e-validação" class="slide level2">
+<h2>Ferramentas e validação</h2>
+</section>
+<section id="mermaid-diagrama-como-código" class="slide level2">
+<h2>Mermaid: diagrama como código</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a aria-label="1"></a>sequenceDiagram</span>
+<span id="cb3-2"><a aria-label="2"></a>    participant C as CheckoutService</span>
+<span id="cb3-3"><a aria-label="3"></a>    participant P as PaymentMethod</span>
+<span id="cb3-4"><a aria-label="4"></a>    C-&gt;&gt;P: pay(total)</span>
+<span id="cb3-5"><a aria-label="5"></a>    P--&gt;&gt;C: recibo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Renderiza no <strong>Obsidian</strong> e no <strong>GitHub</strong>. Fica no repositório.</p>
+</section>
+<section id="cursor-gpt-e-gemini" class="slide level2">
+<h2>Cursor, GPT e Gemini</h2>
+<ul>
+<li><strong>Cursor:</strong> lê o projeto e propõe edições em <strong>diff</strong></li>
+<li><strong>GPT</strong> e <strong>Gemini:</strong> análise e <strong>segunda opinião</strong></li>
+<li>Faça a <strong>mesma pergunta</strong> nos dois e compare</li>
+<li><strong>Discordância</strong> é sinal para investigar</li>
+</ul>
+<p>Leia o <strong>diff</strong> antes de aceitar.</p>
+</section>
+<section id="rotina-de-validação" class="slide level2">
+<h2>Rotina de validação</h2>
+<ol type="1">
+<li><strong>Rode</strong> o código</li>
+<li><strong>Teste</strong>, inclusive o caso de erro</li>
+<li><strong>Leia</strong> o diff linha a linha</li>
+<li>Peça um <strong>contra-argumento</strong></li>
+<li>Confira na <strong>documentação oficial</strong></li>
+</ol>
+</section>
+<section id="mini-desafio-mermaid-e-segunda-opinião" class="slide level2">
+<h2>Mini desafio · Mermaid e segunda opinião</h2>
+<ol type="1">
+<li>Escreva um <strong>diagrama de sequência</strong> do checkout</li>
+<li>Faça a <strong>mesma pergunta</strong> a duas IAs</li>
+<li>Anote <strong>onde elas discordam</strong></li>
+</ol>
+<p><em>Extra: qual das duas está certa? Como você provou?</em></p>
+</section>
+<section id="active-record-vs-repository" class="slide level2">
+<h2>Active Record vs Repository</h2>
+</section>
+<section id="active-record" class="slide level2">
+<h2>Active Record</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb4-1"><a aria-label="1"></a><span class="kw">final</span> <span class="kw">class</span> OrderRecord</span>
+<span id="cb4-2"><a aria-label="2"></a>{</span>
+<span id="cb4-3"><a aria-label="3"></a>    <span class="kw">public</span> <span class="kw">function</span> save()<span class="ot">:</span> <span class="dt">void</span> { <span class="co">/* INSERT OR REPLACE ... */</span> }</span>
+<span id="cb4-4"><a aria-label="4"></a></span>
+<span id="cb4-5"><a aria-label="5"></a>    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">function</span> find(<span class="bu">PDO</span> <span class="va">$db</span><span class="ot">,</span> <span class="dt">string</span> <span class="va">$id</span>)<span class="ot">:</span> <span class="ot">?</span><span class="kw">self</span></span>
+<span id="cb4-6"><a aria-label="6"></a>    {</span>
+<span id="cb4-7"><a aria-label="7"></a>        <span class="co">/* SELECT ... WHERE id = :id */</span></span>
+<span id="cb4-8"><a aria-label="8"></a>    }</span>
+<span id="cb4-9"><a aria-label="9"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O objeto <strong>conhece o banco</strong>. Simples e rápido para CRUD.</p>
+</section>
+<section id="repository" class="slide level2">
+<h2>Repository</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb5-1"><a aria-label="1"></a><span class="kw">interface</span> OrderRepository</span>
+<span id="cb5-2"><a aria-label="2"></a>{</span>
+<span id="cb5-3"><a aria-label="3"></a>    <span class="kw">public</span> <span class="kw">function</span> save(Order <span class="va">$order</span>)<span class="ot">:</span> <span class="dt">void</span><span class="ot">;</span></span>
+<span id="cb5-4"><a aria-label="4"></a></span>
+<span id="cb5-5"><a aria-label="5"></a>    <span class="kw">public</span> <span class="kw">function</span> find(<span class="dt">string</span> <span class="va">$id</span>)<span class="ot">:</span> <span class="ot">?</span>Order<span class="ot">;</span></span>
+<span id="cb5-6"><a aria-label="6"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O domínio pede e recebe <strong>entidades</strong>. O armazenamento fica <strong>escondido</strong>.</p>
+</section>
+<section id="data-mapper" class="slide level2">
+<h2>Data Mapper</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a aria-label="1"></a>Order (entidade)  ◄──►  OrderMapper  ◄──►  linha da tabela</span>
+<span id="cb6-2"><a aria-label="2"></a>  não sabe do banco      converte           id | total | status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>A entidade <strong>não conhece</strong> SQL</li>
+<li>O mapper faz <code>toRow()</code> e <code>fromRow()</code></li>
+<li>O repositório usa o mapper</li>
+</ul>
+</section>
+<section id="testar-sem-banco" class="slide level2">
+<h2>Testar sem banco</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb7-1"><a aria-label="1"></a><span class="va">$mem</span> <span class="op">=</span> <span class="kw">new</span> InMemoryOrderRepository()<span class="ot">;</span></span>
+<span id="cb7-2"><a aria-label="2"></a><span class="va">$mem</span>-&gt;save(<span class="kw">new</span> Order(<span class="st">'R2'</span><span class="ot">,</span> <span class="fl">50.0</span>))<span class="ot">;</span></span>
+<span id="cb7-3"><a aria-label="3"></a></span>
+<span id="cb7-4"><a aria-label="4"></a><span class="kw">echo</span> (<span class="kw">new</span> PayOrder(<span class="va">$mem</span>))-&gt;run(<span class="st">'R2'</span>)<span class="ot">;</span>   <span class="co">// paid</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Com <strong>Repository</strong>, o teste roda <strong>sem banco</strong>. Com Active Record, precisa de banco.</p>
+</section>
+<section id="como-escolher" class="slide level2">
+<h2>Como escolher</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Active Record</th>
+<th>Repository + Mapper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classes</td>
+<td>Poucas</td>
+<td>Mais</td>
+</tr>
+<tr class="even">
+<td>Regras de negócio</td>
+<td>Simples</td>
+<td><strong>Complexas</strong></td>
+</tr>
+<tr class="odd">
+<td>Teste sem banco</td>
+<td>Difícil</td>
+<td><strong>Fácil</strong></td>
+</tr>
+<tr class="even">
+<td>Bom para</td>
+<td>CRUD</td>
+<td>Domínio rico</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mini-desafio-active-record-ou-repository" class="slide level2">
+<h2>Mini desafio · Active Record ou Repository</h2>
+<p>Persista um <code>Order</code> em <strong>SQLite</strong> nos <strong>dois</strong> estilos:</p>
+<ol type="1">
+<li><strong>Active Record</strong>: <code>save()</code> e <code>find()</code></li>
+<li><strong>Repository</strong> com <strong>Mapper</strong> e uma versão <strong>em memória</strong></li>
+</ol>
+<p><em>Extra: qual dos dois você usaria no projeto? Por quê?</em></p>
+</section>
+<section id="transaction-script-e-cqrs" class="slide level2">
+<h2>Transaction Script e CQRS</h2>
+</section>
+<section id="transaction-script" class="slide level2">
+<h2>Transaction Script</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb8-1"><a aria-label="1"></a><span class="va">$db</span>-&gt;beginTransaction()<span class="ot">;</span></span>
+<span id="cb8-2"><a aria-label="2"></a><span class="cf">try</span> {</span>
+<span id="cb8-3"><a aria-label="3"></a>    baixarEstoque(<span class="va">$db</span><span class="ot">,</span> <span class="va">$sku</span><span class="ot">,</span> <span class="va">$qty</span>)<span class="ot">;</span>   <span class="co">// lança se faltar</span></span>
+<span id="cb8-4"><a aria-label="4"></a>    gravarPedido(<span class="va">$db</span><span class="ot">,</span> <span class="va">$id</span><span class="ot">,</span> <span class="va">$total</span>)<span class="ot">;</span></span>
+<span id="cb8-5"><a aria-label="5"></a>    <span class="va">$db</span>-&gt;commit()<span class="ot">;</span></span>
+<span id="cb8-6"><a aria-label="6"></a>} <span class="cf">catch</span> (<span class="bu">Throwable</span> <span class="va">$e</span>) {</span>
+<span id="cb8-7"><a aria-label="7"></a>    <span class="va">$db</span>-&gt;rollBack()<span class="ot">;</span></span>
+<span id="cb8-8"><a aria-label="8"></a>    <span class="cf">throw</span> <span class="va">$e</span><span class="ot">;</span></span>
+<span id="cb8-9"><a aria-label="9"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Um caso de uso, <strong>um procedimento</strong>, <strong>uma transação</strong>.</p>
+</section>
+<section id="quando-o-script-deixa-de-servir" class="slide level2">
+<h2>Quando o script deixa de servir</h2>
+<ul>
+<li>A <strong>mesma regra</strong> aparece em vários scripts</li>
+<li>Os <code>if</code> viram uma <strong>teia</strong></li>
+<li>Ninguém sabe <strong>onde</strong> está a regra</li>
+</ul>
+<p>Aí o <strong>modelo de domínio</strong> (Repository) compensa.</p>
+</section>
+<section id="cqrs" class="slide level2">
+<h2>CQRS</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a aria-label="1"></a>COMANDO  ──►  escreve  orders  ──►  atualiza  daily_sales</span>
+<span id="cb9-2"><a aria-label="2"></a>                                              ▲</span>
+<span id="cb9-3"><a aria-label="3"></a>CONSULTA ─────────────────────────────────────┘  só lê</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Separa</strong> escrever de ler. A leitura tem um modelo <strong>próprio</strong>.</p>
+</section>
+<section id="o-custo-do-cqrs" class="slide level2">
+<h2>O custo do CQRS</h2>
+<ul>
+<li><strong>Duas vias</strong> para manter</li>
+<li>A leitura pode ficar <strong>atrasada</strong> (consistência eventual)</li>
+<li>Sem o problema de escala, é <strong>overengineering</strong></li>
+</ul>
+<blockquote>
+<p>2 mil pedidos por dia? Provavelmente não.</p>
 </blockquote>
 </section>
-<section id="encapsulamento-a-receita-protege-seu-próprio-estado" class="slide level2 smaller">
-<h2>Encapsulamento — a receita protege seu próprio estado</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource typescript number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb3-1"><a aria-label="1"></a><span class="kw">class</span> Receita {</span>
-<span id="cb3-2"><a aria-label="2"></a>  <span class="kw">private</span> historico<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> []<span class="op">;</span></span>
-<span id="cb3-3"><a aria-label="3"></a></span>
-<span id="cb3-4"><a aria-label="4"></a>  <span class="kw">constructor</span>(</span>
-<span id="cb3-5"><a aria-label="5"></a>    <span class="kw">private</span> nome<span class="op">:</span> <span class="dt">string</span><span class="op">,</span></span>
-<span id="cb3-6"><a aria-label="6"></a>    <span class="kw">private</span> metodo<span class="op">:</span> MetodoExtracao<span class="op">,</span></span>
-<span id="cb3-7"><a aria-label="7"></a>    <span class="kw">private</span> doseGramas<span class="op">:</span> <span class="dt">number</span></span>
-<span id="cb3-8"><a aria-label="8"></a>  ) {</span>
-<span id="cb3-9"><a aria-label="9"></a>    <span class="cf">if</span> (doseGramas <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">"Dose deve ser maior que zero"</span>)<span class="op">;</span></span>
-<span id="cb3-10"><a aria-label="10"></a>  }</span>
-<span id="cb3-11"><a aria-label="11"></a></span>
-<span id="cb3-12"><a aria-label="12"></a>  <span class="fu">executar</span>()<span class="op">:</span> <span class="dt">string</span> {</span>
-<span id="cb3-13"><a aria-label="13"></a>    <span class="kw">const</span> instrucao <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">metodo</span><span class="op">.</span><span class="fu">preparar</span>(<span class="kw">this</span><span class="op">.</span><span class="at">doseGramas</span>)<span class="op">;</span></span>
-<span id="cb3-14"><a aria-label="14"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">historico</span><span class="op">.</span><span class="fu">push</span>(<span class="vs">`</span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toISOString</span>()<span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>instrucao<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
-<span id="cb3-15"><a aria-label="15"></a>    <span class="cf">return</span> instrucao<span class="op">;</span></span>
-<span id="cb3-16"><a aria-label="16"></a>  }</span>
-<span id="cb3-17"><a aria-label="17"></a></span>
-<span id="cb3-18"><a aria-label="18"></a>  <span class="kw">get</span> <span class="fu">totalExecucoes</span>()<span class="op">:</span> <span class="dt">number</span> {</span>
-<span id="cb3-19"><a aria-label="19"></a>    <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">historico</span><span class="op">.</span><span class="at">length</span><span class="op">;</span> <span class="co">// ninguem de fora consegue alterar o historico diretamente</span></span>
-<span id="cb3-20"><a aria-label="20"></a>  }</span>
-<span id="cb3-21"><a aria-label="21"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="mini-desafio-transaction-script-e-cqrs" class="slide level2">
+<h2>Mini desafio · Transaction Script e CQRS</h2>
+<ol type="1">
+<li><code>placeOrder</code> em <strong>uma transação</strong> com <strong>rollback</strong> se faltar estoque</li>
+<li>Prove que o segundo pedido <strong>não deixa rastro</strong></li>
+<li>Crie uma <strong>consulta</strong> que só lê <code>daily_sales</code></li>
+</ol>
+<p><em>Extra: onde o CQRS atrapalharia aqui?</em></p>
 </section>
-<section id="polimorfismo-de-novo-protocolos-de-pontuação" class="slide level2 smaller">
-<h2>Polimorfismo de novo — protocolos de pontuação</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource typescript number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb4-1"><a aria-label="1"></a><span class="kw">interface</span> AvaliacaoSensorial {</span>
-<span id="cb4-2"><a aria-label="2"></a>  fragancia<span class="op">:</span> <span class="dt">number</span><span class="op">;</span> sabor<span class="op">:</span> <span class="dt">number</span><span class="op">;</span> acidez<span class="op">:</span> <span class="dt">number</span><span class="op">;</span> corpo<span class="op">:</span> <span class="dt">number</span><span class="op">;</span> docura<span class="op">:</span> <span class="dt">number</span><span class="op">;</span> defeitos<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
-<span id="cb4-3"><a aria-label="3"></a>}</span>
-<span id="cb4-4"><a aria-label="4"></a></span>
-<span id="cb4-5"><a aria-label="5"></a><span class="kw">interface</span> ProtocoloDePontuacao {</span>
-<span id="cb4-6"><a aria-label="6"></a>  <span class="fu">calcularNota</span>(a<span class="op">:</span> AvaliacaoSensorial)<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
-<span id="cb4-7"><a aria-label="7"></a>}</span>
-<span id="cb4-8"><a aria-label="8"></a></span>
-<span id="cb4-9"><a aria-label="9"></a><span class="kw">class</span> ProtocoloSCA <span class="kw">implements</span> ProtocoloDePontuacao {</span>
-<span id="cb4-10"><a aria-label="10"></a>  <span class="fu">calcularNota</span>(a<span class="op">:</span> AvaliacaoSensorial)<span class="op">:</span> <span class="dt">number</span> {</span>
-<span id="cb4-11"><a aria-label="11"></a>    <span class="cf">return</span> a<span class="op">.</span><span class="at">fragancia</span> <span class="op">+</span> a<span class="op">.</span><span class="at">sabor</span> <span class="op">+</span> a<span class="op">.</span><span class="at">acidez</span> <span class="op">+</span> a<span class="op">.</span><span class="at">corpo</span> <span class="op">+</span> a<span class="op">.</span><span class="at">docura</span> <span class="op">-</span> a<span class="op">.</span><span class="at">defeitos</span><span class="op">;</span></span>
-<span id="cb4-12"><a aria-label="12"></a>  }</span>
-<span id="cb4-13"><a aria-label="13"></a>}</span>
-<span id="cb4-14"><a aria-label="14"></a></span>
-<span id="cb4-15"><a aria-label="15"></a><span class="kw">class</span> ProtocoloCupOfExcellence <span class="kw">implements</span> ProtocoloDePontuacao {</span>
-<span id="cb4-16"><a aria-label="16"></a>  <span class="fu">calcularNota</span>(a<span class="op">:</span> AvaliacaoSensorial)<span class="op">:</span> <span class="dt">number</span> {</span>
-<span id="cb4-17"><a aria-label="17"></a>    <span class="cf">return</span> (a<span class="op">.</span><span class="at">fragancia</span> <span class="op">+</span> a<span class="op">.</span><span class="at">sabor</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> a<span class="op">.</span><span class="at">acidez</span> <span class="op">+</span> a<span class="op">.</span><span class="at">corpo</span> <span class="op">+</span> a<span class="op">.</span><span class="at">docura</span>) <span class="op">/</span> <span class="fl">1.2</span><span class="op">;</span></span>
-<span id="cb4-18"><a aria-label="18"></a>  }</span>
-<span id="cb4-19"><a aria-label="19"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="decidindo-com-ia" class="slide level2">
+<h2>Decidindo com IA</h2>
 </section>
-<section id="abstração-o-resto-do-app-não-sabe-que-existe-um-banco" class="slide level2">
-<h2>Abstração — o resto do app não sabe que existe um banco</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource typescript number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb5-1"><a aria-label="1"></a><span class="kw">interface</span> CafeRepository {</span>
-<span id="cb5-2"><a aria-label="2"></a>  <span class="fu">buscarPorId</span>(id<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> Cafe <span class="op">|</span> <span class="dt">undefined</span><span class="op">;</span></span>
-<span id="cb5-3"><a aria-label="3"></a>  <span class="fu">salvar</span>(cafe<span class="op">:</span> Cafe)<span class="op">:</span> <span class="dt">void</span><span class="op">;</span></span>
-<span id="cb5-4"><a aria-label="4"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="o-fluxo-da-decisão" class="slide level2">
+<h2>O fluxo da decisão</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a aria-label="1"></a>Problema → Prompt com contexto → IA sugere alternativas</span>
+<span id="cb10-2"><a aria-label="2"></a>   → VOCÊ valida → Decisão humana → Registro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se não entendeu, testou e validou, <strong>volte ao prompt</strong>.</p>
 </section>
-<section id="juntando-tudo" class="slide level2 smaller">
-<h2>Juntando tudo</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource typescript number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb6-1"><a aria-label="1"></a><span class="kw">const</span> receita <span class="op">=</span> <span class="kw">new</span> <span class="fu">Receita</span>(<span class="st">"V60 Etiopia Yirgacheffe"</span><span class="op">,</span> <span class="kw">new</span> <span class="fu">V60</span>(<span class="dv">16</span>)<span class="op">,</span> <span class="dv">20</span>)<span class="op">;</span></span>
-<span id="cb6-2"><a aria-label="2"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(receita<span class="op">.</span><span class="fu">executar</span>())<span class="op">;</span></span>
-<span id="cb6-3"><a aria-label="3"></a><span class="co">// V60: despeje 320ml de agua sobre 20g de cafe moido medio-fino, em espiral, por ~2:30min.</span></span>
-<span id="cb6-4"><a aria-label="4"></a></span>
-<span id="cb6-5"><a aria-label="5"></a><span class="kw">const</span> protocolo<span class="op">:</span> ProtocoloDePontuacao <span class="op">=</span> <span class="kw">new</span> <span class="fu">ProtocoloSCA</span>()<span class="op">;</span></span>
-<span id="cb6-6"><a aria-label="6"></a><span class="kw">const</span> nota <span class="op">=</span> protocolo<span class="op">.</span><span class="fu">calcularNota</span>({ fragancia<span class="op">:</span> <span class="dv">8</span><span class="op">,</span> sabor<span class="op">:</span> <span class="fl">8.5</span><span class="op">,</span> acidez<span class="op">:</span> <span class="fl">7.5</span><span class="op">,</span> corpo<span class="op">:</span> <span class="dv">8</span><span class="op">,</span> docura<span class="op">:</span> <span class="dv">8</span><span class="op">,</span> defeitos<span class="op">:</span> <span class="dv">0</span> })<span class="op">;</span></span>
-<span id="cb6-7"><a aria-label="7"></a><span class="co">// nota = 40 (escala SCA de 0-100 apos normalizacao)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="registro-de-decisão" class="slide level2">
+<h2>Registro de decisão</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a aria-label="1"></a><span class="fu">## Contexto</span></span>
+<span id="cb11-2"><a aria-label="2"></a>O problema e as restrições.</span>
+<span id="cb11-3"><a aria-label="3"></a></span>
+<span id="cb11-4"><a aria-label="4"></a><span class="fu">## Alternativas (sugeridas pela IA)</span></span>
+<span id="cb11-5"><a aria-label="5"></a>A, B e C, com prós e contras.</span>
+<span id="cb11-6"><a aria-label="6"></a></span>
+<span id="cb11-7"><a aria-label="7"></a><span class="fu">## Decisão</span></span>
+<span id="cb11-8"><a aria-label="8"></a>Escolhemos B, porque...</span>
+<span id="cb11-9"><a aria-label="9"></a></span>
+<span id="cb11-10"><a aria-label="10"></a><span class="fu">## Riscos</span></span>
+<span id="cb11-11"><a aria-label="11"></a>O que pode dar errado.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="quando-a-ia-está-errada" class="slide level2">
+<h2>Quando a IA está errada</h2>
+<ul>
+<li><strong>“Use X em tudo”</strong>: conclusão genérica</li>
+<li>SQL por <strong>concatenação</strong> de texto</li>
+<li>Esquece a <strong>transação</strong></li>
+<li>Sugere uma <strong>escala</strong> que você não tem</li>
+</ul>
+<p>Avise no <strong>PR</strong> quando o código veio de IA e o que você validou.</p>
+</section>
+<section id="mini-desafio-valide-e-registre-a-decisão" class="slide level2 smaller">
+<h2>Mini desafio · Valide e registre a decisão</h2>
+<p>Uma “IA” respondeu (<strong>exemplo fictício</strong>):</p>
+<p><code>Use Active Record em tudo; monte a query com "...WHERE id = '$id'"; não precisa de transação; adote CQRS com fila desde já.</code></p>
+<p><strong>Ache os problemas</strong> e escreva o <strong>registro de decisão</strong>.</p>
+</section>
+<section id="desafio-integrador-persistência-do-projeto-com-ia" class="slide level2">
+<h2>Desafio integrador · Persistência do projeto com IA</h2>
+<p>Em dupla</p>
+</section>
+<section id="o-que-fazer" class="slide level2">
+<h2>O que fazer</h2>
+<ol type="1">
+<li>Escreva o <strong>prompt com contexto</strong> do seu projeto</li>
+<li>Colete as <strong>alternativas</strong> da IA</li>
+<li><strong>Valide</strong> e escolha <strong>um</strong> pattern</li>
+<li><strong>Implemente</strong> um recorte e <strong>registre</strong></li>
+</ol>
+</section>
+<section id="critério-de-pronto" class="slide level2">
+<h2>Critério de pronto</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Prompt com <strong>contexto e restrições</strong></label></li>
+<li><label><input type="checkbox"><strong>3 alternativas</strong> da IA registradas</label></li>
+<li><label><input type="checkbox">Decisão <strong>humana</strong>, com justificativa</label></li>
+<li><label><input type="checkbox">Recorte implementado e <strong>rodando</strong></label></li>
+<li><label><input type="checkbox">Anotado <strong>o que a IA errou</strong></label></li>
+</ul>
+<p><em>Extra: peça um contra-argumento à recomendação.</em></p>
+</section>
+<section id="fechamento" class="slide level2">
+<h2>Fechamento</h2>
+<ul>
+<li><strong>Prompt</strong> com contexto, restrições e formato</li>
+<li><strong>Valide</strong> antes de aceitar</li>
+<li><strong>Registre</strong> a decisão</li>
+</ul>
+</section>
+<section id="dever-de-casa" class="slide level2">
+<h2>Dever de casa</h2>
+<ol type="1">
+<li><strong>Finalize</strong> 1 Database Pattern com a IA como apoio</li>
+<li><strong>Registre</strong> a decisão</li>
+<li>Prepare o <strong>seminário do E06</strong>: 1 princípio + 1 pattern</li>
+<li>Leve <strong>3 dúvidas</strong></li>
+</ol>
+</section>
+<section id="próximo-encontro-seminários" class="slide level2">
+<h2>Próximo encontro · Seminários</h2>
+<p>Cada dupla apresenta, com a IA sorteada.</p>
 
 
 </section>

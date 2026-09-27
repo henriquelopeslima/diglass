@@ -4,657 +4,1658 @@
     "href": "index.html",
     "title": "Full Cycle",
     "section": "",
-    "text": "Curso Geração Tech 4.0 · Turma FullCycle · Módulo 1, 09/09 a 21/09/2026 · 5 aulas: Docker, Git e GitHub, Programação Orientada a Objetos, Engenharia Limpa e IA como Assistente."
+    "text": "Slides das aulas do Módulo 1."
   },
   {
     "objectID": "index.html#aulas",
     "href": "index.html#aulas",
     "title": "Full Cycle",
     "section": "Aulas",
-    "text": "Aulas\n\nAula 1 — Docker ⚙️\nAula 2 — Git e GitHub ⚙️\nAula 3 — Programação Orientada a Objetos 💻\nAula 4 — Engenharia Limpa\nAula 5 — IA como Assistente"
+    "text": "Aulas\n\nE01 — Docker para aplicações web\nE02 — Ágil e desenvolvimento colaborativo\nE03 — POO e Design Principles\nE04 — Design Patterns\nE05 — IA no fluxo de engenharia e Database Patterns\nE06 — Seminários e fechamento do módulo"
   },
   {
-    "objectID": "index.html#visão-geral-do-módulo",
-    "href": "index.html#visão-geral-do-módulo",
-    "title": "Full Cycle",
-    "section": "Visão geral do módulo",
-    "text": "Visão geral do módulo\nPeríodo: 09/09 a 21/09/2026 · Formato: encontro síncrono semanal (segundas-feiras, 18h30–22h30, via Google Meet) + conteúdo assíncrono (livros/e-books no Moodle) + questionário de fixação ao final de cada aula.\nObjetivos gerais\n\nConsolidar fundamentos modernos de Engenharia de Software: containerização, controle de versão distribuído, paradigma orientado a objetos e princípios de código limpo.\nPreparar o aluno para colaborar em projetos reais usando Docker, Git/GitHub e arquitetura em camadas (Clean Architecture).\nDesenvolver uso crítico e responsável de IA generativa como ferramenta de apoio ao desenvolvimento (nunca como substituta do raciocínio de engenharia).\n\nCompetências por aula\n\n\n\n\n\n\n\n\nAula\nTema\nCompetência-chave\n\n\n\n\n1\nDocker\nContainerização e portabilidade de ambientes\n\n\n2\nGit e GitHub\nControle de versão e colaboração em equipe\n\n\n3\nProgramação Orientada a Objetos\nModelagem OO consistente em múltiplas linguagens\n\n\n4\nEngenharia Limpa\nCódigo limpo, refatoração e arquitetura SOLID/Clean Architecture\n\n\n5\nIA como Assistente\nPrompt engineering e uso crítico de ferramentas de IA generativa\n\n\n\nAvaliação do módulo: questionário de fixação (Moodle quiz) ao final de cada aula, desafio de conhecimento na Aula 5 (10 questões), registro de presença automático e pesquisa de satisfação ao final do módulo."
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#na-aula-passada",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#na-aula-passada",
+    "title": "IA no fluxo de engenharia",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nStrategy, Factory, Decorator, Adapter, Observer\nPattern pela dor, e não pelo catálogo"
   },
   {
-    "objectID": "index.html#projeto-prático-do-módulo",
-    "href": "index.html#projeto-prático-do-módulo",
-    "title": "Full Cycle",
-    "section": "Projeto prático do módulo",
-    "text": "Projeto prático do módulo\nAo longo das 5 aulas, construímos incrementalmente uma API para o Diário de Café — um app de barismo hobbista que cataloga cafés e insumos, registra cuppings (avaliações sensoriais) e receitas de extração. Cada aula acrescenta uma camada nova: Docker (Aula 1) → Git/GitHub e versionamento (Aula 2) → modelagem POO (Aula 3) → refatoração SOLID/Clean Architecture (Aula 4) → uso de IA para testes e refatoração (Aula 5)."
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#hoje",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#hoje",
+    "title": "IA no fluxo de engenharia",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: onde a IA ajuda · prompts · ferramentas\nBloco 2: Active Record vs Repository · CQRS · decidir\nDesafio: persistência do projeto com IA\n\nSaída: uma decisão sua, registrada"
   },
   {
-    "objectID": "index.html#cronograma-sugerido",
-    "href": "index.html#cronograma-sugerido",
-    "title": "Full Cycle",
-    "section": "Cronograma sugerido",
-    "text": "Cronograma sugerido\nO módulo cobre 09/09 a 21/09/2026 (2 semanas), com encontro síncrono às segundas-feiras (18h30–22h30). As 5 aulas podem ser distribuídas em 2 encontros ao vivo + estudo assíncrono guiado, ou em ritmo intensivo conforme a disponibilidade da turma.\n\n\n\n\n\n\n\n\n\nSemana\nData\nAula\nFoco da sessão síncrona\n\n\n\n\n1\n09/09 (terça) a 14/09\nAula 1 — Docker\nLive: conceitos + live coding de Dockerfile e volumes\n\n\n1\naté 14/09\nAula 2 — Git e GitHub\nAssíncrono (livro) + exercício de PR/conflito entre aulas\n\n\n2\n14/09 (segunda, encontro ao vivo)\nAulas 2 e 3\nLive: revisão de Git/GitHub + introdução a POO com exemplos multi-linguagem\n\n\n2\n15/09 a 18/09\nAula 4 — Engenharia Limpa\nAssíncrono (livro + slides) + exercício de refatoração\n\n\n2\n21/09 (segunda, encontro ao vivo)\nAula 5 — IA como Assistente\nLive: prompt engineering na prática + checklist de code review + Desafio de Conhecimento\n\n\n\nObservação: os questionários de fixação de cada aula ficam liberados no Moodle assim que o conteúdo é aberto (08/09), permitindo que o aluno avance no próprio ritmo entre os encontros ao vivo."
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#onde-a-ia-ajuda-e-atrapalha",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#onde-a-ia-ajuda-e-atrapalha",
+    "title": "IA no fluxo de engenharia",
+    "section": "Onde a IA ajuda e atrapalha",
+    "text": "Onde a IA ajuda e atrapalha"
   },
   {
-    "objectID": "index.html#recursos-complementares",
-    "href": "index.html#recursos-complementares",
-    "title": "Full Cycle",
-    "section": "Recursos complementares",
-    "text": "Recursos complementares\n\n\n\nAula\nRecurso\nTipo\n\n\n\n\n1 — Docker\nDocumentação oficial Docker\nReferência\n\n\n1 — Docker\nDocker Hub\nRepositório de imagens\n\n\n1 — Docker\nDockerizando Spring Boot + AWS (Medium)\nArtigo prático\n\n\n4 — Eng. Limpa\nEngenharia de Software Moderna — Marco Tulio Valente (UFMG), versão web\nE-book completo (cap. 5, 7, 8 e 10 recomendados)\n\n\n5 — IA Assistente\nAI-Assisted Programming — Tom Taulli (O’Reilly, 2024)\nE-book + resumo em português\n\n\n3 — POO\nClean Code (Robert C. Martin); Design Patterns (Gang of Four); The Object-Oriented Thought Process (Matt Weisfeld)\nLivros de referência\n\n\n\nContinuidade do curso: o módulo 1 encerra em 21/09 e o Módulo 2 — Qualidade de Software e Testes com IA — começa em 23/09/2026, dando sequência natural aos temas de Clean Code e IA vistos nas Aulas 4 e 5."
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ajuda-e-atrapalha",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ajuda-e-atrapalha",
+    "title": "IA no fluxo de engenharia",
+    "section": "Ajuda e atrapalha",
+    "text": "Ajuda e atrapalha\n\n\n\nAjuda\nAtrapalha\n\n\n\n\nExplicar código e erros\nDecidir a arquitetura sozinha\n\n\nRascunho de testes\nInventar APIs que não existem\n\n\nSugerir alternativas\nSugerir versões antigas\n\n\nGerar diagramas\nPropor overengineering"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#objetivo-de-aprendizagem",
-    "href": "aulas/04-engenharia-limpa.html#objetivo-de-aprendizagem",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Objetivo de aprendizagem",
-    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nEscrever código com nomes reveladores de intenção e funções pequenas\nIdentificar code smells e aplicar técnicas de refatoração\nJustificar decisões de design usando os princípios SOLID\nSituar essas práticas dentro da Clean Architecture"
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#riscos-de-copiar-e-colar",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#riscos-de-copiar-e-colar",
+    "title": "IA no fluxo de engenharia",
+    "section": "Riscos de copiar e colar",
+    "text": "Riscos de copiar e colar\n\nCódigo que parece certo e está errado\nSegredos e dados pessoais colados no chat\nCódigo de licença ou origem desconhecida\nMenos raciocínio seu, com o tempo\n\nNunca cole .env, tokens nem dados de clientes."
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#nomes-significativos-e-funções-pequenas",
-    "href": "aulas/04-engenharia-limpa.html#nomes-significativos-e-funções-pequenas",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Nomes significativos e funções pequenas",
-    "text": "Nomes significativos e funções pequenas\n\nNomes significativos: um bom nome dispensa comentário explicativo\n\ndiasDesdeAUltimaModificacao em vez de int d\n\nFunções pequenas (Do One Thing):\n\nNível único de abstração\nSem argumentos flag (true/false indicando que a função faz duas coisas)\nPoucos parâmetros (0–2; 3+ vira um objeto de contexto)"
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#a-regra-do-curso",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#a-regra-do-curso",
+    "title": "IA no fluxo de engenharia",
+    "section": "A regra do curso",
+    "text": "A regra do curso\n\nA IA sugere. Você decide.\n\nA IA acelera quem já sabe pensar. Não quem terceiriza decisões.\nSe o erro for para produção, de quem é o erro? De quem fez o merge."
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#tratamento-de-erros-e-melhoria-contínua",
-    "href": "aulas/04-engenharia-limpa.html#tratamento-de-erros-e-melhoria-contínua",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Tratamento de erros e melhoria contínua",
-    "text": "Tratamento de erros e melhoria contínua\n\nTratamento de erros: evitar return null (obriga checagens em cascata); preferir exceções explícitas ou Optional\nRegra do Escoteiro: “deixe o código mais limpo do que encontrou” — melhoria incremental a cada commit, não reescrita total\nCiclo TDD + Clean Code:\n\nRED (teste que falha) → GREEN (código mínimo que passa) → REFACTOR (limpar sem quebrar o teste verde)"
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-ajuda-ou-risco",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-ajuda-ou-risco",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mini desafio · Ajuda ou risco",
+    "text": "Mini desafio · Ajuda ou risco\nClassifique cada uso:\n\nPedir a explicação de um stack trace\nColar o .env para “ajudar a depurar”\nDeixar a IA escolher o banco sozinha\nGerar o rascunho de um teste e revisar"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#code-smells",
-    "href": "aulas/04-engenharia-limpa.html#code-smells",
-    "title": "Aula 4 — Engenharia Limpa",
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#prompts-técnicos",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#prompts-técnicos",
+    "title": "IA no fluxo de engenharia",
+    "section": "Prompts técnicos",
+    "text": "Prompts técnicos"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#anatomia-de-um-bom-prompt",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#anatomia-de-um-bom-prompt",
+    "title": "IA no fluxo de engenharia",
+    "section": "Anatomia de um bom prompt",
+    "text": "Anatomia de um bom prompt\n\nPapel: quem a IA deve ser\nContexto: domínio, regras, volume, equipe, prazo\nTarefa: o que você quer\nRestrições: o que não pode\nFormato: como responder"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#prompt-ruim-prompt-bom",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#prompt-ruim-prompt-bom",
+    "title": "IA no fluxo de engenharia",
+    "section": "Prompt ruim, prompt bom",
+    "text": "Prompt ruim, prompt bom\nfaz um repository pra mim\nPapel: dev backend sênior em PHP.\nContexto: pedidos de e-commerce, 3 devs, SQLite.\nTarefa: salvar Order sem acoplar o domínio ao banco.\nRestrições: sem framework; testável sem banco.\nPeça: 3 alternativas com prós, contras e quando NÃO usar."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#contexto-muda-a-resposta",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#contexto-muda-a-resposta",
+    "title": "IA no fluxo de engenharia",
+    "section": "Contexto muda a resposta",
+    "text": "Contexto muda a resposta\n\n\n\nInforme\nPorque\n\n\n\n\nVolume de dados\nDefine se precisa escalar\n\n\nEquipe e prazo\nDefine a complexidade aceitável\n\n\nRegras de negócio\nDefine o modelo\n\n\nRestrições\nEvita a solução “bonita” impossível"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#itere-e-peça-o-contraditório",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#itere-e-peça-o-contraditório",
+    "title": "IA no fluxo de engenharia",
+    "section": "Itere e peça o contraditório",
+    "text": "Itere e peça o contraditório\n\nPeça alternativas, e não “a melhor”\nPeça os riscos e quando não usar\nPergunte: “o que você não sabe sobre o meu contexto?”\nA segunda pergunta vale mais que a primeira"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-reescreva-o-prompt",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-reescreva-o-prompt",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mini desafio · Reescreva o prompt",
+    "text": "Mini desafio · Reescreva o prompt\nMelhore este prompt:\nfaz um repository pra mim\nInclua contexto, restrições e o formato da resposta.\nExtra: peça os riscos da sugestão."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ferramentas-e-validação",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ferramentas-e-validação",
+    "title": "IA no fluxo de engenharia",
+    "section": "Ferramentas e validação",
+    "text": "Ferramentas e validação"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mermaid-diagrama-como-código",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mermaid-diagrama-como-código",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mermaid: diagrama como código",
+    "text": "Mermaid: diagrama como código\nsequenceDiagram\n    participant C as CheckoutService\n    participant P as PaymentMethod\n    C-&gt;&gt;P: pay(total)\n    P--&gt;&gt;C: recibo\nRenderiza no Obsidian e no GitHub. Fica no repositório."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#cursor-gpt-e-gemini",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#cursor-gpt-e-gemini",
+    "title": "IA no fluxo de engenharia",
+    "section": "Cursor, GPT e Gemini",
+    "text": "Cursor, GPT e Gemini\n\nCursor: lê o projeto e propõe edições em diff\nGPT e Gemini: análise e segunda opinião\nFaça a mesma pergunta nos dois e compare\nDiscordância é sinal para investigar\n\nLeia o diff antes de aceitar."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#rotina-de-validação",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#rotina-de-validação",
+    "title": "IA no fluxo de engenharia",
+    "section": "Rotina de validação",
+    "text": "Rotina de validação\n\nRode o código\nTeste, inclusive o caso de erro\nLeia o diff linha a linha\nPeça um contra-argumento\nConfira na documentação oficial"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-mermaid-e-segunda-opinião",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-mermaid-e-segunda-opinião",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mini desafio · Mermaid e segunda opinião",
+    "text": "Mini desafio · Mermaid e segunda opinião\n\nEscreva um diagrama de sequência do checkout\nFaça a mesma pergunta a duas IAs\nAnote onde elas discordam\n\nExtra: qual das duas está certa? Como você provou?"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record-vs-repository",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record-vs-repository",
+    "title": "IA no fluxo de engenharia",
+    "section": "Active Record vs Repository",
+    "text": "Active Record vs Repository"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record",
+    "title": "IA no fluxo de engenharia",
+    "section": "Active Record",
+    "text": "Active Record\nfinal class OrderRecord\n{\n    public function save(): void { /* INSERT OR REPLACE ... */ }\n\n    public static function find(PDO $db, string $id): ?self\n    {\n        /* SELECT ... WHERE id = :id */\n    }\n}\nO objeto conhece o banco. Simples e rápido para CRUD."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#repository",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#repository",
+    "title": "IA no fluxo de engenharia",
+    "section": "Repository",
+    "text": "Repository\ninterface OrderRepository\n{\n    public function save(Order $order): void;\n\n    public function find(string $id): ?Order;\n}\nO domínio pede e recebe entidades. O armazenamento fica escondido."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#data-mapper",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#data-mapper",
+    "title": "IA no fluxo de engenharia",
+    "section": "Data Mapper",
+    "text": "Data Mapper\nOrder (entidade)  ◄──►  OrderMapper  ◄──►  linha da tabela\n  não sabe do banco      converte           id | total | status\n\nA entidade não conhece SQL\nO mapper faz toRow() e fromRow()\nO repositório usa o mapper"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#testar-sem-banco",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#testar-sem-banco",
+    "title": "IA no fluxo de engenharia",
+    "section": "Testar sem banco",
+    "text": "Testar sem banco\n$mem = new InMemoryOrderRepository();\n$mem-&gt;save(new Order('R2', 50.0));\n\necho (new PayOrder($mem))-&gt;run('R2');   // paid\nCom Repository, o teste roda sem banco. Com Active Record, precisa de banco."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#como-escolher",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#como-escolher",
+    "title": "IA no fluxo de engenharia",
+    "section": "Como escolher",
+    "text": "Como escolher\n\n\n\n\nActive Record\nRepository + Mapper\n\n\n\n\nClasses\nPoucas\nMais\n\n\nRegras de negócio\nSimples\nComplexas\n\n\nTeste sem banco\nDifícil\nFácil\n\n\nBom para\nCRUD\nDomínio rico"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-active-record-ou-repository",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-active-record-ou-repository",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mini desafio · Active Record ou Repository",
+    "text": "Mini desafio · Active Record ou Repository\nPersista um Order em SQLite nos dois estilos:\n\nActive Record: save() e find()\nRepository com Mapper e uma versão em memória\n\nExtra: qual dos dois você usaria no projeto? Por quê?"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script-e-cqrs",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script-e-cqrs",
+    "title": "IA no fluxo de engenharia",
+    "section": "Transaction Script e CQRS",
+    "text": "Transaction Script e CQRS"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script",
+    "title": "IA no fluxo de engenharia",
+    "section": "Transaction Script",
+    "text": "Transaction Script\n$db-&gt;beginTransaction();\ntry {\n    baixarEstoque($db, $sku, $qty);   // lança se faltar\n    gravarPedido($db, $id, $total);\n    $db-&gt;commit();\n} catch (Throwable $e) {\n    $db-&gt;rollBack();\n    throw $e;\n}\nUm caso de uso, um procedimento, uma transação."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#quando-o-script-deixa-de-servir",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#quando-o-script-deixa-de-servir",
+    "title": "IA no fluxo de engenharia",
+    "section": "Quando o script deixa de servir",
+    "text": "Quando o script deixa de servir\n\nA mesma regra aparece em vários scripts\nOs if viram uma teia\nNinguém sabe onde está a regra\n\nAí o modelo de domínio (Repository) compensa."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#cqrs",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#cqrs",
+    "title": "IA no fluxo de engenharia",
+    "section": "CQRS",
+    "text": "CQRS\nCOMANDO  ──►  escreve  orders  ──►  atualiza  daily_sales\n                                              ▲\nCONSULTA ─────────────────────────────────────┘  só lê\nSepara escrever de ler. A leitura tem um modelo próprio."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-custo-do-cqrs",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-custo-do-cqrs",
+    "title": "IA no fluxo de engenharia",
+    "section": "O custo do CQRS",
+    "text": "O custo do CQRS\n\nDuas vias para manter\nA leitura pode ficar atrasada (consistência eventual)\nSem o problema de escala, é overengineering\n\n\n2 mil pedidos por dia? Provavelmente não."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-transaction-script-e-cqrs",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-transaction-script-e-cqrs",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mini desafio · Transaction Script e CQRS",
+    "text": "Mini desafio · Transaction Script e CQRS\n\nplaceOrder em uma transação com rollback se faltar estoque\nProve que o segundo pedido não deixa rastro\nCrie uma consulta que só lê daily_sales\n\nExtra: onde o CQRS atrapalharia aqui?"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#decidindo-com-ia",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#decidindo-com-ia",
+    "title": "IA no fluxo de engenharia",
+    "section": "Decidindo com IA",
+    "text": "Decidindo com IA"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-fluxo-da-decisão",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-fluxo-da-decisão",
+    "title": "IA no fluxo de engenharia",
+    "section": "O fluxo da decisão",
+    "text": "O fluxo da decisão\nProblema → Prompt com contexto → IA sugere alternativas\n   → VOCÊ valida → Decisão humana → Registro\nSe não entendeu, testou e validou, volte ao prompt."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#registro-de-decisão",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#registro-de-decisão",
+    "title": "IA no fluxo de engenharia",
+    "section": "Registro de decisão",
+    "text": "Registro de decisão\n## Contexto\nO problema e as restrições.\n\n## Alternativas (sugeridas pela IA)\nA, B e C, com prós e contras.\n\n## Decisão\nEscolhemos B, porque...\n\n## Riscos\nO que pode dar errado."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#quando-a-ia-está-errada",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#quando-a-ia-está-errada",
+    "title": "IA no fluxo de engenharia",
+    "section": "Quando a IA está errada",
+    "text": "Quando a IA está errada\n\n“Use X em tudo”: conclusão genérica\nSQL por concatenação de texto\nEsquece a transação\nSugere uma escala que você não tem\n\nAvise no PR quando o código veio de IA e o que você validou."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-valide-e-registre-a-decisão",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-valide-e-registre-a-decisão",
+    "title": "IA no fluxo de engenharia",
+    "section": "Mini desafio · Valide e registre a decisão",
+    "text": "Mini desafio · Valide e registre a decisão\nUma “IA” respondeu (exemplo fictício):\nUse Active Record em tudo; monte a query com \"...WHERE id = '$id'\"; não precisa de transação; adote CQRS com fila desde já.\nAche os problemas e escreva o registro de decisão."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#desafio-integrador-persistência-do-projeto-com-ia",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#desafio-integrador-persistência-do-projeto-com-ia",
+    "title": "IA no fluxo de engenharia",
+    "section": "Desafio integrador · Persistência do projeto com IA",
+    "text": "Desafio integrador · Persistência do projeto com IA\nEm dupla"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-que-fazer",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-que-fazer",
+    "title": "IA no fluxo de engenharia",
+    "section": "O que fazer",
+    "text": "O que fazer\n\nEscreva o prompt com contexto do seu projeto\nColete as alternativas da IA\nValide e escolha um pattern\nImplemente um recorte e registre"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#critério-de-pronto",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#critério-de-pronto",
+    "title": "IA no fluxo de engenharia",
+    "section": "Critério de pronto",
+    "text": "Critério de pronto\n\nPrompt com contexto e restrições\n3 alternativas da IA registradas\nDecisão humana, com justificativa\nRecorte implementado e rodando\nAnotado o que a IA errou\n\nExtra: peça um contra-argumento à recomendação."
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#fechamento",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#fechamento",
+    "title": "IA no fluxo de engenharia",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nPrompt com contexto, restrições e formato\nValide antes de aceitar\nRegistre a decisão"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#dever-de-casa",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#dever-de-casa",
+    "title": "IA no fluxo de engenharia",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nFinalize 1 Database Pattern com a IA como apoio\nRegistre a decisão\nPrepare o seminário do E06: 1 princípio + 1 pattern\nLeve 3 dúvidas"
+  },
+  {
+    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#próximo-encontro-seminários",
+    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#próximo-encontro-seminários",
+    "title": "IA no fluxo de engenharia",
+    "section": "Próximo encontro · Seminários",
+    "text": "Próximo encontro · Seminários\nCada dupla apresenta, com a IA sorteada."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#na-aula-passada",
+    "href": "aulas/03-poo-e-design-principles.html#na-aula-passada",
+    "title": "POO e Design Principles",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nModelos de desenvolvimento e Scrum\nBoard e issues no GitHub Projects\nCommits, PRs e code review"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#hoje",
+    "href": "aulas/03-poo-e-design-principles.html#hoje",
+    "title": "POO e Design Principles",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: encapsulamento · herança · composição\nBloco 2: SOLID · KISS, DRY, SoC · code smells\nDesafio: refatorar o OrderService\n\nSaída: código com um motivo para mudar em cada classe"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#nosso-domínio-pedidos",
+    "href": "aulas/03-poo-e-design-principles.html#nosso-domínio-pedidos",
+    "title": "POO e Design Principles",
+    "section": "Nosso domínio: Pedidos",
+    "text": "Nosso domínio: Pedidos\nOrder ──► PaymentMethod   (Pix, Card, Boleto)\n  │\n  ├────► OrderRepository  (grava o pedido)\n  └────► Notifier         (avisa o cliente)\nOs mesmos exemplos vão até o E06."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#encapsulamento-e-abstração",
+    "href": "aulas/03-poo-e-design-principles.html#encapsulamento-e-abstração",
+    "title": "POO e Design Principles",
+    "section": "Encapsulamento e abstração",
+    "text": "Encapsulamento e abstração"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#o-problema",
+    "href": "aulas/03-poo-e-design-principles.html#o-problema",
+    "title": "POO e Design Principles",
+    "section": "O problema",
+    "text": "O problema\nclass OrderBad {\n    public array $items = [];\n    public float $total = 0;\n    public string $status = 'new';\n}\nNada impede qty = -2 nem status = 'banana'.\nQuem garante as regras? O chamador, e alguém esquece."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#encapsulamento-php",
+    "href": "aulas/03-poo-e-design-principles.html#encapsulamento-php",
+    "title": "POO e Design Principles",
+    "section": "Encapsulamento · PHP",
+    "text": "Encapsulamento · PHP\nfinal class Order\n{\n    private array $items = [];\n\n    public function addItem(string $name, float $price, int $qty): void\n    {\n        if ($price &lt;= 0 || $qty &lt;= 0) {\n            throw new InvalidArgumentException('Valores inválidos');\n        }\n        $this-&gt;items[] = compact('name', 'price', 'qty');\n    }\n}"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#encapsulamento-typescript",
+    "href": "aulas/03-poo-e-design-principles.html#encapsulamento-typescript",
+    "title": "POO e Design Principles",
+    "section": "Encapsulamento · TypeScript",
+    "text": "Encapsulamento · TypeScript\nclass Order {\n  private items: Item[] = [];\n\n  addItem(name: string, price: number, qty: number): void {\n    if (price &lt;= 0 || qty &lt;= 0) throw new Error('Valores inválidos');\n    this.items.push({ name, price, qty });\n  }\n\n  total(): number {\n    return this.items.reduce((sum, i) =&gt; sum + i.price * i.qty, 0);\n  }\n}"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#abstração",
+    "href": "aulas/03-poo-e-design-principles.html#abstração",
+    "title": "POO e Design Principles",
+    "section": "Abstração",
+    "text": "Abstração\n\nExponha o quê o objeto faz\nEsconda como ele faz\nO chamador usa order.total() e não sabe se é soma, cache ou cálculo\n\nGetter e setter para tudo não é encapsulamento."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-proteja-o-pedido",
+    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-proteja-o-pedido",
+    "title": "POO e Design Principles",
+    "section": "Mini desafio · Proteja o pedido",
+    "text": "Mini desafio · Proteja o pedido\nReescreva OrderBad para que:\n\nO estado seja privado\naddItem rejeite preço e quantidade inválidos\ntotal() seja calculado, nunca atribuído\n\nExtra: o status só muda por um método com regra."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#herança-e-polimorfismo",
+    "href": "aulas/03-poo-e-design-principles.html#herança-e-polimorfismo",
+    "title": "POO e Design Principles",
+    "section": "Herança e polimorfismo",
+    "text": "Herança e polimorfismo"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#herança-php",
+    "href": "aulas/03-poo-e-design-principles.html#herança-php",
+    "title": "POO e Design Principles",
+    "section": "Herança · PHP",
+    "text": "Herança · PHP\nabstract class Notification\n{\n    abstract public function send(string $msg): string;\n}\n\nfinal class EmailNotification extends Notification\n{\n    public function send(string $msg): string { return \"email: $msg\"; }\n}\nEmailNotification é uma Notification."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#polimorfismo",
+    "href": "aulas/03-poo-e-design-principles.html#polimorfismo",
+    "title": "POO e Design Principles",
+    "section": "Polimorfismo",
+    "text": "Polimorfismo\nfunction notifyAll(array $channels, string $msg): void\n{\n    foreach ($channels as $n) {\n        echo $n-&gt;send($msg), \"\\n\";\n    }\n}\n\nnotifyAll([new EmailNotification(), new SmsNotification()], 'Pago');\nNovo canal? Nova classe. notifyAll não muda."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#polimorfismo-typescript",
+    "href": "aulas/03-poo-e-design-principles.html#polimorfismo-typescript",
+    "title": "POO e Design Principles",
+    "section": "Polimorfismo · TypeScript",
+    "text": "Polimorfismo · TypeScript\ninterface Notification {\n  send(message: string): string;\n}\n\nconst notifyAll = (channels: Notification[], msg: string) =&gt;\n  channels.map((n) =&gt; n.send(msg));\nO chamador conhece o contrato, não a classe."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#herdar-com-cuidado",
+    "href": "aulas/03-poo-e-design-principles.html#herdar-com-cuidado",
+    "title": "POO e Design Principles",
+    "section": "Herdar com cuidado",
+    "text": "Herdar com cuidado\n\nSó herde se “X é um Y” for verdade em todos os casos\nA subclasse fica presa à superclasse\nMudar a base pode quebrar todas as filhas\n\nHerança para reaproveitar código é um sinal de alerta."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-um-novo-canal-sem-mexer-no-resto",
+    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-um-novo-canal-sem-mexer-no-resto",
+    "title": "POO e Design Principles",
+    "section": "Mini desafio · Um novo canal sem mexer no resto",
+    "text": "Mini desafio · Um novo canal sem mexer no resto\n\nRode notifyAll com Email e SMS\nAdicione PushNotification\nNão edite notifyAll nem as outras classes\n\nExtra: troque a classe abstrata por uma interface."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#composição-vs-herança",
+    "href": "aulas/03-poo-e-design-principles.html#composição-vs-herança",
+    "title": "POO e Design Principles",
+    "section": "Composição vs herança",
+    "text": "Composição vs herança"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#a-explosão-de-classes",
+    "href": "aulas/03-poo-e-design-principles.html#a-explosão-de-classes",
+    "title": "POO e Design Principles",
+    "section": "A explosão de classes",
+    "text": "A explosão de classes\nPixOrder                  CardOrder\nPixOrderComDesconto       CardOrderComDesconto\n2 pagamentos × 2 variações = 4 classes. Entrou o Boleto? Mais 2."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#composição",
+    "href": "aulas/03-poo-e-design-principles.html#composição",
+    "title": "POO e Design Principles",
+    "section": "Composição",
+    "text": "Composição\nfinal class Checkout\n{\n    public function __construct(private PaymentMethod $method) {}\n\n    public function run(float $total): string\n    {\n        return $this-&gt;method-&gt;pay($total);\n    }\n}\nCheckout tem um PaymentMethod."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#composição-em-números",
+    "href": "aulas/03-poo-e-design-principles.html#composição-em-números",
+    "title": "POO e Design Principles",
+    "section": "Composição em números",
+    "text": "Composição em números\n\n\n\n\nHerança\nComposição\n\n\n\n\n2 pagamentos, 2 descontos\n4 classes\n2 + 2\n\n\nEntra o Boleto\n+2 classes\n+1 classe\n\n\nTrocar em execução\nNão\nSim\n\n\n\nPrefira ter um a ser um."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#estático-vs-instância",
+    "href": "aulas/03-poo-e-design-principles.html#estático-vs-instância",
+    "title": "POO e Design Principles",
+    "section": "Estático vs instância",
+    "text": "Estático vs instância\nfinal class Money\n{\n    private function __construct(private int $cents) {}\n\n    public static function fromReais(float $v): self\n    {\n        return new self((int) round($v * 100));\n    }\n}\nstatic para criar. Instância para comportamento."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-herança-ou-composição",
+    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-herança-ou-composição",
+    "title": "POO e Design Principles",
+    "section": "Mini desafio · Herança ou composição",
+    "text": "Mini desafio · Herança ou composição\n\nRedesenhe a hierarquia com composição\nConte as classes com Boleto\nJustifique em uma frase\n\nExtra: Money::fromReais e add."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#solid-s-e-o",
+    "href": "aulas/03-poo-e-design-principles.html#solid-s-e-o",
+    "title": "POO e Design Principles",
+    "section": "SOLID: S e O",
+    "text": "SOLID: S e O"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#solid-em-uma-linha",
+    "href": "aulas/03-poo-e-design-principles.html#solid-em-uma-linha",
+    "title": "POO e Design Principles",
+    "section": "SOLID em uma linha",
+    "text": "SOLID em uma linha\n\n\n\n\nPrincípio\nPergunta\n\n\n\n\nS\nSingle Responsibility\nQuantos motivos para mudar?\n\n\nO\nOpen/Closed\nNovo caso exige editar?\n\n\nL\nLiskov\nO filho substitui o pai?\n\n\nI\nInterface Segregation\nDepende do que não usa?\n\n\nD\nDependency Inversion\nCria ou recebe?"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#s-a-classe-que-faz-tudo",
+    "href": "aulas/03-poo-e-design-principles.html#s-a-classe-que-faz-tudo",
+    "title": "POO e Design Principles",
+    "section": "S: a classe que faz tudo",
+    "text": "S: a classe que faz tudo\nclass OrderService {\n    public function checkout(array $items, string $type): string {\n        // 1. valida o pedido       2. calcula o total\n        // 3. aplica o desconto     4. cobra (if pix / if card)\n        // 5. grava no banco        6. envia o e-mail\n    }\n}\n6 motivos para mudar. Cada um quebra os outros cinco."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#s-cada-motivo-um-colaborador",
+    "href": "aulas/03-poo-e-design-principles.html#s-cada-motivo-um-colaborador",
+    "title": "POO e Design Principles",
+    "section": "S: cada motivo, um colaborador",
+    "text": "S: cada motivo, um colaborador\n\n\n\nResponsabilidade\nVira\n\n\n\n\nRegra de desconto\nDiscountCalculator\n\n\nCobrança\nPaymentMethod\n\n\nGravação\nOrderRepository\n\n\nAviso ao cliente\nNotifier\n\n\nOrquestração\nCheckoutService"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#s-o-resultado",
+    "href": "aulas/03-poo-e-design-principles.html#s-o-resultado",
+    "title": "POO e Design Principles",
+    "section": "S: o resultado",
+    "text": "S: o resultado\npublic function checkout(Order $order): string\n{\n    if ($order-&gt;isEmpty()) {\n        throw new DomainException('Pedido vazio');\n    }\n    $total = $this-&gt;discount-&gt;apply($order-&gt;subtotal());\n    $receipt = $this-&gt;payment-&gt;pay($total);\n    $this-&gt;repository-&gt;save($order, $total);\n    $this-&gt;notifier-&gt;notify(\"Pedido pago: {$receipt}\");\n\n    return $receipt;\n}"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#o-aberto-para-extensão",
+    "href": "aulas/03-poo-e-design-principles.html#o-aberto-para-extensão",
+    "title": "POO e Design Principles",
+    "section": "O: aberto para extensão",
+    "text": "O: aberto para extensão\nfinal class Boleto implements PaymentMethod\n{\n    public function pay(float $amount): string\n    {\n        return sprintf('Boleto: R$ %.2f', $amount);\n    }\n}\nNovo pagamento: código novo. Nada existente foi editado."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-divida-o-serviço",
+    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-divida-o-serviço",
+    "title": "POO e Design Principles",
+    "section": "Mini desafio · Divida o serviço",
+    "text": "Mini desafio · Divida o serviço\nCom o OrderService do gabarito:\n\nSepare 4 colaboradores\nO serviço os recebe no construtor\nAdicione Boleto sem editar o que existe\n\nExtra: o desconto vira interface."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#solid-l-i-e-d",
+    "href": "aulas/03-poo-e-design-principles.html#solid-l-i-e-d",
+    "title": "POO e Design Principles",
+    "section": "SOLID: L, I e D",
+    "text": "SOLID: L, I e D"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#l-o-filho-que-quebra-o-pai",
+    "href": "aulas/03-poo-e-design-principles.html#l-o-filho-que-quebra-o-pai",
+    "title": "POO e Design Principles",
+    "section": "L: o filho que quebra o pai",
+    "text": "L: o filho que quebra o pai\nfinal class Boleto implements PaymentMethod\n{\n    public function refund(float $a): string\n    {\n        throw new LogicException('Boleto não reembolsa');\n    }\n}\nPaymentMethod exige pay() e refund(). Quem chama refund() no tipo base leva uma exceção."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#l-e-i-interfaces-menores",
+    "href": "aulas/03-poo-e-design-principles.html#l-e-i-interfaces-menores",
+    "title": "POO e Design Principles",
+    "section": "L e I: interfaces menores",
+    "text": "L e I: interfaces menores\ninterface Payable    { public function pay(float $amount): string; }\ninterface Refundable { public function refund(float $amount): string; }\n\nfinal class Boleto implements Payable { /* só pay() */ }\n\nfinal class Card implements Payable, Refundable { /* pay() e refund() */ }\n\nfunction refundIt(Refundable $r): string { return $r-&gt;refund(10); }\nBoleto não é Refundable: o erro aparece na hora, não em produção."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#d-cria-ou-recebe",
+    "href": "aulas/03-poo-e-design-principles.html#d-cria-ou-recebe",
+    "title": "POO e Design Principles",
+    "section": "D: cria ou recebe?",
+    "text": "D: cria ou recebe?\n// Antes: cria a dependência\npublic function __construct() { $this-&gt;repo = new SqlOrderRepository(); }\n// Depois: recebe uma abstração\npublic function __construct(private OrderRepository $repo) {}\nAgora dá para trocar por um repositório em memória nos testes."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#d-typescript",
+    "href": "aulas/03-poo-e-design-principles.html#d-typescript",
+    "title": "POO e Design Principles",
+    "section": "D · TypeScript",
+    "text": "D · TypeScript\nclass CheckoutService {\n  private repository: OrderRepository;\n\n  constructor(repository: OrderRepository) {\n    this.repository = repository;\n  }\n}\nnew CheckoutService(new InMemoryOrderRepository()): depender de abstrações torna o código testável."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-substitua-sem-quebrar",
+    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-substitua-sem-quebrar",
+    "title": "POO e Design Principles",
+    "section": "Mini desafio · Substitua sem quebrar",
+    "text": "Mini desafio · Substitua sem quebrar\nUm problema para cada princípio:\n\nL: Boleto lança erro no refund()\nI: interface com 4 métodos demais\nD: serviço faz new SqlRepository()"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#kiss-dry-soc-e-smells",
+    "href": "aulas/03-poo-e-design-principles.html#kiss-dry-soc-e-smells",
+    "title": "POO e Design Principles",
+    "section": "KISS, DRY, SoC e smells",
+    "text": "KISS, DRY, SoC e smells"
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#três-princípios-curtos",
+    "href": "aulas/03-poo-e-design-principles.html#três-princípios-curtos",
+    "title": "POO e Design Principles",
+    "section": "Três princípios curtos",
+    "text": "Três princípios curtos\n\nKISS: a solução mais simples que resolve\nDRY: uma regra, um lugar\nSoC: cada camada cuida de um assunto\n\nRegra prática: duplicou duas vezes? Ok. Três? Extraia."
+  },
+  {
+    "objectID": "aulas/03-poo-e-design-principles.html#code-smells",
+    "href": "aulas/03-poo-e-design-principles.html#code-smells",
+    "title": "POO e Design Principles",
     "section": "Code smells",
-    "text": "Code smells\nNão são bugs, mas sintomas de arquitetura ruim:\n\nLong Method / Large Class\nFeature Envy — método que mexe mais nos dados de outra classe do que na própria\nData Clumps — grupos de variáveis que sempre andam juntas e deveriam virar uma classe\n\nex.: rua, numero, cep, cidade → Endereco"
+    "text": "Code smells\n\n\n\nSintoma\nCostuma indicar\n\n\n\n\nMétodo com 60 linhas\nFaz coisa demais (S)\n\n\nNúmero mágico if ($t == 1)\nFalta um nome ou uma constante\n\n\nMesmo trecho em 3 lugares\nFalta extrair (DRY)\n\n\nif dentro de if\nCaminho feliz escondido\n\n\n6 parâmetros\nFalta um objeto"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#técnicas-de-refatoração",
-    "href": "aulas/04-engenharia-limpa.html#técnicas-de-refatoração",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Técnicas de refatoração",
-    "text": "Técnicas de refatoração\n\nExtract Method / Class: transformar um trecho comentado (“aqui calcula o total”) em uma função com esse nome\nSubstituir condicionais por polimorfismo: trocar switch/if-else de tipo pelo padrão Strategy (interface + implementações)\n\n\nRegra de ouro: refatorar muda a estrutura sem alterar o comportamento externo; nunca refatorar código sem testes."
+    "objectID": "aulas/03-poo-e-design-principles.html#quando-não-aplicar",
+    "href": "aulas/03-poo-e-design-principles.html#quando-não-aplicar",
+    "title": "POO e Design Principles",
+    "section": "Quando NÃO aplicar",
+    "text": "Quando NÃO aplicar\n\nO princípio serve ao código, e não o contrário.\n\n\nScript de 30 linhas não precisa de 12 arquivos\nAbstração cedo demais é custo, não ganho\nPergunte: quem muda isso, e por quê?"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#solid-s-e-o",
-    "href": "aulas/04-engenharia-limpa.html#solid-s-e-o",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "SOLID — S e O",
-    "text": "SOLID — S e O\n\nS — Single Responsibility: uma classe, um motivo para mudar\n\nex.: separar RelatorioRepository de PDFReportGenerator\n\nO — Open/Closed: aberto para extensão, fechado para modificação\n\nanalogia da tomada elétrica"
+    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-ache-os-smells",
+    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-ache-os-smells",
+    "title": "POO e Design Principles",
+    "section": "Mini desafio · Ache os smells",
+    "text": "Mini desafio · Ache os smells\nfunction price($t, $q, $c, $s, $d) {\n    if ($t == 1) {\n        $p = $q * 10 + ($c == 'SP' ? 5 : 15);\n    } elseif ($t == 2) {\n        $p = $q * 20 + ($c == 'SP' ? 5 : 15);\n    } else { $p = 0; }\n    return $p;\n}\nListe 4 smells e refatore um, sem mudar o resultado."
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#solid-l-i-e-d",
-    "href": "aulas/04-engenharia-limpa.html#solid-l-i-e-d",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "SOLID — L, I e D",
-    "text": "SOLID — L, I e D\n\nL — Liskov Substitution: subclasse deve substituir a classe-mãe sem quebrar o sistema\n\nex.: Pinguim que herda de Ave e não consegue voar() quebra o LSP\n\nI — Interface Segregation: várias interfaces específicas em vez de uma gigante com métodos vazios\nD — Dependency Inversion: módulos de alto nível dependem de abstrações (interfaces), não de implementações concretas — injeção de dependência por construtor"
+    "objectID": "aulas/03-poo-e-design-principles.html#desafio-integrador-refatore-o-orderservice",
+    "href": "aulas/03-poo-e-design-principles.html#desafio-integrador-refatore-o-orderservice",
+    "title": "POO e Design Principles",
+    "section": "Desafio integrador · Refatore o OrderService",
+    "text": "Desafio integrador · Refatore o OrderService\nEm dupla"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#clean-architecture-robert-c.-martin",
-    "href": "aulas/04-engenharia-limpa.html#clean-architecture-robert-c.-martin",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Clean Architecture (Robert C. Martin)",
-    "text": "Clean Architecture (Robert C. Martin)\nObjetivo: isolar a regra de negócio de detalhes tecnológicos mutáveis (banco, framework web, UI) — tratados como “plug-ins” substituíveis.\nCamadas concêntricas (de dentro para fora):\nEntities (regras de negócio puras) → Use Cases (orquestram o fluxo) → Interface Adapters (controllers, presenters, repositories) → Frameworks & Drivers (Spring, Express, MySQL, AWS SDKs)"
+    "objectID": "aulas/03-poo-e-design-principles.html#o-que-fazer",
+    "href": "aulas/03-poo-e-design-principles.html#o-que-fazer",
+    "title": "POO e Design Principles",
+    "section": "O que fazer",
+    "text": "O que fazer\n\nListe as violações (mínimo 3)\nAplique pelo menos 2 princípios diferentes\nRefatore em passos pequenos, rodando a cada passo\nJustifique cada decisão em uma frase"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#regra-de-dependência",
-    "href": "aulas/04-engenharia-limpa.html#regra-de-dependência",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Regra de dependência",
-    "text": "Regra de dependência\n\nO código de uma camada interna nunca cita nada de uma camada mais externa — dependências sempre apontam para dentro."
+    "objectID": "aulas/03-poo-e-design-principles.html#critério-de-pronto",
+    "href": "aulas/03-poo-e-design-principles.html#critério-de-pronto",
+    "title": "POO e Design Principles",
+    "section": "Critério de pronto",
+    "text": "Critério de pronto\n\nO código refatorado gera a mesma saída do original\nCada classe tem um motivo para mudar\nAs dependências entram por construtor\nAdicionar Boleto não edita classes existentes\n\nExtra: desconto por cupom, também sem editar."
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#atividade-prática-sugerida",
-    "href": "aulas/04-engenharia-limpa.html#atividade-prática-sugerida",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Atividade prática sugerida",
-    "text": "Atividade prática sugerida\n\nPegar um trecho de código “sujo” (fornecido ou de um projeto próprio)\nIdentificar 2–3 code smells\nRefatorar aplicando Extract Method e pelo menos um princípio SOLID\nManter os testes verdes\n\nAvaliação: Questionário — Aula 4 (Moodle)"
+    "objectID": "aulas/03-poo-e-design-principles.html#fechamento",
+    "href": "aulas/03-poo-e-design-principles.html#fechamento",
+    "title": "POO e Design Principles",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nEncapsulamento protege as regras\nComposição flexibiliza\nSOLID dá um motivo para mudar a cada classe"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#material-complementar",
-    "href": "aulas/04-engenharia-limpa.html#material-complementar",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Material complementar",
-    "text": "Material complementar\n\nE-book Engenharia de Software Moderna (Marco Tulio Valente, UFMG)\n\nLeitura recomendada dos capítulos 5 e 7 (Princípios de Projeto e Arquitetura) e 8 e 10 (Testes Automatizados e DevOps/CI-CD)\n\nSlides “Conceitos iniciais de Engenharia Limpa”"
+    "objectID": "aulas/03-poo-e-design-principles.html#dever-de-casa",
+    "href": "aulas/03-poo-e-design-principles.html#dever-de-casa",
+    "title": "POO e Design Principles",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nRefatore um trecho do projeto: aponte o smell e o princípio\nDocumente por que faz sentido (ou por que não)\nPesquise o pattern sorteado e leve 3 perguntas\nLeve 3 dúvidas para o próximo encontro"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#exemplo-prático-guiado",
-    "href": "aulas/04-engenharia-limpa.html#exemplo-prático-guiado",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "💻 Exemplo prático guiado",
-    "text": "💻 Exemplo prático guiado\nRefatorando o Diário de Café.\n❌ Antes: uma classe “deus” (viola SRP e OCP)\nclass ReceitaService {\n  executarReceita(nome: string, tipoMetodo: string, dose: number, protocolo: string, avaliacao: any) {\n    let agua;\n    if (tipoMetodo === \"v60\") agua = dose * 16;\n    else if (tipoMetodo === \"aeropress\") agua = dose * 14;\n    else if (tipoMetodo === \"prensa\") agua = dose * 12;"
+    "objectID": "aulas/03-poo-e-design-principles.html#próximo-encontro-design-patterns",
+    "href": "aulas/03-poo-e-design-principles.html#próximo-encontro-design-patterns",
+    "title": "POO e Design Principles",
+    "section": "Próximo encontro · Design Patterns",
+    "text": "Próximo encontro · Design Patterns\nOs patterns que resolvem o que vimos hoje."
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#antes-continuação",
-    "href": "aulas/04-engenharia-limpa.html#antes-continuação",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "❌ Antes (continuação)",
-    "text": "❌ Antes (continuação)\n    let nota;\n    if (protocolo === \"sca\") {\n      nota = avaliacao.fragancia + avaliacao.sabor + avaliacao.acidez + avaliacao.corpo + avaliacao.docura - avaliacao.defeitos;\n    } else {\n      nota = (avaliacao.fragancia + avaliacao.sabor * 2 + avaliacao.acidez + avaliacao.corpo + avaliacao.docura) / 1.2;\n    }\n\n    console.log(`Receita ${nome} preparada com ${agua}ml de agua`);\n    // salva no banco...\n    // envia notificacao por email...\n    return nota;\n  }\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#hoje",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#hoje",
+    "title": "Docker para aplicações web",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: por que containers · imagens · volumes e networks\nBloco 2: Compose · nginx + PHP ou Node · quebre e conserte\nDesafio: ambiente padrão da turma\n\nSaída: todos com Docker funcionando"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#problemas-identificados",
-    "href": "aulas/04-engenharia-limpa.html#problemas-identificados",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Problemas identificados",
-    "text": "Problemas identificados\nA função calcula proporção de água, pontua o cupping, loga, salva e notifica — cinco motivos diferentes para mudar (viola SRP).\nCada novo método de extração ou protocolo de pontuação exige editar essa mesma função (viola OCP)."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#por-que-containers",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#por-que-containers",
+    "title": "Docker para aplicações web",
+    "section": "Por que containers?",
+    "text": "Por que containers?\n\n“Na minha máquina funciona.”\n\n\nVersões diferentes\nSistemas diferentes\nDependências instaladas à mão\n\nQuem já viveu isso?"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#depois-solid-clean-architecture",
-    "href": "aulas/04-engenharia-limpa.html#depois-solid-clean-architecture",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "✅ Depois: SOLID + Clean Architecture",
-    "text": "✅ Depois: SOLID + Clean Architecture\nReaproveitando as classes da Aula 3.\nEntities (regra de negócio pura, sem dependência de framework): MetodoExtracao, Receita, ProtocoloDePontuacao — já prontas.\nUse Case (orquestra o fluxo, depende só de abstrações — DIP):\ninterface ReceitaRepository {\n  salvar(receita: Receita): Promise&lt;void&gt;;\n}\ninterface Notificador {\n  avisar(mensagem: string): Promise&lt;void&gt;;\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#container-vs-máquina-virtual",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#container-vs-máquina-virtual",
+    "title": "Docker para aplicações web",
+    "section": "Container vs máquina virtual",
+    "text": "Container vs máquina virtual\n\n\n\n\nVM\nContainer\n\n\n\n\nKernel\nPróprio\nDo host\n\n\nTamanho\nGBs\nMBs\n\n\nInicia em\nMinutos\nSegundos\n\n\nIsolamento\nTotal\nDe processos"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#use-case",
-    "href": "aulas/04-engenharia-limpa.html#use-case",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Use Case",
-    "text": "Use Case\nclass ExecutarReceitaUseCase {\n  constructor(\n    private repository: ReceitaRepository,\n    private notificador: Notificador\n  ) {}\n\n  async executar(receita: Receita): Promise&lt;string&gt; {\n    const instrucao = receita.executar();\n    await this.repository.salvar(receita);\n    await this.notificador.avisar(`Receita executada: ${instrucao}`);\n    return instrucao;\n  }\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#vocabulário-mínimo",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#vocabulário-mínimo",
+    "title": "Docker para aplicações web",
+    "section": "Vocabulário mínimo",
+    "text": "Vocabulário mínimo\n\nImagem: a receita congelada\nContainer: a imagem em execução\nDockerfile: como construir a imagem\nRegistry: onde as imagens moram\n\n\nImagem = classe · Container = objeto"
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#interface-adapters",
-    "href": "aulas/04-engenharia-limpa.html#interface-adapters",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "Interface Adapters",
-    "text": "Interface Adapters\nImplementações concretas, substituíveis como plug-ins:\nclass ReceitaRepositoryPostgres implements ReceitaRepository {\n  async salvar(receita: Receita): Promise&lt;void&gt; { /* INSERT no Postgres */ }\n}\nclass NotificadorEmail implements Notificador {\n  async avisar(mensagem: string): Promise&lt;void&gt; { /* envia e-mail */ }\n}\nFrameworks & Drivers: Express (rota HTTP) + driver pg do Postgres, na camada mais externa."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#exemplo-ao-vivo",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#exemplo-ao-vivo",
+    "title": "Docker para aplicações web",
+    "section": "Exemplo ao vivo",
+    "text": "Exemplo ao vivo\ndocker run --rm alpine cat /etc/os-release\ncat /etc/os-release\nDuas distribuições diferentes, no mesmo computador, sem instalar nada."
   },
   {
-    "objectID": "aulas/04-engenharia-limpa.html#o-que-mudou",
-    "href": "aulas/04-engenharia-limpa.html#o-que-mudou",
-    "title": "Aula 4 — Engenharia Limpa",
-    "section": "O que mudou",
-    "text": "O que mudou\n\nCada classe agora tem um único motivo para mudar (SRP)\nAdicionar um novo método de extração ou protocolo de pontuação não toca mais o ExecutarReceitaUseCase (OCP)\nTrocar Postgres por outro banco, ou e-mail por push notification, só exige uma nova classe de Adapter — o Use Case nem percebe (DIP)"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-meu-primeiro-container",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-meu-primeiro-container",
+    "title": "Docker para aplicações web",
+    "section": "Mini desafio · Meu primeiro container",
+    "text": "Mini desafio · Meu primeiro container\nRode um container Alpine e descubra:\n\nQual é o sistema dentro do container?\nQuantos processos existem lá dentro?\n\nExtra: compare o kernel (uname -r) do container com o do seu computador."
   },
   {
-    "objectID": "aulas/02-git-e-github.html#objetivo-de-aprendizagem",
-    "href": "aulas/02-git-e-github.html#objetivo-de-aprendizagem",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Objetivo de aprendizagem",
-    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nCompreender a diferença entre Git e GitHub\nDominar o fluxo local (add / commit / log)\nColaborar via repositórios remotos (push / pull / clone)\nTrabalhar com branches e Pull Requests\nResolver conflitos e aplicar versionamento semântico"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#imagens-e-containers",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#imagens-e-containers",
+    "title": "Docker para aplicações web",
+    "section": "Imagens e containers",
+    "text": "Imagens e containers"
   },
   {
-    "objectID": "aulas/02-git-e-github.html#fundamentos-de-versionamento",
-    "href": "aulas/02-git-e-github.html#fundamentos-de-versionamento",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Fundamentos de versionamento",
-    "text": "Fundamentos de versionamento\n\nControle de versão substitui o caos de arquivos -v2-final-FINAL\nGuarda snapshots navegáveis do código\nGit roda localmente vs. GitHub hospeda e facilita colaboração\n\nAnalogia: gravador de áudio vs. servidor de streaming\n\nGit grava snapshots completos a cada commit (não apenas diffs), reaproveitando arquivos inalterados\n\ngit config --global user.name \"Seu Nome\"\ngit config --global user.email \"voce@email.com\""
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#ciclo-de-vida",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#ciclo-de-vida",
+    "title": "Docker para aplicações web",
+    "section": "Ciclo de vida",
+    "text": "Ciclo de vida\n\npull → run → ps → logs → exec → stop → rm\n\nToda a rotina do Docker cabe nessa linha."
   },
   {
-    "objectID": "aulas/02-git-e-github.html#workflow-local-staging-area",
-    "href": "aulas/02-git-e-github.html#workflow-local-staging-area",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Workflow local — Staging Area",
-    "text": "Workflow local — Staging Area\nO conceito mais importante do Git:\nWorkspace → (git add) → Staging → (git commit) → Histórico\nPermite commits pequenos e focados.\ngit init\ngit add .\ngit commit -m \"feat: primeira versao\""
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#comandos-do-dia-a-dia",
-    "href": "aulas/02-git-e-github.html#comandos-do-dia-a-dia",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Comandos do dia a dia",
-    "text": "Comandos do dia a dia\ngit add &lt;arquivo&gt;\ngit commit -m \"mensagem\"\ngit diff              # mudanças ainda não staged\ngit diff --staged     # mudanças já staged\ngit log\ngit log --oneline\ngit show HEAD"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#desfazendo-mudanças",
-    "href": "aulas/02-git-e-github.html#desfazendo-mudanças",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Desfazendo mudanças",
-    "text": "Desfazendo mudanças\ngit restore &lt;arquivo&gt;          # antes do add\ngit restore --staged &lt;arquivo&gt; # depois do add, antes do commit\ngit reset --soft HEAD~1        # desfaz o commit, mantém as mudanças staged\ngit reset --hard HEAD~1        # ⚠️ destrutivo: descarta as mudanças"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#compartilhamento-github",
-    "href": "aulas/02-git-e-github.html#compartilhamento-github",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Compartilhamento (GitHub)",
-    "text": "Compartilhamento (GitHub)\ngit remote add origin &lt;url&gt;\ngit remote -v\n\ngit push -u origin main   # -u na primeira vez, para rastrear a branch\ngit push origin main\n\ngit clone &lt;url&gt;\ngit pull origin main       # = fetch + merge\n\ngit status\ngit branch -a"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#colaboração-em-equipe-branches",
-    "href": "aulas/02-git-e-github.html#colaboração-em-equipe-branches",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Colaboração em equipe — Branches",
-    "text": "Colaboração em equipe — Branches\n\nBranches como universos paralelos\n\ngit checkout -b feature/minha-feature\n\nConvenção de nomes: feature/, fix/, docs/\n\nPull Request: pedido formal de incorporação à main, com code review, discussão e histórico registrado."
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#merge-vs.-rebase",
-    "href": "aulas/02-git-e-github.html#merge-vs.-rebase",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "merge vs. rebase",
-    "text": "merge vs. rebase\n\ngit merge — mais seguro para iniciantes, preserva o histórico real\ngit rebase — histórico mais limpo, mas reescreve commits\n\nFluxo típico completo:\ncheckout main → pull → branch → commits → push → PR → review → merge → limpeza da branch"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#boas-práticas-conventional-commits",
-    "href": "aulas/02-git-e-github.html#boas-práticas-conventional-commits",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Boas práticas — Conventional Commits",
-    "text": "Boas práticas — Conventional Commits\nfeat: fix: docs: test: refactor: perf:\n\nCommits pequenos e focados\nMensagens que explicam o porquê\nNunca commitar código quebrado\nUso de .gitignore"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#resolução-de-conflitos",
-    "href": "aulas/02-git-e-github.html#resolução-de-conflitos",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Resolução de conflitos",
-    "text": "Resolução de conflitos\nMarcadores de conflito:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nsua versão\n=======\nversão remota\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main\nResolução manual → git add → commit de merge.\nComo evitar: git pull frequente, commits pequenos, comunicação de equipe."
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#versionamento-semântico-semver",
-    "href": "aulas/02-git-e-github.html#versionamento-semântico-semver",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Versionamento semântico (SemVer)",
-    "text": "Versionamento semântico (SemVer)\nPor que versionar: rastreabilidade, reversão segura, coordenação de deploys, debugging mais rápido.\nFormato: MAJOR.MINOR.PATCH\n\nMAJOR — mudança incompatível (breaking change)\nMINOR — nova funcionalidade compatível\nPATCH — correção de bug sem afetar comportamento"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#semver-pré-releases-e-regra-fundamental",
-    "href": "aulas/02-git-e-github.html#semver-pré-releases-e-regra-fundamental",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "SemVer — pré-releases e regra fundamental",
-    "text": "SemVer — pré-releases e regra fundamental\nPré-releases:\n-alpha.N &lt; -beta.N &lt; -rc.N &lt; versão final\nRegra fundamental: ao incrementar um número, os números à direita voltam a zero.\n1.2.3 → 1.3.0 → 2.0.0"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#atividade-prática-sugerida",
-    "href": "aulas/02-git-e-github.html#atividade-prática-sugerida",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Atividade prática sugerida",
-    "text": "Atividade prática sugerida\n\nCriar um repositório\nSimular colaboração em duplas via branches e Pull Request\nProvocar e resolver um conflito de merge proposital\nVersionar 3 releases fictícias usando SemVer\n\nAvaliação: Questionário — Aula 2 (Moodle)"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#material-complementar",
-    "href": "aulas/02-git-e-github.html#material-complementar",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Material complementar",
-    "text": "Material complementar\nFerramentas visuais como alternativa à CLI:\n\nGitHub Desktop\nIntegração Git do VS Code\nGitKraken"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#exemplo-prático-guiado",
-    "href": "aulas/02-git-e-github.html#exemplo-prático-guiado",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "💻 Exemplo prático guiado",
-    "text": "💻 Exemplo prático guiado\nContinuando o Diário de Café, agora vamos desenvolver a feature de cupping (avaliação sensorial) usando o fluxo completo de branch + PR:\ngit checkout main\ngit pull origin main\ngit checkout -b feature/formulario-cupping\n\n# ... implementa o formulário sensorial (fragrancia, sabor, acidez, corpo, docura) ...\ngit add src/cupping/\ngit commit -m \"feat: adicionar formulario de avaliacao sensorial SCA\""
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#ajuste-após-revisão",
-    "href": "aulas/02-git-e-github.html#ajuste-após-revisão",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Ajuste após revisão",
-    "text": "Ajuste após revisão\nRevisão do colega pede ajuste no arredondamento da nota:\ngit add src/cupping/calculo-nota.ts\ngit commit -m \"fix: corrigir arredondamento da nota final do cupping\"\n\ngit push -u origin feature/formulario-cupping\n# abre Pull Request no GitHub, colega revisa e aprova, faz-se o merge"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#conflito-proposital",
-    "href": "aulas/02-git-e-github.html#conflito-proposital",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Conflito proposital",
-    "text": "Conflito proposital\nEnquanto isso, outro colega mexeu na mesma função de cálculo de nota em main, trocando a média simples por uma média ponderada:\ngit pull origin main\nGit marca o conflito direto no arquivo:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nconst nota = (fragancia + sabor + acidez + corpo + docura) / 5;\n=======\nconst nota = fragancia * 0.2 + sabor * 0.3 + acidez * 0.2 + corpo * 0.15 + docura * 0.15;\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#resolvendo-o-conflito",
-    "href": "aulas/02-git-e-github.html#resolvendo-o-conflito",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Resolvendo o conflito",
-    "text": "Resolvendo o conflito\nDecidimos manter a versão ponderada (mais fiel ao protocolo SCA real):\n# edita o arquivo, mantendo só a linha ponderada\ngit add src/cupping/calculo-nota.ts\ngit commit -m \"merge: resolver conflito mantendo formula ponderada SCA\"\ngit push origin feature/formulario-cupping"
-  },
-  {
-    "objectID": "aulas/02-git-e-github.html#versionamento-semântico-do-projeto-real",
-    "href": "aulas/02-git-e-github.html#versionamento-semântico-do-projeto-real",
-    "title": "Aula 2 — Git e GitHub ⚙️",
-    "section": "Versionamento semântico do projeto real",
-    "text": "Versionamento semântico do projeto real\n\n\n\n\n\n\n\n\nTag\nO que mudou\nTipo\n\n\n\n\nv0.1.0\nCatálogo básico de cafés e insumos\nMINOR (primeira entrega)\n\n\nv0.2.0\nRegistro de receitas de extração\nMINOR (compatível)\n\n\nv1.0.0\nCupping SCA completo e estável\nMAJOR (primeira versão estável)\n\n\nv1.0.1\nCorreção do arredondamento da nota\nPATCH\n\n\nv2.0.0\nNovo formato de receita exige campos obrigatórios que não existiam antes\nMAJOR (breaking change)\n\n\n\ngit tag -a v1.0.0 -m \"Cupping SCA completo e estavel\"\ngit push origin v1.0.0"
-  },
-  {
-    "objectID": "aulas/01-docker.html#objetivo-de-aprendizagem",
-    "href": "aulas/01-docker.html#objetivo-de-aprendizagem",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Objetivo de aprendizagem",
-    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nEntender o problema que o Docker resolve (“funciona na minha máquina”)\nDiferenciar imagem de container\nEscrever um Dockerfile funcional\nExecutar containers com portas e volumes mapeados"
-  },
-  {
-    "objectID": "aulas/01-docker.html#o-que-é-docker",
-    "href": "aulas/01-docker.html#o-que-é-docker",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "O que é Docker?",
-    "text": "O que é Docker?\n\nPlataforma para empacotar aplicação + dependências em um container padronizado\nAnalogia do contêiner de transporte: a mesma unidade roda igual em qualquer lugar\nPor que usar:\n\nConsistência — “funciona em qualquer lugar”\nIsolamento\nPortabilidade\nEficiência — menos overhead que uma VM\nEscalabilidade"
-  },
-  {
-    "objectID": "aulas/01-docker.html#sem-docker-vs.-com-docker",
-    "href": "aulas/01-docker.html#sem-docker-vs.-com-docker",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Sem Docker vs. com Docker",
-    "text": "Sem Docker vs. com Docker\n\n\n\n\n\n\n\n\n\nSem Docker\nCom Docker\n\n\n\n\nSetup\n~30 min de configuração manual\ndocker run\n\n\nAmbiente\nRisco de divergência entre máquinas\nAmbiente idêntico em ~1 minuto\n\n\n\n\n“Funciona na minha máquina” deixa de ser desculpa."
-  },
-  {
-    "objectID": "aulas/01-docker.html#conceitos-e-arquitetura",
-    "href": "aulas/01-docker.html#conceitos-e-arquitetura",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Conceitos e arquitetura",
-    "text": "Conceitos e arquitetura\n\nContainer: instância em execução de uma imagem (processo isolado com código, runtime e dependências)\nImagem: template read-only que define como criar um container\nDockerfile: receita textual com as instruções para construir a imagem\nRegistry / Docker Hub: repositório central de imagens\n\nFluxo básico\nDockerfile → docker build → Imagem → docker run → Container\nArquitetura cliente-servidor\nDocker Client (CLI) → Docker Daemon (serviço em background) → Registry"
-  },
-  {
-    "objectID": "aulas/01-docker.html#instalação-e-validação",
-    "href": "aulas/01-docker.html#instalação-e-validação",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Instalação e validação",
-    "text": "Instalação e validação\ndocker --version\ndocker run hello-world\n\nInstalação via Docker Desktop\ndocker run hello-world confirma que o daemon está acessível e consegue baixar imagens do registry"
-  },
-  {
-    "objectID": "aulas/01-docker.html#rodando-o-primeiro-container",
-    "href": "aulas/01-docker.html#rodando-o-primeiro-container",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Rodando o primeiro container",
-    "text": "Rodando o primeiro container\ndocker run nginx\ndocker run -p 8080:80 nginx\n\n-p 8080:80 mapeia a porta 80 do container para a 8080 do host\nContainer interativo:\n\ndocker run -it ubuntu bash"
-  },
-  {
-    "objectID": "aulas/01-docker.html#comandos-essenciais",
-    "href": "aulas/01-docker.html#comandos-essenciais",
-    "title": "Aula 1 — Docker ⚙️",
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#comandos-essenciais",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#comandos-essenciais",
+    "title": "Docker para aplicações web",
     "section": "Comandos essenciais",
-    "text": "Comandos essenciais\ndocker ps                 # containers em execução\ndocker ps -a               # todos os containers, incluindo parados\ndocker images              # imagens disponíveis localmente\ndocker logs &lt;id&gt;           # logs de um container\ndocker exec -it &lt;id&gt; bash  # abre um shell dentro do container rodando\ndocker stop &lt;id&gt;           # para um container\ndocker rm &lt;id&gt;             # remove um container parado\ndocker rmi &lt;imagem&gt;        # remove uma imagem"
+    "text": "Comandos essenciais\n\n\n\nComando\nO que faz\n\n\n\n\ndocker run -d -p 8080:80 nginx:alpine\nCria e inicia\n\n\ndocker ps\nLista containers\n\n\ndocker logs -f &lt;nome&gt;\nAcompanha logs\n\n\ndocker exec -it &lt;nome&gt; sh\nAbre um shell\n\n\ndocker rm -f &lt;nome&gt;\nPara e remove"
   },
   {
-    "objectID": "aulas/01-docker.html#criando-sua-própria-imagem",
-    "href": "aulas/01-docker.html#criando-sua-própria-imagem",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Criando sua própria imagem",
-    "text": "Criando sua própria imagem\nEstrutura de um Dockerfile:\nFROM node:20-slim      # imagem base\nWORKDIR /app            # diretório de trabalho dentro do container\nCOPY package*.json ./   # copia os manifestos primeiro (cache de build)\nRUN npm install --production\nCOPY . .                 # copia o restante do código\nEXPOSE 3000               # documenta a porta usada\nCMD [\"node\", \"dist/main.js\"]  # comando executado ao iniciar o container"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#portas--p-808080",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#portas--p-808080",
+    "title": "Docker para aplicações web",
+    "section": "Portas: -p 8080:80",
+    "text": "Portas: -p 8080:80\nseu computador :8080  ──►  container :80\nE se dois containers pedirem a porta 8080?"
   },
   {
-    "objectID": "aulas/01-docker.html#build-execução-e-volumes",
-    "href": "aulas/01-docker.html#build-execução-e-volumes",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Build, execução e volumes",
-    "text": "Build, execução e volumes\ndocker build -t meu-app:1.0 .\ndocker run -p 5000:5000 meu-app:1.0\nVolumes: persistência e compartilhamento de dados entre host e container — essencial no fluxo de desenvolvimento:\ndocker run -v $(pwd):/app meu-app:1.0"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#dockerfile",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#dockerfile",
+    "title": "Docker para aplicações web",
+    "section": "Dockerfile",
+    "text": "Dockerfile\nFROM nginx:alpine\nCOPY index.html /usr/share/nginx/html/index.html\ndocker build -t minha-pagina .\ndocker run -d -p 8080:80 minha-pagina"
   },
   {
-    "objectID": "aulas/01-docker.html#atividade-prática-sugerida",
-    "href": "aulas/01-docker.html#atividade-prática-sugerida",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Atividade prática sugerida",
-    "text": "Atividade prática sugerida\nEm duplas:\n\nEscrever um Dockerfile para uma API simples (Node ou Python)\nBuildar a imagem\nRodar o container com porta e volume mapeados\nValidar no navegador\n\nAvaliação: Questionário — Aula 1 (Moodle)"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-minha-página-no-nginx",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-minha-página-no-nginx",
+    "title": "Docker para aplicações web",
+    "section": "Mini desafio · Minha página no nginx",
+    "text": "Mini desafio · Minha página no nginx\n\nSuba o nginx na porta 9090\nTroque a página por uma com o seu nome\nVeja os logs do acesso\n\nExtra: faça isso com um Dockerfile."
   },
   {
-    "objectID": "aulas/01-docker.html#material-complementar",
-    "href": "aulas/01-docker.html#material-complementar",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Material complementar",
-    "text": "Material complementar\n\nDocumentação oficial do Docker\nDocker Hub\nArtigo “Dockerizando Spring Boot + AWS”\nArtigo “Let’s Stop It Works on My Machine”"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#volumes-e-networks",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#volumes-e-networks",
+    "title": "Docker para aplicações web",
+    "section": "Volumes e networks",
+    "text": "Volumes e networks"
   },
   {
-    "objectID": "aulas/01-docker.html#exemplo-prático-guiado",
-    "href": "aulas/01-docker.html#exemplo-prático-guiado",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "💻 Exemplo prático guiado",
-    "text": "💻 Exemplo prático guiado\nDiário de Café — app de barismo hobbista que catalogará cafés, insumos, cuppings (avaliações sensoriais) e receitas de extração ao longo de todo o módulo.\nNesta aula, o objetivo é apenas dockerizá-lo.\ndiario-cafe-api/\n  src/\n  package.json\n  Dockerfile\n  docker-compose.yml\n  .dockerignore"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#container-é-descartável",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#container-é-descartável",
+    "title": "Docker para aplicações web",
+    "section": "Container é descartável",
+    "text": "Container é descartável\n\nDados não moram no container.\n\n\nRemoveu o container? Perdeu o que estava dentro.\nSolução: guardar os dados fora dele."
   },
   {
-    "objectID": "aulas/01-docker.html#dockerfile-do-diário-de-café",
-    "href": "aulas/01-docker.html#dockerfile-do-diário-de-café",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Dockerfile do Diário de Café",
-    "text": "Dockerfile do Diário de Café\nFROM node:20-slim\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install --production\nCOPY . .\nEXPOSE 3000\nCMD [\"node\", \"dist/main.js\"]"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#onde-guardar-dados",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#onde-guardar-dados",
+    "title": "Docker para aplicações web",
+    "section": "Onde guardar dados?",
+    "text": "Onde guardar dados?\n\n\n\nTipo\nQuem gerencia\nUse para\n\n\n\n\nNamed volume\nDocker\nDados (banco)\n\n\nBind mount\nVocê (pasta local)\nCódigo em desenvolvimento\n\n\ntmpfs\nMemória\nDados temporários"
   },
   {
-    "objectID": "aulas/01-docker.html#docker-compose.yml",
-    "href": "aulas/01-docker.html#docker-compose.yml",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "docker-compose.yml",
-    "text": "docker-compose.yml\nSobe a API junto com o banco onde ficam os cafés, receitas e cuppings:\nversion: \"3.9\"\nservices:\n  api:\n    build: .\n    ports:\n      - \"3000:3000\"\n    environment:\n      - DATABASE_URL=postgres://barista:senha@db:5432/diario_cafe\n    depends_on:\n      - db\n    volumes:\n      - ./uploads:/app/uploads\n  db:\n    image: postgres:16\n    environment:\n      - POSTGRES_USER=barista\n      - POSTGRES_PASSWORD=senha\n      - POSTGRES_DB=diario_cafe\n    volumes:\n      - cafe_data:/var/lib/postgresql/data\nvolumes:\n  cafe_data:"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#named-volume-na-prática",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#named-volume-na-prática",
+    "title": "Docker para aplicações web",
+    "section": "Named volume na prática",
+    "text": "Named volume na prática\ndocker run --rm -v dados:/data alpine \\\n  sh -c \"echo oi &gt; /data/a.txt\"\n\ndocker run --rm -v dados:/data alpine cat /data/a.txt\nO arquivo sobrevive: o volume vive fora do container."
   },
   {
-    "objectID": "aulas/01-docker.html#dockerignore",
-    "href": "aulas/01-docker.html#dockerignore",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": ".dockerignore",
-    "text": ".dockerignore\nnode_modules\ndist\n.git\nuploads/*.jpg"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#networks",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#networks",
+    "title": "Docker para aplicações web",
+    "section": "Networks",
+    "text": "Networks\nContainers na mesma rede se acham pelo nome.\ndocker network create rede-curso\ndocker run -d --name web --network rede-curso nginx:alpine\ndocker run --rm --network rede-curso alpine wget -qO- http://web\nlocalhost dentro do container é ele mesmo."
   },
   {
-    "objectID": "aulas/01-docker.html#por-que-essa-configuração",
-    "href": "aulas/01-docker.html#por-que-essa-configuração",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Por que essa configuração",
-    "text": "Por que essa configuração\n\nO Compose cria uma rede interna automática: o serviço api enxerga o banco pelo hostname db (nunca localhost)\ncafe_data é um volume nomeado: persiste o catálogo de cafés mesmo se o container do banco for recriado\n./uploads:/app/uploads é um bind mount: guarda no seu próprio PC as fotos dos grãos enviadas pelos usuários, útil pra debugar sem entrar no container"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-dados-que-sobrevivem",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-dados-que-sobrevivem",
+    "title": "Docker para aplicações web",
+    "section": "Mini desafio · Dados que sobrevivem",
+    "text": "Mini desafio · Dados que sobrevivem\n\nProve que um volume sobrevive à remoção do container\nFaça um container acessar outro pelo nome\n\nExtra: monte uma pasta local no nginx (bind mount) e edite a página ao vivo."
   },
   {
-    "objectID": "aulas/01-docker.html#comandos-do-dia-a-dia",
-    "href": "aulas/01-docker.html#comandos-do-dia-a-dia",
-    "title": "Aula 1 — Docker ⚙️",
-    "section": "Comandos do dia a dia",
-    "text": "Comandos do dia a dia\ndocker compose up -d --build\ndocker compose logs -f api\ndocker compose down        # para os containers, mantém os volumes\ndocker compose down -v     # cuidado: apaga também o volume do banco"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#docker-compose",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#docker-compose",
+    "title": "Docker para aplicações web",
+    "section": "Docker Compose",
+    "text": "Docker Compose"
   },
   {
-    "objectID": "aulas/03-poo.html#objetivo-de-aprendizagem",
-    "href": "aulas/03-poo.html#objetivo-de-aprendizagem",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Objetivo de aprendizagem",
-    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nReconhecer que POO é um paradigma (não uma sintaxe)\nIdentificar e aplicar os 4 pilares em pelo menos duas linguagens diferentes\nEntender quando preferir composição a herança"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#por-que-compose",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#por-que-compose",
+    "title": "Docker para aplicações web",
+    "section": "Por que Compose?",
+    "text": "Por que Compose?\n\ndocker run com 8 flags não se mantém\nO Compose descreve o ambiente em um arquivo\nO arquivo vai para o Git: toda a equipe usa o mesmo"
   },
   {
-    "objectID": "aulas/03-poo.html#introdução",
-    "href": "aulas/03-poo.html#introdução",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Introdução",
-    "text": "Introdução\n\nPOO é uma forma de pensar sobre código que transcende a linguagem\nUm conceito como Encapsulamento é idêntico em TypeScript, PHP e Java — muda a sintaxe, não a intenção\nEsta aula apresenta os 4 pilares com exemplos comparáveis em TypeScript, PHP e Java"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#anatomia-do-docker-compose.yml",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#anatomia-do-docker-compose.yml",
+    "title": "Docker para aplicações web",
+    "section": "Anatomia do docker-compose.yml",
+    "text": "Anatomia do docker-compose.yml\nservices:\n  web:\n    image: nginx:alpine\n    ports:\n      - \"8080:80\"\n    volumes:\n      - ./site:/usr/share/nginx/html:ro"
   },
   {
-    "objectID": "aulas/03-poo.html#pilar-1-encapsulamento",
-    "href": "aulas/03-poo.html#pilar-1-encapsulamento",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Pilar 1 — Encapsulamento",
-    "text": "Pilar 1 — Encapsulamento\n\nAgrupar dados e comportamentos numa classe e controlar o acesso via modificadores de visibilidade\nBenefícios:\n\nProteção de dados (validação antes de mudar)\nControle de estado\nFlexibilidade de implementação\nManutenção de invariantes (ex.: saldo nunca negativo)\n\nModificadores de acesso (public, protected, private) — sintaxe idêntica nas 3 linguagens, mesmo significado"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#como-ler-esse-arquivo",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#como-ler-esse-arquivo",
+    "title": "Docker para aplicações web",
+    "section": "Como ler esse arquivo",
+    "text": "Como ler esse arquivo\n\nservices: cada item vira um container\nO nome do serviço vira o hostname\nO Compose cria a network sozinho\n:ro monta a pasta como somente leitura"
   },
   {
-    "objectID": "aulas/03-poo.html#pilar-2-herança",
-    "href": "aulas/03-poo.html#pilar-2-herança",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Pilar 2 — Herança",
-    "text": "Pilar 2 — Herança\n\nReaproveitar atributos/métodos de outra classe e criar hierarquias conceituais\n\n⚠️ Armadilha: cadeias longas (Veiculo → Terrestre → Automóvel → Carro → Ferrari) geram alto acoplamento e fragilizam testes.\n✅ Solução: hierarquias rasas (máx. 2–3 níveis) e preferir composição (“tem um”) a herança (“é um”) para capacidades adicionais."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#comandos-do-compose",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#comandos-do-compose",
+    "title": "Docker para aplicações web",
+    "section": "Comandos do Compose",
+    "text": "Comandos do Compose\ndocker compose up -d      # sobe tudo\ndocker compose ps         # estado\ndocker compose logs -f    # logs\ndocker compose exec web sh\ndocker compose down       # derruba (-v apaga volumes)"
   },
   {
-    "objectID": "aulas/03-poo.html#pilar-3-polimorfismo",
-    "href": "aulas/03-poo.html#pilar-3-polimorfismo",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Pilar 3 — Polimorfismo",
-    "text": "Pilar 3 — Polimorfismo\n\nUm mesmo método se comporta de formas diferentes conforme a classe que o implementa\nElimina cadeias de if/else baseadas em tipo\n\nSem polimorfismo: cada tipo novo exige alterar todo o código cliente.\nCom polimorfismo: cada tipo sabe se comportar via um contrato comum (interface/classe abstrata)."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-do-docker-run-para-o-compose",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-do-docker-run-para-o-compose",
+    "title": "Docker para aplicações web",
+    "section": "Mini desafio · Do docker run para o Compose",
+    "text": "Mini desafio · Do docker run para o Compose\nTraduza para um docker-compose.yml:\ndocker run -d --name web -p 8080:80 \\\n  -v $(pwd)/site:/usr/share/nginx/html:ro nginx:alpine\nExtra: adicione um serviço redis e faça o web enxergá-lo pelo nome."
   },
   {
-    "objectID": "aulas/03-poo.html#pilar-4-abstração",
-    "href": "aulas/03-poo.html#pilar-4-abstração",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Pilar 4 — Abstração",
-    "text": "Pilar 4 — Abstração\n\nEsconder complexidade e expor uma interface simples\n\nbd.buscar(\"usuarios\") em vez de gerenciar TCP/SQL diretamente\n\n\nDiferença-chave: Encapsulamento protege dados; Abstração simplifica a interação."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#stack-web",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#stack-web",
+    "title": "Docker para aplicações web",
+    "section": "Stack web",
+    "text": "Stack web\nnginx + PHP-FPM ou nginx + Node"
   },
   {
-    "objectID": "aulas/03-poo.html#integrando-os-4-pilares-folha-de-pagamento",
-    "href": "aulas/03-poo.html#integrando-os-4-pilares-folha-de-pagamento",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Integrando os 4 pilares — Folha de Pagamento",
-    "text": "Integrando os 4 pilares — Folha de Pagamento\n\nAbstração: classe abstrata Funcionario define o contrato\nHerança: especializações rasas (Gerente, Developer)\nEncapsulamento: acesso seguro ao salário via getters\nPolimorfismo: calcularBonus() se comporta diferente por tipo\n\nBoas práticas relacionadas: Alta Coesão, Baixo Acoplamento, Responsabilidade Única (SRP)."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#por-que-nginx-na-frente",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#por-que-nginx-na-frente",
+    "title": "Docker para aplicações web",
+    "section": "Por que nginx na frente?",
+    "text": "Por que nginx na frente?\n\nServe arquivos estáticos\nAtua como proxy reverso\nHabilita HTTPS no futuro\nÉ o padrão em produção"
   },
   {
-    "objectID": "aulas/03-poo.html#atividade-prática-sugerida",
-    "href": "aulas/03-poo.html#atividade-prática-sugerida",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Atividade prática sugerida",
-    "text": "Atividade prática sugerida\nModelar o sistema de folha de pagamento (ou domínio similar) implementando os 4 pilares na linguagem de preferência, comparando depois com a implementação de um colega em outra linguagem.\nAvaliação: Questionário — Aula 3 (Moodle)"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#estrutura-do-projeto",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#estrutura-do-projeto",
+    "title": "Docker para aplicações web",
+    "section": "Estrutura do projeto",
+    "text": "Estrutura do projeto\nmeu-projeto/\n├── docker-compose.yml\n├── .docker/\n│   └── nginx/default.conf\n├── .gitignore\n├── README.md\n└── app/   (ou src/)"
   },
   {
-    "objectID": "aulas/03-poo.html#referências-recomendadas",
-    "href": "aulas/03-poo.html#referências-recomendadas",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Referências recomendadas",
-    "text": "Referências recomendadas\n\nThe Object-Oriented Thought Process — Matt Weisfeld\nClean Code — Robert C. Martin\nDesign Patterns — Gang of Four\nSOLID Principles and Object-Oriented Design — Pluralsight"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#node-nginx-compose",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#node-nginx-compose",
+    "title": "Docker para aplicações web",
+    "section": "Node + nginx · Compose",
+    "text": "Node + nginx · Compose\nservices:\n  app:\n    build: ./app\n    volumes:\n      - ./app:/app\n      - /app/node_modules\n  nginx:\n    image: nginx:alpine\n    ports: [\"8080:80\"]\n    volumes:\n      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro\n    depends_on: [app]"
   },
   {
-    "objectID": "aulas/03-poo.html#exemplo-prático-guiado",
-    "href": "aulas/03-poo.html#exemplo-prático-guiado",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "💻 Exemplo prático guiado",
-    "text": "💻 Exemplo prático guiado\nModelando o Diário de Café em POO — polimorfismo nos métodos de extração:\nabstract class MetodoExtracao {\n  constructor(protected proporcaoAguaCafe: number) {}\n  abstract preparar(doseGramas: number): string;\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#node-nginx-nginx.conf",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#node-nginx-nginx.conf",
+    "title": "Docker para aplicações web",
+    "section": "Node + nginx · nginx.conf",
+    "text": "Node + nginx · nginx.conf\nserver {\n  listen 80;\n  location / {\n    proxy_pass http://app:3000;\n    proxy_set_header Host $host;\n  }\n}\napp é o nome do serviço, não localhost."
   },
   {
-    "objectID": "aulas/03-poo.html#polimorfismo-métodos-de-extração",
-    "href": "aulas/03-poo.html#polimorfismo-métodos-de-extração",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Polimorfismo — métodos de extração",
-    "text": "Polimorfismo — métodos de extração\nclass V60 extends MetodoExtracao {\n  preparar(doseGramas: number): string {\n    const agua = doseGramas * this.proporcaoAguaCafe;\n    return `V60: despeje ${agua}ml de agua sobre ${doseGramas}g de cafe moido medio-fino, em espiral, por ~2:30min.`;\n  }\n}\n\nclass Aeropress extends MetodoExtracao {\n  preparar(doseGramas: number): string {\n    const agua = doseGramas * this.proporcaoAguaCafe;\n    return `Aeropress: infusao de ${doseGramas}g de cafe com ${agua}ml de agua por 1min, depois prense por 30s.`;\n  }\n}\n\nclass PrensaFrancesa extends MetodoExtracao {\n  preparar(doseGramas: number): string {\n    const agua = doseGramas * this.proporcaoAguaCafe;\n    return `Prensa Francesa: cafe grosso, ${agua}ml de agua, 4min de infusao antes de prensar.`;\n  }\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#php-nginx-compose",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#php-nginx-compose",
+    "title": "Docker para aplicações web",
+    "section": "PHP + nginx · Compose",
+    "text": "PHP + nginx · Compose\nservices:\n  app:\n    build: ./.docker/php\n    volumes:\n      - ./src:/var/www/html\n  nginx:\n    image: nginx:alpine\n    ports: [\"8080:80\"]\n    volumes:\n      - ./src:/var/www/html:ro\n      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro\n    depends_on: [app]"
   },
   {
-    "objectID": "aulas/03-poo.html#por-que-isso-importa",
-    "href": "aulas/03-poo.html#por-que-isso-importa",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Por que isso importa",
-    "text": "Por que isso importa\nO código que chama metodo.preparar(dose) nunca precisa saber qual subclasse está usando — cada método de extração sabe se comportar sozinho.\n\nExiste também um exemplo equivalente em Java/PHP na aula original, com a mesma ideia por trás de sintaxes diferentes."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#php-nginx-nginx.conf",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#php-nginx-nginx.conf",
+    "title": "Docker para aplicações web",
+    "section": "PHP + nginx · nginx.conf",
+    "text": "PHP + nginx · nginx.conf\nserver {\n  listen 80;\n  root /var/www/html;\n  index index.php;\n  location / { try_files $uri $uri/ /index.php?$query_string; }\n  location ~ \\.php$ {\n    fastcgi_pass app:9000;\n    include fastcgi_params;\n    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;\n  }\n}"
   },
   {
-    "objectID": "aulas/03-poo.html#encapsulamento-a-receita-protege-seu-próprio-estado",
-    "href": "aulas/03-poo.html#encapsulamento-a-receita-protege-seu-próprio-estado",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Encapsulamento — a receita protege seu próprio estado",
-    "text": "Encapsulamento — a receita protege seu próprio estado\nclass Receita {\n  private historico: string[] = [];\n\n  constructor(\n    private nome: string,\n    private metodo: MetodoExtracao,\n    private doseGramas: number\n  ) {\n    if (doseGramas &lt;= 0) throw new Error(\"Dose deve ser maior que zero\");\n  }\n\n  executar(): string {\n    const instrucao = this.metodo.preparar(this.doseGramas);\n    this.historico.push(`${new Date().toISOString()}: ${instrucao}`);\n    return instrucao;\n  }\n\n  get totalExecucoes(): number {\n    return this.historico.length; // ninguem de fora consegue alterar o historico diretamente\n  }\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-subindo-a-stack-web",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-subindo-a-stack-web",
+    "title": "Docker para aplicações web",
+    "section": "Mini desafio · Subindo a stack web",
+    "text": "Mini desafio · Subindo a stack web\n\nEscolha PHP ou Node\nSuba nginx + aplicação com Compose\nFaça a página responder o nome do container\n\nExtra: adicione uma rota /health."
   },
   {
-    "objectID": "aulas/03-poo.html#polimorfismo-de-novo-protocolos-de-pontuação",
-    "href": "aulas/03-poo.html#polimorfismo-de-novo-protocolos-de-pontuação",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Polimorfismo de novo — protocolos de pontuação",
-    "text": "Polimorfismo de novo — protocolos de pontuação\ninterface AvaliacaoSensorial {\n  fragancia: number; sabor: number; acidez: number; corpo: number; docura: number; defeitos: number;\n}\n\ninterface ProtocoloDePontuacao {\n  calcularNota(a: AvaliacaoSensorial): number;\n}\n\nclass ProtocoloSCA implements ProtocoloDePontuacao {\n  calcularNota(a: AvaliacaoSensorial): number {\n    return a.fragancia + a.sabor + a.acidez + a.corpo + a.docura - a.defeitos;\n  }\n}\n\nclass ProtocoloCupOfExcellence implements ProtocoloDePontuacao {\n  calcularNota(a: AvaliacaoSensorial): number {\n    return (a.fragancia + a.sabor * 2 + a.acidez + a.corpo + a.docura) / 1.2;\n  }\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#quebre-e-conserte",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#quebre-e-conserte",
+    "title": "Docker para aplicações web",
+    "section": "Quebre e conserte",
+    "text": "Quebre e conserte"
   },
   {
-    "objectID": "aulas/03-poo.html#abstração-o-resto-do-app-não-sabe-que-existe-um-banco",
-    "href": "aulas/03-poo.html#abstração-o-resto-do-app-não-sabe-que-existe-um-banco",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Abstração — o resto do app não sabe que existe um banco",
-    "text": "Abstração — o resto do app não sabe que existe um banco\ninterface CafeRepository {\n  buscarPorId(id: string): Cafe | undefined;\n  salvar(cafe: Cafe): void;\n}"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#método-de-diagnóstico",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#método-de-diagnóstico",
+    "title": "Docker para aplicações web",
+    "section": "Método de diagnóstico",
+    "text": "Método de diagnóstico\n\ndocker compose ps\ndocker compose logs &lt;serviço&gt;\ndocker compose exec &lt;serviço&gt; sh\nTestar a rede de dentro\n\nDe fora para dentro: navegador → porta → nginx → app."
   },
   {
-    "objectID": "aulas/03-poo.html#juntando-tudo",
-    "href": "aulas/03-poo.html#juntando-tudo",
-    "title": "Aula 3 — Programação Orientada a Objetos 💻",
-    "section": "Juntando tudo",
-    "text": "Juntando tudo\nconst receita = new Receita(\"V60 Etiopia Yirgacheffe\", new V60(16), 20);\nconsole.log(receita.executar());\n// V60: despeje 320ml de agua sobre 20g de cafe moido medio-fino, em espiral, por ~2:30min.\n\nconst protocolo: ProtocoloDePontuacao = new ProtocoloSCA();\nconst nota = protocolo.calcularNota({ fragancia: 8, sabor: 8.5, acidez: 7.5, corpo: 8, docura: 8, defeitos: 0 });\n// nota = 40 (escala SCA de 0-100 apos normalizacao)"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#sintomas-comuns",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#sintomas-comuns",
+    "title": "Docker para aplicações web",
+    "section": "Sintomas comuns",
+    "text": "Sintomas comuns\n\n\n\nSintoma\nCausa provável\n\n\n\n\n502 Bad Gateway\nApp não responde na porta esperada\n\n\nhost not found in upstream\nNome do serviço errado\n\n\nport is already allocated\nPorta ocupada no host\n\n\nContainer reinicia sem parar\nErro no comando; ver logs"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#objetivo-de-aprendizagem",
-    "href": "aulas/05-ia-como-assistente.html#objetivo-de-aprendizagem",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Objetivo de aprendizagem",
-    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nEscrever prompts estruturados de alta precisão\nEscolher a ferramenta de IA adequada a cada tarefa do ciclo de desenvolvimento\nUsar IA para gerar testes/refatorar/documentar com segurança\nAplicar um checklist crítico de revisão de código gerado por IA"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-quebre-e-conserte-em-dupla",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-quebre-e-conserte-em-dupla",
+    "title": "Docker para aplicações web",
+    "section": "Mini desafio · Quebre e conserte (em dupla)",
+    "text": "Mini desafio · Quebre e conserte (em dupla)\nO Compose do gabarito tem 3 bugs.\nEncontre e corrija cada um usando o método: ps → logs → exec.\nExtra: descreva o sintoma de cada bug em uma frase."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#introdução-à-ia-generativa",
-    "href": "aulas/05-ia-como-assistente.html#introdução-à-ia-generativa",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Introdução à IA Generativa",
-    "text": "Introdução à IA Generativa\n\nLLMs são preditores probabilísticos, não “oráculos”\nAtuam como pares de programação\n\nAnalogia: um estagiário ultrarrápido que leu toda a documentação da internet, mas não conhece o negócio"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#desafio-integrador-ambiente-padrão-da-turma",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#desafio-integrador-ambiente-padrão-da-turma",
+    "title": "Docker para aplicações web",
+    "section": "Desafio integrador · Ambiente padrão da turma",
+    "text": "Desafio integrador · Ambiente padrão da turma\nEm dupla"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#anatomia-de-um-prompt-de-alta-precisão",
-    "href": "aulas/05-ia-como-assistente.html#anatomia-de-um-prompt-de-alta-precisão",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Anatomia de um prompt de alta precisão",
-    "text": "Anatomia de um prompt de alta precisão\nPapel + Contexto + Tarefa + Restrições\n\n“Atue como engenheiro sênior… use TypeScript estrito, injeção de dependência por construtor…”"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#o-que-entregar",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#o-que-entregar",
+    "title": "Docker para aplicações web",
+    "section": "O que entregar",
+    "text": "O que entregar\n\nRepositório no GitHub, stack à sua escolha\ndocker-compose.yml e pasta .docker/\nREADME com docker compose up -d\nTeste cruzado: outra dupla clona e roda sem ajuda"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#técnicas-de-prompt",
-    "href": "aulas/05-ia-como-assistente.html#técnicas-de-prompt",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Técnicas de prompt",
-    "text": "Técnicas de prompt\n\nFew-Shot Prompting: fornecer exemplos de entrada/saída antes de pedir a solução\nChain-of-Thought: instruir a IA a “pensar passo a passo” antes de gerar código, forçando planejamento de arquitetura\nPrevenção de alucinações: sempre validar métodos/bibliotecas sugeridos na documentação oficial antes do deploy"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#critério-de-pronto",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#critério-de-pronto",
+    "title": "Docker para aplicações web",
+    "section": "Critério de pronto",
+    "text": "Critério de pronto\n\ndocker compose up -d sobe tudo em outra máquina\nO navegador mostra a resposta da aplicação\nO README explica como usar\n.gitignore com o que não deve ir para o Git\n\nExtra: adicionar um banco com named volume."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#ecossistema-de-ferramentas",
-    "href": "aulas/05-ia-como-assistente.html#ecossistema-de-ferramentas",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Ecossistema de ferramentas",
-    "text": "Ecossistema de ferramentas\n\nGitHub Copilot: integrado à IDE, forte em autocomplete inline, docstrings e testes pontuais\nCursor / IDEs nativas de IA: indexam toda a codebase (embeddings), permitem refatoração multi-arquivo e busca semântica\nArquivos de contexto de projeto (.cursorrules / instructions.md): padronizam regras da equipe para não repeti-las em todo prompt"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#fechamento",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#fechamento",
+    "title": "Docker para aplicações web",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nImagem vs container\nVolume e network\nCompose descreve o ambiente"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#debugging-assistido-e-segurança",
-    "href": "aulas/05-ia-como-assistente.html#debugging-assistido-e-segurança",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Debugging assistido e segurança",
-    "text": "Debugging assistido e segurança\n\nDebugging assistido: alimentar a IA com Stack Trace + trecho de código + versões de runtime/bibliotecas acelera o diagnóstico\n\n🛡️ Segurança e privacidade: nunca enviar chaves de API, senhas, dados de clientes (PII) ou código proprietário crítico para modelos públicos sem garantia de política de retenção zero."
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#dever-de-casa",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#dever-de-casa",
+    "title": "Docker para aplicações web",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nTrazer 2 ou 3 propostas de projeto para os 4 meses\nFinalizar o repositório do ambiente\nLevar 3 dúvidas para o próximo encontro"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#uso-prático-geração-de-testes",
-    "href": "aulas/05-ia-como-assistente.html#uso-prático-geração-de-testes",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Uso prático — geração de testes",
-    "text": "Uso prático — geração de testes\nPedir cobertura de edge cases que humanos costumam esquecer:\n\nValores negativos\nLimites\nEntradas nulas"
+    "objectID": "aulas/01-docker-para-aplicacoes-web.html#próximo-encontro-scrum-github-projects-e-colaboração",
+    "href": "aulas/01-docker-para-aplicacoes-web.html#próximo-encontro-scrum-github-projects-e-colaboração",
+    "title": "Docker para aplicações web",
+    "section": "Próximo encontro · Scrum, GitHub Projects e colaboração",
+    "text": "Próximo encontro · Scrum, GitHub Projects e colaboração\nTraga o repositório de hoje."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#refatoração-e-documentação-viva",
-    "href": "aulas/05-ia-como-assistente.html#refatoração-e-documentação-viva",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Refatoração e documentação viva",
-    "text": "Refatoração e documentação viva\n\nRefatoração de código legado: peça primeiro que a IA explique o código antigo; só depois solicite a modernização (ex.: callbacks → async/await) mantendo os testes\nDocumentação viva:\n\nGeração de specs OpenAPI/Swagger\nDiagramas Mermaid.js\nMensagens de commit no padrão Conventional Commits a partir do git diff"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#na-aula-passada",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#na-aula-passada",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nContainers, imagens, volumes e networks\nCompose descreve o ambiente em um arquivo\nRepositório que qualquer colega roda com um comando"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#visão-crítica-o-perigo-do-copiar-e-colar",
-    "href": "aulas/05-ia-como-assistente.html#visão-crítica-o-perigo-do-copiar-e-colar",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Visão crítica — o perigo do copiar e colar",
-    "text": "Visão crítica — o perigo do copiar e colar\n\nAceitar sugestões sem entender cria sistemas frágeis que ninguém sabe depurar em produção.\n\nA IA substitui a digitação de código, não a Engenharia de Software: responsabilidade técnica, arquitetura e decisão continuam humanas."
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#hoje",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#hoje",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: modelos de desenvolvimento · Scrum · GitHub Projects\nBloco 2: código padronizado · Git e PRs · code review\nDesafio: simulação de sprint em duplas\n\nSaída: todos com board, PR e review de verdade"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#checklist-de-validação-de-código-gerado-por-ia",
-    "href": "aulas/05-ia-como-assistente.html#checklist-de-validação-de-código-gerado-por-ia",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Checklist de validação de código gerado por IA",
-    "text": "Checklist de validação de código gerado por IA\n\nO desenvolvedor consegue explicar o algoritmo linha a linha?\nDesempenho/complexidade adequados (O(N) vs. O(N²))?\nConformidade com SOLID/Clean Code?\nRisco de licenciamento/direitos autorais?"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#modelos-de-desenvolvimento",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#modelos-de-desenvolvimento",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Modelos de desenvolvimento",
+    "text": "Modelos de desenvolvimento"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#níveis-de-autonomia",
-    "href": "aulas/05-ia-como-assistente.html#níveis-de-autonomia",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "6 níveis de autonomia",
-    "text": "6 níveis de autonomia\nFramework complementar (Tom Taulli, a partir de Quinn Slack):\n\n\n\nNível\nDescrição\n\n\n\n\n0\nSem IA\n\n\n1\nCompletamento\n\n\n2\nCriação de código supervisionada\n\n\n3\nAutomação supervisionada\n\n\n4\nAutomação total\n\n\n5\nAutonomia liderada\n\n\n\nÚtil para discutir até onde a turma já opera e até onde deveria ir com segurança."
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#como-um-software-nasce",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#como-um-software-nasce",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Como um software nasce",
+    "text": "Como um software nasce\n\nideia → requisitos → design → código → teste → deploy → feedback\n\nTodo modelo organiza esse mesmo ciclo. O que muda é quando o cliente vê o resultado."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#temperatura-do-modelo",
-    "href": "aulas/05-ia-como-assistente.html#temperatura-do-modelo",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Temperatura do modelo",
-    "text": "Temperatura do modelo\n\nBaixa (0.1–0.3): código/depuração determinística\nAlta (0.7–1.0): brainstorming arquitetural"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#cascata",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#cascata",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Cascata",
+    "text": "Cascata\n\nFases em sequência: uma só começa quando a anterior termina\nCliente vê o software no fim\nFunciona quando o requisito é estável e mudar é caro\n\nRisco: descobrir o erro só na entrega."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#atividade-prática-sugerida",
-    "href": "aulas/05-ia-como-assistente.html#atividade-prática-sugerida",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Atividade prática sugerida",
-    "text": "Atividade prática sugerida\n\nCada aluno escreve um prompt estruturado (Papel + Contexto + Tarefa + Restrições) para gerar uma função com testes\nRoda em uma ferramenta de IA\nAplica o checklist de code review no resultado antes de aceitá-lo\n\nAvaliação: Questionário — Aula 5 + Desafio de Conhecimento (10 questões sobre AI-Assisted Programming, de Tom Taulli)"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#iterativo-incremental-e-xp",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#iterativo-incremental-e-xp",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Iterativo, incremental e XP",
+    "text": "Iterativo, incremental e XP\n\nIterativo: repete o ciclo, cada volta melhora a anterior\nIncremental: entrega em partes que já funcionam\nXP: práticas técnicas: TDD, pair programming, integração contínua, releases pequenos\n\nFeedback cedo reduz o custo de errar."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#material-complementar",
-    "href": "aulas/05-ia-como-assistente.html#material-complementar",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Material complementar",
-    "text": "Material complementar\n\nSlides da aula (Google Slides)\nAI-Assisted Programming — Tom Taulli, O’Reilly, 2024 (e resumo traduzido em português)"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#ágil",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#ágil",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Ágil",
+    "text": "Ágil\n\nPessoas acima de processos e ferramentas\nSoftware funcionando acima de documentação\nColaboração acima de contratos\nMudanças acima de seguir um plano\n\nÁgil não é “sem planejamento”."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#exemplo-prático-guiado",
-    "href": "aulas/05-ia-como-assistente.html#exemplo-prático-guiado",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "💻 Exemplo prático guiado",
-    "text": "💻 Exemplo prático guiado\nUsando IA no Diário de Café — prompt estruturado para gerar testes do RegistrarCuppingUseCase:\n[PAPEL]: Atue como Engenheiro de Software Senior especialista em TypeScript e testes automatizados.\n[CONTEXTO]: Este e o RegistrarCuppingUseCase de um app de catalogacao de cafes e cuppings (protocolo SCA, nota de 0 a 100).\n[TAREFA]: Gere testes unitarios com Vitest cobrindo: nota fora do intervalo 0-100, cafe inexistente no repositorio, e avaliacao duplicada para o mesmo cafe na mesma data.\n[RESTRICOES]: Use mocks para CafeRepository (nunca banco real), siga o padrao AAA (Arrange-Act-Assert)."
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#comparando",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#comparando",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Comparando",
+    "text": "Comparando\n\n\n\nModelo\nEntrega\nMudança\nBom para\n\n\n\n\nCascata\nNo fim\nCara\nRequisito fixo\n\n\nIterativo\nPor ciclo\nMédia\nProduto que evolui\n\n\nÁgil\nContínua\nEsperada\nRequisito incerto"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#resultado-gerado-pela-ia",
-    "href": "aulas/05-ia-como-assistente.html#resultado-gerado-pela-ia",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Resultado gerado pela IA",
-    "text": "Resultado gerado pela IA\nSempre revisado antes de aceitar:\ndescribe('RegistrarCuppingUseCase', () =&gt; {\n  it('deve lancar erro se a nota final estiver fora do intervalo 0-100', () =&gt; {\n    const repo = mockCafeRepository();\n    const useCase = new RegistrarCuppingUseCase(repo);\n    expect(() =&gt; useCase.executar({ cafeId: '1', notaFinal: 150 })).toThrow(NotaInvalidaException);\n  });\n\n  it('deve lancar erro se o cafe nao existir no repositorio', () =&gt; {\n    const repo = mockCafeRepository({ existe: false });\n    const useCase = new RegistrarCuppingUseCase(repo);\n    expect(() =&gt; useCase.executar({ cafeId: 'inexistente', notaFinal: 85 })).toThrow(CafeNaoEncontradoException);\n  });\n\n  it('deve lancar erro se ja existir avaliacao do mesmo cafe na mesma data', () =&gt; {\n    const repo = mockCafeRepository({ cuppingExistenteHoje: true });\n    const useCase = new RegistrarCuppingUseCase(repo);\n    expect(() =&gt; useCase.executar({ cafeId: '1', notaFinal: 85 })).toThrow(CuppingDuplicadoException);\n  });\n});"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-qual-modelo-usar",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-qual-modelo-usar",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Mini desafio · Qual modelo usar",
+    "text": "Mini desafio · Qual modelo usar\nEscolha e justifique em uma frase:\n\nEquipamento hospitalar, com norma rígida\nStartup validando um app de delivery\nMigração com escopo bem conhecido\n\nExtra: o risco de cada escolha."
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#refatorando-código-legado",
-    "href": "aulas/05-ia-como-assistente.html#refatorando-código-legado",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Refatorando código legado",
-    "text": "Refatorando código legado\n// Antes: codigo legado com callback\nfunction calcularProporcao(dose, callback) {\n  buscarConfiguracaoMetodo((err, config) =&gt; {\n    if (err) return callback(err);\n    callback(null, dose * config.fator);\n  });\n}\nPrompt: “Explique este código legado e depois refatore para async/await em TypeScript, mantendo o mesmo comportamento.”\n// Depois: sugestao da IA, ja revisada\nasync function calcularProporcao(dose: number): Promise&lt;number&gt; {\n  const config = await buscarConfiguracaoMetodo();\n  return dose * config.fator;\n}"
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-e-kanban",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-e-kanban",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Scrum e Kanban",
+    "text": "Scrum e Kanban"
   },
   {
-    "objectID": "aulas/05-ia-como-assistente.html#checklist-de-code-review-aplicado",
-    "href": "aulas/05-ia-como-assistente.html#checklist-de-code-review-aplicado",
-    "title": "Aula 5 — IA como Assistente",
-    "section": "Checklist de code review aplicado",
-    "text": "Checklist de code review aplicado\n\n\n\n\n\n\n\nItem do checklist\nAvaliação\n\n\n\n\nCompreensão do algoritmo\n✅ Sim — proporção simples, dose × fator, sem segredo\n\n\nDesempenho/complexidade\n✅ O(1), sem loops desnecessários\n\n\nConformidade com Clean Code/SOLID\n✅ Nomes claros, sem callback hell, função faz uma coisa só\n\n\nLicenciamento/direitos autorais\n✅ Código trivial, sem risco de reprodução de trecho protegido\n\n\n\n\nSe qualquer item desse checklist falhar, o código gerado pela IA é devolvido para ajuste — nunca aceito às cegas, mesmo parecendo correto à primeira vista."
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-em-uma-tela",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-em-uma-tela",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Scrum em uma tela",
+    "text": "Scrum em uma tela\n\n\n\nPapéis\nArtefatos\nEventos\n\n\n\n\nProduct Owner\nProduct Backlog\nSprint Planning\n\n\nScrum Master\nSprint Backlog\nDaily\n\n\nTime de Dev\nIncremento\nReview e Retrospectiva"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#papéis",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#papéis",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Papéis",
+    "text": "Papéis\n\nProduct Owner: decide o quê e por quê; dono do backlog\nScrum Master: facilita o processo e remove obstáculos\nTime de Dev: decide como e entrega o incremento"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#artefatos-e-definition-of-done",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#artefatos-e-definition-of-done",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Artefatos e Definition of Done",
+    "text": "Artefatos e Definition of Done\n\nProduct Backlog: tudo o que pode ser feito, ordenado\nSprint Backlog: o que o time se compromete a fazer na sprint\nIncremento: software funcionando ao fim da sprint\n\nDefinition of Done: o acordo do que significa “pronto”."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#cerimônias",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#cerimônias",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Cerimônias",
+    "text": "Cerimônias\n\n\n\nCerimônia\nQuando\nDuração\n\n\n\n\nDaily\nInício de alguns encontros\n5 min\n\n\nSprint Planning\nA cada 2 semanas\n20 min\n\n\nReview\nAo entregar parte do projeto\n15 min\n\n\nRetrospectiva\nFim de cada bloco\n10 min"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#kanban-vs-scrum",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#kanban-vs-scrum",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Kanban vs Scrum",
+    "text": "Kanban vs Scrum\n\n\n\n\nScrum\nKanban\n\n\n\n\nRitmo\nSprints fixas\nFluxo contínuo\n\n\nEscopo\nFechado na sprint\nMuda a qualquer hora\n\n\nControle\nCapacidade da sprint\nLimite de WIP\n\n\n\nMuitos times usam os dois: é o “Scrumban”."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#história-de-usuário",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#história-de-usuário",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "História de usuário",
+    "text": "História de usuário\nComo &lt;tipo de usuário&gt;,\nquero &lt;fazer algo&gt;,\npara &lt;obter um benefício&gt;.\nCritérios de aceite: como saber que está pronta.\nEx.: dado um pedido pago, quando consultar, então vejo o status."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#story-points",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#story-points",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Story points",
+    "text": "Story points\n\nMedem esforço relativo, não horas\nSequência típica: 1 · 2 · 3 · 5 · 8 · 13\nEstima-se em grupo (planning poker)\nDiscordou? Converse: a discussão é o valor"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-escreva-a-história",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-escreva-a-história",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Mini desafio · Escreva a história",
+    "text": "Mini desafio · Escreva a história\nPara o seu projeto, escreva 1 história de usuário com:\n\nO formato Como / quero / para\n3 critérios de aceite\nUma estimativa em story points\n\nExtra: quebre em 2 histórias menores."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#github-projects",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#github-projects",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "GitHub Projects",
+    "text": "GitHub Projects"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-board",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-board",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "O board",
+    "text": "O board\n\nBacklog → To Do → Doing → Review → Done\n\n\nBacklog: ideias ordenadas\nDoing: no máximo 1 ou 2 por pessoa\nReview: PR aberto, aguardando revisão"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#issue-bem-escrita",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#issue-bem-escrita",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Issue bem escrita",
+    "text": "Issue bem escrita\n## Contexto\nPor que isso importa.\n\n## O que fazer\n- [ ] Passo 1\n- [ ] Passo 2\n\n## Critérios de aceite\n- [ ] Resultado observável"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#organização",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#organização",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Organização",
+    "text": "Organização\n\nLabels: feature, bug, docs, tech-debt\nAssignee: quem faz\nMilestone: a sprint ou entrega\nCloses #12 no PR fecha a issue no merge\n\nTarefa boa cabe em até 1 dia de trabalho."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-monte-o-board",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-monte-o-board",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Mini desafio · Monte o board",
+    "text": "Mini desafio · Monte o board\n\nCrie um GitHub Project (Board) no seu repositório\nCrie as colunas Backlog, To Do, Doing, Review, Done\nAdicione 3 issues com critério de aceite\n\nExtra: crie os labels e um milestone “Sprint 1”."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#código-padronizado",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#código-padronizado",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Código padronizado",
+    "text": "Código padronizado"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#por-que-padronizar",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#por-que-padronizar",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Por que padronizar",
+    "text": "Por que padronizar\n\nO time precisa ler o código do outro sem esforço.\n\n\nEstilo é decidido uma vez, pelo time\nA ferramenta faz cumprir, não a revisão"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#clean-code-na-prática",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#clean-code-na-prática",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Clean Code na prática",
+    "text": "Clean Code na prática\n\nNomes que revelam a intenção\nFunções pequenas, com um só propósito\nSem repetição e sem números mágicos\nMenos complexidade: caminho feliz claro"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#nomes-antes-e-depois",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#nomes-antes-e-depois",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Nomes: antes e depois",
+    "text": "Nomes: antes e depois\nfunction calc($a, $b, $t) { /* ... */ }\nfunction calculate(int $a, int $b, string $operation): int\nO segundo se lê sem abrir o corpo da função."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#padrões-por-linguagem",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#padrões-por-linguagem",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Padrões por linguagem",
+    "text": "Padrões por linguagem\n\n\n\n\nPHP\nJS / TS\n\n\n\n\nEstilo\nPSR-12\nAirbnb + Prettier\n\n\nEstrutura\nPSR-4 (autoload)\nMódulos ES\n\n\nLinter\nphpcs, php-cs-fixer\nESLint"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#editorconfig",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#editorconfig",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": ".editorconfig",
+    "text": ".editorconfig\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\ninsert_final_newline = true\nindent_style = space\nindent_size = 4\n\n[*.{js,ts,json,yml}]\nindent_size = 2"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-conserte-o-estilo",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-conserte-o-estilo",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Mini desafio · Conserte o estilo",
+    "text": "Mini desafio · Conserte o estilo\nReescreva o trecho na sua linguagem, sem mudar o comportamento:\nvar x = function(l){var r=[];\nfor(var i=0;i&lt;l.length;i++){if(l[i]%2==0){r.push(l[i]*2)}}\nreturn r}\nExtra: crie o .editorconfig no seu repositório."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#git-commits-e-prs",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#git-commits-e-prs",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Git, commits e PRs",
+    "text": "Git, commits e PRs"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-fluxo",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-fluxo",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "O fluxo",
+    "text": "O fluxo\n\nbranch → commits → push → PR → review → merge\n\nNunca commite direto na main."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#conventional-commits",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#conventional-commits",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Conventional Commits",
+    "text": "Conventional Commits\ntipo(escopo): descrição no imperativo\n\nfeat(api): adiciona rota /health\nfix(nginx): corrige proxy_pass do serviço app\ndocs: explica como rodar com docker compose\nTipos: feat · fix · docs · refactor · test · chore"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#commit-bom-e-commit-ruim",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#commit-bom-e-commit-ruim",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Commit bom e commit ruim",
+    "text": "Commit bom e commit ruim\n\n\n\nRuim\nBom\n\n\n\n\nfix stuff\nfix(api): retorna 404 quando pedido não existe\n\n\nalterações\ndocs: descreve variáveis do .env.example\n\n\nwip\nrefactor: extrai cálculo de desconto"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#pr-de-qualidade",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#pr-de-qualidade",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "PR de qualidade",
+    "text": "PR de qualidade\n## O que mudou\nAdiciona a rota /health.\n\n## Por quê\nNecessária para o healthcheck do Compose.\n\n## Como testar\n`curl localhost:8080/health`\n\nCloses #12"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#pr-pequeno-vence",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#pr-pequeno-vence",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "PR pequeno vence",
+    "text": "PR pequeno vence\n\nAté ~300 linhas alteradas por PR\nUm PR, um assunto\nPR grande espera dias; PR pequeno sai em horas\nRevise você mesmo antes de pedir review"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-reescreva-os-commits",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-reescreva-os-commits",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Mini desafio · Reescreva os commits",
+    "text": "Mini desafio · Reescreva os commits\n\narrumei o bug\nmudei umas coisas no docker\nnovo readme\nwip\n\nUse Conventional Commits. Extra: o texto do PR."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#code-review",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#code-review",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Code review",
+    "text": "Code review"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#para-que-serve",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#para-que-serve",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Para que serve",
+    "text": "Para que serve\n\nAprender com o código dos outros\nPadronizar o time\nPrevenir bugs antes da produção\nNivelar o conhecimento do time\n\nNão é competição. Não é julgamento de pessoa."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#autor-e-revisor",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#autor-e-revisor",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Autor e revisor",
+    "text": "Autor e revisor\n\nAutor: PR pequeno, descrição clara, autorrevisão antes\nRevisor: comenta o código, não a pessoa\nAmbos: respondem rápido e com respeito\n\nDiscutir estilo? Isso é trabalho do linter."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#como-escrever-o-comentário",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#como-escrever-o-comentário",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Como escrever o comentário",
+    "text": "Como escrever o comentário\n\n\n\n\n\n\n\nRuim\nBom\n\n\n\n\n“Isso está errado.”\n“Aqui $id vai direto na query: risco de SQL injection. Use prepared statement.”\n\n\n“Por que fez assim?”\n“Dúvida: por que não reutilizar calculateTotal()?”"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#tipos-de-comentário",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#tipos-de-comentário",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Tipos de comentário",
+    "text": "Tipos de comentário\n\nBloqueante: precisa mudar antes do merge\nSugestão: melhora, mas pode ficar\nDúvida: quero entender\nElogio: ficou bom, diga também\n\nAprove quando o código melhora o sistema, mesmo sem ser perfeito."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-revise-este-pr-em-dupla",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-revise-este-pr-em-dupla",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Mini desafio · Revise este PR (em dupla)",
+    "text": "Mini desafio · Revise este PR (em dupla)\nfunction getUser($id) {\n    $db = new PDO('sqlite:app.db');\n    $r = $db-&gt;query(\"SELECT * FROM users WHERE id = \" . $id);\n    try {\n        return $r-&gt;fetch();\n    } catch (Exception $e) {}\n}\nEscreva 3 comentários, cada um com tipo e porquê."
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#desafio-integrador-simulação-de-sprint",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#desafio-integrador-simulação-de-sprint",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Desafio integrador · Simulação de sprint",
+    "text": "Desafio integrador · Simulação de sprint\nEm dupla, no repositório do E01"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#as-etapas",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#as-etapas",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "As etapas",
+    "text": "As etapas\n\n\n\nTempo\nEtapa\n\n\n\n\n5 min\nSprint Planning: pega uma issue, move para Doing\n\n\n20 min\nSprint: branch, código, PR\n\n\n15 min\nCode review cruzado\n\n\n5 min\nReview e mini retrospectiva"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#critério-de-pronto",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#critério-de-pronto",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Critério de pronto",
+    "text": "Critério de pronto\n\nIssue movida por todas as colunas\nBranch com nome claro e commits convencionais\nPR com descrição e Closes #N\n2 comentários de review feitos em PR de outra dupla\nPR aprovado e com merge"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#fechamento",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#fechamento",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nModelos: Ágil = feedback rápido\nScrum: papéis, artefatos, cerimônias\nColaboração: padrão, commits, PR e review"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#dever-de-casa",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#dever-de-casa",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nRefinar as propostas de projeto em um documento\nCriar o board da ideia preferida, com 5 issues\nLevar 3 dúvidas para o próximo encontro"
+  },
+  {
+    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#próximo-encontro-poo-e-design-principles",
+    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#próximo-encontro-poo-e-design-principles",
+    "title": "Ágil e desenvolvimento colaborativo",
+    "section": "Próximo encontro · POO e Design Principles",
+    "text": "Próximo encontro · POO e Design Principles\nTraga o código do seu projeto."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#na-aula-passada",
+    "href": "aulas/04-design-patterns.html#na-aula-passada",
+    "title": "Design Patterns",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nEncapsulamento, herança e composição\nSOLID: um motivo para mudar em cada classe"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#hoje",
+    "href": "aulas/04-design-patterns.html#hoje",
+    "title": "Design Patterns",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: o que é um pattern · Strategy · Factory\nBloco 2: Decorator · Adapter e Facade · Observer\nDesafio: aplicar o seu pattern sorteado\n\nSaída: um pattern usado por um bom motivo"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-que-são-design-patterns",
+    "href": "aulas/04-design-patterns.html#o-que-são-design-patterns",
+    "title": "Design Patterns",
+    "section": "O que são Design Patterns",
+    "text": "O que são Design Patterns"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#pattern-é",
+    "href": "aulas/04-design-patterns.html#pattern-é",
+    "title": "Design Patterns",
+    "section": "Pattern é…",
+    "text": "Pattern é…\n\nUma solução recorrente para um problema recorrente\nUm nome para a equipe se entender\nUma ideia, e não código pronto\n\nNão é framework, biblioteca nem regra obrigatória."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#três-famílias",
+    "href": "aulas/04-design-patterns.html#três-famílias",
+    "title": "Design Patterns",
+    "section": "Três famílias",
+    "text": "Três famílias\n\n\n\nFamília\nPergunta\nExemplos\n\n\n\n\nCriação\nComo criar objetos?\nFactory, Builder, Singleton\n\n\nEstruturais\nComo compor objetos?\nAdapter, Decorator, Facade\n\n\nComportamentais\nComo colaboram?\nStrategy, Observer, Command"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#princípio-primeiro-pattern-depois",
+    "href": "aulas/04-design-patterns.html#princípio-primeiro-pattern-depois",
+    "title": "Design Patterns",
+    "section": "Princípio primeiro, pattern depois",
+    "text": "Princípio primeiro, pattern depois\n\n\n\nPrincípio (o quê)\nPattern (como)\n\n\n\n\nO Open/Closed\nStrategy, Decorator\n\n\nD Dependency Inversion\nAdapter, Factory\n\n\nS Single Responsibility\nDecorator, Facade\n\n\n\nPattern é uma forma concreta de aplicar um princípio."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#quando-usar-quando-evitar",
+    "href": "aulas/04-design-patterns.html#quando-usar-quando-evitar",
+    "title": "Design Patterns",
+    "section": "Quando usar, quando evitar",
+    "text": "Quando usar, quando evitar\n\nComece pela dor, não pelo catálogo.\n\n\nUse se o problema se repete e a solução simples já não serve\nEvite se o problema é pequeno ou ainda não doeu"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#mini-desafio-pattern-ou-não",
+    "href": "aulas/04-design-patterns.html#mini-desafio-pattern-ou-não",
+    "title": "Design Patterns",
+    "section": "Mini desafio · Pattern ou não",
+    "text": "Mini desafio · Pattern ou não\nPara cada caso: qual pattern (ou nenhum)?\n\nExportar relatório em PDF ou CSV, vão entrar mais\nScript de 40 linhas, roda 1 vez por mês\nSDK externo com métodos diferentes dos nossos\nAvisar 3 módulos quando um pedido nasce"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#strategy",
+    "href": "aulas/04-design-patterns.html#strategy",
+    "title": "Design Patterns",
+    "section": "Strategy",
+    "text": "Strategy"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-problema",
+    "href": "aulas/04-design-patterns.html#o-problema",
+    "title": "Design Patterns",
+    "section": "O problema",
+    "text": "O problema\nif ($customer === 'vip') {\n    $total *= 0.8;\n} elseif ($total &gt; 100) {\n    $total *= 0.9;\n} elseif ($coupon === 'PROMO') {\n    $total -= 20;\n}\nToda regra nova edita esse if. E ele está no checkout."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#strategy-o-contrato",
+    "href": "aulas/04-design-patterns.html#strategy-o-contrato",
+    "title": "Design Patterns",
+    "section": "Strategy: o contrato",
+    "text": "Strategy: o contrato\ninterface DiscountStrategy\n{\n    public function apply(float $subtotal): float;\n}\nUma classe por regra: NoDiscount, PercentDiscount(10), FixedDiscount(20)."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#strategy-uma-regra",
+    "href": "aulas/04-design-patterns.html#strategy-uma-regra",
+    "title": "Design Patterns",
+    "section": "Strategy: uma regra",
+    "text": "Strategy: uma regra\nfinal class PercentDiscount implements DiscountStrategy\n{\n    public function __construct(private float $percent) {}\n\n    public function apply(float $s): float\n    {\n        return $s - $s * $this-&gt;percent / 100;\n    }\n}"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#strategy-quem-usa",
+    "href": "aulas/04-design-patterns.html#strategy-quem-usa",
+    "title": "Design Patterns",
+    "section": "Strategy: quem usa",
+    "text": "Strategy: quem usa\n$service = new CheckoutService(\n    new PercentDiscount(10),   // troque a regra aqui\n    new Pix(), $repository, $notifier,\n);\nNova regra = classe nova. O CheckoutService não muda."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#strategy-typescript",
+    "href": "aulas/04-design-patterns.html#strategy-typescript",
+    "title": "Design Patterns",
+    "section": "Strategy · TypeScript",
+    "text": "Strategy · TypeScript\ninterface DiscountStrategy {\n  apply(subtotal: number): number;\n}\n\nclass PercentDiscount implements DiscountStrategy {\n  private percent: number;\n  constructor(percent: number) { this.percent = percent; }\n\n  apply(subtotal: number): number {\n    return subtotal - (subtotal * this.percent) / 100;\n  }\n}"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#mini-desafio-estratégias-de-desconto",
+    "href": "aulas/04-design-patterns.html#mini-desafio-estratégias-de-desconto",
+    "title": "Design Patterns",
+    "section": "Mini desafio · Estratégias de desconto",
+    "text": "Mini desafio · Estratégias de desconto\n\nCrie DiscountStrategy\nImplemente 3 regras: nenhuma, percentual e fixa\nRode 120 por cada uma\n\nExtra: o desconto fixo nunca deixa o total negativo."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#factory",
+    "href": "aulas/04-design-patterns.html#factory",
+    "title": "Design Patterns",
+    "section": "Factory",
+    "text": "Factory"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-problema-1",
+    "href": "aulas/04-design-patterns.html#o-problema-1",
+    "title": "Design Patterns",
+    "section": "O problema",
+    "text": "O problema\nif ($type === 'pix') { $method = new Pix(); }\nelseif ($type === 'card') { $method = new Card(); }\nelseif ($type === 'boleto') { $method = new Boleto(); }\nEsse trecho existe em 5 lugares. O Boleto entrou: 5 edições."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#factory-1",
+    "href": "aulas/04-design-patterns.html#factory-1",
+    "title": "Design Patterns",
+    "section": "Factory",
+    "text": "Factory\nfinal class PaymentFactory\n{\n    public static function make(string $type): PaymentMethod\n    {\n        return match ($type) {\n            'pix' =&gt; new Pix(),\n            'card' =&gt; new Card(),\n            default =&gt; throw new InvalidArgumentException($type),\n        };\n    }\n}"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#factory-cuidados",
+    "href": "aulas/04-design-patterns.html#factory-cuidados",
+    "title": "Design Patterns",
+    "section": "Factory: cuidados",
+    "text": "Factory: cuidados\n\nO match cresce a cada tipo novo\nUm registro de criadores mantém o Open/Closed\nChame a fábrica na borda (controller), e não dentro do serviço\n\nO serviço continua recebendo o objeto pronto."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#mini-desafio-uma-fábrica-de-pagamentos",
+    "href": "aulas/04-design-patterns.html#mini-desafio-uma-fábrica-de-pagamentos",
+    "title": "Design Patterns",
+    "section": "Mini desafio · Uma fábrica de pagamentos",
+    "text": "Mini desafio · Uma fábrica de pagamentos\n\nCrie PaymentFactory::make(type)\nAceite pix, card e boleto\nTipo desconhecido lança erro\n\nExtra: troque o match por um registro."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#decorator",
+    "href": "aulas/04-design-patterns.html#decorator",
+    "title": "Design Patterns",
+    "section": "Decorator",
+    "text": "Decorator"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-problema-2",
+    "href": "aulas/04-design-patterns.html#o-problema-2",
+    "title": "Design Patterns",
+    "section": "O problema",
+    "text": "O problema\nQueremos log, prefixo e retry no Notifier.\nLoggingEmailNotifier      LoggingSmsNotifier\nPrefixLoggingEmailNotifier   RetryLoggingSmsNotifier\nCada combinação vira uma classe."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#decorator-1",
+    "href": "aulas/04-design-patterns.html#decorator-1",
+    "title": "Design Patterns",
+    "section": "Decorator",
+    "text": "Decorator\nfinal class LoggingNotifier implements Notifier\n{\n    public function __construct(private Notifier $inner) {}\n\n    public function notify(string $message): void\n    {\n        error_log(\"enviando: {$message}\");\n        $this-&gt;inner-&gt;notify($message);\n    }\n}"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#empilhando",
+    "href": "aulas/04-design-patterns.html#empilhando",
+    "title": "Design Patterns",
+    "section": "Empilhando",
+    "text": "Empilhando\n$notifier = new LoggingNotifier(\n    new PrefixNotifier(new EmailNotifier(), '[PEDIDOS] ')\n);\n\nMesma interface por dentro e por fora\nA ordem das camadas importa\nCombina em execução, e não em tempo de escrita"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#mini-desafio-notificações-com-camadas",
+    "href": "aulas/04-design-patterns.html#mini-desafio-notificações-com-camadas",
+    "title": "Design Patterns",
+    "section": "Mini desafio · Notificações com camadas",
+    "text": "Mini desafio · Notificações com camadas\n\nCrie LoggingNotifier e PrefixNotifier\nEmpilhe sobre o EmailNotifier\nMostre o log e a mensagem final\n\nExtra: inverta a ordem. O que muda?"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#adapter-e-facade",
+    "href": "aulas/04-design-patterns.html#adapter-e-facade",
+    "title": "Design Patterns",
+    "section": "Adapter e Facade",
+    "text": "Adapter e Facade"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-problema-do-sdk",
+    "href": "aulas/04-design-patterns.html#o-problema-do-sdk",
+    "title": "Design Patterns",
+    "section": "O problema do SDK",
+    "text": "O problema do SDK\n// Biblioteca externa: não podemos editar\n$client-&gt;createCharge(int $amountInCents, string $currency);\nO nosso contrato é PaymentMethod::pay(float $amount).\nEspalhar o SDK pelo sistema prende tudo a ele."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#adapter",
+    "href": "aulas/04-design-patterns.html#adapter",
+    "title": "Design Patterns",
+    "section": "Adapter",
+    "text": "Adapter\nfinal class AcmePayAdapter implements PaymentMethod\n{\n    public function __construct(private AcmePayClient $client) {}\n\n    public function pay(float $amount): string\n    {\n        $cents = (int) round($amount * 100);\n        $c = $this-&gt;client-&gt;createCharge($cents, 'brl');\n        return \"AcmePay {$c['id']}\";\n    }\n}"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#facade",
+    "href": "aulas/04-design-patterns.html#facade",
+    "title": "Design Patterns",
+    "section": "Facade",
+    "text": "Facade\nfinal class PlaceOrderFacade\n{\n    public function place(string $id): array\n    {\n        return [\n            $this-&gt;inventory-&gt;reserve($id),\n            $this-&gt;billing-&gt;charge($id),\n            $this-&gt;shipping-&gt;schedule($id),\n        ];\n    }\n}"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#adapter-vs-facade",
+    "href": "aulas/04-design-patterns.html#adapter-vs-facade",
+    "title": "Design Patterns",
+    "section": "Adapter vs Facade",
+    "text": "Adapter vs Facade\n\n\n\n\nAdapter\nFacade\n\n\n\n\nFaz\nConverte interfaces\nSimplifica o uso\n\n\nEsconde\nUm SDK ou classe\nUm subsistema inteiro\n\n\nPrincípio\nD\nS\n\n\n\nTrocou o fornecedor? Muda um arquivo: o adapter."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#mini-desafio-adapte-o-gateway",
+    "href": "aulas/04-design-patterns.html#mini-desafio-adapte-o-gateway",
+    "title": "Design Patterns",
+    "section": "Mini desafio · Adapte o gateway",
+    "text": "Mini desafio · Adapte o gateway\n\nUse o AcmePayClient sem editá-lo\nCrie AcmePayAdapter implements PaymentMethod\nPague 108 e mostre o resultado\n\nExtra: e se o SDK trocasse brl por BRL?"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#observer-e-como-escolher",
+    "href": "aulas/04-design-patterns.html#observer-e-como-escolher",
+    "title": "Design Patterns",
+    "section": "Observer e como escolher",
+    "text": "Observer e como escolher"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-problema-3",
+    "href": "aulas/04-design-patterns.html#o-problema-3",
+    "title": "Design Patterns",
+    "section": "O problema",
+    "text": "O problema\nO checkout chama e-mail, estoque e analytics diretamente.\n\nCada novo interessado edita o checkout\nO checkout conhece todo mundo\nFalha em um derruba o fluxo"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#observer",
+    "href": "aulas/04-design-patterns.html#observer",
+    "title": "Design Patterns",
+    "section": "Observer",
+    "text": "Observer\ninterface OrderListener\n{\n    public function onOrderPlaced(string $id, float $total): void;\n}\n\n$events-&gt;subscribe(new SendEmail());\n$events-&gt;subscribe(new UpdateStock());\n$events-&gt;dispatch('A1', 108);   // avisa todos"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#singleton-com-ressalvas",
+    "href": "aulas/04-design-patterns.html#singleton-com-ressalvas",
+    "title": "Design Patterns",
+    "section": "Singleton, com ressalvas",
+    "text": "Singleton, com ressalvas\n\nGarante uma instância global\nMas cria estado global e dificulta os testes\nPrefira uma instância injetada a Config::instance()\n\nPergunte antes: preciso mesmo de uma só?"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#como-escolher",
+    "href": "aulas/04-design-patterns.html#como-escolher",
+    "title": "Design Patterns",
+    "section": "Como escolher",
+    "text": "Como escolher\n\n\n\nSintoma\nPattern\n\n\n\n\nif de regras que cresce\nStrategy\n\n\nnew espalhado por tipo\nFactory\n\n\nCombinar comportamentos\nDecorator\n\n\nInterface externa diferente\nAdapter\n\n\nMuitos interessados no evento\nObserver"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#mini-desafio-eventos-do-pedido",
+    "href": "aulas/04-design-patterns.html#mini-desafio-eventos-do-pedido",
+    "title": "Design Patterns",
+    "section": "Mini desafio · Eventos do pedido",
+    "text": "Mini desafio · Eventos do pedido\n\nCrie OrderListener e um EventDispatcher\nInscreva e-mail e estoque\nAdicione analytics sem editar o OrderPlacement\n\nExtra: e se um listener lançar exceção?"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#desafio-integrador-aplique-o-seu-pattern",
+    "href": "aulas/04-design-patterns.html#desafio-integrador-aplique-o-seu-pattern",
+    "title": "Design Patterns",
+    "section": "Desafio integrador · Aplique o seu pattern",
+    "text": "Desafio integrador · Aplique o seu pattern\nEm dupla"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#o-que-fazer",
+    "href": "aulas/04-design-patterns.html#o-que-fazer",
+    "title": "Design Patterns",
+    "section": "O que fazer",
+    "text": "O que fazer\n\nLeia a carta do seu pattern\nEscolha um recorte do projeto ou de Pedidos\nImplemente o antes e o depois\nDiga quando NÃO usaria"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#critério-de-pronto",
+    "href": "aulas/04-design-patterns.html#critério-de-pronto",
+    "title": "Design Patterns",
+    "section": "Critério de pronto",
+    "text": "Critério de pronto\n\nO antes funciona e tem o problema visível\nO depois dá o mesmo resultado\nO pattern resolve uma dor real\nA dupla explica um caso de não uso\n\nExtra: combinar dois patterns."
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#fechamento",
+    "href": "aulas/04-design-patterns.html#fechamento",
+    "title": "Design Patterns",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nStrategy troca o comportamento\nDecorator acrescenta camadas\nAdapter isola o mundo externo"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#dever-de-casa",
+    "href": "aulas/04-design-patterns.html#dever-de-casa",
+    "title": "Design Patterns",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nAplique o pattern no projeto e escreva por quê\nDocumente problema, solução e princípio\nComece o seminário do E06 e guarde os prompts\nLeve o problema de persistência do projeto"
+  },
+  {
+    "objectID": "aulas/04-design-patterns.html#próximo-encontro-ia-no-fluxo-de-engenharia",
+    "href": "aulas/04-design-patterns.html#próximo-encontro-ia-no-fluxo-de-engenharia",
+    "title": "Design Patterns",
+    "section": "Próximo encontro · IA no fluxo de engenharia",
+    "text": "Próximo encontro · IA no fluxo de engenharia\nE patterns de banco de dados."
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#hoje",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#hoje",
+    "title": "Seminários",
+    "section": "Hoje",
+    "text": "Hoje\n\nSeminários: 20 min por dupla + 5 min de perguntas\nFechamento: feedback geral e comparativo das IAs\n\nSaída: decisões técnicas defendidas em voz alta"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#as-regras",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#as-regras",
+    "title": "Seminários",
+    "section": "As regras",
+    "text": "As regras\n\nOrdem sorteada\n20 minutos de apresentação, 5 de perguntas\nO tempo é respeitado\nTodos avaliam, todos perguntam"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-que-cada-dupla-apresenta",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-que-cada-dupla-apresenta",
+    "title": "Seminários",
+    "section": "O que cada dupla apresenta",
+    "text": "O que cada dupla apresenta\n\nContexto do problema\n1 princípio aplicado\n1 pattern aplicado\nUso da IA: prompts e ajustes\nDemonstração do código\nPrós e contras da IA"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#como-vamos-avaliar",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#como-vamos-avaliar",
+    "title": "Seminários",
+    "section": "Como vamos avaliar",
+    "text": "Como vamos avaliar\n\n\n\nCritério\nPeso\n\n\n\n\nUso consciente da IA\n30%\n\n\nCoerência técnica\n30%\n\n\nClareza\n20%\n\n\nDemonstração do código\n15%\n\n\nTempo\n5%"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-papel-da-audiência",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-papel-da-audiência",
+    "title": "Seminários",
+    "section": "O papel da audiência",
+    "text": "O papel da audiência\n\nAvalie cada seminário na sua ficha\nFaça 1 pergunta por seminário\nAponte 1 lugar onde o pattern não seria necessário\n\nOuvir com atenção também é uma entrega."
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-avaliador-ativo",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-avaliador-ativo",
+    "title": "Seminários",
+    "section": "Mini desafio · Avaliador ativo",
+    "text": "Mini desafio · Avaliador ativo\n\nFicha de avaliação por dupla\nPergunta certeira: 1 por seminário\nAdvogado do diabo: quando não usaria o pattern?\n\nExtra: uma pergunta sobre a IA, e não sobre o código."
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#perguntas-para-aprofundar",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#perguntas-para-aprofundar",
+    "title": "Seminários",
+    "section": "Perguntas para aprofundar",
+    "text": "Perguntas para aprofundar\n\nO que a IA errou? Como vocês perceberam?\nSem a IA, chegariam à mesma decisão?\nEm que situação não usariam esse pattern?\nO que mudou depois do ajuste manual?\nQual prompt rendeu mais? E o pior?"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#fechamento",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#fechamento",
+    "title": "Seminários",
+    "section": "Fechamento",
+    "text": "Fechamento"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-que-levamos-do-módulo",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-que-levamos-do-módulo",
+    "title": "Seminários",
+    "section": "O que levamos do módulo",
+    "text": "O que levamos do módulo\n\n\n\nEncontro\nTema\n\n\n\n\nE01\nDocker: ambiente igual para todos\n\n\nE02\nScrum, Git, PR e code review\n\n\nE03\nPOO e SOLID\n\n\nE04\nDesign Patterns\n\n\nE05\nIA e padrões de persistência"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-minhas-regras-de-uso-de-ia",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-minhas-regras-de-uso-de-ia",
+    "title": "Seminários",
+    "section": "Mini desafio · Minhas regras de uso de IA",
+    "text": "Mini desafio · Minhas regras de uso de IA\nEscreva 3 regras para o seu uso de IA daqui para frente.\nEx.: “Só aceito código que sei explicar.”\nExtra: qual regra você já quebrou?"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#a-frase-do-módulo",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#a-frase-do-módulo",
+    "title": "Seminários",
+    "section": "A frase do módulo",
+    "text": "A frase do módulo\n\nA IA acelera quem já sabe pensar.\n\nNão quem terceiriza decisões."
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#próximo-módulo-testes",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#próximo-módulo-testes",
+    "title": "Seminários",
+    "section": "Próximo módulo: testes",
+    "text": "Próximo módulo: testes\n\nComposição e DIP deixam o código testável\nO Repository em memória roda sem banco\nA regra de negócio isolada é fácil de testar\n\nVamos provar que funciona, e automatizar."
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#dever-de-casa",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#dever-de-casa",
+    "title": "Seminários",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nAjuste o código conforme o feedback recebido\nConsolide os aprendizados no projeto\nRevise as decisões feitas com apoio da IA"
+  },
+  {
+    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#próximo-módulo-qualidade-de-software-e-testes",
+    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#próximo-módulo-qualidade-de-software-e-testes",
+    "title": "Seminários",
+    "section": "Próximo módulo · Qualidade de software e testes",
+    "text": "Próximo módulo · Qualidade de software e testes\nCultura de testes e pirâmide de testes."
   }
 ]
