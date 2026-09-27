@@ -28,28 +28,31 @@
 html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal { background-color: var(--bg); transition: background-color .35s ease; }
 
-/* fundo por tipo de slide */
-.reveal .slides > section.secao { background: var(--accent); }
-.reveal .slides > section.desafio { background: var(--amber); }
-.reveal .slides > section.fim { background: linear-gradient(135deg, var(--bg) 0%, #16213a 100%); }
+/* fundo por tipo de slide (o Quarto pode envolver headings de nível 1
+   numa <section> extra, então usamos seletor descendente, não filho direto) */
+.reveal .slides section.secao { background: var(--accent); }
+.reveal .slides section.desafio { background: var(--amber); }
+.reveal .slides section.fim { background: linear-gradient(135deg, var(--bg) 0%, #16213a 100%); }
 
 /* ---------- base ---------- */
 .reveal { font-family: var(--sans); font-size: 40px; font-weight: 400; color: var(--text); }
 .reveal .slides { text-align: left; }
-.reveal .slides > section {
+/* :not(:has(section)) evita aplicar padding duas vezes quando o Quarto
+   envolve um heading de nível 1 numa <section> "stack" sem classe */
+.reveal .slides section:not(:has(section)) {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 72px 96px 92px;
   line-height: 1.4;
 }
-.reveal .slides > section.present { display: flex !important; flex-direction: column; align-items: flex-start; }
-.reveal .slides > section > h2 + *:not(aside) { margin-top: auto; }
-.reveal .slides > section > :nth-last-child(1 of :not(aside)) { margin-bottom: auto; }
-.reveal .slides > section > * { max-width: 100%; }
+.reveal .slides section.present:not(:has(section)) { display: flex !important; flex-direction: column; align-items: flex-start; }
+.reveal .slides section > h2 + *:not(aside) { margin-top: auto; }
+.reveal .slides section > :nth-last-child(1 of :not(aside)) { margin-bottom: auto; }
+.reveal .slides section > * { max-width: 100%; }
 
 /* rodapé */
-.reveal .slides > section:not(.secao):not(.desafio)::after {
+.reveal .slides section:not(.secao):not(.desafio)::after {
   content: var(--rodape);
   position: absolute;
   left: 96px;
@@ -280,14 +283,14 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 }
 
 /* ---------- seção ---------- */
-.reveal .slides > section.secao { padding-top: 210px; color: #fff; }
+.reveal .slides section.secao { padding-top: 210px; color: #fff; }
 .reveal section.secao .kicker { color: rgba(255, 255, 255, .8); font-size: 30px; }
 .reveal section.secao h1 { font-size: 104px; line-height: 1.05; }
 .reveal section.secao p:not(.kicker) { margin-top: 28px; font-size: 42px; color: rgba(255, 255, 255, .85); }
 .reveal section.secao::after { color: rgba(255, 255, 255, .7); }
 
 /* ---------- mini desafio ---------- */
-.reveal .slides > section.desafio { color: var(--ink); }
+.reveal .slides section.desafio { color: var(--ink); }
 .reveal section.desafio h1, .reveal section.desafio h2, .reveal section.desafio strong { color: var(--ink); }
 .reveal section.desafio h1 { font-size: 68px; margin-bottom: 34px; }
 .reveal section.desafio .kicker {
@@ -309,7 +312,7 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal section.desafio::after { color: rgba(11, 18, 32, .6); }
 
 /* ---------- fim ---------- */
-.reveal .slides > section.fim { padding-top: 200px; }
+.reveal .slides section.fim { padding-top: 200px; }
 .reveal section.fim h1 { font-size: 92px; margin-bottom: 30px; }
 .reveal section.fim p:not(.kicker) { font-size: 38px; color: var(--muted); }
 .reveal section.fim::before {
