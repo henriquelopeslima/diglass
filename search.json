@@ -28,13 +28,6 @@
     "text": "Hoje\n\nBloco 1: onde a IA ajuda · prompts · ferramentas\nBloco 2: Active Record vs Repository · CQRS · decidir\nDesafio: persistência do projeto com IA\n\nSaída: uma decisão sua, registrada"
   },
   {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#onde-a-ia-ajuda-e-atrapalha",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#onde-a-ia-ajuda-e-atrapalha",
-    "title": "IA no fluxo de engenharia",
-    "section": "Onde a IA ajuda e atrapalha",
-    "text": "Onde a IA ajuda e atrapalha"
-  },
-  {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ajuda-e-atrapalha",
     "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ajuda-e-atrapalha",
     "title": "IA no fluxo de engenharia",
@@ -54,20 +47,6 @@
     "title": "IA no fluxo de engenharia",
     "section": "A regra do curso",
     "text": "A regra do curso\n\nA IA sugere. Você decide.\n\nA IA acelera quem já sabe pensar. Não quem terceiriza decisões.\nSe o erro for para produção, de quem é o erro? De quem fez o merge."
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-ajuda-ou-risco",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-ajuda-ou-risco",
-    "title": "IA no fluxo de engenharia",
-    "section": "Mini desafio · Ajuda ou risco",
-    "text": "Mini desafio · Ajuda ou risco\nClassifique cada uso:\n\nPedir a explicação de um stack trace\nColar o .env para “ajudar a depurar”\nDeixar a IA escolher o banco sozinha\nGerar o rascunho de um teste e revisar"
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#prompts-técnicos",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#prompts-técnicos",
-    "title": "IA no fluxo de engenharia",
-    "section": "Prompts técnicos",
-    "text": "Prompts técnicos"
   },
   {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#anatomia-de-um-bom-prompt",
@@ -98,20 +77,6 @@
     "text": "Itere e peça o contraditório\n\nPeça alternativas, e não “a melhor”\nPeça os riscos e quando não usar\nPergunte: “o que você não sabe sobre o meu contexto?”\nA segunda pergunta vale mais que a primeira"
   },
   {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-reescreva-o-prompt",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-reescreva-o-prompt",
-    "title": "IA no fluxo de engenharia",
-    "section": "Mini desafio · Reescreva o prompt",
-    "text": "Mini desafio · Reescreva o prompt\nMelhore este prompt:\nfaz um repository pra mim\nInclua contexto, restrições e o formato da resposta.\nExtra: peça os riscos da sugestão."
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ferramentas-e-validação",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ferramentas-e-validação",
-    "title": "IA no fluxo de engenharia",
-    "section": "Ferramentas e validação",
-    "text": "Ferramentas e validação"
-  },
-  {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mermaid-diagrama-como-código",
     "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mermaid-diagrama-como-código",
     "title": "IA no fluxo de engenharia",
@@ -131,20 +96,6 @@
     "title": "IA no fluxo de engenharia",
     "section": "Rotina de validação",
     "text": "Rotina de validação\n\nRode o código\nTeste, inclusive o caso de erro\nLeia o diff linha a linha\nPeça um contra-argumento\nConfira na documentação oficial"
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-mermaid-e-segunda-opinião",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-mermaid-e-segunda-opinião",
-    "title": "IA no fluxo de engenharia",
-    "section": "Mini desafio · Mermaid e segunda opinião",
-    "text": "Mini desafio · Mermaid e segunda opinião\n\nEscreva um diagrama de sequência do checkout\nFaça a mesma pergunta a duas IAs\nAnote onde elas discordam\n\nExtra: qual das duas está certa? Como você provou?"
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record-vs-repository",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record-vs-repository",
-    "title": "IA no fluxo de engenharia",
-    "section": "Active Record vs Repository",
-    "text": "Active Record vs Repository"
   },
   {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#active-record",
@@ -182,20 +133,6 @@
     "text": "Como escolher\n\n\n\n\nActive Record\nRepository + Mapper\n\n\n\n\nClasses\nPoucas\nMais\n\n\nRegras de negócio\nSimples\nComplexas\n\n\nTeste sem banco\nDifícil\nFácil\n\n\nBom para\nCRUD\nDomínio rico"
   },
   {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-active-record-ou-repository",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-active-record-ou-repository",
-    "title": "IA no fluxo de engenharia",
-    "section": "Mini desafio · Active Record ou Repository",
-    "text": "Mini desafio · Active Record ou Repository\nPersista um Order em SQLite nos dois estilos:\n\nActive Record: save() e find()\nRepository com Mapper e uma versão em memória\n\nExtra: qual dos dois você usaria no projeto? Por quê?"
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script-e-cqrs",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script-e-cqrs",
-    "title": "IA no fluxo de engenharia",
-    "section": "Transaction Script e CQRS",
-    "text": "Transaction Script e CQRS"
-  },
-  {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script",
     "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#transaction-script",
     "title": "IA no fluxo de engenharia",
@@ -224,20 +161,6 @@
     "text": "O custo do CQRS\n\nDuas vias para manter\nA leitura pode ficar atrasada (consistência eventual)\nSem o problema de escala, é overengineering\n\n\n2 mil pedidos por dia? Provavelmente não."
   },
   {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-transaction-script-e-cqrs",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-transaction-script-e-cqrs",
-    "title": "IA no fluxo de engenharia",
-    "section": "Mini desafio · Transaction Script e CQRS",
-    "text": "Mini desafio · Transaction Script e CQRS\n\nplaceOrder em uma transação com rollback se faltar estoque\nProve que o segundo pedido não deixa rastro\nCrie uma consulta que só lê daily_sales\n\nExtra: onde o CQRS atrapalharia aqui?"
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#decidindo-com-ia",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#decidindo-com-ia",
-    "title": "IA no fluxo de engenharia",
-    "section": "Decidindo com IA",
-    "text": "Decidindo com IA"
-  },
-  {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-fluxo-da-decisão",
     "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-fluxo-da-decisão",
     "title": "IA no fluxo de engenharia",
@@ -257,20 +180,6 @@
     "title": "IA no fluxo de engenharia",
     "section": "Quando a IA está errada",
     "text": "Quando a IA está errada\n\n“Use X em tudo”: conclusão genérica\nSQL por concatenação de texto\nEsquece a transação\nSugere uma escala que você não tem\n\nAvise no PR quando o código veio de IA e o que você validou."
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-valide-e-registre-a-decisão",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#mini-desafio-valide-e-registre-a-decisão",
-    "title": "IA no fluxo de engenharia",
-    "section": "Mini desafio · Valide e registre a decisão",
-    "text": "Mini desafio · Valide e registre a decisão\nUma “IA” respondeu (exemplo fictício):\nUse Active Record em tudo; monte a query com \"...WHERE id = '$id'\"; não precisa de transação; adote CQRS com fila desde já.\nAche os problemas e escreva o registro de decisão."
-  },
-  {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#desafio-integrador-persistência-do-projeto-com-ia",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#desafio-integrador-persistência-do-projeto-com-ia",
-    "title": "IA no fluxo de engenharia",
-    "section": "Desafio integrador · Persistência do projeto com IA",
-    "text": "Desafio integrador · Persistência do projeto com IA\nEm dupla"
   },
   {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#o-que-fazer",
@@ -301,13 +210,6 @@
     "text": "Dever de casa\n\nFinalize 1 Database Pattern com a IA como apoio\nRegistre a decisão\nPrepare o seminário do E06: 1 princípio + 1 pattern\nLeve 3 dúvidas"
   },
   {
-    "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#próximo-encontro-seminários",
-    "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#próximo-encontro-seminários",
-    "title": "IA no fluxo de engenharia",
-    "section": "Próximo encontro · Seminários",
-    "text": "Próximo encontro · Seminários\nCada dupla apresenta, com a IA sorteada."
-  },
-  {
     "objectID": "aulas/03-poo-e-design-principles.html#na-aula-passada",
     "href": "aulas/03-poo-e-design-principles.html#na-aula-passada",
     "title": "POO e Design Principles",
@@ -327,13 +229,6 @@
     "title": "POO e Design Principles",
     "section": "Nosso domínio: Pedidos",
     "text": "Nosso domínio: Pedidos\nOrder ──► PaymentMethod   (Pix, Card, Boleto)\n  │\n  ├────► OrderRepository  (grava o pedido)\n  └────► Notifier         (avisa o cliente)\nOs mesmos exemplos vão até o E06."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#encapsulamento-e-abstração",
-    "href": "aulas/03-poo-e-design-principles.html#encapsulamento-e-abstração",
-    "title": "POO e Design Principles",
-    "section": "Encapsulamento e abstração",
-    "text": "Encapsulamento e abstração"
   },
   {
     "objectID": "aulas/03-poo-e-design-principles.html#o-problema",
@@ -364,20 +259,6 @@
     "text": "Abstração\n\nExponha o quê o objeto faz\nEsconda como ele faz\nO chamador usa order.total() e não sabe se é soma, cache ou cálculo\n\nGetter e setter para tudo não é encapsulamento."
   },
   {
-    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-proteja-o-pedido",
-    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-proteja-o-pedido",
-    "title": "POO e Design Principles",
-    "section": "Mini desafio · Proteja o pedido",
-    "text": "Mini desafio · Proteja o pedido\nReescreva OrderBad para que:\n\nO estado seja privado\naddItem rejeite preço e quantidade inválidos\ntotal() seja calculado, nunca atribuído\n\nExtra: o status só muda por um método com regra."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#herança-e-polimorfismo",
-    "href": "aulas/03-poo-e-design-principles.html#herança-e-polimorfismo",
-    "title": "POO e Design Principles",
-    "section": "Herança e polimorfismo",
-    "text": "Herança e polimorfismo"
-  },
-  {
     "objectID": "aulas/03-poo-e-design-principles.html#herança-php",
     "href": "aulas/03-poo-e-design-principles.html#herança-php",
     "title": "POO e Design Principles",
@@ -406,20 +287,6 @@
     "text": "Herdar com cuidado\n\nSó herde se “X é um Y” for verdade em todos os casos\nA subclasse fica presa à superclasse\nMudar a base pode quebrar todas as filhas\n\nHerança para reaproveitar código é um sinal de alerta."
   },
   {
-    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-um-novo-canal-sem-mexer-no-resto",
-    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-um-novo-canal-sem-mexer-no-resto",
-    "title": "POO e Design Principles",
-    "section": "Mini desafio · Um novo canal sem mexer no resto",
-    "text": "Mini desafio · Um novo canal sem mexer no resto\n\nRode notifyAll com Email e SMS\nAdicione PushNotification\nNão edite notifyAll nem as outras classes\n\nExtra: troque a classe abstrata por uma interface."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#composição-vs-herança",
-    "href": "aulas/03-poo-e-design-principles.html#composição-vs-herança",
-    "title": "POO e Design Principles",
-    "section": "Composição vs herança",
-    "text": "Composição vs herança"
-  },
-  {
     "objectID": "aulas/03-poo-e-design-principles.html#a-explosão-de-classes",
     "href": "aulas/03-poo-e-design-principles.html#a-explosão-de-classes",
     "title": "POO e Design Principles",
@@ -446,20 +313,6 @@
     "title": "POO e Design Principles",
     "section": "Estático vs instância",
     "text": "Estático vs instância\nfinal class Money\n{\n    private function __construct(private int $cents) {}\n\n    public static function fromReais(float $v): self\n    {\n        return new self((int) round($v * 100));\n    }\n}\nstatic para criar. Instância para comportamento."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-herança-ou-composição",
-    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-herança-ou-composição",
-    "title": "POO e Design Principles",
-    "section": "Mini desafio · Herança ou composição",
-    "text": "Mini desafio · Herança ou composição\n\nRedesenhe a hierarquia com composição\nConte as classes com Boleto\nJustifique em uma frase\n\nExtra: Money::fromReais e add."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#solid-s-e-o",
-    "href": "aulas/03-poo-e-design-principles.html#solid-s-e-o",
-    "title": "POO e Design Principles",
-    "section": "SOLID: S e O",
-    "text": "SOLID: S e O"
   },
   {
     "objectID": "aulas/03-poo-e-design-principles.html#solid-em-uma-linha",
@@ -497,20 +350,6 @@
     "text": "O: aberto para extensão\nfinal class Boleto implements PaymentMethod\n{\n    public function pay(float $amount): string\n    {\n        return sprintf('Boleto: R$ %.2f', $amount);\n    }\n}\nNovo pagamento: código novo. Nada existente foi editado."
   },
   {
-    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-divida-o-serviço",
-    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-divida-o-serviço",
-    "title": "POO e Design Principles",
-    "section": "Mini desafio · Divida o serviço",
-    "text": "Mini desafio · Divida o serviço\nCom o OrderService do gabarito:\n\nSepare 4 colaboradores\nO serviço os recebe no construtor\nAdicione Boleto sem editar o que existe\n\nExtra: o desconto vira interface."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#solid-l-i-e-d",
-    "href": "aulas/03-poo-e-design-principles.html#solid-l-i-e-d",
-    "title": "POO e Design Principles",
-    "section": "SOLID: L, I e D",
-    "text": "SOLID: L, I e D"
-  },
-  {
     "objectID": "aulas/03-poo-e-design-principles.html#l-o-filho-que-quebra-o-pai",
     "href": "aulas/03-poo-e-design-principles.html#l-o-filho-que-quebra-o-pai",
     "title": "POO e Design Principles",
@@ -539,20 +378,6 @@
     "text": "D · TypeScript\nclass CheckoutService {\n  private repository: OrderRepository;\n\n  constructor(repository: OrderRepository) {\n    this.repository = repository;\n  }\n}\nnew CheckoutService(new InMemoryOrderRepository()): depender de abstrações torna o código testável."
   },
   {
-    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-substitua-sem-quebrar",
-    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-substitua-sem-quebrar",
-    "title": "POO e Design Principles",
-    "section": "Mini desafio · Substitua sem quebrar",
-    "text": "Mini desafio · Substitua sem quebrar\nUm problema para cada princípio:\n\nL: Boleto lança erro no refund()\nI: interface com 4 métodos demais\nD: serviço faz new SqlRepository()"
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#kiss-dry-soc-e-smells",
-    "href": "aulas/03-poo-e-design-principles.html#kiss-dry-soc-e-smells",
-    "title": "POO e Design Principles",
-    "section": "KISS, DRY, SoC e smells",
-    "text": "KISS, DRY, SoC e smells"
-  },
-  {
     "objectID": "aulas/03-poo-e-design-principles.html#três-princípios-curtos",
     "href": "aulas/03-poo-e-design-principles.html#três-princípios-curtos",
     "title": "POO e Design Principles",
@@ -572,20 +397,6 @@
     "title": "POO e Design Principles",
     "section": "Quando NÃO aplicar",
     "text": "Quando NÃO aplicar\n\nO princípio serve ao código, e não o contrário.\n\n\nScript de 30 linhas não precisa de 12 arquivos\nAbstração cedo demais é custo, não ganho\nPergunte: quem muda isso, e por quê?"
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#mini-desafio-ache-os-smells",
-    "href": "aulas/03-poo-e-design-principles.html#mini-desafio-ache-os-smells",
-    "title": "POO e Design Principles",
-    "section": "Mini desafio · Ache os smells",
-    "text": "Mini desafio · Ache os smells\nfunction price($t, $q, $c, $s, $d) {\n    if ($t == 1) {\n        $p = $q * 10 + ($c == 'SP' ? 5 : 15);\n    } elseif ($t == 2) {\n        $p = $q * 20 + ($c == 'SP' ? 5 : 15);\n    } else { $p = 0; }\n    return $p;\n}\nListe 4 smells e refatore um, sem mudar o resultado."
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#desafio-integrador-refatore-o-orderservice",
-    "href": "aulas/03-poo-e-design-principles.html#desafio-integrador-refatore-o-orderservice",
-    "title": "POO e Design Principles",
-    "section": "Desafio integrador · Refatore o OrderService",
-    "text": "Desafio integrador · Refatore o OrderService\nEm dupla"
   },
   {
     "objectID": "aulas/03-poo-e-design-principles.html#o-que-fazer",
@@ -614,13 +425,6 @@
     "title": "POO e Design Principles",
     "section": "Dever de casa",
     "text": "Dever de casa\n\nRefatore um trecho do projeto: aponte o smell e o princípio\nDocumente por que faz sentido (ou por que não)\nPesquise o pattern sorteado e leve 3 perguntas\nLeve 3 dúvidas para o próximo encontro"
-  },
-  {
-    "objectID": "aulas/03-poo-e-design-principles.html#próximo-encontro-design-patterns",
-    "href": "aulas/03-poo-e-design-principles.html#próximo-encontro-design-patterns",
-    "title": "POO e Design Principles",
-    "section": "Próximo encontro · Design Patterns",
-    "text": "Próximo encontro · Design Patterns\nOs patterns que resolvem o que vimos hoje."
   },
   {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#hoje",
@@ -658,20 +462,6 @@
     "text": "Exemplo ao vivo\ndocker run --rm alpine cat /etc/os-release\ncat /etc/os-release\nDuas distribuições diferentes, no mesmo computador, sem instalar nada."
   },
   {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-meu-primeiro-container",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-meu-primeiro-container",
-    "title": "Docker para aplicações web",
-    "section": "Mini desafio · Meu primeiro container",
-    "text": "Mini desafio · Meu primeiro container\nRode um container Alpine e descubra:\n\nQual é o sistema dentro do container?\nQuantos processos existem lá dentro?\n\nExtra: compare o kernel (uname -r) do container com o do seu computador."
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#imagens-e-containers",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#imagens-e-containers",
-    "title": "Docker para aplicações web",
-    "section": "Imagens e containers",
-    "text": "Imagens e containers"
-  },
-  {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#ciclo-de-vida",
     "href": "aulas/01-docker-para-aplicacoes-web.html#ciclo-de-vida",
     "title": "Docker para aplicações web",
@@ -698,20 +488,6 @@
     "title": "Docker para aplicações web",
     "section": "Dockerfile",
     "text": "Dockerfile\nFROM nginx:alpine\nCOPY index.html /usr/share/nginx/html/index.html\ndocker build -t minha-pagina .\ndocker run -d -p 8080:80 minha-pagina"
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-minha-página-no-nginx",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-minha-página-no-nginx",
-    "title": "Docker para aplicações web",
-    "section": "Mini desafio · Minha página no nginx",
-    "text": "Mini desafio · Minha página no nginx\n\nSuba o nginx na porta 9090\nTroque a página por uma com o seu nome\nVeja os logs do acesso\n\nExtra: faça isso com um Dockerfile."
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#volumes-e-networks",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#volumes-e-networks",
-    "title": "Docker para aplicações web",
-    "section": "Volumes e networks",
-    "text": "Volumes e networks"
   },
   {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#container-é-descartável",
@@ -742,20 +518,6 @@
     "text": "Networks\nContainers na mesma rede se acham pelo nome.\ndocker network create rede-curso\ndocker run -d --name web --network rede-curso nginx:alpine\ndocker run --rm --network rede-curso alpine wget -qO- http://web\nlocalhost dentro do container é ele mesmo."
   },
   {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-dados-que-sobrevivem",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-dados-que-sobrevivem",
-    "title": "Docker para aplicações web",
-    "section": "Mini desafio · Dados que sobrevivem",
-    "text": "Mini desafio · Dados que sobrevivem\n\nProve que um volume sobrevive à remoção do container\nFaça um container acessar outro pelo nome\n\nExtra: monte uma pasta local no nginx (bind mount) e edite a página ao vivo."
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#docker-compose",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#docker-compose",
-    "title": "Docker para aplicações web",
-    "section": "Docker Compose",
-    "text": "Docker Compose"
-  },
-  {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#por-que-compose",
     "href": "aulas/01-docker-para-aplicacoes-web.html#por-que-compose",
     "title": "Docker para aplicações web",
@@ -782,20 +544,6 @@
     "title": "Docker para aplicações web",
     "section": "Comandos do Compose",
     "text": "Comandos do Compose\ndocker compose up -d      # sobe tudo\ndocker compose ps         # estado\ndocker compose logs -f    # logs\ndocker compose exec web sh\ndocker compose down       # derruba (-v apaga volumes)"
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-do-docker-run-para-o-compose",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-do-docker-run-para-o-compose",
-    "title": "Docker para aplicações web",
-    "section": "Mini desafio · Do docker run para o Compose",
-    "text": "Mini desafio · Do docker run para o Compose\nTraduza para um docker-compose.yml:\ndocker run -d --name web -p 8080:80 \\\n  -v $(pwd)/site:/usr/share/nginx/html:ro nginx:alpine\nExtra: adicione um serviço redis e faça o web enxergá-lo pelo nome."
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#stack-web",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#stack-web",
-    "title": "Docker para aplicações web",
-    "section": "Stack web",
-    "text": "Stack web\nnginx + PHP-FPM ou nginx + Node"
   },
   {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#por-que-nginx-na-frente",
@@ -840,20 +588,6 @@
     "text": "PHP + nginx · nginx.conf\nserver {\n  listen 80;\n  root /var/www/html;\n  index index.php;\n  location / { try_files $uri $uri/ /index.php?$query_string; }\n  location ~ \\.php$ {\n    fastcgi_pass app:9000;\n    include fastcgi_params;\n    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;\n  }\n}"
   },
   {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-subindo-a-stack-web",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-subindo-a-stack-web",
-    "title": "Docker para aplicações web",
-    "section": "Mini desafio · Subindo a stack web",
-    "text": "Mini desafio · Subindo a stack web\n\nEscolha PHP ou Node\nSuba nginx + aplicação com Compose\nFaça a página responder o nome do container\n\nExtra: adicione uma rota /health."
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#quebre-e-conserte",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#quebre-e-conserte",
-    "title": "Docker para aplicações web",
-    "section": "Quebre e conserte",
-    "text": "Quebre e conserte"
-  },
-  {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#método-de-diagnóstico",
     "href": "aulas/01-docker-para-aplicacoes-web.html#método-de-diagnóstico",
     "title": "Docker para aplicações web",
@@ -866,20 +600,6 @@
     "title": "Docker para aplicações web",
     "section": "Sintomas comuns",
     "text": "Sintomas comuns\n\n\n\nSintoma\nCausa provável\n\n\n\n\n502 Bad Gateway\nApp não responde na porta esperada\n\n\nhost not found in upstream\nNome do serviço errado\n\n\nport is already allocated\nPorta ocupada no host\n\n\nContainer reinicia sem parar\nErro no comando; ver logs"
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-quebre-e-conserte-em-dupla",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#mini-desafio-quebre-e-conserte-em-dupla",
-    "title": "Docker para aplicações web",
-    "section": "Mini desafio · Quebre e conserte (em dupla)",
-    "text": "Mini desafio · Quebre e conserte (em dupla)\nO Compose do gabarito tem 3 bugs.\nEncontre e corrija cada um usando o método: ps → logs → exec.\nExtra: descreva o sintoma de cada bug em uma frase."
-  },
-  {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#desafio-integrador-ambiente-padrão-da-turma",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#desafio-integrador-ambiente-padrão-da-turma",
-    "title": "Docker para aplicações web",
-    "section": "Desafio integrador · Ambiente padrão da turma",
-    "text": "Desafio integrador · Ambiente padrão da turma\nEm dupla"
   },
   {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#o-que-entregar",
@@ -910,13 +630,6 @@
     "text": "Dever de casa\n\nTrazer 2 ou 3 propostas de projeto para os 4 meses\nFinalizar o repositório do ambiente\nLevar 3 dúvidas para o próximo encontro"
   },
   {
-    "objectID": "aulas/01-docker-para-aplicacoes-web.html#próximo-encontro-scrum-github-projects-e-colaboração",
-    "href": "aulas/01-docker-para-aplicacoes-web.html#próximo-encontro-scrum-github-projects-e-colaboração",
-    "title": "Docker para aplicações web",
-    "section": "Próximo encontro · Scrum, GitHub Projects e colaboração",
-    "text": "Próximo encontro · Scrum, GitHub Projects e colaboração\nTraga o repositório de hoje."
-  },
-  {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#na-aula-passada",
     "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#na-aula-passada",
     "title": "Ágil e desenvolvimento colaborativo",
@@ -929,13 +642,6 @@
     "title": "Ágil e desenvolvimento colaborativo",
     "section": "Hoje",
     "text": "Hoje\n\nBloco 1: modelos de desenvolvimento · Scrum · GitHub Projects\nBloco 2: código padronizado · Git e PRs · code review\nDesafio: simulação de sprint em duplas\n\nSaída: todos com board, PR e review de verdade"
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#modelos-de-desenvolvimento",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#modelos-de-desenvolvimento",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Modelos de desenvolvimento",
-    "text": "Modelos de desenvolvimento"
   },
   {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#como-um-software-nasce",
@@ -971,20 +677,6 @@
     "title": "Ágil e desenvolvimento colaborativo",
     "section": "Comparando",
     "text": "Comparando\n\n\n\nModelo\nEntrega\nMudança\nBom para\n\n\n\n\nCascata\nNo fim\nCara\nRequisito fixo\n\n\nIterativo\nPor ciclo\nMédia\nProduto que evolui\n\n\nÁgil\nContínua\nEsperada\nRequisito incerto"
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-qual-modelo-usar",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-qual-modelo-usar",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Mini desafio · Qual modelo usar",
-    "text": "Mini desafio · Qual modelo usar\nEscolha e justifique em uma frase:\n\nEquipamento hospitalar, com norma rígida\nStartup validando um app de delivery\nMigração com escopo bem conhecido\n\nExtra: o risco de cada escolha."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-e-kanban",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-e-kanban",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Scrum e Kanban",
-    "text": "Scrum e Kanban"
   },
   {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#scrum-em-uma-tela",
@@ -1036,20 +728,6 @@
     "text": "Story points\n\nMedem esforço relativo, não horas\nSequência típica: 1 · 2 · 3 · 5 · 8 · 13\nEstima-se em grupo (planning poker)\nDiscordou? Converse: a discussão é o valor"
   },
   {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-escreva-a-história",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-escreva-a-história",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Mini desafio · Escreva a história",
-    "text": "Mini desafio · Escreva a história\nPara o seu projeto, escreva 1 história de usuário com:\n\nO formato Como / quero / para\n3 critérios de aceite\nUma estimativa em story points\n\nExtra: quebre em 2 histórias menores."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#github-projects",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#github-projects",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "GitHub Projects",
-    "text": "GitHub Projects"
-  },
-  {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-board",
     "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-board",
     "title": "Ágil e desenvolvimento colaborativo",
@@ -1069,20 +747,6 @@
     "title": "Ágil e desenvolvimento colaborativo",
     "section": "Organização",
     "text": "Organização\n\nLabels: feature, bug, docs, tech-debt\nAssignee: quem faz\nMilestone: a sprint ou entrega\nCloses #12 no PR fecha a issue no merge\n\nTarefa boa cabe em até 1 dia de trabalho."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-monte-o-board",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-monte-o-board",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Mini desafio · Monte o board",
-    "text": "Mini desafio · Monte o board\n\nCrie um GitHub Project (Board) no seu repositório\nCrie as colunas Backlog, To Do, Doing, Review, Done\nAdicione 3 issues com critério de aceite\n\nExtra: crie os labels e um milestone “Sprint 1”."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#código-padronizado",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#código-padronizado",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Código padronizado",
-    "text": "Código padronizado"
   },
   {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#por-que-padronizar",
@@ -1120,20 +784,6 @@
     "text": ".editorconfig\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\ninsert_final_newline = true\nindent_style = space\nindent_size = 4\n\n[*.{js,ts,json,yml}]\nindent_size = 2"
   },
   {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-conserte-o-estilo",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-conserte-o-estilo",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Mini desafio · Conserte o estilo",
-    "text": "Mini desafio · Conserte o estilo\nReescreva o trecho na sua linguagem, sem mudar o comportamento:\nvar x = function(l){var r=[];\nfor(var i=0;i&lt;l.length;i++){if(l[i]%2==0){r.push(l[i]*2)}}\nreturn r}\nExtra: crie o .editorconfig no seu repositório."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#git-commits-e-prs",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#git-commits-e-prs",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Git, commits e PRs",
-    "text": "Git, commits e PRs"
-  },
-  {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-fluxo",
     "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-fluxo",
     "title": "Ágil e desenvolvimento colaborativo",
@@ -1169,20 +819,6 @@
     "text": "PR pequeno vence\n\nAté ~300 linhas alteradas por PR\nUm PR, um assunto\nPR grande espera dias; PR pequeno sai em horas\nRevise você mesmo antes de pedir review"
   },
   {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-reescreva-os-commits",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-reescreva-os-commits",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Mini desafio · Reescreva os commits",
-    "text": "Mini desafio · Reescreva os commits\n\narrumei o bug\nmudei umas coisas no docker\nnovo readme\nwip\n\nUse Conventional Commits. Extra: o texto do PR."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#code-review",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#code-review",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Code review",
-    "text": "Code review"
-  },
-  {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#para-que-serve",
     "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#para-que-serve",
     "title": "Ágil e desenvolvimento colaborativo",
@@ -1209,20 +845,6 @@
     "title": "Ágil e desenvolvimento colaborativo",
     "section": "Tipos de comentário",
     "text": "Tipos de comentário\n\nBloqueante: precisa mudar antes do merge\nSugestão: melhora, mas pode ficar\nDúvida: quero entender\nElogio: ficou bom, diga também\n\nAprove quando o código melhora o sistema, mesmo sem ser perfeito."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-revise-este-pr-em-dupla",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#mini-desafio-revise-este-pr-em-dupla",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Mini desafio · Revise este PR (em dupla)",
-    "text": "Mini desafio · Revise este PR (em dupla)\nfunction getUser($id) {\n    $db = new PDO('sqlite:app.db');\n    $r = $db-&gt;query(\"SELECT * FROM users WHERE id = \" . $id);\n    try {\n        return $r-&gt;fetch();\n    } catch (Exception $e) {}\n}\nEscreva 3 comentários, cada um com tipo e porquê."
-  },
-  {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#desafio-integrador-simulação-de-sprint",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#desafio-integrador-simulação-de-sprint",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Desafio integrador · Simulação de sprint",
-    "text": "Desafio integrador · Simulação de sprint\nEm dupla, no repositório do E01"
   },
   {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#as-etapas",
@@ -1253,13 +875,6 @@
     "text": "Dever de casa\n\nRefinar as propostas de projeto em um documento\nCriar o board da ideia preferida, com 5 issues\nLevar 3 dúvidas para o próximo encontro"
   },
   {
-    "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#próximo-encontro-poo-e-design-principles",
-    "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#próximo-encontro-poo-e-design-principles",
-    "title": "Ágil e desenvolvimento colaborativo",
-    "section": "Próximo encontro · POO e Design Principles",
-    "text": "Próximo encontro · POO e Design Principles\nTraga o código do seu projeto."
-  },
-  {
     "objectID": "aulas/04-design-patterns.html#na-aula-passada",
     "href": "aulas/04-design-patterns.html#na-aula-passada",
     "title": "Design Patterns",
@@ -1272,13 +887,6 @@
     "title": "Design Patterns",
     "section": "Hoje",
     "text": "Hoje\n\nBloco 1: o que é um pattern · Strategy · Factory\nBloco 2: Decorator · Adapter e Facade · Observer\nDesafio: aplicar o seu pattern sorteado\n\nSaída: um pattern usado por um bom motivo"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#o-que-são-design-patterns",
-    "href": "aulas/04-design-patterns.html#o-que-são-design-patterns",
-    "title": "Design Patterns",
-    "section": "O que são Design Patterns",
-    "text": "O que são Design Patterns"
   },
   {
     "objectID": "aulas/04-design-patterns.html#pattern-é",
@@ -1307,20 +915,6 @@
     "title": "Design Patterns",
     "section": "Quando usar, quando evitar",
     "text": "Quando usar, quando evitar\n\nComece pela dor, não pelo catálogo.\n\n\nUse se o problema se repete e a solução simples já não serve\nEvite se o problema é pequeno ou ainda não doeu"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#mini-desafio-pattern-ou-não",
-    "href": "aulas/04-design-patterns.html#mini-desafio-pattern-ou-não",
-    "title": "Design Patterns",
-    "section": "Mini desafio · Pattern ou não",
-    "text": "Mini desafio · Pattern ou não\nPara cada caso: qual pattern (ou nenhum)?\n\nExportar relatório em PDF ou CSV, vão entrar mais\nScript de 40 linhas, roda 1 vez por mês\nSDK externo com métodos diferentes dos nossos\nAvisar 3 módulos quando um pedido nasce"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#strategy",
-    "href": "aulas/04-design-patterns.html#strategy",
-    "title": "Design Patterns",
-    "section": "Strategy",
-    "text": "Strategy"
   },
   {
     "objectID": "aulas/04-design-patterns.html#o-problema",
@@ -1358,20 +952,6 @@
     "text": "Strategy · TypeScript\ninterface DiscountStrategy {\n  apply(subtotal: number): number;\n}\n\nclass PercentDiscount implements DiscountStrategy {\n  private percent: number;\n  constructor(percent: number) { this.percent = percent; }\n\n  apply(subtotal: number): number {\n    return subtotal - (subtotal * this.percent) / 100;\n  }\n}"
   },
   {
-    "objectID": "aulas/04-design-patterns.html#mini-desafio-estratégias-de-desconto",
-    "href": "aulas/04-design-patterns.html#mini-desafio-estratégias-de-desconto",
-    "title": "Design Patterns",
-    "section": "Mini desafio · Estratégias de desconto",
-    "text": "Mini desafio · Estratégias de desconto\n\nCrie DiscountStrategy\nImplemente 3 regras: nenhuma, percentual e fixa\nRode 120 por cada uma\n\nExtra: o desconto fixo nunca deixa o total negativo."
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#factory",
-    "href": "aulas/04-design-patterns.html#factory",
-    "title": "Design Patterns",
-    "section": "Factory",
-    "text": "Factory"
-  },
-  {
     "objectID": "aulas/04-design-patterns.html#o-problema-1",
     "href": "aulas/04-design-patterns.html#o-problema-1",
     "title": "Design Patterns",
@@ -1393,20 +973,6 @@
     "text": "Factory: cuidados\n\nO match cresce a cada tipo novo\nUm registro de criadores mantém o Open/Closed\nChame a fábrica na borda (controller), e não dentro do serviço\n\nO serviço continua recebendo o objeto pronto."
   },
   {
-    "objectID": "aulas/04-design-patterns.html#mini-desafio-uma-fábrica-de-pagamentos",
-    "href": "aulas/04-design-patterns.html#mini-desafio-uma-fábrica-de-pagamentos",
-    "title": "Design Patterns",
-    "section": "Mini desafio · Uma fábrica de pagamentos",
-    "text": "Mini desafio · Uma fábrica de pagamentos\n\nCrie PaymentFactory::make(type)\nAceite pix, card e boleto\nTipo desconhecido lança erro\n\nExtra: troque o match por um registro."
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#decorator",
-    "href": "aulas/04-design-patterns.html#decorator",
-    "title": "Design Patterns",
-    "section": "Decorator",
-    "text": "Decorator"
-  },
-  {
     "objectID": "aulas/04-design-patterns.html#o-problema-2",
     "href": "aulas/04-design-patterns.html#o-problema-2",
     "title": "Design Patterns",
@@ -1426,20 +992,6 @@
     "title": "Design Patterns",
     "section": "Empilhando",
     "text": "Empilhando\n$notifier = new LoggingNotifier(\n    new PrefixNotifier(new EmailNotifier(), '[PEDIDOS] ')\n);\n\nMesma interface por dentro e por fora\nA ordem das camadas importa\nCombina em execução, e não em tempo de escrita"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#mini-desafio-notificações-com-camadas",
-    "href": "aulas/04-design-patterns.html#mini-desafio-notificações-com-camadas",
-    "title": "Design Patterns",
-    "section": "Mini desafio · Notificações com camadas",
-    "text": "Mini desafio · Notificações com camadas\n\nCrie LoggingNotifier e PrefixNotifier\nEmpilhe sobre o EmailNotifier\nMostre o log e a mensagem final\n\nExtra: inverta a ordem. O que muda?"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#adapter-e-facade",
-    "href": "aulas/04-design-patterns.html#adapter-e-facade",
-    "title": "Design Patterns",
-    "section": "Adapter e Facade",
-    "text": "Adapter e Facade"
   },
   {
     "objectID": "aulas/04-design-patterns.html#o-problema-do-sdk",
@@ -1470,20 +1022,6 @@
     "text": "Adapter vs Facade\n\n\n\n\nAdapter\nFacade\n\n\n\n\nFaz\nConverte interfaces\nSimplifica o uso\n\n\nEsconde\nUm SDK ou classe\nUm subsistema inteiro\n\n\nPrincípio\nD\nS\n\n\n\nTrocou o fornecedor? Muda um arquivo: o adapter."
   },
   {
-    "objectID": "aulas/04-design-patterns.html#mini-desafio-adapte-o-gateway",
-    "href": "aulas/04-design-patterns.html#mini-desafio-adapte-o-gateway",
-    "title": "Design Patterns",
-    "section": "Mini desafio · Adapte o gateway",
-    "text": "Mini desafio · Adapte o gateway\n\nUse o AcmePayClient sem editá-lo\nCrie AcmePayAdapter implements PaymentMethod\nPague 108 e mostre o resultado\n\nExtra: e se o SDK trocasse brl por BRL?"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#observer-e-como-escolher",
-    "href": "aulas/04-design-patterns.html#observer-e-como-escolher",
-    "title": "Design Patterns",
-    "section": "Observer e como escolher",
-    "text": "Observer e como escolher"
-  },
-  {
     "objectID": "aulas/04-design-patterns.html#o-problema-3",
     "href": "aulas/04-design-patterns.html#o-problema-3",
     "title": "Design Patterns",
@@ -1512,20 +1050,6 @@
     "text": "Como escolher\n\n\n\nSintoma\nPattern\n\n\n\n\nif de regras que cresce\nStrategy\n\n\nnew espalhado por tipo\nFactory\n\n\nCombinar comportamentos\nDecorator\n\n\nInterface externa diferente\nAdapter\n\n\nMuitos interessados no evento\nObserver"
   },
   {
-    "objectID": "aulas/04-design-patterns.html#mini-desafio-eventos-do-pedido",
-    "href": "aulas/04-design-patterns.html#mini-desafio-eventos-do-pedido",
-    "title": "Design Patterns",
-    "section": "Mini desafio · Eventos do pedido",
-    "text": "Mini desafio · Eventos do pedido\n\nCrie OrderListener e um EventDispatcher\nInscreva e-mail e estoque\nAdicione analytics sem editar o OrderPlacement\n\nExtra: e se um listener lançar exceção?"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#desafio-integrador-aplique-o-seu-pattern",
-    "href": "aulas/04-design-patterns.html#desafio-integrador-aplique-o-seu-pattern",
-    "title": "Design Patterns",
-    "section": "Desafio integrador · Aplique o seu pattern",
-    "text": "Desafio integrador · Aplique o seu pattern\nEm dupla"
-  },
-  {
     "objectID": "aulas/04-design-patterns.html#o-que-fazer",
     "href": "aulas/04-design-patterns.html#o-que-fazer",
     "title": "Design Patterns",
@@ -1552,13 +1076,6 @@
     "title": "Design Patterns",
     "section": "Dever de casa",
     "text": "Dever de casa\n\nAplique o pattern no projeto e escreva por quê\nDocumente problema, solução e princípio\nComece o seminário do E06 e guarde os prompts\nLeve o problema de persistência do projeto"
-  },
-  {
-    "objectID": "aulas/04-design-patterns.html#próximo-encontro-ia-no-fluxo-de-engenharia",
-    "href": "aulas/04-design-patterns.html#próximo-encontro-ia-no-fluxo-de-engenharia",
-    "title": "Design Patterns",
-    "section": "Próximo encontro · IA no fluxo de engenharia",
-    "text": "Próximo encontro · IA no fluxo de engenharia\nE patterns de banco de dados."
   },
   {
     "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#hoje",
@@ -1596,13 +1113,6 @@
     "text": "O papel da audiência\n\nAvalie cada seminário na sua ficha\nFaça 1 pergunta por seminário\nAponte 1 lugar onde o pattern não seria necessário\n\nOuvir com atenção também é uma entrega."
   },
   {
-    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-avaliador-ativo",
-    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-avaliador-ativo",
-    "title": "Seminários",
-    "section": "Mini desafio · Avaliador ativo",
-    "text": "Mini desafio · Avaliador ativo\n\nFicha de avaliação por dupla\nPergunta certeira: 1 por seminário\nAdvogado do diabo: quando não usaria o pattern?\n\nExtra: uma pergunta sobre a IA, e não sobre o código."
-  },
-  {
     "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#perguntas-para-aprofundar",
     "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#perguntas-para-aprofundar",
     "title": "Seminários",
@@ -1610,25 +1120,11 @@
     "text": "Perguntas para aprofundar\n\nO que a IA errou? Como vocês perceberam?\nSem a IA, chegariam à mesma decisão?\nEm que situação não usariam esse pattern?\nO que mudou depois do ajuste manual?\nQual prompt rendeu mais? E o pior?"
   },
   {
-    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#fechamento",
-    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#fechamento",
-    "title": "Seminários",
-    "section": "Fechamento",
-    "text": "Fechamento"
-  },
-  {
     "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-que-levamos-do-módulo",
     "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#o-que-levamos-do-módulo",
     "title": "Seminários",
     "section": "O que levamos do módulo",
     "text": "O que levamos do módulo\n\n\n\nEncontro\nTema\n\n\n\n\nE01\nDocker: ambiente igual para todos\n\n\nE02\nScrum, Git, PR e code review\n\n\nE03\nPOO e SOLID\n\n\nE04\nDesign Patterns\n\n\nE05\nIA e padrões de persistência"
-  },
-  {
-    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-minhas-regras-de-uso-de-ia",
-    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#mini-desafio-minhas-regras-de-uso-de-ia",
-    "title": "Seminários",
-    "section": "Mini desafio · Minhas regras de uso de IA",
-    "text": "Mini desafio · Minhas regras de uso de IA\nEscreva 3 regras para o seu uso de IA daqui para frente.\nEx.: “Só aceito código que sei explicar.”\nExtra: qual regra você já quebrou?"
   },
   {
     "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#a-frase-do-módulo",
@@ -1650,12 +1146,5 @@
     "title": "Seminários",
     "section": "Dever de casa",
     "text": "Dever de casa\n\nAjuste o código conforme o feedback recebido\nConsolide os aprendizados no projeto\nRevise as decisões feitas com apoio da IA"
-  },
-  {
-    "objectID": "aulas/06-seminarios-e-fechamento-do-modulo.html#próximo-módulo-qualidade-de-software-e-testes",
-    "href": "aulas/06-seminarios-e-fechamento-do-modulo.html#próximo-módulo-qualidade-de-software-e-testes",
-    "title": "Seminários",
-    "section": "Próximo módulo · Qualidade de software e testes",
-    "text": "Próximo módulo · Qualidade de software e testes\nCultura de testes e pirâmide de testes."
   }
 ]
