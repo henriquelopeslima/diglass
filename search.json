@@ -4,27 +4,657 @@
     "href": "index.html",
     "title": "Full Cycle",
     "section": "",
-    "text": "Slides do minicurso Full Cycle."
+    "text": "Curso Geração Tech 4.0 · Turma FullCycle · Módulo 1, 09/09 a 21/09/2026 · 5 aulas: Docker, Git e GitHub, Programação Orientada a Objetos, Engenharia Limpa e IA como Assistente."
   },
   {
     "objectID": "index.html#aulas",
     "href": "index.html#aulas",
     "title": "Full Cycle",
     "section": "Aulas",
-    "text": "Aulas\n\nAula 1 – Introdução"
+    "text": "Aulas\n\nAula 1 — Docker ⚙️\nAula 2 — Git e GitHub ⚙️\nAula 3 — Programação Orientada a Objetos 💻\nAula 4 — Engenharia Limpa\nAula 5 — IA como Assistente"
   },
   {
-    "objectID": "aulas/01-introducao.html#bem-vindos",
-    "href": "aulas/01-introducao.html#bem-vindos",
-    "title": "Aula 1 – Introdução",
-    "section": "Bem-vindos",
-    "text": "Bem-vindos\nSlide inicial da Aula 1."
+    "objectID": "index.html#visão-geral-do-módulo",
+    "href": "index.html#visão-geral-do-módulo",
+    "title": "Full Cycle",
+    "section": "Visão geral do módulo",
+    "text": "Visão geral do módulo\nPeríodo: 09/09 a 21/09/2026 · Formato: encontro síncrono semanal (segundas-feiras, 18h30–22h30, via Google Meet) + conteúdo assíncrono (livros/e-books no Moodle) + questionário de fixação ao final de cada aula.\nObjetivos gerais\n\nConsolidar fundamentos modernos de Engenharia de Software: containerização, controle de versão distribuído, paradigma orientado a objetos e princípios de código limpo.\nPreparar o aluno para colaborar em projetos reais usando Docker, Git/GitHub e arquitetura em camadas (Clean Architecture).\nDesenvolver uso crítico e responsável de IA generativa como ferramenta de apoio ao desenvolvimento (nunca como substituta do raciocínio de engenharia).\n\nCompetências por aula\n\n\n\n\n\n\n\n\nAula\nTema\nCompetência-chave\n\n\n\n\n1\nDocker\nContainerização e portabilidade de ambientes\n\n\n2\nGit e GitHub\nControle de versão e colaboração em equipe\n\n\n3\nProgramação Orientada a Objetos\nModelagem OO consistente em múltiplas linguagens\n\n\n4\nEngenharia Limpa\nCódigo limpo, refatoração e arquitetura SOLID/Clean Architecture\n\n\n5\nIA como Assistente\nPrompt engineering e uso crítico de ferramentas de IA generativa\n\n\n\nAvaliação do módulo: questionário de fixação (Moodle quiz) ao final de cada aula, desafio de conhecimento na Aula 5 (10 questões), registro de presença automático e pesquisa de satisfação ao final do módulo."
   },
   {
-    "objectID": "aulas/01-introducao.html#próximo-tópico",
-    "href": "aulas/01-introducao.html#próximo-tópico",
-    "title": "Aula 1 – Introdução",
-    "section": "Próximo tópico",
-    "text": "Próximo tópico\n\nPonto 1\nPonto 2\nPonto 3"
+    "objectID": "index.html#projeto-prático-do-módulo",
+    "href": "index.html#projeto-prático-do-módulo",
+    "title": "Full Cycle",
+    "section": "Projeto prático do módulo",
+    "text": "Projeto prático do módulo\nAo longo das 5 aulas, construímos incrementalmente uma API para o Diário de Café — um app de barismo hobbista que cataloga cafés e insumos, registra cuppings (avaliações sensoriais) e receitas de extração. Cada aula acrescenta uma camada nova: Docker (Aula 1) → Git/GitHub e versionamento (Aula 2) → modelagem POO (Aula 3) → refatoração SOLID/Clean Architecture (Aula 4) → uso de IA para testes e refatoração (Aula 5)."
+  },
+  {
+    "objectID": "index.html#cronograma-sugerido",
+    "href": "index.html#cronograma-sugerido",
+    "title": "Full Cycle",
+    "section": "Cronograma sugerido",
+    "text": "Cronograma sugerido\nO módulo cobre 09/09 a 21/09/2026 (2 semanas), com encontro síncrono às segundas-feiras (18h30–22h30). As 5 aulas podem ser distribuídas em 2 encontros ao vivo + estudo assíncrono guiado, ou em ritmo intensivo conforme a disponibilidade da turma.\n\n\n\n\n\n\n\n\n\nSemana\nData\nAula\nFoco da sessão síncrona\n\n\n\n\n1\n09/09 (terça) a 14/09\nAula 1 — Docker\nLive: conceitos + live coding de Dockerfile e volumes\n\n\n1\naté 14/09\nAula 2 — Git e GitHub\nAssíncrono (livro) + exercício de PR/conflito entre aulas\n\n\n2\n14/09 (segunda, encontro ao vivo)\nAulas 2 e 3\nLive: revisão de Git/GitHub + introdução a POO com exemplos multi-linguagem\n\n\n2\n15/09 a 18/09\nAula 4 — Engenharia Limpa\nAssíncrono (livro + slides) + exercício de refatoração\n\n\n2\n21/09 (segunda, encontro ao vivo)\nAula 5 — IA como Assistente\nLive: prompt engineering na prática + checklist de code review + Desafio de Conhecimento\n\n\n\nObservação: os questionários de fixação de cada aula ficam liberados no Moodle assim que o conteúdo é aberto (08/09), permitindo que o aluno avance no próprio ritmo entre os encontros ao vivo."
+  },
+  {
+    "objectID": "index.html#recursos-complementares",
+    "href": "index.html#recursos-complementares",
+    "title": "Full Cycle",
+    "section": "Recursos complementares",
+    "text": "Recursos complementares\n\n\n\nAula\nRecurso\nTipo\n\n\n\n\n1 — Docker\nDocumentação oficial Docker\nReferência\n\n\n1 — Docker\nDocker Hub\nRepositório de imagens\n\n\n1 — Docker\nDockerizando Spring Boot + AWS (Medium)\nArtigo prático\n\n\n4 — Eng. Limpa\nEngenharia de Software Moderna — Marco Tulio Valente (UFMG), versão web\nE-book completo (cap. 5, 7, 8 e 10 recomendados)\n\n\n5 — IA Assistente\nAI-Assisted Programming — Tom Taulli (O’Reilly, 2024)\nE-book + resumo em português\n\n\n3 — POO\nClean Code (Robert C. Martin); Design Patterns (Gang of Four); The Object-Oriented Thought Process (Matt Weisfeld)\nLivros de referência\n\n\n\nContinuidade do curso: o módulo 1 encerra em 21/09 e o Módulo 2 — Qualidade de Software e Testes com IA — começa em 23/09/2026, dando sequência natural aos temas de Clean Code e IA vistos nas Aulas 4 e 5."
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#objetivo-de-aprendizagem",
+    "href": "aulas/04-engenharia-limpa.html#objetivo-de-aprendizagem",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Objetivo de aprendizagem",
+    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nEscrever código com nomes reveladores de intenção e funções pequenas\nIdentificar code smells e aplicar técnicas de refatoração\nJustificar decisões de design usando os princípios SOLID\nSituar essas práticas dentro da Clean Architecture"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#nomes-significativos-e-funções-pequenas",
+    "href": "aulas/04-engenharia-limpa.html#nomes-significativos-e-funções-pequenas",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Nomes significativos e funções pequenas",
+    "text": "Nomes significativos e funções pequenas\n\nNomes significativos: um bom nome dispensa comentário explicativo\n\ndiasDesdeAUltimaModificacao em vez de int d\n\nFunções pequenas (Do One Thing):\n\nNível único de abstração\nSem argumentos flag (true/false indicando que a função faz duas coisas)\nPoucos parâmetros (0–2; 3+ vira um objeto de contexto)"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#tratamento-de-erros-e-melhoria-contínua",
+    "href": "aulas/04-engenharia-limpa.html#tratamento-de-erros-e-melhoria-contínua",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Tratamento de erros e melhoria contínua",
+    "text": "Tratamento de erros e melhoria contínua\n\nTratamento de erros: evitar return null (obriga checagens em cascata); preferir exceções explícitas ou Optional\nRegra do Escoteiro: “deixe o código mais limpo do que encontrou” — melhoria incremental a cada commit, não reescrita total\nCiclo TDD + Clean Code:\n\nRED (teste que falha) → GREEN (código mínimo que passa) → REFACTOR (limpar sem quebrar o teste verde)"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#code-smells",
+    "href": "aulas/04-engenharia-limpa.html#code-smells",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Code smells",
+    "text": "Code smells\nNão são bugs, mas sintomas de arquitetura ruim:\n\nLong Method / Large Class\nFeature Envy — método que mexe mais nos dados de outra classe do que na própria\nData Clumps — grupos de variáveis que sempre andam juntas e deveriam virar uma classe\n\nex.: rua, numero, cep, cidade → Endereco"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#técnicas-de-refatoração",
+    "href": "aulas/04-engenharia-limpa.html#técnicas-de-refatoração",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Técnicas de refatoração",
+    "text": "Técnicas de refatoração\n\nExtract Method / Class: transformar um trecho comentado (“aqui calcula o total”) em uma função com esse nome\nSubstituir condicionais por polimorfismo: trocar switch/if-else de tipo pelo padrão Strategy (interface + implementações)\n\n\nRegra de ouro: refatorar muda a estrutura sem alterar o comportamento externo; nunca refatorar código sem testes."
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#solid-s-e-o",
+    "href": "aulas/04-engenharia-limpa.html#solid-s-e-o",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "SOLID — S e O",
+    "text": "SOLID — S e O\n\nS — Single Responsibility: uma classe, um motivo para mudar\n\nex.: separar RelatorioRepository de PDFReportGenerator\n\nO — Open/Closed: aberto para extensão, fechado para modificação\n\nanalogia da tomada elétrica"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#solid-l-i-e-d",
+    "href": "aulas/04-engenharia-limpa.html#solid-l-i-e-d",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "SOLID — L, I e D",
+    "text": "SOLID — L, I e D\n\nL — Liskov Substitution: subclasse deve substituir a classe-mãe sem quebrar o sistema\n\nex.: Pinguim que herda de Ave e não consegue voar() quebra o LSP\n\nI — Interface Segregation: várias interfaces específicas em vez de uma gigante com métodos vazios\nD — Dependency Inversion: módulos de alto nível dependem de abstrações (interfaces), não de implementações concretas — injeção de dependência por construtor"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#clean-architecture-robert-c.-martin",
+    "href": "aulas/04-engenharia-limpa.html#clean-architecture-robert-c.-martin",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Clean Architecture (Robert C. Martin)",
+    "text": "Clean Architecture (Robert C. Martin)\nObjetivo: isolar a regra de negócio de detalhes tecnológicos mutáveis (banco, framework web, UI) — tratados como “plug-ins” substituíveis.\nCamadas concêntricas (de dentro para fora):\nEntities (regras de negócio puras) → Use Cases (orquestram o fluxo) → Interface Adapters (controllers, presenters, repositories) → Frameworks & Drivers (Spring, Express, MySQL, AWS SDKs)"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#regra-de-dependência",
+    "href": "aulas/04-engenharia-limpa.html#regra-de-dependência",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Regra de dependência",
+    "text": "Regra de dependência\n\nO código de uma camada interna nunca cita nada de uma camada mais externa — dependências sempre apontam para dentro."
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#atividade-prática-sugerida",
+    "href": "aulas/04-engenharia-limpa.html#atividade-prática-sugerida",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Atividade prática sugerida",
+    "text": "Atividade prática sugerida\n\nPegar um trecho de código “sujo” (fornecido ou de um projeto próprio)\nIdentificar 2–3 code smells\nRefatorar aplicando Extract Method e pelo menos um princípio SOLID\nManter os testes verdes\n\nAvaliação: Questionário — Aula 4 (Moodle)"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#material-complementar",
+    "href": "aulas/04-engenharia-limpa.html#material-complementar",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Material complementar",
+    "text": "Material complementar\n\nE-book Engenharia de Software Moderna (Marco Tulio Valente, UFMG)\n\nLeitura recomendada dos capítulos 5 e 7 (Princípios de Projeto e Arquitetura) e 8 e 10 (Testes Automatizados e DevOps/CI-CD)\n\nSlides “Conceitos iniciais de Engenharia Limpa”"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#exemplo-prático-guiado",
+    "href": "aulas/04-engenharia-limpa.html#exemplo-prático-guiado",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "💻 Exemplo prático guiado",
+    "text": "💻 Exemplo prático guiado\nRefatorando o Diário de Café.\n❌ Antes: uma classe “deus” (viola SRP e OCP)\nclass ReceitaService {\n  executarReceita(nome: string, tipoMetodo: string, dose: number, protocolo: string, avaliacao: any) {\n    let agua;\n    if (tipoMetodo === \"v60\") agua = dose * 16;\n    else if (tipoMetodo === \"aeropress\") agua = dose * 14;\n    else if (tipoMetodo === \"prensa\") agua = dose * 12;"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#antes-continuação",
+    "href": "aulas/04-engenharia-limpa.html#antes-continuação",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "❌ Antes (continuação)",
+    "text": "❌ Antes (continuação)\n    let nota;\n    if (protocolo === \"sca\") {\n      nota = avaliacao.fragancia + avaliacao.sabor + avaliacao.acidez + avaliacao.corpo + avaliacao.docura - avaliacao.defeitos;\n    } else {\n      nota = (avaliacao.fragancia + avaliacao.sabor * 2 + avaliacao.acidez + avaliacao.corpo + avaliacao.docura) / 1.2;\n    }\n\n    console.log(`Receita ${nome} preparada com ${agua}ml de agua`);\n    // salva no banco...\n    // envia notificacao por email...\n    return nota;\n  }\n}"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#problemas-identificados",
+    "href": "aulas/04-engenharia-limpa.html#problemas-identificados",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Problemas identificados",
+    "text": "Problemas identificados\nA função calcula proporção de água, pontua o cupping, loga, salva e notifica — cinco motivos diferentes para mudar (viola SRP).\nCada novo método de extração ou protocolo de pontuação exige editar essa mesma função (viola OCP)."
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#depois-solid-clean-architecture",
+    "href": "aulas/04-engenharia-limpa.html#depois-solid-clean-architecture",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "✅ Depois: SOLID + Clean Architecture",
+    "text": "✅ Depois: SOLID + Clean Architecture\nReaproveitando as classes da Aula 3.\nEntities (regra de negócio pura, sem dependência de framework): MetodoExtracao, Receita, ProtocoloDePontuacao — já prontas.\nUse Case (orquestra o fluxo, depende só de abstrações — DIP):\ninterface ReceitaRepository {\n  salvar(receita: Receita): Promise&lt;void&gt;;\n}\ninterface Notificador {\n  avisar(mensagem: string): Promise&lt;void&gt;;\n}"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#use-case",
+    "href": "aulas/04-engenharia-limpa.html#use-case",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Use Case",
+    "text": "Use Case\nclass ExecutarReceitaUseCase {\n  constructor(\n    private repository: ReceitaRepository,\n    private notificador: Notificador\n  ) {}\n\n  async executar(receita: Receita): Promise&lt;string&gt; {\n    const instrucao = receita.executar();\n    await this.repository.salvar(receita);\n    await this.notificador.avisar(`Receita executada: ${instrucao}`);\n    return instrucao;\n  }\n}"
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#interface-adapters",
+    "href": "aulas/04-engenharia-limpa.html#interface-adapters",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "Interface Adapters",
+    "text": "Interface Adapters\nImplementações concretas, substituíveis como plug-ins:\nclass ReceitaRepositoryPostgres implements ReceitaRepository {\n  async salvar(receita: Receita): Promise&lt;void&gt; { /* INSERT no Postgres */ }\n}\nclass NotificadorEmail implements Notificador {\n  async avisar(mensagem: string): Promise&lt;void&gt; { /* envia e-mail */ }\n}\nFrameworks & Drivers: Express (rota HTTP) + driver pg do Postgres, na camada mais externa."
+  },
+  {
+    "objectID": "aulas/04-engenharia-limpa.html#o-que-mudou",
+    "href": "aulas/04-engenharia-limpa.html#o-que-mudou",
+    "title": "Aula 4 — Engenharia Limpa",
+    "section": "O que mudou",
+    "text": "O que mudou\n\nCada classe agora tem um único motivo para mudar (SRP)\nAdicionar um novo método de extração ou protocolo de pontuação não toca mais o ExecutarReceitaUseCase (OCP)\nTrocar Postgres por outro banco, ou e-mail por push notification, só exige uma nova classe de Adapter — o Use Case nem percebe (DIP)"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#objetivo-de-aprendizagem",
+    "href": "aulas/02-git-e-github.html#objetivo-de-aprendizagem",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Objetivo de aprendizagem",
+    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nCompreender a diferença entre Git e GitHub\nDominar o fluxo local (add / commit / log)\nColaborar via repositórios remotos (push / pull / clone)\nTrabalhar com branches e Pull Requests\nResolver conflitos e aplicar versionamento semântico"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#fundamentos-de-versionamento",
+    "href": "aulas/02-git-e-github.html#fundamentos-de-versionamento",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Fundamentos de versionamento",
+    "text": "Fundamentos de versionamento\n\nControle de versão substitui o caos de arquivos -v2-final-FINAL\nGuarda snapshots navegáveis do código\nGit roda localmente vs. GitHub hospeda e facilita colaboração\n\nAnalogia: gravador de áudio vs. servidor de streaming\n\nGit grava snapshots completos a cada commit (não apenas diffs), reaproveitando arquivos inalterados\n\ngit config --global user.name \"Seu Nome\"\ngit config --global user.email \"voce@email.com\""
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#workflow-local-staging-area",
+    "href": "aulas/02-git-e-github.html#workflow-local-staging-area",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Workflow local — Staging Area",
+    "text": "Workflow local — Staging Area\nO conceito mais importante do Git:\nWorkspace → (git add) → Staging → (git commit) → Histórico\nPermite commits pequenos e focados.\ngit init\ngit add .\ngit commit -m \"feat: primeira versao\""
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#comandos-do-dia-a-dia",
+    "href": "aulas/02-git-e-github.html#comandos-do-dia-a-dia",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Comandos do dia a dia",
+    "text": "Comandos do dia a dia\ngit add &lt;arquivo&gt;\ngit commit -m \"mensagem\"\ngit diff              # mudanças ainda não staged\ngit diff --staged     # mudanças já staged\ngit log\ngit log --oneline\ngit show HEAD"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#desfazendo-mudanças",
+    "href": "aulas/02-git-e-github.html#desfazendo-mudanças",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Desfazendo mudanças",
+    "text": "Desfazendo mudanças\ngit restore &lt;arquivo&gt;          # antes do add\ngit restore --staged &lt;arquivo&gt; # depois do add, antes do commit\ngit reset --soft HEAD~1        # desfaz o commit, mantém as mudanças staged\ngit reset --hard HEAD~1        # ⚠️ destrutivo: descarta as mudanças"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#compartilhamento-github",
+    "href": "aulas/02-git-e-github.html#compartilhamento-github",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Compartilhamento (GitHub)",
+    "text": "Compartilhamento (GitHub)\ngit remote add origin &lt;url&gt;\ngit remote -v\n\ngit push -u origin main   # -u na primeira vez, para rastrear a branch\ngit push origin main\n\ngit clone &lt;url&gt;\ngit pull origin main       # = fetch + merge\n\ngit status\ngit branch -a"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#colaboração-em-equipe-branches",
+    "href": "aulas/02-git-e-github.html#colaboração-em-equipe-branches",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Colaboração em equipe — Branches",
+    "text": "Colaboração em equipe — Branches\n\nBranches como universos paralelos\n\ngit checkout -b feature/minha-feature\n\nConvenção de nomes: feature/, fix/, docs/\n\nPull Request: pedido formal de incorporação à main, com code review, discussão e histórico registrado."
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#merge-vs.-rebase",
+    "href": "aulas/02-git-e-github.html#merge-vs.-rebase",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "merge vs. rebase",
+    "text": "merge vs. rebase\n\ngit merge — mais seguro para iniciantes, preserva o histórico real\ngit rebase — histórico mais limpo, mas reescreve commits\n\nFluxo típico completo:\ncheckout main → pull → branch → commits → push → PR → review → merge → limpeza da branch"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#boas-práticas-conventional-commits",
+    "href": "aulas/02-git-e-github.html#boas-práticas-conventional-commits",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Boas práticas — Conventional Commits",
+    "text": "Boas práticas — Conventional Commits\nfeat: fix: docs: test: refactor: perf:\n\nCommits pequenos e focados\nMensagens que explicam o porquê\nNunca commitar código quebrado\nUso de .gitignore"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#resolução-de-conflitos",
+    "href": "aulas/02-git-e-github.html#resolução-de-conflitos",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Resolução de conflitos",
+    "text": "Resolução de conflitos\nMarcadores de conflito:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nsua versão\n=======\nversão remota\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main\nResolução manual → git add → commit de merge.\nComo evitar: git pull frequente, commits pequenos, comunicação de equipe."
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#versionamento-semântico-semver",
+    "href": "aulas/02-git-e-github.html#versionamento-semântico-semver",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Versionamento semântico (SemVer)",
+    "text": "Versionamento semântico (SemVer)\nPor que versionar: rastreabilidade, reversão segura, coordenação de deploys, debugging mais rápido.\nFormato: MAJOR.MINOR.PATCH\n\nMAJOR — mudança incompatível (breaking change)\nMINOR — nova funcionalidade compatível\nPATCH — correção de bug sem afetar comportamento"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#semver-pré-releases-e-regra-fundamental",
+    "href": "aulas/02-git-e-github.html#semver-pré-releases-e-regra-fundamental",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "SemVer — pré-releases e regra fundamental",
+    "text": "SemVer — pré-releases e regra fundamental\nPré-releases:\n-alpha.N &lt; -beta.N &lt; -rc.N &lt; versão final\nRegra fundamental: ao incrementar um número, os números à direita voltam a zero.\n1.2.3 → 1.3.0 → 2.0.0"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#atividade-prática-sugerida",
+    "href": "aulas/02-git-e-github.html#atividade-prática-sugerida",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Atividade prática sugerida",
+    "text": "Atividade prática sugerida\n\nCriar um repositório\nSimular colaboração em duplas via branches e Pull Request\nProvocar e resolver um conflito de merge proposital\nVersionar 3 releases fictícias usando SemVer\n\nAvaliação: Questionário — Aula 2 (Moodle)"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#material-complementar",
+    "href": "aulas/02-git-e-github.html#material-complementar",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Material complementar",
+    "text": "Material complementar\nFerramentas visuais como alternativa à CLI:\n\nGitHub Desktop\nIntegração Git do VS Code\nGitKraken"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#exemplo-prático-guiado",
+    "href": "aulas/02-git-e-github.html#exemplo-prático-guiado",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "💻 Exemplo prático guiado",
+    "text": "💻 Exemplo prático guiado\nContinuando o Diário de Café, agora vamos desenvolver a feature de cupping (avaliação sensorial) usando o fluxo completo de branch + PR:\ngit checkout main\ngit pull origin main\ngit checkout -b feature/formulario-cupping\n\n# ... implementa o formulário sensorial (fragrancia, sabor, acidez, corpo, docura) ...\ngit add src/cupping/\ngit commit -m \"feat: adicionar formulario de avaliacao sensorial SCA\""
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#ajuste-após-revisão",
+    "href": "aulas/02-git-e-github.html#ajuste-após-revisão",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Ajuste após revisão",
+    "text": "Ajuste após revisão\nRevisão do colega pede ajuste no arredondamento da nota:\ngit add src/cupping/calculo-nota.ts\ngit commit -m \"fix: corrigir arredondamento da nota final do cupping\"\n\ngit push -u origin feature/formulario-cupping\n# abre Pull Request no GitHub, colega revisa e aprova, faz-se o merge"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#conflito-proposital",
+    "href": "aulas/02-git-e-github.html#conflito-proposital",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Conflito proposital",
+    "text": "Conflito proposital\nEnquanto isso, outro colega mexeu na mesma função de cálculo de nota em main, trocando a média simples por uma média ponderada:\ngit pull origin main\nGit marca o conflito direto no arquivo:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nconst nota = (fragancia + sabor + acidez + corpo + docura) / 5;\n=======\nconst nota = fragancia * 0.2 + sabor * 0.3 + acidez * 0.2 + corpo * 0.15 + docura * 0.15;\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#resolvendo-o-conflito",
+    "href": "aulas/02-git-e-github.html#resolvendo-o-conflito",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Resolvendo o conflito",
+    "text": "Resolvendo o conflito\nDecidimos manter a versão ponderada (mais fiel ao protocolo SCA real):\n# edita o arquivo, mantendo só a linha ponderada\ngit add src/cupping/calculo-nota.ts\ngit commit -m \"merge: resolver conflito mantendo formula ponderada SCA\"\ngit push origin feature/formulario-cupping"
+  },
+  {
+    "objectID": "aulas/02-git-e-github.html#versionamento-semântico-do-projeto-real",
+    "href": "aulas/02-git-e-github.html#versionamento-semântico-do-projeto-real",
+    "title": "Aula 2 — Git e GitHub ⚙️",
+    "section": "Versionamento semântico do projeto real",
+    "text": "Versionamento semântico do projeto real\n\n\n\n\n\n\n\n\nTag\nO que mudou\nTipo\n\n\n\n\nv0.1.0\nCatálogo básico de cafés e insumos\nMINOR (primeira entrega)\n\n\nv0.2.0\nRegistro de receitas de extração\nMINOR (compatível)\n\n\nv1.0.0\nCupping SCA completo e estável\nMAJOR (primeira versão estável)\n\n\nv1.0.1\nCorreção do arredondamento da nota\nPATCH\n\n\nv2.0.0\nNovo formato de receita exige campos obrigatórios que não existiam antes\nMAJOR (breaking change)\n\n\n\ngit tag -a v1.0.0 -m \"Cupping SCA completo e estavel\"\ngit push origin v1.0.0"
+  },
+  {
+    "objectID": "aulas/01-docker.html#objetivo-de-aprendizagem",
+    "href": "aulas/01-docker.html#objetivo-de-aprendizagem",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Objetivo de aprendizagem",
+    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nEntender o problema que o Docker resolve (“funciona na minha máquina”)\nDiferenciar imagem de container\nEscrever um Dockerfile funcional\nExecutar containers com portas e volumes mapeados"
+  },
+  {
+    "objectID": "aulas/01-docker.html#o-que-é-docker",
+    "href": "aulas/01-docker.html#o-que-é-docker",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "O que é Docker?",
+    "text": "O que é Docker?\n\nPlataforma para empacotar aplicação + dependências em um container padronizado\nAnalogia do contêiner de transporte: a mesma unidade roda igual em qualquer lugar\nPor que usar:\n\nConsistência — “funciona em qualquer lugar”\nIsolamento\nPortabilidade\nEficiência — menos overhead que uma VM\nEscalabilidade"
+  },
+  {
+    "objectID": "aulas/01-docker.html#sem-docker-vs.-com-docker",
+    "href": "aulas/01-docker.html#sem-docker-vs.-com-docker",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Sem Docker vs. com Docker",
+    "text": "Sem Docker vs. com Docker\n\n\n\n\n\n\n\n\n\nSem Docker\nCom Docker\n\n\n\n\nSetup\n~30 min de configuração manual\ndocker run\n\n\nAmbiente\nRisco de divergência entre máquinas\nAmbiente idêntico em ~1 minuto\n\n\n\n\n“Funciona na minha máquina” deixa de ser desculpa."
+  },
+  {
+    "objectID": "aulas/01-docker.html#conceitos-e-arquitetura",
+    "href": "aulas/01-docker.html#conceitos-e-arquitetura",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Conceitos e arquitetura",
+    "text": "Conceitos e arquitetura\n\nContainer: instância em execução de uma imagem (processo isolado com código, runtime e dependências)\nImagem: template read-only que define como criar um container\nDockerfile: receita textual com as instruções para construir a imagem\nRegistry / Docker Hub: repositório central de imagens\n\nFluxo básico\nDockerfile → docker build → Imagem → docker run → Container\nArquitetura cliente-servidor\nDocker Client (CLI) → Docker Daemon (serviço em background) → Registry"
+  },
+  {
+    "objectID": "aulas/01-docker.html#instalação-e-validação",
+    "href": "aulas/01-docker.html#instalação-e-validação",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Instalação e validação",
+    "text": "Instalação e validação\ndocker --version\ndocker run hello-world\n\nInstalação via Docker Desktop\ndocker run hello-world confirma que o daemon está acessível e consegue baixar imagens do registry"
+  },
+  {
+    "objectID": "aulas/01-docker.html#rodando-o-primeiro-container",
+    "href": "aulas/01-docker.html#rodando-o-primeiro-container",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Rodando o primeiro container",
+    "text": "Rodando o primeiro container\ndocker run nginx\ndocker run -p 8080:80 nginx\n\n-p 8080:80 mapeia a porta 80 do container para a 8080 do host\nContainer interativo:\n\ndocker run -it ubuntu bash"
+  },
+  {
+    "objectID": "aulas/01-docker.html#comandos-essenciais",
+    "href": "aulas/01-docker.html#comandos-essenciais",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Comandos essenciais",
+    "text": "Comandos essenciais\ndocker ps                 # containers em execução\ndocker ps -a               # todos os containers, incluindo parados\ndocker images              # imagens disponíveis localmente\ndocker logs &lt;id&gt;           # logs de um container\ndocker exec -it &lt;id&gt; bash  # abre um shell dentro do container rodando\ndocker stop &lt;id&gt;           # para um container\ndocker rm &lt;id&gt;             # remove um container parado\ndocker rmi &lt;imagem&gt;        # remove uma imagem"
+  },
+  {
+    "objectID": "aulas/01-docker.html#criando-sua-própria-imagem",
+    "href": "aulas/01-docker.html#criando-sua-própria-imagem",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Criando sua própria imagem",
+    "text": "Criando sua própria imagem\nEstrutura de um Dockerfile:\nFROM node:20-slim      # imagem base\nWORKDIR /app            # diretório de trabalho dentro do container\nCOPY package*.json ./   # copia os manifestos primeiro (cache de build)\nRUN npm install --production\nCOPY . .                 # copia o restante do código\nEXPOSE 3000               # documenta a porta usada\nCMD [\"node\", \"dist/main.js\"]  # comando executado ao iniciar o container"
+  },
+  {
+    "objectID": "aulas/01-docker.html#build-execução-e-volumes",
+    "href": "aulas/01-docker.html#build-execução-e-volumes",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Build, execução e volumes",
+    "text": "Build, execução e volumes\ndocker build -t meu-app:1.0 .\ndocker run -p 5000:5000 meu-app:1.0\nVolumes: persistência e compartilhamento de dados entre host e container — essencial no fluxo de desenvolvimento:\ndocker run -v $(pwd):/app meu-app:1.0"
+  },
+  {
+    "objectID": "aulas/01-docker.html#atividade-prática-sugerida",
+    "href": "aulas/01-docker.html#atividade-prática-sugerida",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Atividade prática sugerida",
+    "text": "Atividade prática sugerida\nEm duplas:\n\nEscrever um Dockerfile para uma API simples (Node ou Python)\nBuildar a imagem\nRodar o container com porta e volume mapeados\nValidar no navegador\n\nAvaliação: Questionário — Aula 1 (Moodle)"
+  },
+  {
+    "objectID": "aulas/01-docker.html#material-complementar",
+    "href": "aulas/01-docker.html#material-complementar",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Material complementar",
+    "text": "Material complementar\n\nDocumentação oficial do Docker\nDocker Hub\nArtigo “Dockerizando Spring Boot + AWS”\nArtigo “Let’s Stop It Works on My Machine”"
+  },
+  {
+    "objectID": "aulas/01-docker.html#exemplo-prático-guiado",
+    "href": "aulas/01-docker.html#exemplo-prático-guiado",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "💻 Exemplo prático guiado",
+    "text": "💻 Exemplo prático guiado\nDiário de Café — app de barismo hobbista que catalogará cafés, insumos, cuppings (avaliações sensoriais) e receitas de extração ao longo de todo o módulo.\nNesta aula, o objetivo é apenas dockerizá-lo.\ndiario-cafe-api/\n  src/\n  package.json\n  Dockerfile\n  docker-compose.yml\n  .dockerignore"
+  },
+  {
+    "objectID": "aulas/01-docker.html#dockerfile-do-diário-de-café",
+    "href": "aulas/01-docker.html#dockerfile-do-diário-de-café",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Dockerfile do Diário de Café",
+    "text": "Dockerfile do Diário de Café\nFROM node:20-slim\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install --production\nCOPY . .\nEXPOSE 3000\nCMD [\"node\", \"dist/main.js\"]"
+  },
+  {
+    "objectID": "aulas/01-docker.html#docker-compose.yml",
+    "href": "aulas/01-docker.html#docker-compose.yml",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "docker-compose.yml",
+    "text": "docker-compose.yml\nSobe a API junto com o banco onde ficam os cafés, receitas e cuppings:\nversion: \"3.9\"\nservices:\n  api:\n    build: .\n    ports:\n      - \"3000:3000\"\n    environment:\n      - DATABASE_URL=postgres://barista:senha@db:5432/diario_cafe\n    depends_on:\n      - db\n    volumes:\n      - ./uploads:/app/uploads\n  db:\n    image: postgres:16\n    environment:\n      - POSTGRES_USER=barista\n      - POSTGRES_PASSWORD=senha\n      - POSTGRES_DB=diario_cafe\n    volumes:\n      - cafe_data:/var/lib/postgresql/data\nvolumes:\n  cafe_data:"
+  },
+  {
+    "objectID": "aulas/01-docker.html#dockerignore",
+    "href": "aulas/01-docker.html#dockerignore",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": ".dockerignore",
+    "text": ".dockerignore\nnode_modules\ndist\n.git\nuploads/*.jpg"
+  },
+  {
+    "objectID": "aulas/01-docker.html#por-que-essa-configuração",
+    "href": "aulas/01-docker.html#por-que-essa-configuração",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Por que essa configuração",
+    "text": "Por que essa configuração\n\nO Compose cria uma rede interna automática: o serviço api enxerga o banco pelo hostname db (nunca localhost)\ncafe_data é um volume nomeado: persiste o catálogo de cafés mesmo se o container do banco for recriado\n./uploads:/app/uploads é um bind mount: guarda no seu próprio PC as fotos dos grãos enviadas pelos usuários, útil pra debugar sem entrar no container"
+  },
+  {
+    "objectID": "aulas/01-docker.html#comandos-do-dia-a-dia",
+    "href": "aulas/01-docker.html#comandos-do-dia-a-dia",
+    "title": "Aula 1 — Docker ⚙️",
+    "section": "Comandos do dia a dia",
+    "text": "Comandos do dia a dia\ndocker compose up -d --build\ndocker compose logs -f api\ndocker compose down        # para os containers, mantém os volumes\ndocker compose down -v     # cuidado: apaga também o volume do banco"
+  },
+  {
+    "objectID": "aulas/03-poo.html#objetivo-de-aprendizagem",
+    "href": "aulas/03-poo.html#objetivo-de-aprendizagem",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Objetivo de aprendizagem",
+    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nReconhecer que POO é um paradigma (não uma sintaxe)\nIdentificar e aplicar os 4 pilares em pelo menos duas linguagens diferentes\nEntender quando preferir composição a herança"
+  },
+  {
+    "objectID": "aulas/03-poo.html#introdução",
+    "href": "aulas/03-poo.html#introdução",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Introdução",
+    "text": "Introdução\n\nPOO é uma forma de pensar sobre código que transcende a linguagem\nUm conceito como Encapsulamento é idêntico em TypeScript, PHP e Java — muda a sintaxe, não a intenção\nEsta aula apresenta os 4 pilares com exemplos comparáveis em TypeScript, PHP e Java"
+  },
+  {
+    "objectID": "aulas/03-poo.html#pilar-1-encapsulamento",
+    "href": "aulas/03-poo.html#pilar-1-encapsulamento",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Pilar 1 — Encapsulamento",
+    "text": "Pilar 1 — Encapsulamento\n\nAgrupar dados e comportamentos numa classe e controlar o acesso via modificadores de visibilidade\nBenefícios:\n\nProteção de dados (validação antes de mudar)\nControle de estado\nFlexibilidade de implementação\nManutenção de invariantes (ex.: saldo nunca negativo)\n\nModificadores de acesso (public, protected, private) — sintaxe idêntica nas 3 linguagens, mesmo significado"
+  },
+  {
+    "objectID": "aulas/03-poo.html#pilar-2-herança",
+    "href": "aulas/03-poo.html#pilar-2-herança",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Pilar 2 — Herança",
+    "text": "Pilar 2 — Herança\n\nReaproveitar atributos/métodos de outra classe e criar hierarquias conceituais\n\n⚠️ Armadilha: cadeias longas (Veiculo → Terrestre → Automóvel → Carro → Ferrari) geram alto acoplamento e fragilizam testes.\n✅ Solução: hierarquias rasas (máx. 2–3 níveis) e preferir composição (“tem um”) a herança (“é um”) para capacidades adicionais."
+  },
+  {
+    "objectID": "aulas/03-poo.html#pilar-3-polimorfismo",
+    "href": "aulas/03-poo.html#pilar-3-polimorfismo",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Pilar 3 — Polimorfismo",
+    "text": "Pilar 3 — Polimorfismo\n\nUm mesmo método se comporta de formas diferentes conforme a classe que o implementa\nElimina cadeias de if/else baseadas em tipo\n\nSem polimorfismo: cada tipo novo exige alterar todo o código cliente.\nCom polimorfismo: cada tipo sabe se comportar via um contrato comum (interface/classe abstrata)."
+  },
+  {
+    "objectID": "aulas/03-poo.html#pilar-4-abstração",
+    "href": "aulas/03-poo.html#pilar-4-abstração",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Pilar 4 — Abstração",
+    "text": "Pilar 4 — Abstração\n\nEsconder complexidade e expor uma interface simples\n\nbd.buscar(\"usuarios\") em vez de gerenciar TCP/SQL diretamente\n\n\nDiferença-chave: Encapsulamento protege dados; Abstração simplifica a interação."
+  },
+  {
+    "objectID": "aulas/03-poo.html#integrando-os-4-pilares-folha-de-pagamento",
+    "href": "aulas/03-poo.html#integrando-os-4-pilares-folha-de-pagamento",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Integrando os 4 pilares — Folha de Pagamento",
+    "text": "Integrando os 4 pilares — Folha de Pagamento\n\nAbstração: classe abstrata Funcionario define o contrato\nHerança: especializações rasas (Gerente, Developer)\nEncapsulamento: acesso seguro ao salário via getters\nPolimorfismo: calcularBonus() se comporta diferente por tipo\n\nBoas práticas relacionadas: Alta Coesão, Baixo Acoplamento, Responsabilidade Única (SRP)."
+  },
+  {
+    "objectID": "aulas/03-poo.html#atividade-prática-sugerida",
+    "href": "aulas/03-poo.html#atividade-prática-sugerida",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Atividade prática sugerida",
+    "text": "Atividade prática sugerida\nModelar o sistema de folha de pagamento (ou domínio similar) implementando os 4 pilares na linguagem de preferência, comparando depois com a implementação de um colega em outra linguagem.\nAvaliação: Questionário — Aula 3 (Moodle)"
+  },
+  {
+    "objectID": "aulas/03-poo.html#referências-recomendadas",
+    "href": "aulas/03-poo.html#referências-recomendadas",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Referências recomendadas",
+    "text": "Referências recomendadas\n\nThe Object-Oriented Thought Process — Matt Weisfeld\nClean Code — Robert C. Martin\nDesign Patterns — Gang of Four\nSOLID Principles and Object-Oriented Design — Pluralsight"
+  },
+  {
+    "objectID": "aulas/03-poo.html#exemplo-prático-guiado",
+    "href": "aulas/03-poo.html#exemplo-prático-guiado",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "💻 Exemplo prático guiado",
+    "text": "💻 Exemplo prático guiado\nModelando o Diário de Café em POO — polimorfismo nos métodos de extração:\nabstract class MetodoExtracao {\n  constructor(protected proporcaoAguaCafe: number) {}\n  abstract preparar(doseGramas: number): string;\n}"
+  },
+  {
+    "objectID": "aulas/03-poo.html#polimorfismo-métodos-de-extração",
+    "href": "aulas/03-poo.html#polimorfismo-métodos-de-extração",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Polimorfismo — métodos de extração",
+    "text": "Polimorfismo — métodos de extração\nclass V60 extends MetodoExtracao {\n  preparar(doseGramas: number): string {\n    const agua = doseGramas * this.proporcaoAguaCafe;\n    return `V60: despeje ${agua}ml de agua sobre ${doseGramas}g de cafe moido medio-fino, em espiral, por ~2:30min.`;\n  }\n}\n\nclass Aeropress extends MetodoExtracao {\n  preparar(doseGramas: number): string {\n    const agua = doseGramas * this.proporcaoAguaCafe;\n    return `Aeropress: infusao de ${doseGramas}g de cafe com ${agua}ml de agua por 1min, depois prense por 30s.`;\n  }\n}\n\nclass PrensaFrancesa extends MetodoExtracao {\n  preparar(doseGramas: number): string {\n    const agua = doseGramas * this.proporcaoAguaCafe;\n    return `Prensa Francesa: cafe grosso, ${agua}ml de agua, 4min de infusao antes de prensar.`;\n  }\n}"
+  },
+  {
+    "objectID": "aulas/03-poo.html#por-que-isso-importa",
+    "href": "aulas/03-poo.html#por-que-isso-importa",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Por que isso importa",
+    "text": "Por que isso importa\nO código que chama metodo.preparar(dose) nunca precisa saber qual subclasse está usando — cada método de extração sabe se comportar sozinho.\n\nExiste também um exemplo equivalente em Java/PHP na aula original, com a mesma ideia por trás de sintaxes diferentes."
+  },
+  {
+    "objectID": "aulas/03-poo.html#encapsulamento-a-receita-protege-seu-próprio-estado",
+    "href": "aulas/03-poo.html#encapsulamento-a-receita-protege-seu-próprio-estado",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Encapsulamento — a receita protege seu próprio estado",
+    "text": "Encapsulamento — a receita protege seu próprio estado\nclass Receita {\n  private historico: string[] = [];\n\n  constructor(\n    private nome: string,\n    private metodo: MetodoExtracao,\n    private doseGramas: number\n  ) {\n    if (doseGramas &lt;= 0) throw new Error(\"Dose deve ser maior que zero\");\n  }\n\n  executar(): string {\n    const instrucao = this.metodo.preparar(this.doseGramas);\n    this.historico.push(`${new Date().toISOString()}: ${instrucao}`);\n    return instrucao;\n  }\n\n  get totalExecucoes(): number {\n    return this.historico.length; // ninguem de fora consegue alterar o historico diretamente\n  }\n}"
+  },
+  {
+    "objectID": "aulas/03-poo.html#polimorfismo-de-novo-protocolos-de-pontuação",
+    "href": "aulas/03-poo.html#polimorfismo-de-novo-protocolos-de-pontuação",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Polimorfismo de novo — protocolos de pontuação",
+    "text": "Polimorfismo de novo — protocolos de pontuação\ninterface AvaliacaoSensorial {\n  fragancia: number; sabor: number; acidez: number; corpo: number; docura: number; defeitos: number;\n}\n\ninterface ProtocoloDePontuacao {\n  calcularNota(a: AvaliacaoSensorial): number;\n}\n\nclass ProtocoloSCA implements ProtocoloDePontuacao {\n  calcularNota(a: AvaliacaoSensorial): number {\n    return a.fragancia + a.sabor + a.acidez + a.corpo + a.docura - a.defeitos;\n  }\n}\n\nclass ProtocoloCupOfExcellence implements ProtocoloDePontuacao {\n  calcularNota(a: AvaliacaoSensorial): number {\n    return (a.fragancia + a.sabor * 2 + a.acidez + a.corpo + a.docura) / 1.2;\n  }\n}"
+  },
+  {
+    "objectID": "aulas/03-poo.html#abstração-o-resto-do-app-não-sabe-que-existe-um-banco",
+    "href": "aulas/03-poo.html#abstração-o-resto-do-app-não-sabe-que-existe-um-banco",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Abstração — o resto do app não sabe que existe um banco",
+    "text": "Abstração — o resto do app não sabe que existe um banco\ninterface CafeRepository {\n  buscarPorId(id: string): Cafe | undefined;\n  salvar(cafe: Cafe): void;\n}"
+  },
+  {
+    "objectID": "aulas/03-poo.html#juntando-tudo",
+    "href": "aulas/03-poo.html#juntando-tudo",
+    "title": "Aula 3 — Programação Orientada a Objetos 💻",
+    "section": "Juntando tudo",
+    "text": "Juntando tudo\nconst receita = new Receita(\"V60 Etiopia Yirgacheffe\", new V60(16), 20);\nconsole.log(receita.executar());\n// V60: despeje 320ml de agua sobre 20g de cafe moido medio-fino, em espiral, por ~2:30min.\n\nconst protocolo: ProtocoloDePontuacao = new ProtocoloSCA();\nconst nota = protocolo.calcularNota({ fragancia: 8, sabor: 8.5, acidez: 7.5, corpo: 8, docura: 8, defeitos: 0 });\n// nota = 40 (escala SCA de 0-100 apos normalizacao)"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#objetivo-de-aprendizagem",
+    "href": "aulas/05-ia-como-assistente.html#objetivo-de-aprendizagem",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Objetivo de aprendizagem",
+    "text": "Objetivo de aprendizagem\nAo final desta aula, você deve ser capaz de:\n\nEscrever prompts estruturados de alta precisão\nEscolher a ferramenta de IA adequada a cada tarefa do ciclo de desenvolvimento\nUsar IA para gerar testes/refatorar/documentar com segurança\nAplicar um checklist crítico de revisão de código gerado por IA"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#introdução-à-ia-generativa",
+    "href": "aulas/05-ia-como-assistente.html#introdução-à-ia-generativa",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Introdução à IA Generativa",
+    "text": "Introdução à IA Generativa\n\nLLMs são preditores probabilísticos, não “oráculos”\nAtuam como pares de programação\n\nAnalogia: um estagiário ultrarrápido que leu toda a documentação da internet, mas não conhece o negócio"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#anatomia-de-um-prompt-de-alta-precisão",
+    "href": "aulas/05-ia-como-assistente.html#anatomia-de-um-prompt-de-alta-precisão",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Anatomia de um prompt de alta precisão",
+    "text": "Anatomia de um prompt de alta precisão\nPapel + Contexto + Tarefa + Restrições\n\n“Atue como engenheiro sênior… use TypeScript estrito, injeção de dependência por construtor…”"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#técnicas-de-prompt",
+    "href": "aulas/05-ia-como-assistente.html#técnicas-de-prompt",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Técnicas de prompt",
+    "text": "Técnicas de prompt\n\nFew-Shot Prompting: fornecer exemplos de entrada/saída antes de pedir a solução\nChain-of-Thought: instruir a IA a “pensar passo a passo” antes de gerar código, forçando planejamento de arquitetura\nPrevenção de alucinações: sempre validar métodos/bibliotecas sugeridos na documentação oficial antes do deploy"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#ecossistema-de-ferramentas",
+    "href": "aulas/05-ia-como-assistente.html#ecossistema-de-ferramentas",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Ecossistema de ferramentas",
+    "text": "Ecossistema de ferramentas\n\nGitHub Copilot: integrado à IDE, forte em autocomplete inline, docstrings e testes pontuais\nCursor / IDEs nativas de IA: indexam toda a codebase (embeddings), permitem refatoração multi-arquivo e busca semântica\nArquivos de contexto de projeto (.cursorrules / instructions.md): padronizam regras da equipe para não repeti-las em todo prompt"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#debugging-assistido-e-segurança",
+    "href": "aulas/05-ia-como-assistente.html#debugging-assistido-e-segurança",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Debugging assistido e segurança",
+    "text": "Debugging assistido e segurança\n\nDebugging assistido: alimentar a IA com Stack Trace + trecho de código + versões de runtime/bibliotecas acelera o diagnóstico\n\n🛡️ Segurança e privacidade: nunca enviar chaves de API, senhas, dados de clientes (PII) ou código proprietário crítico para modelos públicos sem garantia de política de retenção zero."
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#uso-prático-geração-de-testes",
+    "href": "aulas/05-ia-como-assistente.html#uso-prático-geração-de-testes",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Uso prático — geração de testes",
+    "text": "Uso prático — geração de testes\nPedir cobertura de edge cases que humanos costumam esquecer:\n\nValores negativos\nLimites\nEntradas nulas"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#refatoração-e-documentação-viva",
+    "href": "aulas/05-ia-como-assistente.html#refatoração-e-documentação-viva",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Refatoração e documentação viva",
+    "text": "Refatoração e documentação viva\n\nRefatoração de código legado: peça primeiro que a IA explique o código antigo; só depois solicite a modernização (ex.: callbacks → async/await) mantendo os testes\nDocumentação viva:\n\nGeração de specs OpenAPI/Swagger\nDiagramas Mermaid.js\nMensagens de commit no padrão Conventional Commits a partir do git diff"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#visão-crítica-o-perigo-do-copiar-e-colar",
+    "href": "aulas/05-ia-como-assistente.html#visão-crítica-o-perigo-do-copiar-e-colar",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Visão crítica — o perigo do copiar e colar",
+    "text": "Visão crítica — o perigo do copiar e colar\n\nAceitar sugestões sem entender cria sistemas frágeis que ninguém sabe depurar em produção.\n\nA IA substitui a digitação de código, não a Engenharia de Software: responsabilidade técnica, arquitetura e decisão continuam humanas."
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#checklist-de-validação-de-código-gerado-por-ia",
+    "href": "aulas/05-ia-como-assistente.html#checklist-de-validação-de-código-gerado-por-ia",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Checklist de validação de código gerado por IA",
+    "text": "Checklist de validação de código gerado por IA\n\nO desenvolvedor consegue explicar o algoritmo linha a linha?\nDesempenho/complexidade adequados (O(N) vs. O(N²))?\nConformidade com SOLID/Clean Code?\nRisco de licenciamento/direitos autorais?"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#níveis-de-autonomia",
+    "href": "aulas/05-ia-como-assistente.html#níveis-de-autonomia",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "6 níveis de autonomia",
+    "text": "6 níveis de autonomia\nFramework complementar (Tom Taulli, a partir de Quinn Slack):\n\n\n\nNível\nDescrição\n\n\n\n\n0\nSem IA\n\n\n1\nCompletamento\n\n\n2\nCriação de código supervisionada\n\n\n3\nAutomação supervisionada\n\n\n4\nAutomação total\n\n\n5\nAutonomia liderada\n\n\n\nÚtil para discutir até onde a turma já opera e até onde deveria ir com segurança."
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#temperatura-do-modelo",
+    "href": "aulas/05-ia-como-assistente.html#temperatura-do-modelo",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Temperatura do modelo",
+    "text": "Temperatura do modelo\n\nBaixa (0.1–0.3): código/depuração determinística\nAlta (0.7–1.0): brainstorming arquitetural"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#atividade-prática-sugerida",
+    "href": "aulas/05-ia-como-assistente.html#atividade-prática-sugerida",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Atividade prática sugerida",
+    "text": "Atividade prática sugerida\n\nCada aluno escreve um prompt estruturado (Papel + Contexto + Tarefa + Restrições) para gerar uma função com testes\nRoda em uma ferramenta de IA\nAplica o checklist de code review no resultado antes de aceitá-lo\n\nAvaliação: Questionário — Aula 5 + Desafio de Conhecimento (10 questões sobre AI-Assisted Programming, de Tom Taulli)"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#material-complementar",
+    "href": "aulas/05-ia-como-assistente.html#material-complementar",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Material complementar",
+    "text": "Material complementar\n\nSlides da aula (Google Slides)\nAI-Assisted Programming — Tom Taulli, O’Reilly, 2024 (e resumo traduzido em português)"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#exemplo-prático-guiado",
+    "href": "aulas/05-ia-como-assistente.html#exemplo-prático-guiado",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "💻 Exemplo prático guiado",
+    "text": "💻 Exemplo prático guiado\nUsando IA no Diário de Café — prompt estruturado para gerar testes do RegistrarCuppingUseCase:\n[PAPEL]: Atue como Engenheiro de Software Senior especialista em TypeScript e testes automatizados.\n[CONTEXTO]: Este e o RegistrarCuppingUseCase de um app de catalogacao de cafes e cuppings (protocolo SCA, nota de 0 a 100).\n[TAREFA]: Gere testes unitarios com Vitest cobrindo: nota fora do intervalo 0-100, cafe inexistente no repositorio, e avaliacao duplicada para o mesmo cafe na mesma data.\n[RESTRICOES]: Use mocks para CafeRepository (nunca banco real), siga o padrao AAA (Arrange-Act-Assert)."
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#resultado-gerado-pela-ia",
+    "href": "aulas/05-ia-como-assistente.html#resultado-gerado-pela-ia",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Resultado gerado pela IA",
+    "text": "Resultado gerado pela IA\nSempre revisado antes de aceitar:\ndescribe('RegistrarCuppingUseCase', () =&gt; {\n  it('deve lancar erro se a nota final estiver fora do intervalo 0-100', () =&gt; {\n    const repo = mockCafeRepository();\n    const useCase = new RegistrarCuppingUseCase(repo);\n    expect(() =&gt; useCase.executar({ cafeId: '1', notaFinal: 150 })).toThrow(NotaInvalidaException);\n  });\n\n  it('deve lancar erro se o cafe nao existir no repositorio', () =&gt; {\n    const repo = mockCafeRepository({ existe: false });\n    const useCase = new RegistrarCuppingUseCase(repo);\n    expect(() =&gt; useCase.executar({ cafeId: 'inexistente', notaFinal: 85 })).toThrow(CafeNaoEncontradoException);\n  });\n\n  it('deve lancar erro se ja existir avaliacao do mesmo cafe na mesma data', () =&gt; {\n    const repo = mockCafeRepository({ cuppingExistenteHoje: true });\n    const useCase = new RegistrarCuppingUseCase(repo);\n    expect(() =&gt; useCase.executar({ cafeId: '1', notaFinal: 85 })).toThrow(CuppingDuplicadoException);\n  });\n});"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#refatorando-código-legado",
+    "href": "aulas/05-ia-como-assistente.html#refatorando-código-legado",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Refatorando código legado",
+    "text": "Refatorando código legado\n// Antes: codigo legado com callback\nfunction calcularProporcao(dose, callback) {\n  buscarConfiguracaoMetodo((err, config) =&gt; {\n    if (err) return callback(err);\n    callback(null, dose * config.fator);\n  });\n}\nPrompt: “Explique este código legado e depois refatore para async/await em TypeScript, mantendo o mesmo comportamento.”\n// Depois: sugestao da IA, ja revisada\nasync function calcularProporcao(dose: number): Promise&lt;number&gt; {\n  const config = await buscarConfiguracaoMetodo();\n  return dose * config.fator;\n}"
+  },
+  {
+    "objectID": "aulas/05-ia-como-assistente.html#checklist-de-code-review-aplicado",
+    "href": "aulas/05-ia-como-assistente.html#checklist-de-code-review-aplicado",
+    "title": "Aula 5 — IA como Assistente",
+    "section": "Checklist de code review aplicado",
+    "text": "Checklist de code review aplicado\n\n\n\n\n\n\n\nItem do checklist\nAvaliação\n\n\n\n\nCompreensão do algoritmo\n✅ Sim — proporção simples, dose × fator, sem segredo\n\n\nDesempenho/complexidade\n✅ O(1), sem loops desnecessários\n\n\nConformidade com Clean Code/SOLID\n✅ Nomes claros, sem callback hell, função faz uma coisa só\n\n\nLicenciamento/direitos autorais\n✅ Código trivial, sem risco de reprodução de trecho protegido\n\n\n\n\nSe qualquer item desse checklist falhar, o código gerado pela IA é devolvido para ajuste — nunca aceito às cegas, mesmo parecendo correto à primeira vista."
   }
 ]

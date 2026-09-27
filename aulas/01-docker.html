@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <title>Full Cycle – Aula 1 — Docker ⚙️</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Aula 1 — Docker ⚙️</h1>
+  <p class="subtitle">Full Cycle · Módulo 1 — Engenharia de Software e IA Aplicada</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="objetivo-de-aprendizagem" class="slide level2">
+<h2>Objetivo de aprendizagem</h2>
+<p>Ao final desta aula, você deve ser capaz de:</p>
+<ul>
+<li>Entender o problema que o Docker resolve (“funciona na minha máquina”)</li>
+<li>Diferenciar <strong>imagem</strong> de <strong>container</strong></li>
+<li>Escrever um <strong>Dockerfile</strong> funcional</li>
+<li>Executar containers com <strong>portas</strong> e <strong>volumes</strong> mapeados</li>
+</ul>
+</section>
+<section id="o-que-é-docker" class="slide level2">
+<h2>O que é Docker?</h2>
+<ul>
+<li>Plataforma para empacotar aplicação + dependências em um <strong>container padronizado</strong></li>
+<li>Analogia do contêiner de transporte: a mesma unidade roda igual em qualquer lugar</li>
+<li>Por que usar:
+<ul>
+<li><strong>Consistência</strong> — “funciona em qualquer lugar”</li>
+<li><strong>Isolamento</strong></li>
+<li><strong>Portabilidade</strong></li>
+<li><strong>Eficiência</strong> — menos overhead que uma VM</li>
+<li><strong>Escalabilidade</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="sem-docker-vs.-com-docker" class="slide level2">
+<h2>Sem Docker vs.&nbsp;com Docker</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Sem Docker</th>
+<th>Com Docker</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Setup</td>
+<td>~30 min de configuração manual</td>
+<td><code>docker run</code></td>
+</tr>
+<tr class="even">
+<td>Ambiente</td>
+<td>Risco de divergência entre máquinas</td>
+<td>Ambiente idêntico em ~1 minuto</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>“Funciona na minha máquina” deixa de ser desculpa.</p>
+</blockquote>
+</section>
+<section id="conceitos-e-arquitetura" class="slide level2 smaller">
+<h2>Conceitos e arquitetura</h2>
+<ul>
+<li><strong>Container:</strong> instância em execução de uma imagem (processo isolado com código, runtime e dependências)</li>
+<li><strong>Imagem:</strong> template read-only que define como criar um container</li>
+<li><strong>Dockerfile:</strong> receita textual com as instruções para construir a imagem</li>
+<li><strong>Registry / Docker Hub:</strong> repositório central de imagens</li>
+</ul>
+<p><strong>Fluxo básico</strong></p>
+<p><code>Dockerfile → docker build → Imagem → docker run → Container</code></p>
+<p><strong>Arquitetura cliente-servidor</strong></p>
+<p><code>Docker Client (CLI) → Docker Daemon (serviço em background) → Registry</code></p>
+</section>
+<section id="instalação-e-validação" class="slide level2">
+<h2>Instalação e validação</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb1-2"><a aria-label="2"></a><span class="ex">docker</span> run hello-world</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Instalação via Docker Desktop</li>
+<li><code>docker run hello-world</code> confirma que o daemon está acessível e consegue baixar imagens do registry</li>
+</ul>
+</section>
+<section id="rodando-o-primeiro-container" class="slide level2">
+<h2>Rodando o primeiro container</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="ex">docker</span> run nginx</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="ex">docker</span> run <span class="at">-p</span> 8080:80 nginx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>-p 8080:80</code> mapeia a porta 80 do container para a 8080 do host</li>
+<li>Container interativo:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-label="1"></a><span class="ex">docker</span> run <span class="at">-it</span> ubuntu bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="comandos-essenciais" class="slide level2 smaller">
+<h2>Comandos essenciais</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-label="1"></a><span class="ex">docker</span> ps                 <span class="co"># containers em execução</span></span>
+<span id="cb4-2"><a aria-label="2"></a><span class="ex">docker</span> ps <span class="at">-a</span>               <span class="co"># todos os containers, incluindo parados</span></span>
+<span id="cb4-3"><a aria-label="3"></a><span class="ex">docker</span> images              <span class="co"># imagens disponíveis localmente</span></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="ex">docker</span> logs <span class="op">&lt;</span>id<span class="op">&gt;</span>           <span class="co"># logs de um container</span></span>
+<span id="cb4-5"><a aria-label="5"></a><span class="ex">docker</span> exec <span class="at">-it</span> <span class="op">&lt;</span>id<span class="op">&gt;</span> bash  <span class="co"># abre um shell dentro do container rodando</span></span>
+<span id="cb4-6"><a aria-label="6"></a><span class="ex">docker</span> stop <span class="op">&lt;</span>id<span class="op">&gt;</span>           <span class="co"># para um container</span></span>
+<span id="cb4-7"><a aria-label="7"></a><span class="ex">docker</span> rm <span class="op">&lt;</span>id<span class="op">&gt;</span>             <span class="co"># remove um container parado</span></span>
+<span id="cb4-8"><a aria-label="8"></a><span class="ex">docker</span> rmi <span class="op">&lt;</span>imagem<span class="op">&gt;</span>        <span class="co"># remove uma imagem</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="criando-sua-própria-imagem" class="slide level2 smaller">
+<h2>Criando sua própria imagem</h2>
+<p>Estrutura de um Dockerfile:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb5-1"><a aria-label="1"></a><span class="kw">FROM</span> node:20-slim      <span class="co"># imagem base</span></span>
+<span id="cb5-2"><a aria-label="2"></a><span class="kw">WORKDIR</span> /app            <span class="co"># diretório de trabalho dentro do container</span></span>
+<span id="cb5-3"><a aria-label="3"></a><span class="kw">COPY</span> package*.json ./   <span class="co"># copia os manifestos primeiro (cache de build)</span></span>
+<span id="cb5-4"><a aria-label="4"></a><span class="kw">RUN</span> <span class="ex">npm</span> install <span class="at">--production</span></span>
+<span id="cb5-5"><a aria-label="5"></a><span class="kw">COPY</span> . .                 <span class="co"># copia o restante do código</span></span>
+<span id="cb5-6"><a aria-label="6"></a><span class="kw">EXPOSE</span> 3000               <span class="co"># documenta a porta usada</span></span>
+<span id="cb5-7"><a aria-label="7"></a><span class="kw">CMD</span> [<span class="st">"node"</span>, <span class="st">"dist/main.js"</span>]  <span class="co"># comando executado ao iniciar o container</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="build-execução-e-volumes" class="slide level2">
+<h2>Build, execução e volumes</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-label="1"></a><span class="ex">docker</span> build <span class="at">-t</span> meu-app:1.0 .</span>
+<span id="cb6-2"><a aria-label="2"></a><span class="ex">docker</span> run <span class="at">-p</span> 5000:5000 meu-app:1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Volumes:</strong> persistência e compartilhamento de dados entre host e container — essencial no fluxo de desenvolvimento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a aria-label="1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/app meu-app:1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="atividade-prática-sugerida" class="slide level2">
+<h2>Atividade prática sugerida</h2>
+<p>Em duplas:</p>
+<ol type="1">
+<li>Escrever um Dockerfile para uma API simples (Node ou Python)</li>
+<li>Buildar a imagem</li>
+<li>Rodar o container com porta e volume mapeados</li>
+<li>Validar no navegador</li>
+</ol>
+<p><strong>Avaliação:</strong> Questionário — Aula 1 (Moodle)</p>
+</section>
+<section id="material-complementar" class="slide level2">
+<h2>Material complementar</h2>
+<ul>
+<li>Documentação oficial do Docker</li>
+<li>Docker Hub</li>
+<li>Artigo “Dockerizando Spring Boot + AWS”</li>
+<li>Artigo “Let’s Stop It Works on My Machine”</li>
+</ul>
+</section>
+<section id="exemplo-prático-guiado" class="slide level2 smaller">
+<h2>💻 Exemplo prático guiado</h2>
+<p><strong>Diário de Café</strong> — app de barismo hobbista que catalogará cafés, insumos, cuppings (avaliações sensoriais) e receitas de extração ao longo de todo o módulo.</p>
+<p>Nesta aula, o objetivo é apenas <strong>dockerizá-lo</strong>.</p>
+<pre><code>diario-cafe-api/
+  src/
+  package.json
+  Dockerfile
+  docker-compose.yml
+  .dockerignore</code></pre>
+</section>
+<section id="dockerfile-do-diário-de-café" class="slide level2">
+<h2>Dockerfile do Diário de Café</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb9-1"><a aria-label="1"></a><span class="kw">FROM</span> node:20-slim</span>
+<span id="cb9-2"><a aria-label="2"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb9-3"><a aria-label="3"></a><span class="kw">COPY</span> package*.json ./</span>
+<span id="cb9-4"><a aria-label="4"></a><span class="kw">RUN</span> <span class="ex">npm</span> install <span class="at">--production</span></span>
+<span id="cb9-5"><a aria-label="5"></a><span class="kw">COPY</span> . .</span>
+<span id="cb9-6"><a aria-label="6"></a><span class="kw">EXPOSE</span> 3000</span>
+<span id="cb9-7"><a aria-label="7"></a><span class="kw">CMD</span> [<span class="st">"node"</span>, <span class="st">"dist/main.js"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="docker-compose.yml" class="slide level2 smaller">
+<h2>docker-compose.yml</h2>
+<p>Sobe a API junto com o banco onde ficam os cafés, receitas e cuppings:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a aria-label="1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.9"</span></span>
+<span id="cb10-2"><a aria-label="2"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb10-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">api</span><span class="kw">:</span></span>
+<span id="cb10-4"><a aria-label="4"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb10-5"><a aria-label="5"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb10-6"><a aria-label="6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"3000:3000"</span></span>
+<span id="cb10-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb10-8"><a aria-label="8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> DATABASE_URL=postgres://barista:senha@db:5432/diario_cafe</span></span>
+<span id="cb10-9"><a aria-label="9"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb10-10"><a aria-label="10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> db</span></span>
+<span id="cb10-11"><a aria-label="11"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb10-12"><a aria-label="12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ./uploads:/app/uploads</span></span>
+<span id="cb10-13"><a aria-label="13"></a><span class="at">  </span><span class="fu">db</span><span class="kw">:</span></span>
+<span id="cb10-14"><a aria-label="14"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> postgres:16</span></span>
+<span id="cb10-15"><a aria-label="15"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb10-16"><a aria-label="16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> POSTGRES_USER=barista</span></span>
+<span id="cb10-17"><a aria-label="17"></a><span class="at">      </span><span class="kw">-</span><span class="at"> POSTGRES_PASSWORD=senha</span></span>
+<span id="cb10-18"><a aria-label="18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> POSTGRES_DB=diario_cafe</span></span>
+<span id="cb10-19"><a aria-label="19"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb10-20"><a aria-label="20"></a><span class="at">      </span><span class="kw">-</span><span class="at"> cafe_data:/var/lib/postgresql/data</span></span>
+<span id="cb10-21"><a aria-label="21"></a><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb10-22"><a aria-label="22"></a><span class="at">  </span><span class="fu">cafe_data</span><span class="kw">:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="dockerignore" class="slide level2">
+<h2>.dockerignore</h2>
+<pre><code>node_modules
+dist
+.git
+uploads/*.jpg</code></pre>
+</section>
+<section id="por-que-essa-configuração" class="slide level2 smaller">
+<h2>Por que essa configuração</h2>
+<ul>
+<li>O Compose cria uma <strong>rede interna automática</strong>: o serviço <code>api</code> enxerga o banco pelo hostname <code>db</code> (nunca <code>localhost</code>)</li>
+<li><code>cafe_data</code> é um <strong>volume nomeado</strong>: persiste o catálogo de cafés mesmo se o container do banco for recriado</li>
+<li><code>./uploads:/app/uploads</code> é um <strong>bind mount</strong>: guarda no seu próprio PC as fotos dos grãos enviadas pelos usuários, útil pra debugar sem entrar no container</li>
+</ul>
+</section>
+<section id="comandos-do-dia-a-dia" class="slide level2">
+<h2>Comandos do dia a dia</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-label="1"></a><span class="ex">docker</span> compose up <span class="at">-d</span> <span class="at">--build</span></span>
+<span id="cb12-2"><a aria-label="2"></a><span class="ex">docker</span> compose logs <span class="at">-f</span> api</span>
+<span id="cb12-3"><a aria-label="3"></a><span class="ex">docker</span> compose down        <span class="co"># para os containers, mantém os volumes</span></span>
+<span id="cb12-4"><a aria-label="4"></a><span class="ex">docker</span> compose down <span class="at">-v</span>     <span class="co"># cuidado: apaga também o volume do banco</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Full Cycle</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/henriquelopeslima\.github\.io\/diglass\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
