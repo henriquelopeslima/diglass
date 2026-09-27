@@ -105,7 +105,10 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal .muted { color: var(--muted); }
 
 /* listas */
-.reveal ul, .reveal ol { display: block; margin: 0 0 22px; padding: 0; list-style: none; counter-reset: item; }
+/* especificidade elevada (.reveal .slides ul/ol) para vencer a regra
+   .reveal ol[type="1"] do tema padrão do Quarto */
+.reveal ul, .reveal ol,
+.reveal .slides ul, .reveal .slides ol { display: block; margin: 0 0 22px; padding: 0; list-style: none; counter-reset: item; }
 .reveal li { position: relative; margin: 0 0 20px; padding-left: 58px; }
 .reveal ul > li::before {
   content: "";
@@ -138,7 +141,8 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 /* lista de tarefas (- [ ]) */
 .reveal li:has(> input[type="checkbox"])::before { display: none; }
 .reveal li:has(> input[type="checkbox"]) { padding-left: 0; }
-.reveal li > input[type="checkbox"] {
+.reveal li > input[type="checkbox"],
+.reveal .slides ul.task-list li input[type="checkbox"] {
   appearance: none;
   width: 34px;
   height: 34px;
@@ -210,7 +214,7 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
   color: #ffd98a;
   font-size: .82em;
 }
-.reveal pre {
+.reveal pre, .reveal pre.sourceCode {
   width: 100%;
   margin: 0 0 24px;
   border: 1px solid var(--line);
@@ -221,7 +225,8 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
   line-height: 1.45;
 }
 .reveal .smaller pre { font-size: 20px; }
-.reveal pre code {
+/* .sourceCode repetido para vencer a especificidade do tema padrão do Quarto */
+.reveal pre code, .reveal pre.sourceCode code {
   display: block;
   max-height: none;
   padding: 22px 32px;
@@ -232,17 +237,8 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
   line-height: inherit;
 }
 
-/* highlight do Pandoc/Quarto (classes span.kw, span.st, ...) */
-.reveal pre code span.kw, .reveal pre code span.cf, .reveal pre code span.im { color: #7cb4ff; }
-.reveal pre code span.dt, .reveal pre code span.bu { color: #fda4af; }
-.reveal pre code span.st, .reveal pre code span.vs, .reveal pre code span.ss, .reveal pre code span.ch { color: #86efac; }
-.reveal pre code span.co, .reveal pre code span.cv, .reveal pre code span.do { color: #7383a3; font-style: italic; }
-.reveal pre code span.dv, .reveal pre code span.bn, .reveal pre code span.fl, .reveal pre code span.an { color: #fbbf24; }
-.reveal pre code span.fu { color: #f0abfc; }
-.reveal pre code span.at { color: #93c5fd; }
-.reveal pre code span.va { color: #fcd34d; }
-.reveal pre code span.ot, .reveal pre code span.op { color: #a3b1cc; }
-.reveal pre code span.er { color: #ff8fa6; font-weight: 700; }
+/* cores da sintaxe: usa o highlight "monokai" nativo do Quarto (highlight-style
+   no _quarto.yml), que já gera as regras `code span.kw` etc. */
 
 /* colunas (usar <div class="cols"><div>…</div><div>…</div></div>) */
 .reveal .cols { display: flex; gap: 48px; align-items: flex-start; }
