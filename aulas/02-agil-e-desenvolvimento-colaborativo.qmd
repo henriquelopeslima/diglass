@@ -1,0 +1,420 @@
+---
+title: "Ágil e desenvolvimento colaborativo"
+subtitle: "Módulo 1 · Encontro 2 — Scrum, GitHub Projects, código padronizado e code review"
+format: revealjs
+---
+
+## Na aula passada
+
+- Containers, imagens, volumes e networks
+- Compose descreve o ambiente em **um arquivo**
+- Repositório que **qualquer colega roda** com um comando
+
+## Hoje
+
+- **Bloco 1:** modelos de desenvolvimento · Scrum · GitHub Projects
+- **Bloco 2:** código padronizado · Git e PRs · code review
+- **Desafio:** simulação de sprint em duplas
+
+**Saída:** todos com board, PR e review de verdade
+
+# Modelos de desenvolvimento {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Como um software nasce
+
+> ideia → requisitos → design → código → teste → deploy → feedback
+
+Todo modelo organiza **esse mesmo ciclo**. O que muda é **quando o cliente vê o resultado**.
+
+## Cascata
+
+- Fases em **sequência**: uma só começa quando a anterior termina
+- Cliente vê o software **no fim**
+- Funciona quando o requisito é **estável** e mudar é caro
+
+**Risco:** descobrir o erro só na entrega.
+
+## Iterativo, incremental e XP
+
+- **Iterativo:** repete o ciclo, cada volta melhora a anterior
+- **Incremental:** entrega em partes que já funcionam
+- **XP:** práticas técnicas: TDD, pair programming, integração contínua, releases pequenos
+
+Feedback **cedo** reduz o custo de errar.
+
+## Ágil
+
+- **Pessoas** acima de processos e ferramentas
+- **Software funcionando** acima de documentação
+- **Colaboração** acima de contratos
+- **Mudanças** acima de seguir um plano
+
+Ágil **não** é "sem planejamento".
+
+## Comparando
+
+| Modelo | Entrega | Mudança | Bom para |
+|---|---|---|---|
+| Cascata | No fim | Cara | Requisito fixo |
+| Iterativo | Por ciclo | Média | Produto que evolui |
+| Ágil | Contínua | Esperada | Requisito incerto |
+
+# Qual modelo usar {.desafio}
+
+<p class="kicker">Mini desafio 1 · 10 min</p>
+
+Escolha e **justifique** em uma frase:
+
+1. **Equipamento hospitalar**, com norma rígida
+2. **Startup** validando um app de delivery
+3. **Migração** com escopo bem conhecido
+
+*Extra: o risco de cada escolha.*
+
+# Scrum e Kanban {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Scrum em uma tela
+
+| Papéis | Artefatos | Eventos |
+|---|---|---|
+| Product Owner | Product Backlog | Sprint Planning |
+| Scrum Master | Sprint Backlog | Daily |
+| Time de Dev | Incremento | Review e Retrospectiva |
+
+## Papéis
+
+- **Product Owner:** decide **o quê** e **por quê**; dono do backlog
+- **Scrum Master:** facilita o processo e remove obstáculos
+- **Time de Dev:** decide **como** e entrega o incremento
+
+## Artefatos e Definition of Done
+
+- **Product Backlog:** tudo o que pode ser feito, ordenado
+- **Sprint Backlog:** o que o time se compromete a fazer na sprint
+- **Incremento:** software funcionando ao fim da sprint
+
+**Definition of Done:** o acordo do que significa "pronto".
+
+## Cerimônias {.smaller}
+
+| Cerimônia | Quando | Duração |
+|---|---|---|
+| Daily | Início de alguns encontros | 5 min |
+| Sprint Planning | A cada 2 semanas | 20 min |
+| Review | Ao entregar parte do projeto | 15 min |
+| Retrospectiva | Fim de cada bloco | 10 min |
+
+## Kanban vs Scrum
+
+| | Scrum | Kanban |
+|---|---|---|
+| Ritmo | Sprints fixas | Fluxo contínuo |
+| Escopo | Fechado na sprint | Muda a qualquer hora |
+| Controle | Capacidade da sprint | Limite de WIP |
+
+Muitos times usam **os dois**: é o "Scrumban".
+
+## História de usuário
+
+```text
+Como <tipo de usuário>,
+quero <fazer algo>,
+para <obter um benefício>.
+```
+
+**Critérios de aceite:** como saber que está pronta.
+
+Ex.: *dado* um pedido pago, *quando* consultar, *então* vejo o status.
+
+## Story points
+
+- Medem **esforço relativo**, não horas
+- Sequência típica: **1 · 2 · 3 · 5 · 8 · 13**
+- Estima-se **em grupo** (planning poker)
+- Discordou? **Converse**: a discussão é o valor
+
+# Escreva a história {.desafio}
+
+<p class="kicker">Mini desafio 2 · 8 min</p>
+
+Para o seu projeto, escreva **1 história de usuário** com:
+
+1. O formato **Como / quero / para**
+2. **3 critérios de aceite**
+3. Uma estimativa em **story points**
+
+*Extra: quebre em 2 histórias menores.*
+
+# GitHub Projects {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## O board
+
+> Backlog → To Do → Doing → Review → Done
+
+- **Backlog:** ideias ordenadas
+- **Doing:** no máximo **1 ou 2** por pessoa
+- **Review:** PR aberto, aguardando revisão
+
+## Issue bem escrita
+
+```markdown
+## Contexto
+Por que isso importa.
+
+## O que fazer
+- [ ] Passo 1
+- [ ] Passo 2
+
+## Critérios de aceite
+- [ ] Resultado observável
+```
+
+## Organização
+
+- **Labels:** `feature`, `bug`, `docs`, `tech-debt`
+- **Assignee:** quem faz
+- **Milestone:** a sprint ou entrega
+- **`Closes #12`** no PR fecha a issue no merge
+
+Tarefa boa cabe em **até 1 dia** de trabalho.
+
+# Monte o board {.desafio}
+
+<p class="kicker">Mini desafio 3 · 7 min</p>
+
+1. Crie um **GitHub Project** (Board) no seu repositório
+2. Crie as colunas **Backlog, To Do, Doing, Review, Done**
+3. Adicione **3 issues** com critério de aceite
+
+*Extra: crie os labels e um milestone "Sprint 1".*
+
+# Código padronizado {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Por que padronizar
+
+> O time precisa ler o código do outro sem esforço.
+
+- Estilo é decidido **uma vez**, pelo time
+- A **ferramenta** faz cumprir, não a revisão
+
+## Clean Code na prática
+
+- **Nomes** que revelam a intenção
+- **Funções pequenas**, com um só propósito
+- **Sem repetição** e sem números mágicos
+- **Menos complexidade**: caminho feliz claro
+
+## Nomes: antes e depois
+
+```php
+function calc($a, $b, $t) { /* ... */ }
+```
+
+```php
+function calculate(int $a, int $b, string $operation): int
+```
+
+O segundo se lê **sem abrir o corpo** da função.
+
+## Padrões por linguagem
+
+| | PHP | JS / TS |
+|---|---|---|
+| Estilo | **PSR-12** | **Airbnb** + Prettier |
+| Estrutura | PSR-4 (autoload) | Módulos ES |
+| Linter | phpcs, php-cs-fixer | ESLint |
+
+## .editorconfig
+
+```ini
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+[*.{js,ts,json,yml}]
+indent_size = 2
+```
+
+# Conserte o estilo {.desafio}
+
+<p class="kicker">Mini desafio 4 · 10 min</p>
+
+Reescreva o trecho na sua linguagem, **sem mudar o comportamento**:
+
+```js
+var x = function(l){var r=[];
+for(var i=0;i<l.length;i++){if(l[i]%2==0){r.push(l[i]*2)}}
+return r}
+```
+
+*Extra: crie o `.editorconfig` no seu repositório.*
+
+# Git, commits e PRs {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## O fluxo
+
+> branch → commits → push → PR → review → merge
+
+Nunca commite direto na `main`.
+
+## Conventional Commits
+
+```text
+tipo(escopo): descrição no imperativo
+
+feat(api): adiciona rota /health
+fix(nginx): corrige proxy_pass do serviço app
+docs: explica como rodar com docker compose
+```
+
+Tipos: `feat` · `fix` · `docs` · `refactor` · `test` · `chore`
+
+## Commit bom e commit ruim {.smaller}
+
+| Ruim | Bom |
+|---|---|
+| `fix stuff` | `fix(api): retorna 404 quando pedido não existe` |
+| `alterações` | `docs: descreve variáveis do .env.example` |
+| `wip` | `refactor: extrai cálculo de desconto` |
+
+## PR de qualidade
+
+```markdown
+## O que mudou
+Adiciona a rota /health.
+
+## Por quê
+Necessária para o healthcheck do Compose.
+
+## Como testar
+`curl localhost:8080/health`
+
+Closes #12
+```
+
+## PR pequeno vence
+
+- **Até ~300 linhas** alteradas por PR
+- Um PR, **um assunto**
+- PR grande espera dias; PR pequeno sai em horas
+- Revise **você mesmo** antes de pedir review
+
+# Reescreva os commits {.desafio}
+
+<p class="kicker">Mini desafio 5 · 10 min</p>
+
+1. `arrumei o bug`
+2. `mudei umas coisas no docker`
+3. `novo readme`
+4. `wip`
+
+*Use **Conventional Commits**. Extra: o texto do PR.*
+
+# Code review {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6</p>
+
+## Para que serve
+
+- **Aprender** com o código dos outros
+- **Padronizar** o time
+- **Prevenir bugs** antes da produção
+- **Nivelar** o conhecimento do time
+
+Não é competição. Não é julgamento de pessoa.
+
+## Autor e revisor
+
+- **Autor:** PR pequeno, descrição clara, autorrevisão antes
+- **Revisor:** comenta o **código**, não a pessoa
+- **Ambos:** respondem rápido e com respeito
+
+Discutir **estilo**? Isso é trabalho do linter.
+
+## Como escrever o comentário {.smaller}
+
+| Ruim | Bom |
+|---|---|
+| "Isso está errado." | "Aqui `$id` vai direto na query: risco de SQL injection. Use prepared statement." |
+| "Por que fez assim?" | "Dúvida: por que não reutilizar `calculateTotal()`?" |
+
+## Tipos de comentário
+
+- **Bloqueante:** precisa mudar antes do merge
+- **Sugestão:** melhora, mas pode ficar
+- **Dúvida:** quero entender
+- **Elogio:** ficou bom, diga também
+
+Aprove quando o código **melhora o sistema**, mesmo sem ser perfeito.
+
+# Revise este PR {.desafio}
+
+<p class="kicker">Mini desafio 6 · 10 min · em dupla</p>
+
+```php
+function getUser($id) {
+    $db = new PDO('sqlite:app.db');
+    $r = $db->query("SELECT * FROM users WHERE id = " . $id);
+    try {
+        return $r->fetch();
+    } catch (Exception $e) {}
+}
+```
+
+Escreva **3 comentários**, cada um com **tipo** e **porquê**.
+
+# Simulação de sprint {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla, no repositório do E01
+
+## As etapas {.smaller}
+
+| Tempo | Etapa |
+|---|---|
+| 5 min | **Sprint Planning:** pega uma issue, move para *Doing* |
+| 20 min | **Sprint:** branch, código, PR |
+| 15 min | **Code review** cruzado |
+| 5 min | **Review** e mini retrospectiva |
+
+## Critério de pronto
+
+- [ ] Issue movida por **todas** as colunas
+- [ ] Branch com nome claro e **commits convencionais**
+- [ ] PR com descrição e **`Closes #N`**
+- [ ] **2 comentários** de review feitos em PR de outra dupla
+- [ ] PR aprovado e com **merge**
+
+## Fechamento
+
+- **Modelos:** Ágil = feedback rápido
+- **Scrum:** papéis, artefatos, cerimônias
+- **Colaboração:** padrão, commits, PR e review
+
+## Dever de casa
+
+1. **Refinar as propostas** de projeto em um documento
+2. **Criar o board** da ideia preferida, com 5 issues
+3. Levar **3 dúvidas** para o próximo encontro
+
+# POO e Design Principles {.fim}
+
+<p class="kicker">Próximo encontro · E03</p>
+
+Traga o código do seu projeto.

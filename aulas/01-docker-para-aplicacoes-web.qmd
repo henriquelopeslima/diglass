@@ -1,0 +1,383 @@
+---
+title: "Docker para aplicações web"
+subtitle: "Módulo 1 · Encontro 1"
+format: revealjs
+---
+
+## Hoje
+
+- **Bloco 1:** por que containers · imagens · volumes e networks
+- **Bloco 2:** Compose · nginx + PHP ou Node · quebre e conserte
+- **Desafio:** ambiente padrão da turma
+
+**Saída:** todos com Docker funcionando
+
+## Por que containers?
+
+> "Na minha máquina funciona."
+
+- Versões diferentes
+- Sistemas diferentes
+- Dependências instaladas à mão
+
+**Quem já viveu isso?**
+
+## Container vs máquina virtual
+
+| | VM | Container |
+|---|---|---|
+| Kernel | Próprio | Do host |
+| Tamanho | GBs | MBs |
+| Inicia em | Minutos | Segundos |
+| Isolamento | Total | De processos |
+
+## Vocabulário mínimo
+
+- **Imagem:** a receita congelada
+- **Container:** a imagem em execução
+- **Dockerfile:** como construir a imagem
+- **Registry:** onde as imagens moram
+
+> Imagem = classe · Container = objeto
+
+## Exemplo ao vivo
+
+```bash
+docker run --rm alpine cat /etc/os-release
+cat /etc/os-release
+```
+
+Duas distribuições diferentes, no mesmo computador, sem instalar nada.
+
+# Meu primeiro container {.desafio}
+
+<p class="kicker">Mini desafio 1 · 7 min</p>
+
+Rode um container Alpine e descubra:
+
+1. Qual é o sistema **dentro** do container?
+2. Quantos **processos** existem lá dentro?
+
+*Extra: compare o kernel (`uname -r`) do container com o do seu computador.*
+
+# Imagens e containers {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Ciclo de vida
+
+> pull → run → ps → logs → exec → stop → rm
+
+Toda a rotina do Docker cabe nessa linha.
+
+## Comandos essenciais {.smaller}
+
+| Comando | O que faz |
+|---|---|
+| `docker run -d -p 8080:80 nginx:alpine` | Cria e inicia |
+| `docker ps` | Lista containers |
+| `docker logs -f <nome>` | Acompanha logs |
+| `docker exec -it <nome> sh` | Abre um shell |
+| `docker rm -f <nome>` | Para e remove |
+
+## Portas: `-p 8080:80`
+
+```text
+seu computador :8080  ──►  container :80
+```
+
+**E se dois containers pedirem a porta 8080?**
+
+## Dockerfile
+
+```dockerfile
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+```
+
+```bash
+docker build -t minha-pagina .
+docker run -d -p 8080:80 minha-pagina
+```
+
+# Minha página no nginx {.desafio}
+
+<p class="kicker">Mini desafio 2 · 7 min</p>
+
+1. Suba o nginx na porta **9090**
+2. Troque a página por uma com o **seu nome**
+3. Veja os **logs** do acesso
+
+*Extra: faça isso com um Dockerfile.*
+
+# Volumes e networks {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Container é descartável
+
+> Dados não moram no container.
+
+- Removeu o container? **Perdeu o que estava dentro.**
+- Solução: guardar os dados **fora** dele.
+
+## Onde guardar dados?
+
+| Tipo | Quem gerencia | Use para |
+|---|---|---|
+| Named volume | Docker | Dados (banco) |
+| Bind mount | Você (pasta local) | Código em desenvolvimento |
+| tmpfs | Memória | Dados temporários |
+
+## Named volume na prática
+
+```bash
+docker run --rm -v dados:/data alpine \
+  sh -c "echo oi > /data/a.txt"
+
+docker run --rm -v dados:/data alpine cat /data/a.txt
+```
+
+O arquivo sobrevive: o volume vive **fora** do container.
+
+## Networks
+
+Containers na mesma rede se acham **pelo nome**.
+
+```bash
+docker network create rede-curso
+docker run -d --name web --network rede-curso nginx:alpine
+docker run --rm --network rede-curso alpine wget -qO- http://web
+```
+
+`localhost` dentro do container é **ele mesmo**.
+
+# Dados que sobrevivem {.desafio}
+
+<p class="kicker">Mini desafio 3 · 7 min</p>
+
+1. Prove que um **volume** sobrevive à remoção do container
+2. Faça um container acessar outro **pelo nome**
+
+*Extra: monte uma pasta local no nginx (bind mount) e edite a página ao vivo.*
+
+# Docker Compose {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Por que Compose?
+
+- `docker run` com 8 flags **não se mantém**
+- O Compose descreve o ambiente em **um arquivo**
+- O arquivo vai para o **Git**: toda a equipe usa o mesmo
+
+## Anatomia do docker-compose.yml
+
+```yaml
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+```
+
+## Como ler esse arquivo
+
+- `services`: cada item vira **um container**
+- **O nome do serviço vira o hostname**
+- O Compose cria a **network** sozinho
+- `:ro` monta a pasta como somente leitura
+
+## Comandos do Compose
+
+```bash
+docker compose up -d      # sobe tudo
+docker compose ps         # estado
+docker compose logs -f    # logs
+docker compose exec web sh
+docker compose down       # derruba (-v apaga volumes)
+```
+
+# Do docker run para o Compose {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+Traduza para um `docker-compose.yml`:
+
+```bash
+docker run -d --name web -p 8080:80 \
+  -v $(pwd)/site:/usr/share/nginx/html:ro nginx:alpine
+```
+
+*Extra: adicione um serviço `redis` e faça o `web` enxergá-lo pelo nome.*
+
+# Stack web {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+nginx + PHP-FPM ou nginx + Node
+
+## Por que nginx na frente?
+
+- Serve **arquivos estáticos**
+- Atua como **proxy reverso**
+- Habilita **HTTPS** no futuro
+- É o **padrão em produção**
+
+## Estrutura do projeto
+
+```text
+meu-projeto/
+├── docker-compose.yml
+├── .docker/
+│   └── nginx/default.conf
+├── .gitignore
+├── README.md
+└── app/   (ou src/)
+```
+
+## Node + nginx · Compose {.smaller}
+
+```yaml
+services:
+  app:
+    build: ./app
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+  nginx:
+    image: nginx:alpine
+    ports: ["8080:80"]
+    volumes:
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: [app]
+```
+
+## Node + nginx · nginx.conf
+
+```nginx
+server {
+  listen 80;
+  location / {
+    proxy_pass http://app:3000;
+    proxy_set_header Host $host;
+  }
+}
+```
+
+`app` é o **nome do serviço**, não `localhost`.
+
+## PHP + nginx · Compose {.smaller}
+
+```yaml
+services:
+  app:
+    build: ./.docker/php
+    volumes:
+      - ./src:/var/www/html
+  nginx:
+    image: nginx:alpine
+    ports: ["8080:80"]
+    volumes:
+      - ./src:/var/www/html:ro
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: [app]
+```
+
+## PHP + nginx · nginx.conf {.smaller}
+
+```nginx
+server {
+  listen 80;
+  root /var/www/html;
+  index index.php;
+  location / { try_files $uri $uri/ /index.php?$query_string; }
+  location ~ \.php$ {
+    fastcgi_pass app:9000;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  }
+}
+```
+
+# Subindo a stack web {.desafio}
+
+<p class="kicker">Mini desafio 5 · 10 min</p>
+
+1. Escolha **PHP** ou **Node**
+2. Suba nginx + aplicação com Compose
+3. Faça a página responder o **nome do container**
+
+*Extra: adicione uma rota `/health`.*
+
+# Quebre e conserte {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Método de diagnóstico
+
+1. `docker compose ps`
+2. `docker compose logs <serviço>`
+3. `docker compose exec <serviço> sh`
+4. Testar a rede **de dentro**
+
+De fora para dentro: navegador → porta → nginx → app.
+
+## Sintomas comuns {.smaller}
+
+| Sintoma | Causa provável |
+|---|---|
+| `502 Bad Gateway` | App não responde na porta esperada |
+| `host not found in upstream` | Nome do serviço errado |
+| `port is already allocated` | Porta ocupada no host |
+| Container reinicia sem parar | Erro no comando; ver `logs` |
+
+# Quebre e conserte {.desafio}
+
+<p class="kicker">Mini desafio 6 · 10 min</p>
+
+O Compose do gabarito tem **3 bugs**.
+
+Encontre e corrija cada um usando o método: `ps` → `logs` → `exec`.
+
+*Extra: descreva o sintoma de cada bug em uma frase.*
+
+# Ambiente padrão da turma {.secao}
+
+<p class="kicker">Desafio integrador · 55 min</p>
+
+## O que entregar
+
+1. Repositório no **GitHub**, stack à sua escolha
+2. `docker-compose.yml` e pasta `.docker/`
+3. `README` com `docker compose up -d`
+4. **Teste cruzado:** outra dupla clona e roda **sem ajuda**
+
+## Critério de pronto
+
+- [ ] `docker compose up -d` sobe tudo em **outra máquina**
+- [ ] O navegador mostra a resposta da aplicação
+- [ ] O README explica como usar
+- [ ] `.gitignore` com o que não deve ir para o Git
+
+*Extra: adicionar um banco com named volume.*
+
+## Fechamento
+
+- **Imagem** vs container
+- **Volume** e network
+- **Compose** descreve o ambiente
+
+## Dever de casa
+
+1. Trazer **2 ou 3 propostas de projeto** para os 4 meses
+2. Finalizar o repositório do ambiente
+3. Levar **3 dúvidas** para o próximo encontro
+
+# Scrum, GitHub Projects e colaboração {.fim}
+
+<p class="kicker">Próximo encontro · E02</p>
+
+Traga o repositório de hoje.

@@ -1,0 +1,408 @@
+---
+title: "Design Patterns"
+subtitle: "Módulo 1 · Encontro 4 — Soluções recorrentes para problemas recorrentes"
+format: revealjs
+---
+
+## Na aula passada
+
+- **Encapsulamento**, herança e **composição**
+- **SOLID**: um motivo para mudar em cada classe
+
+## Hoje
+
+- **Bloco 1:** o que é um pattern · Strategy · Factory
+- **Bloco 2:** Decorator · Adapter e Facade · Observer
+- **Desafio:** aplicar o **seu** pattern sorteado
+
+**Saída:** um pattern usado **por um bom motivo**
+
+# O que são Design Patterns {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Pattern é…
+
+- Uma **solução recorrente** para um problema recorrente
+- Um **nome** para a equipe se entender
+- Uma **ideia**, e não código pronto
+
+**Não é** framework, biblioteca nem regra obrigatória.
+
+## Três famílias
+
+| Família | Pergunta | Exemplos |
+|---|---|---|
+| **Criação** | Como criar objetos? | Factory, Builder, Singleton |
+| **Estruturais** | Como compor objetos? | Adapter, Decorator, Facade |
+| **Comportamentais** | Como colaboram? | Strategy, Observer, Command |
+
+## Princípio primeiro, pattern depois
+
+| Princípio (o quê) | Pattern (como) |
+|---|---|
+| **O** Open/Closed | Strategy, Decorator |
+| **D** Dependency Inversion | Adapter, Factory |
+| **S** Single Responsibility | Decorator, Facade |
+
+Pattern é uma **forma concreta** de aplicar um princípio.
+
+## Quando usar, quando evitar
+
+> Comece pela dor, não pelo catálogo.
+
+- **Use** se o problema **se repete** e a solução simples já não serve
+- **Evite** se o problema é pequeno ou ainda **não doeu**
+
+# Pattern ou não {.desafio}
+
+<p class="kicker">Mini desafio 1 · 10 min</p>
+
+Para cada caso: **qual pattern** (ou **nenhum**)?
+
+1. Exportar relatório em **PDF ou CSV**, vão entrar mais
+2. Script de 40 linhas, roda **1 vez por mês**
+3. SDK externo com **métodos diferentes** dos nossos
+4. Avisar **3 módulos** quando um pedido nasce
+
+# Strategy {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## O problema
+
+```php
+if ($customer === 'vip') {
+    $total *= 0.8;
+} elseif ($total > 100) {
+    $total *= 0.9;
+} elseif ($coupon === 'PROMO') {
+    $total -= 20;
+}
+```
+
+Toda **regra nova** edita esse `if`. E ele está no **checkout**.
+
+## Strategy: o contrato
+
+```php
+interface DiscountStrategy
+{
+    public function apply(float $subtotal): float;
+}
+```
+
+Uma classe por regra: `NoDiscount`, `PercentDiscount(10)`, `FixedDiscount(20)`.
+
+## Strategy: uma regra
+
+```php
+final class PercentDiscount implements DiscountStrategy
+{
+    public function __construct(private float $percent) {}
+
+    public function apply(float $s): float
+    {
+        return $s - $s * $this->percent / 100;
+    }
+}
+```
+
+## Strategy: quem usa
+
+```php
+$service = new CheckoutService(
+    new PercentDiscount(10),   // troque a regra aqui
+    new Pix(), $repository, $notifier,
+);
+```
+
+Nova regra = **classe nova**. O `CheckoutService` **não muda**.
+
+## Strategy · TypeScript
+
+```ts
+interface DiscountStrategy {
+  apply(subtotal: number): number;
+}
+
+class PercentDiscount implements DiscountStrategy {
+  private percent: number;
+  constructor(percent: number) { this.percent = percent; }
+
+  apply(subtotal: number): number {
+    return subtotal - (subtotal * this.percent) / 100;
+  }
+}
+```
+
+# Estratégias de desconto {.desafio}
+
+<p class="kicker">Mini desafio 2 · 10 min</p>
+
+1. Crie `DiscountStrategy`
+2. Implemente **3 regras**: nenhuma, percentual e fixa
+3. Rode **120** por cada uma
+
+*Extra: o desconto fixo nunca deixa o total negativo.*
+
+# Factory {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## O problema
+
+```php
+if ($type === 'pix') { $method = new Pix(); }
+elseif ($type === 'card') { $method = new Card(); }
+elseif ($type === 'boleto') { $method = new Boleto(); }
+```
+
+Esse trecho existe em **5 lugares**. O Boleto entrou: 5 edições.
+
+## Factory
+
+```php
+final class PaymentFactory
+{
+    public static function make(string $type): PaymentMethod
+    {
+        return match ($type) {
+            'pix' => new Pix(),
+            'card' => new Card(),
+            default => throw new InvalidArgumentException($type),
+        };
+    }
+}
+```
+
+## Factory: cuidados
+
+- O `match` **cresce** a cada tipo novo
+- Um **registro** de criadores mantém o Open/Closed
+- Chame a fábrica **na borda** (controller), e não dentro do serviço
+
+O serviço continua **recebendo** o objeto pronto.
+
+# Uma fábrica de pagamentos {.desafio}
+
+<p class="kicker">Mini desafio 3 · 10 min</p>
+
+1. Crie `PaymentFactory::make(type)`
+2. Aceite `pix`, `card` e `boleto`
+3. Tipo desconhecido **lança erro**
+
+*Extra: troque o `match` por um registro.*
+
+# Decorator {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## O problema
+
+Queremos **log**, **prefixo** e **retry** no `Notifier`.
+
+```text
+LoggingEmailNotifier      LoggingSmsNotifier
+PrefixLoggingEmailNotifier   RetryLoggingSmsNotifier
+```
+
+Cada **combinação** vira uma classe.
+
+## Decorator
+
+```php
+final class LoggingNotifier implements Notifier
+{
+    public function __construct(private Notifier $inner) {}
+
+    public function notify(string $message): void
+    {
+        error_log("enviando: {$message}");
+        $this->inner->notify($message);
+    }
+}
+```
+
+## Empilhando
+
+```php
+$notifier = new LoggingNotifier(
+    new PrefixNotifier(new EmailNotifier(), '[PEDIDOS] ')
+);
+```
+
+- Mesma **interface** por dentro e por fora
+- A **ordem** das camadas importa
+- Combina **em execução**, e não em tempo de escrita
+
+# Notificações com camadas {.desafio}
+
+<p class="kicker">Mini desafio 4 · 10 min</p>
+
+1. Crie `LoggingNotifier` e `PrefixNotifier`
+2. Empilhe sobre o `EmailNotifier`
+3. Mostre o **log** e a mensagem **final**
+
+*Extra: inverta a ordem. O que muda?*
+
+# Adapter e Facade {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## O problema do SDK
+
+```php
+// Biblioteca externa: não podemos editar
+$client->createCharge(int $amountInCents, string $currency);
+```
+
+O nosso contrato é `PaymentMethod::pay(float $amount)`.
+
+**Espalhar** o SDK pelo sistema prende tudo a ele.
+
+## Adapter
+
+```php
+final class AcmePayAdapter implements PaymentMethod
+{
+    public function __construct(private AcmePayClient $client) {}
+
+    public function pay(float $amount): string
+    {
+        $cents = (int) round($amount * 100);
+        $c = $this->client->createCharge($cents, 'brl');
+        return "AcmePay {$c['id']}";
+    }
+}
+```
+
+## Facade
+
+```php
+final class PlaceOrderFacade
+{
+    public function place(string $id): array
+    {
+        return [
+            $this->inventory->reserve($id),
+            $this->billing->charge($id),
+            $this->shipping->schedule($id),
+        ];
+    }
+}
+```
+
+## Adapter vs Facade
+
+| | Adapter | Facade |
+|---|---|---|
+| Faz | **Converte** interfaces | **Simplifica** o uso |
+| Esconde | Um SDK ou classe | Um subsistema inteiro |
+| Princípio | **D** | **S** |
+
+Trocou o fornecedor? Muda **um** arquivo: o adapter.
+
+# Adapte o gateway {.desafio}
+
+<p class="kicker">Mini desafio 5 · 10 min</p>
+
+1. Use o `AcmePayClient` **sem editá-lo**
+2. Crie `AcmePayAdapter implements PaymentMethod`
+3. Pague **108** e mostre o resultado
+
+*Extra: e se o SDK trocasse `brl` por `BRL`?*
+
+# Observer e como escolher {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6</p>
+
+## O problema
+
+O checkout chama **e-mail**, **estoque** e **analytics** diretamente.
+
+- Cada novo interessado **edita** o checkout
+- O checkout **conhece** todo mundo
+- Falha em um **derruba** o fluxo
+
+## Observer
+
+```php
+interface OrderListener
+{
+    public function onOrderPlaced(string $id, float $total): void;
+}
+
+$events->subscribe(new SendEmail());
+$events->subscribe(new UpdateStock());
+$events->dispatch('A1', 108);   // avisa todos
+```
+
+## Singleton, com ressalvas
+
+- Garante **uma instância** global
+- Mas cria **estado global** e dificulta os testes
+- Prefira **uma instância injetada** a `Config::instance()`
+
+Pergunte antes: *preciso mesmo de uma só?*
+
+## Como escolher
+
+| Sintoma | Pattern |
+|---|---|
+| `if` de regras que cresce | **Strategy** |
+| `new` espalhado por tipo | **Factory** |
+| Combinar comportamentos | **Decorator** |
+| Interface externa diferente | **Adapter** |
+| Muitos interessados no evento | **Observer** |
+
+# Eventos do pedido {.desafio}
+
+<p class="kicker">Mini desafio 6 · 10 min</p>
+
+1. Crie `OrderListener` e um `EventDispatcher`
+2. Inscreva **e-mail** e **estoque**
+3. Adicione **analytics** sem editar o `OrderPlacement`
+
+*Extra: e se um listener lançar exceção?*
+
+# Aplique o seu pattern {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O que fazer
+
+1. Leia a **carta do seu pattern**
+2. Escolha um **recorte** do projeto ou de Pedidos
+3. Implemente o **antes e o depois**
+4. Diga **quando NÃO** usaria
+
+## Critério de pronto
+
+- [ ] O **antes** funciona e tem o problema visível
+- [ ] O **depois** dá o **mesmo resultado**
+- [ ] O pattern resolve uma **dor real**
+- [ ] A dupla explica **um caso de não uso**
+
+*Extra: combinar dois patterns.*
+
+## Fechamento
+
+- **Strategy** troca o comportamento
+- **Decorator** acrescenta camadas
+- **Adapter** isola o mundo externo
+
+## Dever de casa
+
+1. **Aplique o pattern** no projeto e escreva **por quê**
+2. **Documente** problema, solução e princípio
+3. Comece o **seminário do E06** e guarde os **prompts**
+4. Leve o problema de **persistência** do projeto
+
+# IA no fluxo de engenharia {.fim}
+
+<p class="kicker">Próximo encontro · E05</p>
+
+E patterns de banco de dados.
