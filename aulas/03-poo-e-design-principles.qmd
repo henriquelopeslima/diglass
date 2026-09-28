@@ -1,0 +1,473 @@
+---
+title: "POO e Design Principles"
+subtitle: "Módulo 1 · Encontro 3 — Encapsulamento, herança, composição e SOLID"
+format: revealjs
+---
+
+## Na aula passada
+
+- **Modelos** de desenvolvimento e **Scrum**
+- **Board** e issues no GitHub Projects
+- **Commits**, **PRs** e **code review**
+
+## Hoje
+
+- **Bloco 1:** encapsulamento · herança · composição
+- **Bloco 2:** SOLID · KISS, DRY, SoC · code smells
+- **Desafio:** refatorar o `OrderService`
+
+::: {.fragment}
+**Saída:** código com **um motivo para mudar** em cada classe
+:::
+
+## Nosso domínio: Pedidos
+
+```text
+Order ──► PaymentMethod   (Pix, Card, Boleto)
+  │
+  ├────► OrderRepository  (grava o pedido)
+  └────► Notifier         (avisa o cliente)
+```
+
+Os mesmos exemplos vão até o **E06**.
+
+# Encapsulamento e abstração {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## O problema
+
+```php
+class OrderBad {
+    public array $items = [];
+    public float $total = 0;
+    public string $status = 'new';
+}
+```
+
+Nada impede `qty = -2` nem `status = 'banana'`.
+
+**Quem garante as regras?** O chamador, e alguém esquece.
+
+## Encapsulamento · PHP
+
+```php
+final class Order
+{
+    private array $items = [];
+
+    public function addItem(string $name, float $price, int $qty): void
+    {
+        if ($price <= 0 || $qty <= 0) {
+            throw new InvalidArgumentException('Valores inválidos');
+        }
+        $this->items[] = compact('name', 'price', 'qty');
+    }
+}
+```
+
+## Encapsulamento · TypeScript
+
+```ts
+class Order {
+  private items: Item[] = [];
+
+  addItem(name: string, price: number, qty: number): void {
+    if (price <= 0 || qty <= 0) throw new Error('Valores inválidos');
+    this.items.push({ name, price, qty });
+  }
+
+  total(): number {
+    return this.items.reduce((sum, i) => sum + i.price * i.qty, 0);
+  }
+}
+```
+
+## Abstração
+
+- Exponha **o quê** o objeto faz
+- Esconda **como** ele faz
+- O chamador usa `order.total()` e não sabe se é soma, cache ou cálculo
+
+Getter e setter para tudo **não** é encapsulamento.
+
+# Proteja o pedido {.desafio}
+
+<p class="kicker">Mini desafio 1 · 10 min</p>
+
+Reescreva `OrderBad` para que:
+
+1. O estado seja **privado**
+2. `addItem` **rejeite** preço e quantidade inválidos
+3. `total()` seja **calculado**, nunca atribuído
+
+*Extra: o `status` só muda por um método com regra.*
+
+# Herança e polimorfismo {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Herança · PHP
+
+```php
+abstract class Notification
+{
+    abstract public function send(string $msg): string;
+}
+
+final class EmailNotification extends Notification
+{
+    public function send(string $msg): string { return "email: $msg"; }
+}
+```
+
+`EmailNotification` **é uma** `Notification`.
+
+## Polimorfismo
+
+```php
+function notifyAll(array $channels, string $msg): void
+{
+    foreach ($channels as $n) {
+        echo $n->send($msg), "\n";
+    }
+}
+
+notifyAll([new EmailNotification(), new SmsNotification()], 'Pago');
+```
+
+Novo canal? **Nova classe.** `notifyAll` não muda.
+
+## Polimorfismo · TypeScript
+
+```ts
+interface Notification {
+  send(message: string): string;
+}
+
+const notifyAll = (channels: Notification[], msg: string) =>
+  channels.map((n) => n.send(msg));
+```
+
+O chamador conhece o **contrato**, não a classe.
+
+## Herdar com cuidado
+
+- Só herde se **"X é um Y"** for verdade em **todos** os casos
+- A subclasse fica **presa** à superclasse
+- Mudar a base pode quebrar **todas** as filhas
+
+Herança para **reaproveitar código** é um sinal de alerta.
+
+# Um novo canal sem mexer no resto {.desafio}
+
+<p class="kicker">Mini desafio 2 · 10 min</p>
+
+1. Rode `notifyAll` com **Email** e **SMS**
+2. Adicione `PushNotification`
+3. **Não edite** `notifyAll` nem as outras classes
+
+*Extra: troque a classe abstrata por uma interface.*
+
+# Composição vs herança {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## A explosão de classes
+
+```text
+PixOrder                  CardOrder
+PixOrderComDesconto       CardOrderComDesconto
+```
+
+**2 pagamentos × 2 variações = 4 classes.** Entrou o Boleto? **Mais 2.**
+
+## Composição
+
+```php
+final class Checkout
+{
+    public function __construct(private PaymentMethod $method) {}
+
+    public function run(float $total): string
+    {
+        return $this->method->pay($total);
+    }
+}
+```
+
+`Checkout` **tem um** `PaymentMethod`.
+
+## Composição em números
+
+| | Herança | Composição |
+|---|---|---|
+| 2 pagamentos, 2 descontos | 4 classes | 2 + 2 |
+| Entra o Boleto | +2 classes | +1 classe |
+| Trocar em execução | Não | **Sim** |
+
+Prefira **ter um** a **ser um**.
+
+## Estático vs instância
+
+```php
+final class Money
+{
+    private function __construct(private int $cents) {}
+
+    public static function fromReais(float $v): self
+    {
+        return new self((int) round($v * 100));
+    }
+}
+```
+
+`static` para **criar**. Instância para **comportamento**.
+
+# Herança ou composição {.desafio}
+
+<p class="kicker">Mini desafio 3 · 10 min</p>
+
+1. **Redesenhe** a hierarquia com composição
+2. Conte as classes com **Boleto**
+3. Justifique em uma frase
+
+*Extra: `Money::fromReais` e `add`.*
+
+# SOLID: S e O {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## SOLID em uma linha {.smaller}
+
+| | Princípio | Pergunta |
+|---|---|---|
+| S | Single Responsibility | Quantos motivos para mudar? |
+| O | Open/Closed | Novo caso exige editar? |
+| L | Liskov | O filho substitui o pai? |
+| I | Interface Segregation | Depende do que não usa? |
+| D | Dependency Inversion | Cria ou recebe? |
+
+## S: a classe que faz tudo {.smaller}
+
+```php
+class OrderService {
+    public function checkout(array $items, string $type): string {
+        // 1. valida o pedido       2. calcula o total
+        // 3. aplica o desconto     4. cobra (if pix / if card)
+        // 5. grava no banco        6. envia o e-mail
+    }
+}
+```
+
+**6 motivos para mudar.** Cada um quebra os outros cinco.
+
+## S: cada motivo, um colaborador
+
+| Responsabilidade | Vira |
+|---|---|
+| Regra de desconto | `DiscountCalculator` |
+| Cobrança | `PaymentMethod` |
+| Gravação | `OrderRepository` |
+| Aviso ao cliente | `Notifier` |
+| Orquestração | `CheckoutService` |
+
+## S: o resultado {.smaller}
+
+```php
+public function checkout(Order $order): string
+{
+    if ($order->isEmpty()) {
+        throw new DomainException('Pedido vazio');
+    }
+    $total = $this->discount->apply($order->subtotal());
+    $receipt = $this->payment->pay($total);
+    $this->repository->save($order, $total);
+    $this->notifier->notify("Pedido pago: {$receipt}");
+
+    return $receipt;
+}
+```
+
+## O: aberto para extensão
+
+```php
+final class Boleto implements PaymentMethod
+{
+    public function pay(float $amount): string
+    {
+        return sprintf('Boleto: R$ %.2f', $amount);
+    }
+}
+```
+
+Novo pagamento: **código novo**. Nada existente foi editado.
+
+# Divida o serviço {.desafio}
+
+<p class="kicker">Mini desafio 4 · 10 min</p>
+
+Com o `OrderService` do gabarito:
+
+1. Separe **4 colaboradores**
+2. O serviço os **recebe** no construtor
+3. Adicione `Boleto` **sem editar** o que existe
+
+*Extra: o desconto vira interface.*
+
+# SOLID: L, I e D {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## L: o filho que quebra o pai
+
+```php
+final class Boleto implements PaymentMethod
+{
+    public function refund(float $a): string
+    {
+        throw new LogicException('Boleto não reembolsa');
+    }
+}
+```
+
+`PaymentMethod` exige `pay()` e `refund()`. Quem chama `refund()` no tipo base **leva uma exceção**.
+
+## L e I: interfaces menores {.smaller}
+
+```php
+interface Payable    { public function pay(float $amount): string; }
+interface Refundable { public function refund(float $amount): string; }
+
+final class Boleto implements Payable { /* só pay() */ }
+
+final class Card implements Payable, Refundable { /* pay() e refund() */ }
+
+function refundIt(Refundable $r): string { return $r->refund(10); }
+```
+
+`Boleto` **não é** `Refundable`: o erro aparece na hora, não em produção.
+
+## D: cria ou recebe?
+
+```php
+// Antes: cria a dependência
+public function __construct() { $this->repo = new SqlOrderRepository(); }
+```
+
+```php
+// Depois: recebe uma abstração
+public function __construct(private OrderRepository $repo) {}
+```
+
+Agora dá para trocar por um repositório em **memória** nos testes.
+
+## D · TypeScript
+
+```ts
+class CheckoutService {
+  private repository: OrderRepository;
+
+  constructor(repository: OrderRepository) {
+    this.repository = repository;
+  }
+}
+```
+
+`new CheckoutService(new InMemoryOrderRepository())`: depender de **abstrações** torna o código testável.
+
+# Substitua sem quebrar {.desafio}
+
+<p class="kicker">Mini desafio 5 · 10 min</p>
+
+Um problema para cada princípio:
+
+1. **L:** `Boleto` lança erro no `refund()`
+2. **I:** interface com **4 métodos** demais
+3. **D:** serviço faz `new SqlRepository()`
+
+# KISS, DRY, SoC e smells {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6</p>
+
+## Três princípios curtos
+
+- **KISS:** a solução mais **simples** que resolve
+- **DRY:** uma regra, **um lugar**
+- **SoC:** cada camada cuida de **um assunto**
+
+Regra prática: duplicou **duas** vezes? Ok. **Três**? Extraia.
+
+## Code smells {.smaller}
+
+| Sintoma | Costuma indicar |
+|---|---|
+| Método com 60 linhas | Faz coisa demais (S) |
+| Número mágico `if ($t == 1)` | Falta um nome ou uma constante |
+| Mesmo trecho em 3 lugares | Falta extrair (DRY) |
+| `if` dentro de `if` | Caminho feliz escondido |
+| 6 parâmetros | Falta um objeto |
+
+## Quando NÃO aplicar
+
+> O princípio serve ao código, e não o contrário.
+
+- Script de 30 linhas **não** precisa de 12 arquivos
+- Abstração cedo demais é **custo**, não ganho
+- Pergunte: **quem muda isso, e por quê?**
+
+# Ache os smells {.desafio}
+
+<p class="kicker">Mini desafio 6 · 10 min</p>
+
+```php
+function price($t, $q, $c, $s, $d) {
+    if ($t == 1) {
+        $p = $q * 10 + ($c == 'SP' ? 5 : 15);
+    } elseif ($t == 2) {
+        $p = $q * 20 + ($c == 'SP' ? 5 : 15);
+    } else { $p = 0; }
+    return $p;
+}
+```
+
+**Liste 4 smells** e refatore **um**, sem mudar o resultado.
+
+# Refatore o OrderService {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+## O que fazer
+
+1. **Liste as violações** (mínimo 3)
+2. Aplique **pelo menos 2 princípios** diferentes
+3. Refatore em **passos pequenos**, rodando a cada passo
+4. **Justifique** cada decisão em uma frase
+
+## Critério de pronto
+
+- [ ] O código refatorado gera a **mesma saída** do original
+- [ ] Cada classe tem **um motivo** para mudar
+- [ ] As dependências entram por **construtor**
+- [ ] Adicionar `Boleto` **não edita** classes existentes
+
+*Extra: desconto por cupom, também sem editar.*
+
+## Fechamento
+
+- **Encapsulamento** protege as regras
+- **Composição** flexibiliza
+- **SOLID** dá um motivo para mudar a cada classe
+
+## Dever de casa
+
+1. **Refatore** um trecho do projeto: aponte o smell e o princípio
+2. **Documente** por que faz sentido (ou por que não)
+3. **Pesquise** o pattern sorteado e leve 3 perguntas
+4. Leve **3 dúvidas** para o próximo encontro
+
+# Design Patterns {.fim}
+
+<p class="kicker">Próximo encontro · E04</p>
+
+Os patterns que resolvem o que vimos hoje.

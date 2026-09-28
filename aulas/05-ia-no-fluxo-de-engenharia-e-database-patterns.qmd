@@ -1,0 +1,371 @@
+---
+title: "IA no fluxo de engenharia"
+subtitle: "Módulo 1 · Encontro 5 — E patterns de persistência"
+format: revealjs
+---
+
+## Na aula passada
+
+- **Strategy**, **Factory**, **Decorator**, **Adapter**, **Observer**
+- Pattern **pela dor**, e não pelo catálogo
+
+## Hoje
+
+- **Bloco 1:** onde a IA ajuda · prompts · ferramentas
+- **Bloco 2:** Active Record vs Repository · CQRS · decidir
+- **Desafio:** persistência do projeto **com IA**
+
+::: {.fragment}
+**Saída:** uma decisão **sua**, registrada
+:::
+
+# Onde a IA ajuda e atrapalha {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Ajuda e atrapalha
+
+| Ajuda | Atrapalha |
+|---|---|
+| Explicar código e erros | Decidir a arquitetura sozinha |
+| Rascunho de testes | Inventar APIs que não existem |
+| Sugerir alternativas | Sugerir versões antigas |
+| Gerar diagramas | Propor overengineering |
+
+## Riscos de copiar e colar
+
+- Código que **parece certo** e está errado
+- **Segredos** e dados pessoais colados no chat
+- Código de **licença ou origem** desconhecida
+- Menos **raciocínio** seu, com o tempo
+
+Nunca cole `.env`, tokens nem dados de clientes.
+
+## A regra do curso
+
+> A IA sugere. Você decide.
+
+A IA acelera quem já sabe pensar. Não quem terceiriza decisões.
+
+Se o erro for para produção, **de quem é o erro?** De quem fez o merge.
+
+# Ajuda ou risco {.desafio}
+
+<p class="kicker">Mini desafio 1 · 10 min</p>
+
+Classifique cada uso:
+
+1. Pedir a explicação de um **stack trace**
+2. Colar o **`.env`** para "ajudar a depurar"
+3. Deixar a IA **escolher o banco** sozinha
+4. Gerar o **rascunho** de um teste e revisar
+
+# Prompts técnicos {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Anatomia de um bom prompt
+
+1. **Papel:** quem a IA deve ser
+2. **Contexto:** domínio, regras, volume, equipe, prazo
+3. **Tarefa:** o que você quer
+4. **Restrições:** o que não pode
+5. **Formato:** como responder
+
+## Prompt ruim, prompt bom {.smaller}
+
+```text
+faz um repository pra mim
+```
+
+```text
+Papel: dev backend sênior em PHP.
+Contexto: pedidos de e-commerce, 3 devs, SQLite.
+Tarefa: salvar Order sem acoplar o domínio ao banco.
+Restrições: sem framework; testável sem banco.
+Peça: 3 alternativas com prós, contras e quando NÃO usar.
+```
+
+## Contexto muda a resposta {.smaller}
+
+| Informe | Porque |
+|---|---|
+| **Volume** de dados | Define se precisa escalar |
+| **Equipe** e prazo | Define a complexidade aceitável |
+| **Regras** de negócio | Define o modelo |
+| **Restrições** | Evita a solução "bonita" impossível |
+
+## Itere e peça o contraditório
+
+- Peça **alternativas**, e não "a melhor"
+- Peça os **riscos** e **quando não usar**
+- Pergunte: *"o que você não sabe sobre o meu contexto?"*
+- A **segunda** pergunta vale mais que a primeira
+
+# Reescreva o prompt {.desafio}
+
+<p class="kicker">Mini desafio 2 · 10 min</p>
+
+Melhore este prompt:
+
+`faz um repository pra mim`
+
+Inclua **contexto**, **restrições** e o **formato** da resposta.
+
+*Extra: peça os riscos da sugestão.*
+
+# Ferramentas e validação {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Mermaid: diagrama como código
+
+```text
+sequenceDiagram
+    participant C as CheckoutService
+    participant P as PaymentMethod
+    C->>P: pay(total)
+    P-->>C: recibo
+```
+
+Renderiza no **Obsidian** e no **GitHub**. Fica no repositório.
+
+## Cursor, GPT e Gemini
+
+- **Cursor:** lê o projeto e propõe edições em **diff**
+- **GPT** e **Gemini:** análise e **segunda opinião**
+- Faça a **mesma pergunta** nos dois e compare
+- **Discordância** é sinal para investigar
+
+Leia o **diff** antes de aceitar.
+
+## Rotina de validação
+
+1. **Rode** o código
+2. **Teste**, inclusive o caso de erro
+3. **Leia** o diff linha a linha
+4. Peça um **contra-argumento**
+5. Confira na **documentação oficial**
+
+# Mermaid e segunda opinião {.desafio}
+
+<p class="kicker">Mini desafio 3 · 10 min</p>
+
+1. Escreva um **diagrama de sequência** do checkout
+2. Faça a **mesma pergunta** a duas IAs
+3. Anote **onde elas discordam**
+
+*Extra: qual das duas está certa? Como você provou?*
+
+# Active Record vs Repository {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Active Record
+
+```php
+final class OrderRecord
+{
+    public function save(): void { /* INSERT OR REPLACE ... */ }
+
+    public static function find(PDO $db, string $id): ?self
+    {
+        /* SELECT ... WHERE id = :id */
+    }
+}
+```
+
+O objeto **conhece o banco**. Simples e rápido para CRUD.
+
+## Repository
+
+```php
+interface OrderRepository
+{
+    public function save(Order $order): void;
+
+    public function find(string $id): ?Order;
+}
+```
+
+O domínio pede e recebe **entidades**. O armazenamento fica **escondido**.
+
+## Data Mapper
+
+```text
+Order (entidade)  ◄──►  OrderMapper  ◄──►  linha da tabela
+  não sabe do banco      converte           id | total | status
+```
+
+- A entidade **não conhece** SQL
+- O mapper faz `toRow()` e `fromRow()`
+- O repositório usa o mapper
+
+## Testar sem banco
+
+```php
+$mem = new InMemoryOrderRepository();
+$mem->save(new Order('R2', 50.0));
+
+echo (new PayOrder($mem))->run('R2');   // paid
+```
+
+Com **Repository**, o teste roda **sem banco**. Com Active Record, precisa de banco.
+
+## Como escolher
+
+| | Active Record | Repository + Mapper |
+|---|---|---|
+| Classes | Poucas | Mais |
+| Regras de negócio | Simples | **Complexas** |
+| Teste sem banco | Difícil | **Fácil** |
+| Bom para | CRUD | Domínio rico |
+
+# Active Record ou Repository {.desafio}
+
+<p class="kicker">Mini desafio 4 · 10 min</p>
+
+Persista um `Order` em **SQLite** nos **dois** estilos:
+
+1. **Active Record**: `save()` e `find()`
+2. **Repository** com **Mapper** e uma versão **em memória**
+
+*Extra: qual dos dois você usaria no projeto? Por quê?*
+
+# Transaction Script e CQRS {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Transaction Script
+
+```php
+$db->beginTransaction();
+try {
+    baixarEstoque($db, $sku, $qty);   // lança se faltar
+    gravarPedido($db, $id, $total);
+    $db->commit();
+} catch (Throwable $e) {
+    $db->rollBack();
+    throw $e;
+}
+```
+
+Um caso de uso, **um procedimento**, **uma transação**.
+
+## Quando o script deixa de servir
+
+- A **mesma regra** aparece em vários scripts
+- Os `if` viram uma **teia**
+- Ninguém sabe **onde** está a regra
+
+Aí o **modelo de domínio** (Repository) compensa.
+
+## CQRS
+
+```text
+COMANDO  ──►  escreve  orders  ──►  atualiza  daily_sales
+                                              ▲
+CONSULTA ─────────────────────────────────────┘  só lê
+```
+
+**Separa** escrever de ler. A leitura tem um modelo **próprio**.
+
+## O custo do CQRS
+
+- **Duas vias** para manter
+- A leitura pode ficar **atrasada** (consistência eventual)
+- Sem o problema de escala, é **overengineering**
+
+> 2 mil pedidos por dia? Provavelmente não.
+
+# Transaction Script e CQRS {.desafio}
+
+<p class="kicker">Mini desafio 5 · 10 min</p>
+
+1. `placeOrder` em **uma transação** com **rollback** se faltar estoque
+2. Prove que o segundo pedido **não deixa rastro**
+3. Crie uma **consulta** que só lê `daily_sales`
+
+*Extra: onde o CQRS atrapalharia aqui?*
+
+# Decidindo com IA {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6</p>
+
+## O fluxo da decisão
+
+```text
+Problema → Prompt com contexto → IA sugere alternativas
+   → VOCÊ valida → Decisão humana → Registro
+```
+
+Se não entendeu, testou e validou, **volte ao prompt**.
+
+## Registro de decisão
+
+```markdown
+## Contexto
+O problema e as restrições.
+
+## Alternativas (sugeridas pela IA)
+A, B e C, com prós e contras.
+
+## Decisão
+Escolhemos B, porque...
+
+## Riscos
+O que pode dar errado.
+```
+
+## Quando a IA está errada
+
+- **"Use X em tudo"**: conclusão genérica
+- SQL por **concatenação** de texto
+- Esquece a **transação**
+- Sugere uma **escala** que você não tem
+
+Avise no **PR** quando o código veio de IA e o que você validou.
+
+# Valide e registre a decisão {.desafio}
+
+<p class="kicker">Mini desafio 6 · 10 min</p>
+
+Uma "IA" respondeu (**exemplo fictício**):
+
+`Use Active Record em tudo; monte a query com "...WHERE id = '$id'"; não precisa de transação; adote CQRS com fila desde já.`
+
+**Ache os problemas** e escreva o **registro de decisão**.
+
+# Persistência do projeto com IA {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+## O que fazer
+
+1. Escreva o **prompt com contexto** do seu projeto
+2. Colete as **alternativas** da IA
+3. **Valide** e escolha **um** pattern
+4. **Implemente** um recorte e **registre**
+
+## Critério de pronto
+
+- [ ] Prompt com **contexto e restrições**
+- [ ] **3 alternativas** da IA registradas
+- [ ] Decisão **humana**, com justificativa
+- [ ] Recorte implementado e **rodando**
+- [ ] Anotado **o que a IA errou**
+
+*Extra: peça um contra-argumento à recomendação.*
+
+## Fechamento
+
+- **Prompt** com contexto, restrições e formato
+- **Valide** antes de aceitar
+- **Registre** a decisão
+
+## Dever de casa
+
+1. **Finalize** 1 Database Pattern com a IA como apoio
+2. **Registre** a decisão
+3. Prepare o **seminário do E06**: 1 princípio + 1 pattern
+4. Leve **3 dúvidas**

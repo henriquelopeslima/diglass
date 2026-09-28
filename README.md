@@ -4,14 +4,15 @@ Slides do minicurso **Full Cycle**, feitos com [Quarto](https://quarto.org) + [R
 
 ## Estrutura
 
-- `index.qmd` — página inicial com links para todas as aulas.
-- `aulas/*.qmd` — um deck de slides por aula/módulo.
+- `index.qmd` — página inicial com links para todos os módulos.
+- `modulos/*.qmd` — páginas de cada módulo com links para as respectivas aulas.
+- `aulas/*.qmd` — um deck de slides por aula.
 - `_quarto.yml` — configuração do projeto (formato, tema, etc).
 
 ## Adicionando uma nova aula
 
 1. Crie um arquivo em `aulas/NN-nome-da-aula.qmd` seguindo o padrão dos decks existentes (ex. `aulas/01-docker-para-aplicacoes-web.qmd`).
-2. Adicione um link para ele em `index.qmd`.
+2. Adicione um link para ele no respectivo módulo em `modulos/modulo-NN.qmd`.
 
 ## Preview e build
 

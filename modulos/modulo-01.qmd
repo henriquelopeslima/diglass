@@ -1,0 +1,19 @@
+---
+title: "Módulo 1"
+subtitle: "Engenharia de Software e IA Aplicada"
+format: html
+---
+
+::: {.nav-back}
+[← Voltar aos módulos](../index.html)
+:::
+
+Slides e materiais das aulas do Módulo 1.
+
+## Aulas {#aulas}
+
+- [**Docker para aplicações web**<span class="card-desc">Containers, imagens, volumes, networks e Docker Compose para aplicações web.</span>](../aulas/01-docker-para-aplicacoes-web.html)
+- [**Ágil e desenvolvimento colaborativo**<span class="card-desc">Scrum, GitHub Projects, boas práticas de repositório, convenções de código e code review.</span>](../aulas/02-agil-e-desenvolvimento-colaborativo.html)
+- [**POO e Design Principles**<span class="card-desc">Encapsulamento, herança, composição, contratos e os princípios SOLID na prática.</span>](../aulas/03-poo-e-design-principles.html)
+- [**Design Patterns**<span class="card-desc">Padrões criacionais, estruturais e comportamentais para resolver problemas comuns.</span>](../aulas/04-design-patterns.html)
+- [**IA no fluxo de engenharia e Database Patterns**<span class="card-desc">Patterns de persistência, prompts assistidos e uso de IA no fluxo de desenvolvimento.</span>](../aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html)

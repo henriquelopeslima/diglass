@@ -143,6 +143,17 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal .kicker::after { content: " ]"; }
 .reveal .muted { color: var(--muted); }
 
+/* notas / tarefas extras: tamanho menor e papel secundário */
+.reveal p:has(> em) {
+  font-size: 25px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin-top: 24px;
+}
+.reveal section.desafio p:has(> em) {
+  color: rgba(36, 26, 21, 0.7);
+}
+
 /* listas: setas técnicas em vez de bolinhas, numeração em caixa colchete */
 .reveal ul, .reveal ol,
 .reveal .slides ul, .reveal .slides ol {
@@ -159,38 +170,43 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
   font-weight: 700;
   color: var(--terracota-bright);
 }
-.reveal ol > li { counter-increment: item; padding-left: 76px; }
+.reveal ol > li { counter-increment: item; padding-left: 80px; }
 .reveal ol > li::before {
   content: "[" counter(item, decimal-leading-zero) "]";
   position: absolute;
   left: 0;
-  top: 0;
-  width: 58px;
-  box-sizing: border-box;
-  text-align: center;
+  top: 0.15em;
   font-family: var(--mono);
   font-size: .62em;
-  font-weight: 700;
-  letter-spacing: 0;
-  color: var(--terracota);
-  border: 1px solid var(--terracota);
-  padding: 6px 8px;
-  line-height: 1;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--terracota-bright);
 }
 .reveal li > ul, .reveal li > ol { margin-top: 12px; }
 
-/* lista de tarefas (- [ ]); o Pandoc envolve o checkbox num <label> */
-.reveal li:has(input[type="checkbox"])::before { display: none; }
-.reveal li:has(input[type="checkbox"]) { padding-left: 0; }
+/* lista de tarefas (- [ ]); substitui o quadrado desenhado por colchetes [ ] técnicos */
+.reveal li:has(input[type="checkbox"]) {
+  position: relative;
+  padding-left: 58px;
+}
+.reveal li:has(input[type="checkbox"])::before {
+  content: "[ ]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: .85em;
+  font-weight: 700;
+  color: var(--terracota-bright);
+  line-height: 1.25;
+  display: block;
+}
+.reveal li:has(input[type="checkbox"]:checked)::before {
+  content: "[x]";
+}
 .reveal li > input[type="checkbox"],
 .reveal .slides ul.task-list li input[type="checkbox"] {
-  appearance: none;
-  width: 32px;
-  height: 32px;
-  margin: 0 22px -6px 0;
-  border: 2px solid var(--terracota);
-  border-radius: 0;
-  background: transparent;
+  display: none;
 }
 
 /* fragmentos com mais movimento */
@@ -336,7 +352,7 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
   background: rgba(36, 26, 21, 0.08);
 }
 .reveal section.desafio ul > li::before { color: var(--clay); }
-.reveal section.desafio ol > li::before { color: var(--ink); border-color: var(--ink); }
+.reveal section.desafio ol > li::before { color: var(--clay); }
 .reveal section.desafio em, .reveal section.desafio .muted { color: rgba(36, 26, 21, .7); }
 .reveal section.desafio :not(pre) > code { background: rgba(36, 26, 21, 0.12); color: var(--clay); }
 .reveal section.desafio pre, .reveal section.desafio pre.sourceCode { border-color: rgba(36, 26, 21, 0.4); background: rgba(36, 26, 21, 0.06); }
@@ -346,7 +362,7 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal section.desafio::after { color: rgba(36, 26, 21, .6); }
 .reveal section.desafio::before { border-color: var(--ink); }
 .reveal section.desafio blockquote { border-left-color: var(--ink); color: var(--ink); }
-.reveal section.desafio li > input[type="checkbox"] { border-color: var(--ink); }
+.reveal section.desafio li:has(input[type="checkbox"])::before { color: var(--ink); }
 
 /* ---------- fim ---------- */
 .reveal .slides section.fim h1 { font-family: var(--mono); text-transform: uppercase; font-size: 78px; margin-bottom: 30px; }
@@ -376,3 +392,103 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 
 /* transições de fundo mais perceptíveis entre tipos de slide */
 .reveal.backgrounds .slide-background { transition: background-color .5s ease, background-image .5s ease; }
+
+/* ---------- ciclo de vida do software / pipeline ---------- */
+.reveal .pipeline-container {
+  margin: 34px 0 26px;
+}
+.reveal .pipeline-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.reveal .p-node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 6px;
+  background: rgba(36, 26, 21, 0.35);
+  border: 1px solid rgba(193, 89, 45, 0.25);
+  box-sizing: border-box;
+}
+.reveal .p-step {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--terracota);
+  letter-spacing: .06em;
+}
+.reveal .p-name {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.reveal .p-node.p-active {
+  background: rgba(193, 89, 45, 0.16);
+  border-color: var(--terracota-bright);
+}
+.reveal .p-node.p-active .p-step {
+  color: var(--terracota-bright);
+}
+.reveal .p-node.p-active .p-name {
+  color: var(--terracota-bright);
+}
+.reveal .p-sep {
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--terracota);
+  opacity: .5;
+  flex-shrink: 0;
+}
+.reveal .pipeline-return {
+  position: relative;
+  margin-top: 6px;
+}
+.reveal .return-svg {
+  width: 100%;
+  height: 30px;
+  display: block;
+}
+.reveal .return-caption {
+  text-align: center;
+  margin-top: 2px;
+}
+.reveal .return-caption span {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--terracota-bright);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+.reveal .pipeline-takeaway {
+  border-left: 3px solid var(--terracota);
+  padding: 20px 26px;
+  background: rgba(0, 0, 0, 0.22);
+  margin-top: 22px;
+}
+.reveal .takeaway-core {
+  font-size: 28px;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.reveal .takeaway-contrast {
+  font-size: 22px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.reveal .takeaway-contrast em {
+  font-style: normal;
+  color: var(--terracota-bright);
+}
+.reveal .takeaway-contrast strong {
+  color: var(--text);
+}
+
