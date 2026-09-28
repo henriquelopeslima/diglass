@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Full Cycle",
-    "section": "",
-    "text": "Slides das aulas do Módulo 1."
-  },
-  {
-    "objectID": "index.html#aulas",
-    "href": "index.html#aulas",
-    "title": "Full Cycle",
-    "section": "Aulas",
-    "text": "Aulas\n\nE01 — Docker para aplicações web\nE02 — Ágil e desenvolvimento colaborativo\nE03 — POO e Design Principles\nE04 — Design Patterns\nE05 — IA no fluxo de engenharia e Database Patterns\nE06 — Seminários e fechamento do módulo"
-  },
-  {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#na-aula-passada",
     "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#na-aula-passada",
     "title": "IA no fluxo de engenharia",

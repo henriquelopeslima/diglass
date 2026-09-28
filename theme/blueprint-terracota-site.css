@@ -1,0 +1,162 @@
+/* Página inicial (formato "html" do Quarto) — mesma linguagem visual dos
+   slides: grid de papel milimetrado, tons de terracota, tipografia técnica. */
+
+@font-face { font-family: "Inter"; font-weight: 400; font-display: swap; src: url("fonts/inter-400.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 600; font-display: swap; src: url("fonts/inter-600.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 800; font-display: swap; src: url("fonts/inter-800.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; font-display: swap; src: url("fonts/jetbrains-mono-400.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; font-display: swap; src: url("fonts/jetbrains-mono-700.woff2") format("woff2"); }
+
+:root {
+  --bg: #1c130f;
+  --grid-line: rgba(196, 108, 66, 0.14);
+  --line: #4a3226;
+  --text: #f3e7d9;
+  --muted: #b79a86;
+  --terracota: #c1592d;
+  --terracota-bright: #e2794c;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  min-height: 100%;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* quarto (theme: none) não gera um wrapper: o body é o próprio container */
+body {
+  margin: 0 auto;
+  max-width: 860px;
+  min-height: 100vh;
+  padding: 96px 24px 120px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+a { color: var(--terracota-bright); }
+
+/* título */
+header#title-block-header {
+  position: relative;
+  margin: 0 0 56px;
+  padding-left: 28px;
+}
+header#title-block-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 6px;
+  background: var(--terracota);
+}
+header#title-block-header h1.title {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin: 0 0 20px;
+  color: var(--text);
+}
+header#title-block-header p.subtitle {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 16px;
+  border: 1px solid var(--terracota);
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--terracota-bright);
+  opacity: 1;
+}
+header#title-block-header p.subtitle::before { content: "[ "; }
+header#title-block-header p.subtitle::after { content: " ]"; }
+
+body > p:first-of-type {
+  margin: 0 0 56px;
+  font-size: 20px;
+  color: var(--muted);
+}
+
+/* "Aulas" e demais headings de seção */
+body > h2 {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin: 0 0 32px;
+}
+body > h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 14px;
+  background: var(--terracota);
+}
+
+/* grade de cards das aulas */
+h2#aulas + ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+  counter-reset: aula;
+}
+h2#aulas + ul li { margin: 0; counter-increment: aula; }
+h2#aulas + ul li a {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 22px 24px;
+  border: 1px dashed var(--terracota);
+  background: rgba(0, 0, 0, .18);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-style .15s ease, background-color .15s ease, transform .15s ease;
+}
+h2#aulas + ul li a:hover,
+h2#aulas + ul li a:focus-visible {
+  border-style: solid;
+  background: rgba(193, 89, 45, .14);
+  transform: translateY(-3px);
+}
+h2#aulas + ul li a::before {
+  content: "[ E" counter(aula, decimal-leading-zero) " ]";
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--terracota-bright);
+  width: fit-content;
+}
+
+/* rodapé simples */
+body::after {
+  content: "Full Cycle · Módulo 1";
+  display: block;
+  margin-top: 80px;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: .7;
+}

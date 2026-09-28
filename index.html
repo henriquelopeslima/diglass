@@ -26,112 +26,51 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-html-640605f58ae58ee79329c070719e555b.min.css" rel="stylesheet" append-hash="true" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d76b89148f2051d413c67903796ad183.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
 
 
+<link rel="stylesheet" href="theme/blueprint-terracota-site.css">
 </head>
 
-<body class="fullcontent quarto-light">
+<body>
 
-<div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<header id="title-block-header">
 <h1 class="title">Full Cycle</h1>
-<p class="subtitle lead">Módulo 1 — Engenharia de Software e IA Aplicada</p>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
+<p class="subtitle">Módulo 1 — Engenharia de Software e IA Aplicada</p>
 
 </header>
 
 
 <p>Slides das aulas do Módulo 1.</p>
-<section id="aulas" class="level2">
-<h2 class="anchored" data-anchor-id="aulas">Aulas</h2>
+<h2 id="aulas">Aulas</h2>
 <ul>
-<li><a href="aulas/01-docker-para-aplicacoes-web.html">E01 — Docker para aplicações web</a></li>
-<li><a href="aulas/02-agil-e-desenvolvimento-colaborativo.html">E02 — Ágil e desenvolvimento colaborativo</a></li>
-<li><a href="aulas/03-poo-e-design-principles.html">E03 — POO e Design Principles</a></li>
-<li><a href="aulas/04-design-patterns.html">E04 — Design Patterns</a></li>
-<li><a href="aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html">E05 — IA no fluxo de engenharia e Database Patterns</a></li>
-<li><a href="aulas/06-seminarios-e-fechamento-do-modulo.html">E06 — Seminários e fechamento do módulo</a></li>
+<li><a href="aulas/01-docker-para-aplicacoes-web.html">Docker para aplicações web</a></li>
+<li><a href="aulas/02-agil-e-desenvolvimento-colaborativo.html">Ágil e desenvolvimento colaborativo</a></li>
+<li><a href="aulas/03-poo-e-design-principles.html">POO e Design Principles</a></li>
+<li><a href="aulas/04-design-patterns.html">Design Patterns</a></li>
+<li><a href="aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html">IA no fluxo de engenharia e Database Patterns</a></li>
+<li><a href="aulas/06-seminarios-e-fechamento-do-modulo.html">Seminários e fechamento do módulo</a></li>
 </ul>
 
 
-</section>
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
+    const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+    tabsets.forEach(function(tabset) {
+      const tabby = new Tabby('#' + tabset.id);
+    });
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -223,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
         },
         interactive: true,
         interactiveBorder: 10,
-        theme: 'quarto',
+        theme: 'light-border',
         placement: 'bottom-start',
       };
       if (contentFn) {
@@ -523,7 +462,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-</div> <!-- /content -->
 
 
 
