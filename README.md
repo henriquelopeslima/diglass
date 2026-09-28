@@ -10,22 +10,23 @@ Slides do minicurso **Full Cycle**, feitos com [Quarto](https://quarto.org) + [R
 
 ## Adicionando uma nova aula
 
-1. Crie um arquivo em `aulas/NN-nome-da-aula.qmd` seguindo o padrão do `aulas/01-introducao.qmd`.
+1. Crie um arquivo em `aulas/NN-nome-da-aula.qmd` seguindo o padrão dos decks existentes (ex. `aulas/01-docker-para-aplicacoes-web.qmd`).
 2. Adicione um link para ele em `index.qmd`.
 
-## Preview local
+## Preview e build
+
+Não precisa ter o Quarto instalado: os comandos abaixo rodam tudo dentro de um
+container Docker (a imagem é construída automaticamente na primeira vez).
 
 ```bash
-quarto preview
+make preview   # http://localhost:4200, com live-reload
+make render    # gera o site estático em _site/
+make shell     # shell dentro do container, pra rodar outros comandos quarto
+make clean     # remove _site/ e .quarto/
 ```
 
-## Build
-
-```bash
-quarto render
-```
-
-Os arquivos gerados vão para `_site/` (ignorado pelo git).
+Se preferir ter o Quarto instalado localmente, os comandos equivalentes são
+`quarto preview` e `quarto render`.
 
 ## Deploy
 

@@ -1,10 +1,16 @@
 ---
 title: "Full Cycle"
+subtitle: "Módulo 1 — Engenharia de Software e IA Aplicada"
 format: html
 ---
 
-Slides do minicurso **Full Cycle**.
+Slides das aulas do Módulo 1.
 
 ## Aulas
 
-- [Aula 1 – Introdução](aulas/01-introducao.html)
+- [Docker para aplicações web](aulas/01-docker-para-aplicacoes-web.html)
+- [Ágil e desenvolvimento colaborativo](aulas/02-agil-e-desenvolvimento-colaborativo.html)
+- [POO e Design Principles](aulas/03-poo-e-design-principles.html)
+- [Design Patterns](aulas/04-design-patterns.html)
+- [IA no fluxo de engenharia e Database Patterns](aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html)
+- [Seminários e fechamento do módulo](aulas/06-seminarios-e-fechamento-do-modulo.html)

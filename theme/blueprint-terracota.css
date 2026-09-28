@@ -1,0 +1,378 @@
+/* Tema "Blueprint Terracota" para Quarto + Reveal.js — canvas 1280x720 (16:9)
+   Estética de prancheta de engenharia: grid de papel milimetrado, cantos de
+   registro, rótulos monoespaçados em caixa alta, tudo em tons de terracota
+   sobre um fundo escuro (em vez do azulão clássico de blueprint).
+   Tipos de slide (via `# Heading {.classe}`): secao, desafio, fim */
+
+@font-face { font-family: "Inter"; font-weight: 400; font-display: swap; src: url("fonts/inter-400.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 600; font-display: swap; src: url("fonts/inter-600.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 800; font-display: swap; src: url("fonts/inter-800.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; font-display: swap; src: url("fonts/jetbrains-mono-400.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; font-display: swap; src: url("fonts/jetbrains-mono-700.woff2") format("woff2"); }
+
+:root {
+  --bg: #1c130f;
+  --paper: #241a15;
+  --grid-line: rgba(196, 108, 66, 0.14);
+  --line: #4a3226;
+  --text: #f3e7d9;
+  --muted: #b79a86;
+  --terracota: #c1592d;
+  --terracota-bright: #e2794c;
+  --clay: #6f2f1a;
+  --sand: #e8c9a0;
+  --ink: #241a15;
+  --rodape: "Full Cycle · Módulo 1";
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --grid-size: 36px;
+}
+
+html, body { margin: 0; height: 100%; background: var(--bg); }
+.reveal { background-color: var(--bg); transition: background-color .35s ease; }
+
+/* grid de papel milimetrado, repetido em todo slide "folha" */
+.reveal .slides section {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-color: var(--bg);
+}
+
+/* fundo por tipo de slide (seletor descendente: o Quarto pode envolver
+   headings de nível 1 numa <section> extra sem classe) */
+.reveal .slides section.secao { background-color: var(--clay); }
+.reveal .slides section.desafio { background-color: var(--sand); }
+.reveal .slides section.fim {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(135deg, var(--bg) 0%, #2c1c14 100%);
+  background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), cover;
+}
+
+/* ---------- base ---------- */
+.reveal { font-family: var(--sans); font-size: 40px; font-weight: 400; color: var(--text); }
+.reveal .slides { text-align: left; }
+.reveal .slides section:not(:has(section)) {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 72px 96px 92px;
+  line-height: 1.4;
+}
+.reveal .slides section.present:not(:has(section)) { display: flex !important; flex-direction: column; align-items: flex-start; }
+.reveal .slides section > h2 + *:not(aside) { margin-top: auto; }
+.reveal .slides section > :nth-last-child(1 of :not(aside)) { margin-bottom: auto; }
+.reveal .slides section > * { max-width: 100%; }
+
+/* marca de registro no canto superior esquerdo, como em pranchas técnicas
+   (title-slide e .fim usam ::before para a barra lateral, então ficam de fora) */
+.reveal .slides section:not(:has(section)):not(.fim):not(#title-slide)::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid var(--terracota);
+  border-left: 2px solid var(--terracota);
+  opacity: .8;
+}
+
+/* rodapé, estilo carimbo de prancha */
+.reveal .slides section:not(.secao):not(.desafio)::after {
+  content: var(--rodape);
+  position: absolute;
+  left: 96px;
+  bottom: 26px;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: var(--mono);
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  line-height: 1.15;
+  margin: 0;
+  text-shadow: none;
+}
+.reveal h1 { font-size: 64px; font-weight: 700; }
+.reveal h2 { font-size: 50px; font-weight: 700; margin-bottom: 36px; }
+.reveal h2::after {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 4px;
+  margin-top: 16px;
+  background: var(--terracota);
+  animation: growBar .5s ease-out .15s both;
+}
+.reveal h3 { font-size: 34px; font-weight: 700; color: var(--terracota-bright); margin-bottom: 24px; text-transform: uppercase; }
+
+@keyframes growBar {
+  from { width: 0; opacity: 0; }
+  to { width: 96px; opacity: 1; }
+}
+
+.reveal p { margin: 0 0 22px; font-family: var(--sans); }
+.reveal strong { color: var(--terracota-bright); font-weight: 700; }
+.reveal em { color: var(--muted); font-style: normal; }
+.reveal a { color: var(--terracota-bright); }
+
+/* kicker: rótulo de carimbo técnico, tipo "[ BLOCO 1 · TÓPICO 2 ]" */
+.reveal .kicker {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 5px 16px;
+  border: 1px solid var(--terracota);
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--terracota-bright);
+}
+.reveal .kicker::before { content: "[ "; }
+.reveal .kicker::after { content: " ]"; }
+.reveal .muted { color: var(--muted); }
+
+/* listas: setas técnicas em vez de bolinhas, numeração em caixa colchete */
+.reveal ul, .reveal ol,
+.reveal .slides ul, .reveal .slides ol {
+  display: block; margin: 0 0 22px; padding: 0; list-style: none; counter-reset: item;
+}
+.reveal li { position: relative; margin: 0 0 16px; padding-left: 58px; }
+.reveal ul > li::before {
+  content: "»";
+  position: absolute;
+  left: 6px;
+  top: -.08em;
+  font-family: var(--mono);
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--terracota-bright);
+}
+.reveal ol > li { counter-increment: item; padding-left: 76px; }
+.reveal ol > li::before {
+  content: "[" counter(item, decimal-leading-zero) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 58px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: .62em;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--terracota);
+  border: 1px solid var(--terracota);
+  padding: 6px 8px;
+  line-height: 1;
+}
+.reveal li > ul, .reveal li > ol { margin-top: 12px; }
+
+/* lista de tarefas (- [ ]); o Pandoc envolve o checkbox num <label> */
+.reveal li:has(input[type="checkbox"])::before { display: none; }
+.reveal li:has(input[type="checkbox"]) { padding-left: 0; }
+.reveal li > input[type="checkbox"],
+.reveal .slides ul.task-list li input[type="checkbox"] {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  margin: 0 22px -6px 0;
+  border: 2px solid var(--terracota);
+  border-radius: 0;
+  background: transparent;
+}
+
+/* fragmentos com mais movimento */
+.reveal .fragment { transition: all .5s ease; }
+.reveal .fragment.fade-up { transform: translateY(24px); opacity: 0; }
+.reveal .fragment.fade-up.visible { transform: translateY(0); opacity: 1; }
+
+/* citação: linha de cota técnica */
+.reveal blockquote {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 34px;
+  padding: 6px 0 6px 32px;
+  border-left: 4px solid var(--terracota);
+  background: none;
+  box-shadow: none;
+  font-family: var(--mono);
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  text-transform: none;
+}
+.reveal blockquote p { margin: 0; }
+
+/* tabelas: planilha técnica */
+.reveal table { width: 100%; margin: 0 0 24px; border-collapse: collapse; font-size: 30px; font-family: var(--mono); }
+.reveal table th {
+  padding: 10px 20px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--terracota-bright);
+  border-bottom: 2px solid var(--terracota);
+}
+.reveal table td:first-child { white-space: nowrap; }
+.reveal table td { padding: 14px 20px; text-align: left; border-bottom: 1px dashed var(--line); }
+.reveal table tr:last-child td { border-bottom: 0; }
+.reveal table tr { animation: rowIn .4s ease-out both; }
+
+@keyframes rowIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* código: caixa de detalhe técnico, borda tracejada */
+.reveal code { font-family: var(--mono); }
+.reveal :not(pre) > code {
+  padding: 2px 10px;
+  background: rgba(193, 89, 45, 0.16);
+  color: var(--terracota-bright);
+  font-size: .82em;
+}
+.reveal pre, .reveal pre.sourceCode {
+  width: 100%;
+  margin: 0 0 24px;
+  border: 1px dashed var(--terracota);
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: none;
+  font-size: 26px;
+  line-height: 1.45;
+}
+.reveal .smaller pre { font-size: 19px; }
+.reveal pre code, .reveal pre.sourceCode code {
+  display: block;
+  max-height: none;
+  padding: 20px 30px;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-size: 1em;
+  line-height: inherit;
+}
+
+/* cores da sintaxe: usa o highlight "monokai" nativo do Quarto (highlight-style
+   no _quarto.yml), que já gera as regras `code span.kw` etc. */
+
+/* colunas (usar <div class="cols"><div>…</div><div>…</div></div>) */
+.reveal .cols { display: flex; gap: 48px; align-items: flex-start; }
+.reveal .cols > div { flex: 1; min-width: 0; }
+
+/* ---------- título (gerado pelo Quarto) ---------- */
+#title-slide,
+.reveal .slides > section:first-child {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(135deg, var(--bg) 0%, #2c1c14 100%);
+  background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), cover;
+  padding-top: 200px;
+}
+#title-slide::before,
+.reveal .slides > section:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background: var(--terracota);
+}
+#title-slide h1.title,
+.reveal .slides > section:first-child h1.title {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: 78px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text);
+}
+#title-slide p.subtitle,
+.reveal .slides > section:first-child p.subtitle {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--terracota-bright);
+  border: 1px solid var(--terracota);
+  padding: 6px 16px;
+  opacity: 1;
+}
+
+/* ---------- seção ---------- */
+.reveal .slides section.secao { color: var(--text); }
+.reveal section.secao .kicker { color: var(--sand); border-color: var(--sand); }
+.reveal section.secao h1 { font-size: 88px; line-height: 1.08; }
+.reveal section.secao p:not(.kicker) { margin-top: 28px; font-size: 38px; color: rgba(243, 231, 217, .85); font-family: var(--sans); }
+.reveal section.secao::after { color: rgba(243, 231, 217, .7); }
+.reveal section.secao::before { border-color: var(--sand); }
+
+/* ---------- mini desafio ---------- */
+.reveal .slides section.desafio { color: var(--ink); }
+.reveal section.desafio h1, .reveal section.desafio h2, .reveal section.desafio strong { color: var(--ink); }
+.reveal section.desafio h1 { font-size: 58px; margin-bottom: 22px; }
+.reveal section.desafio h2::after { background: var(--clay); }
+.reveal section.desafio .kicker {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: rgba(36, 26, 21, 0.08);
+}
+.reveal section.desafio ul > li::before { color: var(--clay); }
+.reveal section.desafio ol > li::before { color: var(--ink); border-color: var(--ink); }
+.reveal section.desafio em, .reveal section.desafio .muted { color: rgba(36, 26, 21, .7); }
+.reveal section.desafio :not(pre) > code { background: rgba(36, 26, 21, 0.12); color: var(--clay); }
+.reveal section.desafio pre, .reveal section.desafio pre.sourceCode { border-color: rgba(36, 26, 21, 0.4); background: rgba(36, 26, 21, 0.06); }
+.reveal section.desafio pre code { color: var(--ink); }
+.reveal section.desafio table th { color: var(--ink); border-bottom-color: var(--ink); }
+.reveal section.desafio table td { border-bottom-color: rgba(36, 26, 21, 0.25); }
+.reveal section.desafio::after { color: rgba(36, 26, 21, .6); }
+.reveal section.desafio::before { border-color: var(--ink); }
+.reveal section.desafio blockquote { border-left-color: var(--ink); color: var(--ink); }
+.reveal section.desafio li > input[type="checkbox"] { border-color: var(--ink); }
+
+/* ---------- fim ---------- */
+.reveal .slides section.fim h1 { font-family: var(--mono); text-transform: uppercase; font-size: 78px; margin-bottom: 30px; }
+.reveal section.fim p:not(.kicker) { font-size: 36px; color: var(--muted); font-family: var(--sans); }
+.reveal section.fim::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background: var(--terracota);
+  border: none;
+}
+
+/* ---------- UI do reveal ---------- */
+.reveal .progress { height: 4px; color: var(--terracota); background: rgba(193, 89, 45, 0.15); }
+.reveal .slide-number {
+  right: 28px;
+  bottom: 20px;
+  background: none;
+  font: 700 clamp(14px, 1vw, 20px) var(--mono);
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+.reveal .slide-number a { color: inherit; text-decoration: none; }
+
+/* transições de fundo mais perceptíveis entre tipos de slide */
+.reveal.backgrounds .slide-background { transition: background-color .5s ease, background-image .5s ease; }

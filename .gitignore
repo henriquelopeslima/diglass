@@ -1,3 +1,8 @@
 /.quarto/
 /_site/
+/site_libs/
+aulas/*.html
+index.html
 .DS_Store
+
+**/*.quarto_ipynb
