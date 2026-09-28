@@ -250,7 +250,6 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal .slides > section:first-child {
   background: linear-gradient(135deg, var(--bg) 0%, #16213a 100%);
   padding-top: 200px;
-  position: relative;
 }
 #title-slide::before,
 .reveal .slides > section:first-child::before {
