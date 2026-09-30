@@ -2,6 +2,7 @@
 title: "Design Patterns"
 subtitle: "Módulo 1 · Encontro 4 — Soluções recorrentes para problemas recorrentes"
 format: revealjs
+footer: "Full Cycle · Módulo 1 · Encontro 4"
 ---
 
 ## Na aula passada

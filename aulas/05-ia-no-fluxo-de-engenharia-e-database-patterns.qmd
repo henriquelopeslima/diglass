@@ -2,6 +2,7 @@
 title: "IA no fluxo de engenharia"
 subtitle: "Módulo 1 · Encontro 5 — E patterns de persistência"
 format: revealjs
+footer: "Full Cycle · Módulo 1 · Encontro 5"
 ---
 
 ## Na aula passada

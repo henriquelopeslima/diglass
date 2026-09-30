@@ -2,6 +2,7 @@
 title: "Testes unitários no backend"
 subtitle: "Módulo 2 · Encontro 9 — PHPUnit, Jest e geração de testes com IA"
 format: revealjs
+footer: "Full Cycle · Módulo 2 · Encontro 9"
 ---
 
 ## Na aula passada

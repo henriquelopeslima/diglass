@@ -2,6 +2,7 @@
 title: "Qualidade de software e cultura de testes"
 subtitle: "Módulo 2 · Encontro 7 — Valor do QA, pirâmide de testes e test doubles"
 format: revealjs
+footer: "Full Cycle · Módulo 2 · Encontro 7"
 ---
 
 ## Na aula passada

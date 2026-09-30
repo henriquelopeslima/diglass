@@ -2,6 +2,7 @@
 title: "Testabilidade e design para testes"
 subtitle: "Módulo 2 · Encontro 8 — AAA, TDD e inversão de dependência"
 format: revealjs
+footer: "Full Cycle · Módulo 2 · Encontro 8"
 ---
 
 ## Na aula passada

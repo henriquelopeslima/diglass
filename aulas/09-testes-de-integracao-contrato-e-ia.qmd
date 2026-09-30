@@ -2,6 +2,7 @@
 title: "Testes de integração, contrato e IA"
 subtitle: "Módulo 2 · Encontro 10 — Repositórios, contrato de API e edge cases com IA"
 format: revealjs
+footer: "Full Cycle · Módulo 2 · Encontro 10"
 ---
 
 ## Na aula passada

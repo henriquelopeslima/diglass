@@ -2,6 +2,7 @@
 title: "Ágil e desenvolvimento colaborativo"
 subtitle: "Módulo 1 · Encontro 2 — Scrum, GitHub Projects, código padronizado e code review"
 format: revealjs
+footer: "Full Cycle · Módulo 1 · Encontro 2"
 ---
 
 ## Na aula passada
