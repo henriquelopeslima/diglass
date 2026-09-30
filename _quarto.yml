@@ -15,9 +15,17 @@ format:
     theme: none
     page-layout: article
     anchor-sections: false
+    include-in-header:
+      - file: theme/theme-head.html
+    include-after-body:
+      - file: theme/theme-toggle.html
   revealjs:
     css: theme/blueprint-terracota.css
     theme: night
+    include-in-header:
+      - file: theme/theme-head.html
+    include-after-body:
+      - file: theme/theme-toggle.html
     slide-level: 2
     width: 1280
     height: 720

@@ -1,0 +1,24 @@
+<script>
+  (function() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var urlTheme = params.get('theme');
+      if (urlTheme === 'light' || urlTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', urlTheme);
+        try { localStorage.setItem('diglass-theme', urlTheme); } catch (e) {}
+        return;
+      }
+      var saved = localStorage.getItem('diglass-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+        return;
+      }
+      var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      // Default padrão: escuro (Blueprint Terracota original), ou claro se sistema solicitar
+      var theme = prefersLight ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
