@@ -15,8 +15,28 @@
   --muted: #b79a86;
   --terracota: #c1592d;
   --terracota-bright: #e2794c;
+  --card-bg: rgba(0, 0, 0, .18);
+  --card-hover-bg: rgba(193, 89, 45, .14);
+  --nav-bg: rgba(0, 0, 0, .25);
+  --btn-bg: rgba(28, 19, 15, 0.88);
+  --btn-shadow: rgba(0, 0, 0, 0.35);
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+[data-theme="light"] {
+  --bg: #f9f5f0;
+  --grid-line: rgba(193, 89, 45, 0.12);
+  --line: #d8c4b6;
+  --text: #241a15;
+  --muted: #7d6556;
+  --terracota: #c1592d;
+  --terracota-bright: #b84c1f;
+  --card-bg: rgba(255, 255, 255, 0.72);
+  --card-hover-bg: rgba(193, 89, 45, 0.12);
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --btn-bg: rgba(249, 245, 240, 0.9);
+  --btn-shadow: rgba(80, 50, 30, 0.12);
 }
 
 * { box-sizing: border-box; }
@@ -109,35 +129,92 @@ body > h2::after {
   background: var(--terracota);
 }
 
-/* grade de cards das aulas */
-h2#aulas + ul {
+/* navegação de retorno */
+body:has(.nav-back) {
+  display: flex;
+  flex-direction: column;
+}
+body > .nav-back {
+  order: -1;
+  margin-bottom: 36px;
+  align-self: flex-start;
+}
+.nav-back p {
+  margin: 0;
+}
+.nav-back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  background: var(--nav-bg, rgba(0, 0, 0, .25));
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease, transform .15s ease;
+}
+.nav-back a:hover,
+.nav-back a:focus-visible {
+  color: var(--terracota-bright);
+  border-color: var(--terracota);
+  background: var(--card-hover-bg, rgba(193, 89, 45, .15));
+  transform: translateX(-3px);
+}
+
+/* grade de cards compartilhada (aulas e módulos) */
+h2#aulas + ul,
+h2#modulos + ul,
+h2#módulos + ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 18px;
-  counter-reset: aula;
 }
+
+h2#aulas + ul { counter-reset: aula; }
 h2#aulas + ul li { margin: 0; counter-increment: aula; }
-h2#aulas + ul li a {
+
+h2#modulos + ul,
+h2#módulos + ul {
+  counter-reset: modulo;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+h2#modulos + ul li,
+h2#módulos + ul li { margin: 0; counter-increment: modulo; }
+
+h2#aulas + ul li a,
+h2#modulos + ul li a,
+h2#módulos + ul li a {
   display: flex;
   flex-direction: column;
   gap: 12px;
   height: 100%;
   padding: 22px 24px;
   border: 1px dashed var(--terracota);
-  background: rgba(0, 0, 0, .18);
+  background: var(--card-bg, rgba(0, 0, 0, .18));
   color: var(--text);
   text-decoration: none;
   transition: border-style .15s ease, background-color .15s ease, transform .15s ease;
 }
+
 h2#aulas + ul li a:hover,
-h2#aulas + ul li a:focus-visible {
+h2#aulas + ul li a:focus-visible,
+h2#modulos + ul li a:hover,
+h2#modulos + ul li a:focus-visible,
+h2#módulos + ul li a:hover,
+h2#módulos + ul li a:focus-visible {
   border-style: solid;
-  background: rgba(193, 89, 45, .14);
+  background: var(--card-hover-bg, rgba(193, 89, 45, .14));
   transform: translateY(-3px);
 }
+
 h2#aulas + ul li a::before {
   content: "[ E" counter(aula, decimal-leading-zero) " ]";
   font-family: var(--mono);
@@ -148,9 +225,46 @@ h2#aulas + ul li a::before {
   width: fit-content;
 }
 
+h2#modulos + ul li a::before,
+h2#módulos + ul li a::before {
+  content: "[ M" counter(modulo, decimal-leading-zero) " ]";
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--terracota-bright);
+  width: fit-content;
+}
+
+/* elementos internos dos cards */
+h2#aulas + ul li a strong,
+h2#modulos + ul li a strong,
+h2#módulos + ul li a strong {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.card-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.card-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--terracota-bright);
+  padding-top: 6px;
+  margin-top: auto;
+  opacity: .9;
+}
+
 /* rodapé simples */
 body::after {
-  content: "Full Cycle · Módulo 1";
+  content: "Full Cycle";
   display: block;
   margin-top: 80px;
   font-family: var(--mono);
@@ -160,3 +274,80 @@ body::after {
   color: var(--muted);
   opacity: .7;
 }
+
+body:has(h2#aulas)::after {
+  content: "Full Cycle · Módulo 1";
+}
+
+/* botão de alternância de tema no estilo blueprint técnico [ lua/sol ] */
+.theme-toggle {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 10000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  min-height: 34px;
+  border: 1px solid var(--terracota);
+  background: var(--btn-bg, rgba(28, 19, 15, 0.88));
+  color: var(--terracota-bright);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 10px var(--btn-shadow, rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color .2s ease, border-color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  line-height: 1;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--terracota-bright);
+  border-color: var(--terracota-bright);
+  background: var(--card-hover-bg, rgba(193, 89, 45, 0.16));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(193, 89, 45, 0.25);
+  outline: none;
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.theme-toggle-icon svg {
+  display: block;
+}
+
+.theme-toggle-bracket {
+  opacity: .8;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    top: 14px;
+    right: 14px;
+    padding: 5px 10px;
+    min-height: 30px;
+    gap: 4px;
+  }
+}
+
+

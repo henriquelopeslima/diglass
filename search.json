@@ -1,5 +1,264 @@
 [
   {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#na-aula-passada",
+    "href": "aulas/08-testes-unitarios-no-backend.html#na-aula-passada",
+    "title": "Testes unitários no backend",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nPadrão AAA e ciclo TDD (Red-Green-Refactor)\nAs 3 Leis de Uncle Bob\nInversão de dependência e anti-patterns\n\nPergunta: Quem completou o ciclo TDD em casa? O que travou?"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#hoje",
+    "href": "aulas/08-testes-unitarios-no-backend.html#hoje",
+    "title": "Testes unitários no backend",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: o que é (e não é) unitário · PHPUnit/Jest · mocks e stubs na prática\nBloco 2: LLMs gerando testes · prompts eficazes · auditoria de testes de IA\n\n\nSaída: testes unitários de verdade, com e sem IA"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#é",
+    "href": "aulas/08-testes-unitarios-no-backend.html#é",
+    "title": "Testes unitários no backend",
+    "section": "É",
+    "text": "É\n\nTesta uma unidade isolada\nSem banco, rede, filesystem ou relógio real\nRoda em milissegundos\nDeterminístico: mesmo input, mesmo output"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#não-é",
+    "href": "aulas/08-testes-unitarios-no-backend.html#não-é",
+    "title": "Testes unitários no backend",
+    "section": "Não é",
+    "text": "Não é\n\nUm teste que precisa de sleep(), container rodando ou falha “às vezes”.\n\nIsso é integração disfarçada."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#a-estrutura-não-muda",
+    "href": "aulas/08-testes-unitarios-no-backend.html#a-estrutura-não-muda",
+    "title": "Testes unitários no backend",
+    "section": "A estrutura não muda",
+    "text": "A estrutura não muda\n\ndescribe/it no Jest = métodos test* no PHPUnit\n\nSintaxe muda, AAA continua o mesmo."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#phpunit",
+    "href": "aulas/08-testes-unitarios-no-backend.html#phpunit",
+    "title": "Testes unitários no backend",
+    "section": "PHPUnit",
+    "text": "PHPUnit\nfinal class OrderTest extends TestCase\n{\n    public function test_aplica_desconto_acima_de_100(): void\n    {\n        $order = new Order([new Item('Livro', 120.0)]);\n        $total = $order-&gt;calcularTotalComDesconto();\n        $this-&gt;assertEquals(108.0, $total);\n    }\n}"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#jest-vitest",
+    "href": "aulas/08-testes-unitarios-no-backend.html#jest-vitest",
+    "title": "Testes unitários no backend",
+    "section": "Jest / Vitest",
+    "text": "Jest / Vitest\ndescribe('Order', () =&gt; {\n  it('aplica desconto acima de R$ 100', () =&gt; {\n    const order = new Order([{ nome: 'Livro', preco: 120 }]);\n    expect(order.calcularTotalComDesconto()).toBe(108.0);\n  });\n});"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#além-do-caminho-feliz",
+    "href": "aulas/08-testes-unitarios-no-backend.html#além-do-caminho-feliz",
+    "title": "Testes unitários no backend",
+    "section": "Além do caminho feliz",
+    "text": "Além do caminho feliz\n\nUm bom mock simula latência, timeout e erros reais.\n\nNão só a resposta de sucesso."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#simulando-caos",
+    "href": "aulas/08-testes-unitarios-no-backend.html#simulando-caos",
+    "title": "Testes unitários no backend",
+    "section": "Simulando caos",
+    "text": "Simulando caos\nconst gatewayInstavel = {\n  autorizar: vi.fn()\n    .mockRejectedValueOnce(new Error('timeout'))\n    .mockResolvedValueOnce({ sucesso: true })\n};\nTesta se o OrderService tenta de novo (retry) após o timeout."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#o-que-a-ia-faz-bem",
+    "href": "aulas/08-testes-unitarios-no-backend.html#o-que-a-ia-faz-bem",
+    "title": "Testes unitários no backend",
+    "section": "O que a IA faz bem",
+    "text": "O que a IA faz bem\n\nDecompõe a árvore de sintaxe do código\nInfere ramificações condicionais\nGera suítes inteiras em segundos"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#do-digitador-ao-arquiteto-de-qualidade",
+    "href": "aulas/08-testes-unitarios-no-backend.html#do-digitador-ao-arquiteto-de-qualidade",
+    "title": "Testes unitários no backend",
+    "section": "Do digitador ao arquiteto de qualidade",
+    "text": "Do digitador ao arquiteto de qualidade\n\nA IA escreve. Você valida se cobre a regra de negócio real.\n\nA IA mantém o mesmo rigor do 1º ao 100º teste."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#o-que-incluir-no-prompt",
+    "href": "aulas/08-testes-unitarios-no-backend.html#o-que-incluir-no-prompt",
+    "title": "Testes unitários no backend",
+    "section": "O que incluir no prompt",
+    "text": "O que incluir no prompt\n\nContexto completo da função/classe\nFramework oficial declarado (Jest, PHPUnit…)\nExigir caminho feliz + erros explicitamente"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#prompt-eficaz",
+    "href": "aulas/08-testes-unitarios-no-backend.html#prompt-eficaz",
+    "title": "Testes unitários no backend",
+    "section": "Prompt eficaz",
+    "text": "Prompt eficaz\nAtue como Engenheiro de QA Sênior. Gere testes\nem Vitest para OrderService.aprovar(order).\nCubra: (1) pagamento aprovado, (2) recusado,\n(3) gateway lança timeout. Use padrão AAA."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#asserção-tautológica",
+    "href": "aulas/08-testes-unitarios-no-backend.html#asserção-tautológica",
+    "title": "Testes unitários no backend",
+    "section": "Asserção tautológica",
+    "text": "Asserção tautológica\nit('calcula total', () =&gt; {\n  const total = order.calcularTotal();\n  expect(total).toBe(total); // sempre passa!\n});\nO maior risco de aceitar testes de IA sem revisão."
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#checklist-de-auditoria",
+    "href": "aulas/08-testes-unitarios-no-backend.html#checklist-de-auditoria",
+    "title": "Testes unitários no backend",
+    "section": "Checklist de auditoria",
+    "text": "Checklist de auditoria\n\nA asserção compara com um valor esperado e conhecido?\nCobre os cenários pedidos no prompt?\nO teste falha de verdade se eu quebrar a implementação?"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#o-que-fazer",
+    "href": "aulas/08-testes-unitarios-no-backend.html#o-que-fazer",
+    "title": "Testes unitários no backend",
+    "section": "O que fazer",
+    "text": "O que fazer\n\nEscreva um prompt eficaz para uma classe do projeto\nGere a suíte com um LLM\nAudite cada teste com o checklist\nCorrija o que estiver tautológico ou superficial"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#fechamento",
+    "href": "aulas/08-testes-unitarios-no-backend.html#fechamento",
+    "title": "Testes unitários no backend",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nTeste unitário real não toca I/O\nPHPUnit e Jest: mesma estrutura, sintaxe diferente\nIA acelera, você audita"
+  },
+  {
+    "objectID": "aulas/08-testes-unitarios-no-backend.html#dever-de-casa",
+    "href": "aulas/08-testes-unitarios-no-backend.html#dever-de-casa",
+    "title": "Testes unitários no backend",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nQuestionário “Testes Automatizados com IA” na plataforma\nGerar 3 testes com IA e auditar cada um\nLevar 3 dúvidas para o próximo encontro"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#na-aula-passada",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#na-aula-passada",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nDuplas apresentaram 1 princípio + 1 pattern\nFeedback coletivo sobre o uso de IA no design\nMódulo 1 fechado: código com responsabilidades separadas\n\nPergunta: Código bem desenhado (SOLID) já é código confiável?"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#hoje",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#hoje",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: valor econômico do QA · pirâmide de testes · sorvete de casquinha\nBloco 2: testes como documentação viva · test doubles · velocidade × pressão\n\n\nSaída: todos sabendo classificar e priorizar testes"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#testar-não-é-burocracia",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#testar-não-é-burocracia",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Testar não é burocracia",
+    "text": "Testar não é burocracia\n\nTestar é reduzir o custo de mudar o sistema amanhã.\n\nNão é “procurar bug por procurar”."
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#a-regra-dos-dez-boehm",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#a-regra-dos-dez-boehm",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "A regra dos dez (Boehm)",
+    "text": "A regra dos dez (Boehm)\n\n\n\nFase\nCusto de corrigir\n\n\n\n\nRequisitos / Design\n$1x\n\n\nDev / teste unitário\n$10x\n\n\nQA / Homologação\n$100x\n\n\nProdução\n$1000x+\n\n\n\nO custo cresce ~10x por fase."
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-princípio-de-dijkstra",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-princípio-de-dijkstra",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "O princípio de Dijkstra",
+    "text": "O princípio de Dijkstra\n\n“Testes podem mostrar a presença de bugs, nunca a sua ausência.”\n\n\nA suíte não prova correção\nEla reduz o risco a um nível aceitável\nFunciona como rede de segurança contra regressão"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#três-camadas",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#três-camadas",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Três camadas",
+    "text": "Três camadas\n\n\n\nCamada\nVelocidade\nIsolamento\n\n\n\n\nUnitário\n&lt; 5ms\nTotal (sem I/O)\n\n\nIntegração\n100ms – 2s\nParcial (DB/API)\n\n\nE2E (UI)\n5s – 30s+\nNenhum (sistema real)\n\n\n\nMais testes embaixo, menos no topo."
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#analogia-da-casa",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#analogia-da-casa",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Analogia da casa",
+    "text": "Analogia da casa\n\nUnitário: testar a lâmpada na bancada\nIntegração: rosquear a lâmpada e checar a fiação\nE2E: entrar na casa, ligar o disjuntor, checar a sala\n\n\nCada camada testa uma coisa diferente"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#a-pirâmide-invertida",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#a-pirâmide-invertida",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "A pirâmide invertida",
+    "text": "A pirâmide invertida\n\nPoucos testes unitários, muitos testes manuais ou E2E.\n\n\nSuíte lenta\nCara de manter\nSujeita a Flaky Tests"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-cenário-da-paysafe",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-cenário-da-paysafe",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "O cenário da PaySafe",
+    "text": "O cenário da PaySafe\n\nDeploy demora 1h30\nCentenas de testes abrem Chrome de verdade\nGateway de pagamento real é chamado nos testes"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#flaky-tests",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#flaky-tests",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Flaky Tests",
+    "text": "Flaky Tests\n\nPassam e falham sem nenhuma mudança no código.\n\nVocês confiariam nessa suíte?"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#especificação-executável",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#especificação-executável",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Especificação executável",
+    "text": "Especificação executável\nit('deve aplicar desconto de 10% para compras acima de R$ 100', () =&gt; {\n  // ...\n});\nO nome do teste é o contrato do método."
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#documentação-que-nunca-mente",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#documentação-que-nunca-mente",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Documentação que nunca mente",
+    "text": "Documentação que nunca mente\n\nREADME pode ficar desatualizado\nTeste quebra quando o comportamento muda\nO CI garante isso a cada commit\n\n\nTeste bom = especificação sempre em dia"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#três-papéis-diferentes",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#três-papéis-diferentes",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Três papéis diferentes",
+    "text": "Três papéis diferentes\n\n\n\nTipo\nO que faz\n\n\n\n\nStub\nResposta fixa e combinada\n\n\nMock\nResponde e verifica se foi chamado certo\n\n\nFake\nImplementação simplificada mas funcional"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#stub-e-mock-no-domínio-de-pedidos",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#stub-e-mock-no-domínio-de-pedidos",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Stub e Mock no domínio de Pedidos",
+    "text": "Stub e Mock no domínio de Pedidos\n// Stub: resposta fixa\nconst gatewayStub = {\n  autorizar: () =&gt; ({ sucesso: true, transacaoId: 'TX1' })\n};\n\n// Mock/spy: registra chamadas\nconst emailMock = vi.spyOn(notifier, 'enviar');\nexpect(emailMock).toHaveBeenCalledWith(\n  'cliente@email.com', 'Pedido aprovado'\n);"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#não-temos-tempo-para-testar",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#não-temos-tempo-para-testar",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "“Não temos tempo para testar”",
+    "text": "“Não temos tempo para testar”\n\nSem teste, a velocidade cai com o tempo.\n\n\nMedo de mexer no código\nRegressão constante\nComece pela área de maior risco"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-cenário",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-cenário",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "O cenário",
+    "text": "O cenário\n\nDeploy de 1h30, testes abrindo Chrome real\nGateway de pagamento real chamado nos testes\nSistema quebra em produção por falta de testes de borda"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-que-entregar",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#o-que-entregar",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "O que entregar",
+    "text": "O que entregar\n\nQual anti-padrão está presente\nComo redistribuir a pirâmide\nQual Test Double resolve as chamadas reais ao gateway\n\nExtra: qual seria o primeiro PR da reestruturação?"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#fechamento",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#fechamento",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nPirâmide de testes: unitário, integração, E2E\nSorvete de casquinha: o anti-padrão a evitar\nStub × Mock × Fake"
+  },
+  {
+    "objectID": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#dever-de-casa",
+    "href": "aulas/06-qualidade-de-software-e-cultura-de-testes.html#dever-de-casa",
+    "title": "Qualidade de software e cultura de testes",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nQuestionário “Testes de Software” na plataforma\nListar 3 partes do projeto por ordem de risco\nLevar 3 dúvidas para o próximo encontro"
+  },
+  {
     "objectID": "aulas/04-design-patterns.html#na-aula-passada",
     "href": "aulas/04-design-patterns.html#na-aula-passada",
     "title": "Design Patterns",
@@ -11,7 +270,7 @@
     "href": "aulas/04-design-patterns.html#hoje",
     "title": "Design Patterns",
     "section": "Hoje",
-    "text": "Hoje\n\nBloco 1: o que é um pattern · Strategy · Factory\nBloco 2: Decorator · Adapter e Facade · Observer\nDesafio: aplicar o seu pattern sorteado\n\nSaída: um pattern usado por um bom motivo"
+    "text": "Hoje\n\nBloco 1: o que é um pattern · Strategy · Factory\nBloco 2: Decorator · Adapter e Facade · Observer\nDesafio: aplicar o seu pattern sorteado\n\n\nSaída: um pattern usado por um bom motivo"
   },
   {
     "objectID": "aulas/04-design-patterns.html#pattern-é",
@@ -221,7 +480,7 @@
     "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#como-um-software-nasce",
     "title": "Ágil e desenvolvimento colaborativo",
     "section": "Como um software nasce",
-    "text": "Como um software nasce\n\nideia → requisitos → design → código → teste → deploy → feedback\n\nTodo modelo organiza esse mesmo ciclo. O que muda é quando o cliente vê o resultado."
+    "text": "Como um software nasce\n\n  \n    \n      [01]\n      Ideia\n    \n    →\n    \n      [02]\n      Requisitos\n    \n    →\n    \n      [03]\n      Design\n    \n    →\n    \n      [04]\n      Código\n    \n    →\n    \n      [05]\n      Teste\n    \n    →\n    \n      [06]\n      Deploy\n    \n    →\n    \n      [07]\n      Feedback\n    \n  \n\n  \n    \n      \n      \n    \n    \n      ↺ o feedback fecha o ciclo e guia a próxima iteração\n    \n  \n\n\n\n  \n    Todo modelo organiza esse mesmo ciclo.\n  \n  \n    O que muda entre Cascata e Ágil é quando o cliente vê o resultado e qual é o custo de errar."
   },
   {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#cascata",
@@ -361,7 +620,7 @@
     "href": "aulas/02-agil-e-desenvolvimento-colaborativo.html#o-fluxo",
     "title": "Ágil e desenvolvimento colaborativo",
     "section": "O fluxo",
-    "text": "O fluxo\n\nbranch → commits → push → PR → review → merge\n\nNunca commite direto na main."
+    "text": "O fluxo\n\n  \n    \n      [01]\n      Branch\n    \n    →\n    \n      [02]\n      Commits\n    \n    →\n    \n      [03]\n      Push\n    \n    →\n    \n      [04]\n      PR\n    \n    →\n    \n      [05]\n      Review\n    \n    →\n    \n      [06]\n      Merge\n    \n  \n\n  \n    \n      \n      \n    \n    \n      ↺ o merge integra na main · sincronize e parta para a próxima branch\n    \n  \n\n\n\n  \n    Nunca commite direto na main\n  \n  \n    O fluxo garante isolamento no desenvolvimento, visibilidade no PR e qualidade no code review antes da integração."
   },
   {
     "objectID": "aulas/02-agil-e-desenvolvimento-colaborativo.html#conventional-commits",
@@ -452,7 +711,7 @@
     "href": "aulas/01-docker-para-aplicacoes-web.html#hoje",
     "title": "Docker para aplicações web",
     "section": "Hoje",
-    "text": "Hoje\n\nBloco 1: por que containers · imagens · volumes e networks\nBloco 2: Compose · nginx + PHP ou Node · quebre e conserte\nDesafio: ambiente padrão da turma\n\nSaída: todos com Docker funcionando"
+    "text": "Hoje\n\nBloco 1: por que containers · imagens · volumes e networks\nBloco 2: Compose · nginx + PHP ou Node · quebre e conserte\nDesafio: ambiente padrão da turma\n\n\nSaída: todos com Docker funcionando"
   },
   {
     "objectID": "aulas/01-docker-para-aplicacoes-web.html#por-que-containers",
@@ -662,7 +921,7 @@
     "href": "aulas/03-poo-e-design-principles.html#hoje",
     "title": "POO e Design Principles",
     "section": "Hoje",
-    "text": "Hoje\n\nBloco 1: encapsulamento · herança · composição\nBloco 2: SOLID · KISS, DRY, SoC · code smells\nDesafio: refatorar o OrderService\n\nSaída: código com um motivo para mudar em cada classe"
+    "text": "Hoje\n\nBloco 1: encapsulamento · herança · composição\nBloco 2: SOLID · KISS, DRY, SoC · code smells\nDesafio: refatorar o OrderService\n\n\nSaída: código com um motivo para mudar em cada classe"
   },
   {
     "objectID": "aulas/03-poo-e-design-principles.html#nosso-domínio-pedidos",
@@ -879,7 +1138,7 @@
     "href": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#hoje",
     "title": "IA no fluxo de engenharia",
     "section": "Hoje",
-    "text": "Hoje\n\nBloco 1: onde a IA ajuda · prompts · ferramentas\nBloco 2: Active Record vs Repository · CQRS · decidir\nDesafio: persistência do projeto com IA\n\nSaída: uma decisão sua, registrada"
+    "text": "Hoje\n\nBloco 1: onde a IA ajuda · prompts · ferramentas\nBloco 2: Active Record vs Repository · CQRS · decidir\nDesafio: persistência do projeto com IA\n\n\nSaída: uma decisão sua, registrada"
   },
   {
     "objectID": "aulas/05-ia-no-fluxo-de-engenharia-e-database-patterns.html#ajuda-e-atrapalha",
@@ -1062,5 +1321,250 @@
     "title": "IA no fluxo de engenharia",
     "section": "Dever de casa",
     "text": "Dever de casa\n\nFinalize 1 Database Pattern com a IA como apoio\nRegistre a decisão\nPrepare o seminário do E06: 1 princípio + 1 pattern\nLeve 3 dúvidas"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#na-aula-passada",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#na-aula-passada",
+    "title": "Testabilidade e design para testes",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nValor econômico do QA e regra dos dez\nPirâmide de testes e sorvete de casquinha\nTest doubles: Stub, Mock, Fake\n\nPergunta: Já pensaram em como testar a parte de maior risco do projeto?"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#hoje",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#hoje",
+    "title": "Testabilidade e design para testes",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: padrão AAA · TDD Red-Green-Refactor · 3 Leis de Uncle Bob\nBloco 2: inversão de dependência · anti-patterns · coverage\n\n\nSaída: código testável e ciclo TDD na prática"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#três-fases",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#três-fases",
+    "title": "Testabilidade e design para testes",
+    "section": "Três fases",
+    "text": "Três fases\n\nArrange: preparar ambiente, instâncias, dados\nAct: executar a ação sob teste\nAssert: verificar o resultado esperado\n\n\nUm teste com AAA claro se explica sozinho"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#aaa-no-domínio-de-pedidos",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#aaa-no-domínio-de-pedidos",
+    "title": "Testabilidade e design para testes",
+    "section": "AAA no domínio de Pedidos",
+    "text": "AAA no domínio de Pedidos\ndescribe('CarrinhoDeCompras', () =&gt; {\n  it('aplica desconto de 10% acima de R$ 100', () =&gt; {\n    // Arrange\n    const carrinho = new CarrinhoDeCompras();\n    carrinho.adicionarItem({ nome: 'Livro', preco: 120 });\n    // Act\n    const total = carrinho.calcularTotalComDesconto();\n    // Assert\n    expect(total).toBe(108.00);\n  });\n});"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#não-é-técnica-de-teste",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#não-é-técnica-de-teste",
+    "title": "Testabilidade e design para testes",
+    "section": "Não é técnica de teste",
+    "text": "Não é técnica de teste\n\nTDD é metodologia de design: o teste nasce antes do código."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#o-ciclo",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#o-ciclo",
+    "title": "Testabilidade e design para testes",
+    "section": "O ciclo",
+    "text": "O ciclo\n\n\n\nFase\nO que fazer\n\n\n\n\nRED\nEscreva um teste que falha\n\n\nGREEN\nCódigo mais simples possível para passar\n\n\nREFACTOR\nMelhore mantendo os testes verdes"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#benefício-de-design",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#benefício-de-design",
+    "title": "Testabilidade e design para testes",
+    "section": "Benefício de design",
+    "text": "Benefício de design\n\nEscrever o teste primeiro força pensar na interface antes da implementação\nGera naturalmente menor acoplamento e maior coesão"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#as-leis",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#as-leis",
+    "title": "Testabilidade e design para testes",
+    "section": "As leis",
+    "text": "As leis\n\nNão escreva código de produção sem um teste que falhe\nNão escreva mais teste do que o necessário para falhar\nNão escreva mais código de produção do que o necessário para passar"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#o-erro-mais-comum",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#o-erro-mais-comum",
+    "title": "Testabilidade e design para testes",
+    "section": "O erro mais comum",
+    "text": "O erro mais comum\n\nEscrever a classe inteira e só depois tentar fazer o teste passar.\n\nTDD de verdade é passo a passo minúsculo."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#o-problema-new-escondido",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#o-problema-new-escondido",
+    "title": "Testabilidade e design para testes",
+    "section": "O problema: new escondido",
+    "text": "O problema: new escondido\nclass OrderService {\n  aprovar(order: Order) {\n    const gateway = new StripeGateway(); // concreto!\n    return gateway.autorizar(order.total);\n  }\n}\nImpossível trocar por um Stub no teste."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#a-solução-injetar",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#a-solução-injetar",
+    "title": "Testabilidade e design para testes",
+    "section": "A solução: injetar",
+    "text": "A solução: injetar\nclass OrderService {\n  constructor(private gateway: PaymentGateway) {}\n  aprovar(order: Order) {\n    return this.gateway.autorizar(order.total);\n  }\n}\nA classe depende de uma abstração, não do concreto."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#os-4-mais-comuns",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#os-4-mais-comuns",
+    "title": "Testabilidade e design para testes",
+    "section": "Os 4 mais comuns",
+    "text": "Os 4 mais comuns\n\nnew interno de dependência concreta\nMétodos estáticos que fazem I/O\nEfeitos colaterais escondidos (calcula e também salva)\nEstado global compartilhado entre testes"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#efeito-colateral-escondido",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#efeito-colateral-escondido",
+    "title": "Testabilidade e design para testes",
+    "section": "Efeito colateral escondido",
+    "text": "Efeito colateral escondido\n// \"Só calcula\", mas também grava e manda e-mail\nfunction calcularEAprovar(order: Order) {\n  const total = order.calcularTotal();\n  db.save(order);\n  emailService.send(order.clienteEmail);\n  return total;\n}\nSepare decisão (pura) de ação (efeito colateral)."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#três-métricas",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#três-métricas",
+    "title": "Testabilidade e design para testes",
+    "section": "Três métricas",
+    "text": "Três métricas\n\n\n\nMétrica\nO que mede\n\n\n\n\nLine coverage\n% de linhas executadas\n\n\nBranch coverage\n% de condicionais percorridos\n\n\nFunction coverage\n% de funções chamadas"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#não-garante-ausência-de-bugs",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#não-garante-ausência-de-bugs",
+    "title": "Testabilidade e design para testes",
+    "section": "100% não garante ausência de bugs",
+    "text": "100% não garante ausência de bugs\n\nCobertura mede o que rodou, não o que foi validado.\n\nBusque qualidade de asserção, não métrica vaidosa."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#o-que-fazer",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#o-que-fazer",
+    "title": "Testabilidade e design para testes",
+    "section": "O que fazer",
+    "text": "O que fazer\n\nEscolha uma classe do projeto com um anti-pattern de testabilidade\nRefatore para injeção de dependência\nAdicione uma regra nova aplicando TDD completo\n\nExtra: um commit por cor do ciclo (RED, GREEN, REFACTOR)."
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#fechamento",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#fechamento",
+    "title": "Testabilidade e design para testes",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nAAA: Arrange, Act, Assert\nTDD: Red, Green, Refactor\nInversão de dependência torna o código testável"
+  },
+  {
+    "objectID": "aulas/07-testabilidade-e-design-para-testes.html#dever-de-casa",
+    "href": "aulas/07-testabilidade-e-design-para-testes.html#dever-de-casa",
+    "title": "Testabilidade e design para testes",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nRefatorar 1 dependência concreta para injeção\nEscrever 2 testes novos com TDD\nLevar 3 dúvidas para o próximo encontro"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#na-aula-passada",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#na-aula-passada",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Na aula passada",
+    "text": "Na aula passada\n\nO que é (e não é) um teste unitário\nPHPUnit e Jest lado a lado\nLLMs gerando e auditando testes\n\nPergunta: Achou alguma asserção tautológica na suíte gerada em casa?"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#hoje",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#hoje",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Hoje",
+    "text": "Hoje\n\nBloco 1: banco em memória vs real · testando repositórios · contrato de API\nBloco 2: IA descobrindo edge cases · automação E2E · flaky tests e PRs\n\n\nSaída: testes de integração reais e IA usada com critério"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#duas-opções",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#duas-opções",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Duas opções",
+    "text": "Duas opções\n\n\n\n\nMemória\nReal\n\n\n\n\nVelocidade\nRápido\nMais lento\n\n\nSetup\nNenhum\nDocker/container\n\n\nFidelidade\nAproximada\nGarantida"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#regra-prática",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#regra-prática",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Regra prática",
+    "text": "Regra prática\n\nUnitário nunca toca banco. Integração escolhe conforme o risco."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#o-que-valida",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#o-que-valida",
+    "title": "Testes de integração, contrato e IA",
+    "section": "O que valida",
+    "text": "O que valida\n\nSalvar, buscar, atualizar\nConstraints reais (unicidade, chaves estrangeiras)\nComportamento real de persistência"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#setup-e-teardown",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#setup-e-teardown",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Setup e teardown",
+    "text": "Setup e teardown\ndescribe('OrderRepository (integração)', () =&gt; {\n  beforeEach(() =&gt; db.migrate.latest());\n  afterEach(() =&gt; db.migrate.rollback());\n\n  it('salva e recupera um pedido pelo id', async () =&gt; {\n    const repo = new OrderRepository(db);\n    const order = new Order([{ nome: 'Livro', preco: 50 }]);\n    await repo.salvar(order);\n    const encontrado = await repo.buscarPorId(order.id);\n    expect(encontrado.total).toBe(50);\n  });\n});"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#testar-a-borda-pública",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#testar-a-borda-pública",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Testar a borda pública",
+    "text": "Testar a borda pública\n\nRequest → Response sempre igual, não importa a implementação interna."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#contrato-na-prática",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#contrato-na-prática",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Contrato na prática",
+    "text": "Contrato na prática\nit('POST /pedidos com carrinho vazio retorna 400', async () =&gt; {\n  const response = await request(app)\n    .post('/pedidos').send({ itens: [] });\n  expect(response.status).toBe(400);\n  expect(response.body.erro).toBe('carrinho vazio');\n});"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#além-do-caminho-feliz",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#além-do-caminho-feliz",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Além do caminho feliz",
+    "text": "Além do caminho feliz\n\nO maior risco está nas fronteiras: nulos, vazios, negativos, estouro.\n\nA IA antecipa o que a pressão de prazo faz o humano esquecer."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#prompt-de-edge-cases",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#prompt-de-edge-cases",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Prompt de edge cases",
+    "text": "Prompt de edge cases\nAtue como Engenheiro de QA Sênior especialista em\nsegurança. Analise calcularFrete(peso, distancia).\nIdentifique 5 cenários críticos de entradas inválidas,\nnegativas, nulas e estouro. Depois escreva os testes."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#descrição-vira-script",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#descrição-vira-script",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Descrição vira script",
+    "text": "Descrição vira script\n\"O cliente clica no carrinho, aplica o cupom\nDESCONTO10 e finaliza o pedido\"\nLLM traduz para Playwright/Cypress executável."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#auto-healing-de-seletores",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#auto-healing-de-seletores",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Auto-healing de seletores",
+    "text": "Auto-healing de seletores\n\nSe o botão muda de ID por motivo cosmético, o teste não quebra à toa.\n\nA IA reconhece o componente semanticamente."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#diagnóstico-com-ia",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#diagnóstico-com-ia",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Diagnóstico com IA",
+    "text": "Diagnóstico com IA\nA IA examina logs do CI/CD e isola a causa raiz: concorrência, rede, assincronismo mal tratado."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#governança-preditiva",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#governança-preditiva",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Governança preditiva",
+    "text": "Governança preditiva\n\nIA bloqueia o PR se há regra nova sem teste de cobertura.\n\nAlerta antes da revisão humana."
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#o-que-fazer",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#o-que-fazer",
+    "title": "Testes de integração, contrato e IA",
+    "section": "O que fazer",
+    "text": "O que fazer\n\nPeça à IA a lista de edge cases do endpoint de pagamento\nEscreva o teste de contrato (POST /pedidos/:id/pagar)\nEscreva os testes dos casos de borda encontrados\n\nExtra: qual edge case mais inesperado a IA sugeriu?"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#fechamento",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#fechamento",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Fechamento",
+    "text": "Fechamento\n\nIntegração: memória ou real, conforme o risco\nContrato: testa a borda pública, sobrevive a refatoração\nIA: acha edge cases e gera E2E — você audita"
+  },
+  {
+    "objectID": "aulas/09-testes-de-integracao-contrato-e-ia.html#dever-de-casa",
+    "href": "aulas/09-testes-de-integracao-contrato-e-ia.html#dever-de-casa",
+    "title": "Testes de integração, contrato e IA",
+    "section": "Dever de casa",
+    "text": "Dever de casa\n\nEscrever 1 teste de integração real no projeto\nPedir edge cases à IA antes de testar um endpoint\nLevar 3 dúvidas para o próximo encontro"
   }
 ]

@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
-  <title>Full Cycle – IA no fluxo de engenharia</title>
+  <title>Full Cycle – Testes de integração, contrato e IA</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -223,8 +223,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">IA no fluxo de engenharia</h1>
-  <p class="subtitle">Módulo 1 · Encontro 5 — E patterns de persistência</p>
+  <h1 class="title">Testes de integração, contrato e IA</h1>
+  <p class="subtitle">Módulo 2 · Encontro 10 — Repositórios, contrato de API e edge cases com IA</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -233,461 +233,270 @@
 <section id="na-aula-passada" class="slide level2">
 <h2>Na aula passada</h2>
 <ul>
-<li class="fragment"><strong>Strategy</strong>, <strong>Factory</strong>, <strong>Decorator</strong>, <strong>Adapter</strong>, <strong>Observer</strong></li>
-<li class="fragment">Pattern <strong>pela dor</strong>, e não pelo catálogo</li>
+<li class="fragment">O que é (e não é) um teste unitário</li>
+<li class="fragment">PHPUnit e Jest lado a lado</li>
+<li class="fragment">LLMs gerando e auditando testes</li>
 </ul>
+<p><strong>Pergunta:</strong> Achou alguma asserção tautológica na suíte gerada em casa?</p>
 </section>
 <section id="hoje" class="slide level2">
 <h2>Hoje</h2>
 <ul>
-<li class="fragment"><strong>Bloco 1:</strong> onde a IA ajuda · prompts · ferramentas</li>
-<li class="fragment"><strong>Bloco 2:</strong> Active Record vs Repository · CQRS · decidir</li>
-<li class="fragment"><strong>Desafio:</strong> persistência do projeto <strong>com IA</strong></li>
+<li class="fragment"><strong>Bloco 1:</strong> banco em memória vs real · testando repositórios · contrato de API</li>
+<li class="fragment"><strong>Bloco 2:</strong> IA descobrindo edge cases · automação E2E · flaky tests e PRs</li>
 </ul>
 <div class="fragment">
-<p><strong>Saída:</strong> uma decisão <strong>sua</strong>, registrada</p>
+<p><strong>Saída:</strong> testes de integração reais e IA usada com critério</p>
 </div>
 </section>
 <section>
-<section id="onde-a-ia-ajuda-e-atrapalha" class="title-slide slide level1 secao center">
-<h1>Onde a IA ajuda e atrapalha</h1>
+<section id="banco-em-memória-vs-banco-real" class="title-slide slide level1 secao center">
+<h1>Banco em memória vs banco real</h1>
 <p class="kicker">
 Bloco 1 · Tópico 1
 </p>
 </section>
-<section id="ajuda-e-atrapalha" class="slide level2">
-<h2>Ajuda e atrapalha</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Ajuda</th>
-<th>Atrapalha</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Explicar código e erros</td>
-<td>Decidir a arquitetura sozinha</td>
-</tr>
-<tr class="even">
-<td>Rascunho de testes</td>
-<td>Inventar APIs que não existem</td>
-</tr>
-<tr class="odd">
-<td>Sugerir alternativas</td>
-<td>Sugerir versões antigas</td>
-</tr>
-<tr class="even">
-<td>Gerar diagramas</td>
-<td>Propor overengineering</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="riscos-de-copiar-e-colar" class="slide level2">
-<h2>Riscos de copiar e colar</h2>
-<ul>
-<li class="fragment">Código que <strong>parece certo</strong> e está errado</li>
-<li class="fragment"><strong>Segredos</strong> e dados pessoais colados no chat</li>
-<li class="fragment">Código de <strong>licença ou origem</strong> desconhecida</li>
-<li class="fragment">Menos <strong>raciocínio</strong> seu, com o tempo</li>
-</ul>
-<p>Nunca cole <code>.env</code>, tokens nem dados de clientes.</p>
-</section>
-<section id="a-regra-do-curso" class="slide level2">
-<h2>A regra do curso</h2>
-<blockquote>
-<p>A IA sugere. Você decide.</p>
-</blockquote>
-<p>A IA acelera quem já sabe pensar. Não quem terceiriza decisões.</p>
-<p>Se o erro for para produção, <strong>de quem é o erro?</strong> De quem fez o merge.</p>
-</section></section>
-<section id="ajuda-ou-risco" class="title-slide slide level1 desafio center">
-<h1>Ajuda ou risco</h1>
-<p class="kicker">
-Mini desafio 1 · 10 min
-</p>
-<p>Classifique cada uso:</p>
-<ol type="1">
-<li class="fragment">Pedir a explicação de um <strong>stack trace</strong></li>
-<li class="fragment">Colar o <strong><code>.env</code></strong> para “ajudar a depurar”</li>
-<li class="fragment">Deixar a IA <strong>escolher o banco</strong> sozinha</li>
-<li class="fragment">Gerar o <strong>rascunho</strong> de um teste e revisar</li>
-</ol>
-</section>
-
-<section>
-<section id="prompts-técnicos" class="title-slide slide level1 secao center">
-<h1>Prompts técnicos</h1>
-<p class="kicker">
-Bloco 1 · Tópico 2
-</p>
-</section>
-<section id="anatomia-de-um-bom-prompt" class="slide level2">
-<h2>Anatomia de um bom prompt</h2>
-<ol type="1">
-<li class="fragment"><strong>Papel:</strong> quem a IA deve ser</li>
-<li class="fragment"><strong>Contexto:</strong> domínio, regras, volume, equipe, prazo</li>
-<li class="fragment"><strong>Tarefa:</strong> o que você quer</li>
-<li class="fragment"><strong>Restrições:</strong> o que não pode</li>
-<li class="fragment"><strong>Formato:</strong> como responder</li>
-</ol>
-</section>
-<section id="prompt-ruim-prompt-bom" class="slide level2 smaller">
-<h2>Prompt ruim, prompt bom</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a aria-label="1"></a>faz um repository pra mim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a aria-label="1"></a>Papel: dev backend sênior em PHP.</span>
-<span id="cb2-2"><a aria-label="2"></a>Contexto: pedidos de e-commerce, 3 devs, SQLite.</span>
-<span id="cb2-3"><a aria-label="3"></a>Tarefa: salvar Order sem acoplar o domínio ao banco.</span>
-<span id="cb2-4"><a aria-label="4"></a>Restrições: sem framework; testável sem banco.</span>
-<span id="cb2-5"><a aria-label="5"></a>Peça: 3 alternativas com prós, contras e quando NÃO usar.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="contexto-muda-a-resposta" class="slide level2 smaller">
-<h2>Contexto muda a resposta</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Informe</th>
-<th>Porque</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Volume</strong> de dados</td>
-<td>Define se precisa escalar</td>
-</tr>
-<tr class="even">
-<td><strong>Equipe</strong> e prazo</td>
-<td>Define a complexidade aceitável</td>
-</tr>
-<tr class="odd">
-<td><strong>Regras</strong> de negócio</td>
-<td>Define o modelo</td>
-</tr>
-<tr class="even">
-<td><strong>Restrições</strong></td>
-<td>Evita a solução “bonita” impossível</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="itere-e-peça-o-contraditório" class="slide level2">
-<h2>Itere e peça o contraditório</h2>
-<ul>
-<li class="fragment">Peça <strong>alternativas</strong>, e não “a melhor”</li>
-<li class="fragment">Peça os <strong>riscos</strong> e <strong>quando não usar</strong></li>
-<li class="fragment">Pergunte: <em>“o que você não sabe sobre o meu contexto?”</em></li>
-<li class="fragment">A <strong>segunda</strong> pergunta vale mais que a primeira</li>
-</ul>
-</section></section>
-<section id="reescreva-o-prompt" class="title-slide slide level1 desafio center">
-<h1>Reescreva o prompt</h1>
-<p class="kicker">
-Mini desafio 2 · 10 min
-</p>
-<p>Melhore este prompt:</p>
-<p><code>faz um repository pra mim</code></p>
-<p>Inclua <strong>contexto</strong>, <strong>restrições</strong> e o <strong>formato</strong> da resposta.</p>
-<p><em>Extra: peça os riscos da sugestão.</em></p>
-</section>
-
-<section>
-<section id="ferramentas-e-validação" class="title-slide slide level1 secao center">
-<h1>Ferramentas e validação</h1>
-<p class="kicker">
-Bloco 1 · Tópico 3
-</p>
-</section>
-<section id="mermaid-diagrama-como-código" class="slide level2">
-<h2>Mermaid: diagrama como código</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a aria-label="1"></a>sequenceDiagram</span>
-<span id="cb3-2"><a aria-label="2"></a>    participant C as CheckoutService</span>
-<span id="cb3-3"><a aria-label="3"></a>    participant P as PaymentMethod</span>
-<span id="cb3-4"><a aria-label="4"></a>    C-&gt;&gt;P: pay(total)</span>
-<span id="cb3-5"><a aria-label="5"></a>    P--&gt;&gt;C: recibo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Renderiza no <strong>Obsidian</strong> e no <strong>GitHub</strong>. Fica no repositório.</p>
-</section>
-<section id="cursor-gpt-e-gemini" class="slide level2">
-<h2>Cursor, GPT e Gemini</h2>
-<ul>
-<li class="fragment"><strong>Cursor:</strong> lê o projeto e propõe edições em <strong>diff</strong></li>
-<li class="fragment"><strong>GPT</strong> e <strong>Gemini:</strong> análise e <strong>segunda opinião</strong></li>
-<li class="fragment">Faça a <strong>mesma pergunta</strong> nos dois e compare</li>
-<li class="fragment"><strong>Discordância</strong> é sinal para investigar</li>
-</ul>
-<p>Leia o <strong>diff</strong> antes de aceitar.</p>
-</section>
-<section id="rotina-de-validação" class="slide level2">
-<h2>Rotina de validação</h2>
-<ol type="1">
-<li class="fragment"><strong>Rode</strong> o código</li>
-<li class="fragment"><strong>Teste</strong>, inclusive o caso de erro</li>
-<li class="fragment"><strong>Leia</strong> o diff linha a linha</li>
-<li class="fragment">Peça um <strong>contra-argumento</strong></li>
-<li class="fragment">Confira na <strong>documentação oficial</strong></li>
-</ol>
-</section></section>
-<section id="mermaid-e-segunda-opinião" class="title-slide slide level1 desafio center">
-<h1>Mermaid e segunda opinião</h1>
-<p class="kicker">
-Mini desafio 3 · 10 min
-</p>
-<ol type="1">
-<li class="fragment">Escreva um <strong>diagrama de sequência</strong> do checkout</li>
-<li class="fragment">Faça a <strong>mesma pergunta</strong> a duas IAs</li>
-<li class="fragment">Anote <strong>onde elas discordam</strong></li>
-</ol>
-<p><em>Extra: qual das duas está certa? Como você provou?</em></p>
-</section>
-
-<section>
-<section id="active-record-vs-repository" class="title-slide slide level1 secao center">
-<h1>Active Record vs Repository</h1>
-<p class="kicker">
-Bloco 2 · Tópico 4
-</p>
-</section>
-<section id="active-record" class="slide level2">
-<h2>Active Record</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb4-1"><a aria-label="1"></a><span class="kw">final</span> <span class="kw">class</span> OrderRecord</span>
-<span id="cb4-2"><a aria-label="2"></a>{</span>
-<span id="cb4-3"><a aria-label="3"></a>    <span class="kw">public</span> <span class="kw">function</span> save()<span class="ot">:</span> <span class="dt">void</span> { <span class="co">/* INSERT OR REPLACE ... */</span> }</span>
-<span id="cb4-4"><a aria-label="4"></a></span>
-<span id="cb4-5"><a aria-label="5"></a>    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">function</span> find(<span class="bu">PDO</span> <span class="va">$db</span><span class="ot">,</span> <span class="dt">string</span> <span class="va">$id</span>)<span class="ot">:</span> <span class="ot">?</span><span class="kw">self</span></span>
-<span id="cb4-6"><a aria-label="6"></a>    {</span>
-<span id="cb4-7"><a aria-label="7"></a>        <span class="co">/* SELECT ... WHERE id = :id */</span></span>
-<span id="cb4-8"><a aria-label="8"></a>    }</span>
-<span id="cb4-9"><a aria-label="9"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>O objeto <strong>conhece o banco</strong>. Simples e rápido para CRUD.</p>
-</section>
-<section id="repository" class="slide level2">
-<h2>Repository</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb5-1"><a aria-label="1"></a><span class="kw">interface</span> OrderRepository</span>
-<span id="cb5-2"><a aria-label="2"></a>{</span>
-<span id="cb5-3"><a aria-label="3"></a>    <span class="kw">public</span> <span class="kw">function</span> save(Order <span class="va">$order</span>)<span class="ot">:</span> <span class="dt">void</span><span class="ot">;</span></span>
-<span id="cb5-4"><a aria-label="4"></a></span>
-<span id="cb5-5"><a aria-label="5"></a>    <span class="kw">public</span> <span class="kw">function</span> find(<span class="dt">string</span> <span class="va">$id</span>)<span class="ot">:</span> <span class="ot">?</span>Order<span class="ot">;</span></span>
-<span id="cb5-6"><a aria-label="6"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>O domínio pede e recebe <strong>entidades</strong>. O armazenamento fica <strong>escondido</strong>.</p>
-</section>
-<section id="data-mapper" class="slide level2">
-<h2>Data Mapper</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a aria-label="1"></a>Order (entidade)  ◄──►  OrderMapper  ◄──►  linha da tabela</span>
-<span id="cb6-2"><a aria-label="2"></a>  não sabe do banco      converte           id | total | status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li class="fragment">A entidade <strong>não conhece</strong> SQL</li>
-<li class="fragment">O mapper faz <code>toRow()</code> e <code>fromRow()</code></li>
-<li class="fragment">O repositório usa o mapper</li>
-</ul>
-</section>
-<section id="testar-sem-banco" class="slide level2">
-<h2>Testar sem banco</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb7-1"><a aria-label="1"></a><span class="va">$mem</span> <span class="op">=</span> <span class="kw">new</span> InMemoryOrderRepository()<span class="ot">;</span></span>
-<span id="cb7-2"><a aria-label="2"></a><span class="va">$mem</span>-&gt;save(<span class="kw">new</span> Order(<span class="st">'R2'</span><span class="ot">,</span> <span class="fl">50.0</span>))<span class="ot">;</span></span>
-<span id="cb7-3"><a aria-label="3"></a></span>
-<span id="cb7-4"><a aria-label="4"></a><span class="kw">echo</span> (<span class="kw">new</span> PayOrder(<span class="va">$mem</span>))-&gt;run(<span class="st">'R2'</span>)<span class="ot">;</span>   <span class="co">// paid</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Com <strong>Repository</strong>, o teste roda <strong>sem banco</strong>. Com Active Record, precisa de banco.</p>
-</section>
-<section id="como-escolher" class="slide level2">
-<h2>Como escolher</h2>
+<section id="duas-opções" class="slide level2">
+<h2>Duas opções</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
-<th>Active Record</th>
-<th>Repository + Mapper</th>
+<th>Memória</th>
+<th>Real</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Classes</td>
-<td>Poucas</td>
-<td>Mais</td>
+<td>Velocidade</td>
+<td>Rápido</td>
+<td>Mais lento</td>
 </tr>
 <tr class="even">
-<td>Regras de negócio</td>
-<td>Simples</td>
-<td><strong>Complexas</strong></td>
+<td>Setup</td>
+<td>Nenhum</td>
+<td>Docker/container</td>
 </tr>
 <tr class="odd">
-<td>Teste sem banco</td>
-<td>Difícil</td>
-<td><strong>Fácil</strong></td>
-</tr>
-<tr class="even">
-<td>Bom para</td>
-<td>CRUD</td>
-<td>Domínio rico</td>
+<td>Fidelidade</td>
+<td>Aproximada</td>
+<td>Garantida</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="regra-prática" class="slide level2">
+<h2>Regra prática</h2>
+<blockquote>
+<p>Unitário nunca toca banco. Integração escolhe conforme o risco.</p>
+</blockquote>
 </section></section>
-<section id="active-record-ou-repository" class="title-slide slide level1 desafio center">
-<h1>Active Record ou Repository</h1>
+<section id="memória-ou-real" class="title-slide slide level1 desafio center">
+<h1>Memória ou real?</h1>
 <p class="kicker">
-Mini desafio 4 · 10 min
+Mini desafio 1 · 5 min
 </p>
-<p>Persista um <code>Order</code> em <strong>SQLite</strong> nos <strong>dois</strong> estilos:</p>
-<ol type="1">
-<li class="fragment"><strong>Active Record</strong>: <code>save()</code> e <code>find()</code></li>
-<li class="fragment"><strong>Repository</strong> com <strong>Mapper</strong> e uma versão <strong>em memória</strong></li>
-</ol>
-<p><em>Extra: qual dos dois você usaria no projeto? Por quê?</em></p>
+<p>Por que um teste em SQLite pode passar e o mesmo código <strong>falhar</strong> no Postgres de produção?</p>
 </section>
 
 <section>
-<section id="transaction-script-e-cqrs" class="title-slide slide level1 secao center">
-<h1>Transaction Script e CQRS</h1>
+<section id="testando-repositórios" class="title-slide slide level1 secao center">
+<h1>Testando repositórios</h1>
+<p class="kicker">
+Bloco 1 · Tópico 2
+</p>
+</section>
+<section id="o-que-valida" class="slide level2">
+<h2>O que valida</h2>
+<ul>
+<li class="fragment">Salvar, buscar, atualizar</li>
+<li class="fragment">Constraints reais (unicidade, chaves estrangeiras)</li>
+<li class="fragment">Comportamento real de persistência</li>
+</ul>
+</section>
+<section id="setup-e-teardown" class="slide level2 smaller">
+<h2>Setup e teardown</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource ts number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb1-1"><a aria-label="1"></a><span class="fu">describe</span>(<span class="st">'OrderRepository (integração)'</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="fu">beforeEach</span>(() <span class="kw">=&gt;</span> db<span class="op">.</span><span class="at">migrate</span><span class="op">.</span><span class="fu">latest</span>())<span class="op">;</span></span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="fu">afterEach</span>(() <span class="kw">=&gt;</span> db<span class="op">.</span><span class="at">migrate</span><span class="op">.</span><span class="fu">rollback</span>())<span class="op">;</span></span>
+<span id="cb1-4"><a aria-label="4"></a></span>
+<span id="cb1-5"><a aria-label="5"></a>  <span class="fu">it</span>(<span class="st">'salva e recupera um pedido pelo id'</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-6"><a aria-label="6"></a>    <span class="kw">const</span> repo <span class="op">=</span> <span class="kw">new</span> <span class="fu">OrderRepository</span>(db)<span class="op">;</span></span>
+<span id="cb1-7"><a aria-label="7"></a>    <span class="kw">const</span> order <span class="op">=</span> <span class="kw">new</span> <span class="fu">Order</span>([{ nome<span class="op">:</span> <span class="st">'Livro'</span><span class="op">,</span> preco<span class="op">:</span> <span class="dv">50</span> }])<span class="op">;</span></span>
+<span id="cb1-8"><a aria-label="8"></a>    <span class="cf">await</span> repo<span class="op">.</span><span class="fu">salvar</span>(order)<span class="op">;</span></span>
+<span id="cb1-9"><a aria-label="9"></a>    <span class="kw">const</span> encontrado <span class="op">=</span> <span class="cf">await</span> repo<span class="op">.</span><span class="fu">buscarPorId</span>(order<span class="op">.</span><span class="at">id</span>)<span class="op">;</span></span>
+<span id="cb1-10"><a aria-label="10"></a>    <span class="fu">expect</span>(encontrado<span class="op">.</span><span class="at">total</span>)<span class="op">.</span><span class="fu">toBe</span>(<span class="dv">50</span>)<span class="op">;</span></span>
+<span id="cb1-11"><a aria-label="11"></a>  })<span class="op">;</span></span>
+<span id="cb1-12"><a aria-label="12"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section id="teste-o-repositório" class="title-slide slide level1 desafio center">
+<h1>Teste o repositório</h1>
+<p class="kicker">
+Mini desafio 2 · 5 min
+</p>
+<p>O que acontece se um teste de integração <strong>não limpar</strong> o banco depois de rodar?</p>
+<p><em>Extra: escreva o <code>afterEach</code> correto.</em></p>
+</section>
+
+<section>
+<section id="contrato-de-api" class="title-slide slide level1 secao center">
+<h1>Contrato de API</h1>
+<p class="kicker">
+Bloco 1 · Tópico 3
+</p>
+</section>
+<section id="testar-a-borda-pública" class="slide level2">
+<h2>Testar a borda pública</h2>
+<blockquote>
+<p>Request → Response sempre igual, não importa a implementação interna.</p>
+</blockquote>
+</section>
+<section id="contrato-na-prática" class="slide level2">
+<h2>Contrato na prática</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource ts number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb2-1"><a aria-label="1"></a><span class="fu">it</span>(<span class="st">'POST /pedidos com carrinho vazio retorna 400'</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-2"><a aria-label="2"></a>  <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="fu">request</span>(app)</span>
+<span id="cb2-3"><a aria-label="3"></a>    <span class="op">.</span><span class="fu">post</span>(<span class="st">'/pedidos'</span>)<span class="op">.</span><span class="fu">send</span>({ itens<span class="op">:</span> [] })<span class="op">;</span></span>
+<span id="cb2-4"><a aria-label="4"></a>  <span class="fu">expect</span>(response<span class="op">.</span><span class="at">status</span>)<span class="op">.</span><span class="fu">toBe</span>(<span class="dv">400</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a aria-label="5"></a>  <span class="fu">expect</span>(response<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">erro</span>)<span class="op">.</span><span class="fu">toBe</span>(<span class="st">'carrinho vazio'</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a aria-label="6"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section id="defina-o-contrato" class="title-slide slide level1 desafio center">
+<h1>Defina o contrato</h1>
+<p class="kicker">
+Mini desafio 3 · 7 min
+</p>
+<p>Se eu reescrever toda a lógica interna do endpoint mas o contrato continuar igual, <strong>o teste deveria quebrar?</strong></p>
+<p><em>Extra: escreva o contrato de <code>GET /pedidos/:id</code>.</em></p>
+</section>
+
+<section>
+<section id="ia-descobrindo-casos-de-borda" class="title-slide slide level1 secao center">
+<h1>IA descobrindo casos de borda</h1>
+<p class="kicker">
+Bloco 2 · Tópico 4
+</p>
+</section>
+<section id="além-do-caminho-feliz" class="slide level2">
+<h2>Além do caminho feliz</h2>
+<blockquote>
+<p>O maior risco está nas fronteiras: nulos, vazios, negativos, estouro.</p>
+</blockquote>
+<p>A IA antecipa o que a pressão de prazo faz o humano esquecer.</p>
+</section>
+<section id="prompt-de-edge-cases" class="slide level2">
+<h2>Prompt de edge cases</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a aria-label="1"></a>Atue como Engenheiro de QA Sênior especialista em</span>
+<span id="cb3-2"><a aria-label="2"></a>segurança. Analise calcularFrete(peso, distancia).</span>
+<span id="cb3-3"><a aria-label="3"></a>Identifique 5 cenários críticos de entradas inválidas,</span>
+<span id="cb3-4"><a aria-label="4"></a>negativas, nulas e estouro. Depois escreva os testes.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section id="peça-os-edge-cases-primeiro" class="title-slide slide level1 desafio center">
+<h1>Peça os edge cases primeiro</h1>
+<p class="kicker">
+Mini desafio 4 · 7 min
+</p>
+<p>Peça à IA a <strong>lista de riscos</strong> de uma função do seu projeto, antes de pedir os testes.</p>
+<p><em>Extra: algum risco te surpreendeu?</em></p>
+</section>
+
+<section>
+<section id="automação-e2e-com-ia" class="title-slide slide level1 secao center">
+<h1>Automação E2E com IA</h1>
 <p class="kicker">
 Bloco 2 · Tópico 5
 </p>
 </section>
-<section id="transaction-script" class="slide level2">
-<h2>Transaction Script</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource php number-lines code-with-copy"><code class="sourceCode php"><span id="cb8-1"><a aria-label="1"></a><span class="va">$db</span>-&gt;beginTransaction()<span class="ot">;</span></span>
-<span id="cb8-2"><a aria-label="2"></a><span class="cf">try</span> {</span>
-<span id="cb8-3"><a aria-label="3"></a>    baixarEstoque(<span class="va">$db</span><span class="ot">,</span> <span class="va">$sku</span><span class="ot">,</span> <span class="va">$qty</span>)<span class="ot">;</span>   <span class="co">// lança se faltar</span></span>
-<span id="cb8-4"><a aria-label="4"></a>    gravarPedido(<span class="va">$db</span><span class="ot">,</span> <span class="va">$id</span><span class="ot">,</span> <span class="va">$total</span>)<span class="ot">;</span></span>
-<span id="cb8-5"><a aria-label="5"></a>    <span class="va">$db</span>-&gt;commit()<span class="ot">;</span></span>
-<span id="cb8-6"><a aria-label="6"></a>} <span class="cf">catch</span> (<span class="bu">Throwable</span> <span class="va">$e</span>) {</span>
-<span id="cb8-7"><a aria-label="7"></a>    <span class="va">$db</span>-&gt;rollBack()<span class="ot">;</span></span>
-<span id="cb8-8"><a aria-label="8"></a>    <span class="cf">throw</span> <span class="va">$e</span><span class="ot">;</span></span>
-<span id="cb8-9"><a aria-label="9"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Um caso de uso, <strong>um procedimento</strong>, <strong>uma transação</strong>.</p>
+<section id="descrição-vira-script" class="slide level2">
+<h2>Descrição vira script</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a aria-label="1"></a>"O cliente clica no carrinho, aplica o cupom</span>
+<span id="cb4-2"><a aria-label="2"></a>DESCONTO10 e finaliza o pedido"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>LLM traduz para Playwright/Cypress executável.</p>
 </section>
-<section id="quando-o-script-deixa-de-servir" class="slide level2">
-<h2>Quando o script deixa de servir</h2>
-<ul>
-<li class="fragment">A <strong>mesma regra</strong> aparece em vários scripts</li>
-<li class="fragment">Os <code>if</code> viram uma <strong>teia</strong></li>
-<li class="fragment">Ninguém sabe <strong>onde</strong> está a regra</li>
-</ul>
-<p>Aí o <strong>modelo de domínio</strong> (Repository) compensa.</p>
-</section>
-<section id="cqrs" class="slide level2">
-<h2>CQRS</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a aria-label="1"></a>COMANDO  ──►  escreve  orders  ──►  atualiza  daily_sales</span>
-<span id="cb9-2"><a aria-label="2"></a>                                              ▲</span>
-<span id="cb9-3"><a aria-label="3"></a>CONSULTA ─────────────────────────────────────┘  só lê</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Separa</strong> escrever de ler. A leitura tem um modelo <strong>próprio</strong>.</p>
-</section>
-<section id="o-custo-do-cqrs" class="slide level2">
-<h2>O custo do CQRS</h2>
-<ul>
-<li class="fragment"><strong>Duas vias</strong> para manter</li>
-<li class="fragment">A leitura pode ficar <strong>atrasada</strong> (consistência eventual)</li>
-<li class="fragment">Sem o problema de escala, é <strong>overengineering</strong></li>
-</ul>
+<section id="auto-healing-de-seletores" class="slide level2">
+<h2>Auto-healing de seletores</h2>
 <blockquote>
-<p>2 mil pedidos por dia? Provavelmente não.</p>
+<p>Se o botão muda de ID por motivo cosmético, o teste não quebra à toa.</p>
 </blockquote>
+<p>A IA reconhece o componente semanticamente.</p>
 </section></section>
-<section id="transaction-script-e-cqrs-1" class="title-slide slide level1 desafio center">
-<h1>Transaction Script e CQRS</h1>
+<section id="descreva-e-gere-o-e2e" class="title-slide slide level1 desafio center">
+<h1>Descreva e gere o E2E</h1>
 <p class="kicker">
-Mini desafio 5 · 10 min
+Mini desafio 5 · 7 min
 </p>
-<ol type="1">
-<li class="fragment"><code>placeOrder</code> em <strong>uma transação</strong> com <strong>rollback</strong> se faltar estoque</li>
-<li class="fragment">Prove que o segundo pedido <strong>não deixa rastro</strong></li>
-<li class="fragment">Crie uma <strong>consulta</strong> que só lê <code>daily_sales</code></li>
-</ol>
-<p><em>Extra: onde o CQRS atrapalharia aqui?</em></p>
+<p>Descreva um fluxo de checkout em texto simples.</p>
+<p><strong>Peça à IA o script Playwright correspondente.</strong></p>
 </section>
 
 <section>
-<section id="decidindo-com-ia" class="title-slide slide level1 secao center">
-<h1>Decidindo com IA</h1>
+<section id="flaky-tests-e-governança-de-prs" class="title-slide slide level1 secao center">
+<h1>Flaky Tests e governança de PRs</h1>
 <p class="kicker">
-Bloco 2 · Tópico 6
+Bloco 2 · Tópico 6 · Extra
 </p>
 </section>
-<section id="o-fluxo-da-decisão" class="slide level2">
-<h2>O fluxo da decisão</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a aria-label="1"></a>Problema → Prompt com contexto → IA sugere alternativas</span>
-<span id="cb10-2"><a aria-label="2"></a>   → VOCÊ valida → Decisão humana → Registro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Se não entendeu, testou e validou, <strong>volte ao prompt</strong>.</p>
+<section id="diagnóstico-com-ia" class="slide level2">
+<h2>Diagnóstico com IA</h2>
+<p>A IA examina logs do CI/CD e isola a causa raiz: concorrência, rede, assincronismo mal tratado.</p>
 </section>
-<section id="registro-de-decisão" class="slide level2">
-<h2>Registro de decisão</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a aria-label="1"></a><span class="fu">## Contexto</span></span>
-<span id="cb11-2"><a aria-label="2"></a>O problema e as restrições.</span>
-<span id="cb11-3"><a aria-label="3"></a></span>
-<span id="cb11-4"><a aria-label="4"></a><span class="fu">## Alternativas (sugeridas pela IA)</span></span>
-<span id="cb11-5"><a aria-label="5"></a>A, B e C, com prós e contras.</span>
-<span id="cb11-6"><a aria-label="6"></a></span>
-<span id="cb11-7"><a aria-label="7"></a><span class="fu">## Decisão</span></span>
-<span id="cb11-8"><a aria-label="8"></a>Escolhemos B, porque...</span>
-<span id="cb11-9"><a aria-label="9"></a></span>
-<span id="cb11-10"><a aria-label="10"></a><span class="fu">## Riscos</span></span>
-<span id="cb11-11"><a aria-label="11"></a>O que pode dar errado.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="quando-a-ia-está-errada" class="slide level2">
-<h2>Quando a IA está errada</h2>
-<ul>
-<li class="fragment"><strong>“Use X em tudo”</strong>: conclusão genérica</li>
-<li class="fragment">SQL por <strong>concatenação</strong> de texto</li>
-<li class="fragment">Esquece a <strong>transação</strong></li>
-<li class="fragment">Sugere uma <strong>escala</strong> que você não tem</li>
-</ul>
-<p>Avise no <strong>PR</strong> quando o código veio de IA e o que você validou.</p>
+<section id="governança-preditiva" class="slide level2">
+<h2>Governança preditiva</h2>
+<blockquote>
+<p>IA bloqueia o PR se há regra nova sem teste de cobertura.</p>
+</blockquote>
+<p>Alerta antes da revisão humana.</p>
 </section></section>
-<section id="valide-e-registre-a-decisão" class="title-slide slide level1 desafio center">
-<h1>Valide e registre a decisão</h1>
+<section id="diagnostique-o-flaky-test" class="title-slide slide level1 desafio center">
+<h1>Diagnostique o Flaky Test</h1>
 <p class="kicker">
-Mini desafio 6 · 10 min
+Mini desafio 6 · 7 min
 </p>
-<p>Uma “IA” respondeu (<strong>exemplo fictício</strong>):</p>
-<p><code>Use Active Record em tudo; monte a query com "...WHERE id = '$id'"; não precisa de transação; adote CQRS com fila desde já.</code></p>
-<p><strong>Ache os problemas</strong> e escreva o <strong>registro de decisão</strong>.</p>
+<p>Um teste passa e falha sem mudança de código.</p>
+<p><strong>Que causas raiz você investigaria primeiro?</strong></p>
 </section>
 
 <section>
-<section id="persistência-do-projeto-com-ia" class="title-slide slide level1 secao center">
-<h1>Persistência do projeto com IA</h1>
+<section id="endpoint-de-pagamento-com-ia" class="title-slide slide level1 secao center">
+<h1>Endpoint de pagamento com IA</h1>
 <p class="kicker">
 Desafio integrador · 45 min
 </p>
+<p>Em dupla</p>
 </section>
 <section id="o-que-fazer" class="slide level2">
 <h2>O que fazer</h2>
 <ol type="1">
-<li class="fragment">Escreva o <strong>prompt com contexto</strong> do seu projeto</li>
-<li class="fragment">Colete as <strong>alternativas</strong> da IA</li>
-<li class="fragment"><strong>Valide</strong> e escolha <strong>um</strong> pattern</li>
-<li class="fragment"><strong>Implemente</strong> um recorte e <strong>registre</strong></li>
+<li class="fragment">Peça à IA a lista de <strong>edge cases</strong> do endpoint de pagamento</li>
+<li class="fragment">Escreva o teste de <strong>contrato</strong> (<code>POST /pedidos/:id/pagar</code>)</li>
+<li class="fragment">Escreva os testes dos casos de borda encontrados</li>
 </ol>
-</section>
-<section id="critério-de-pronto" class="slide level2">
-<h2>Critério de pronto</h2>
-<ul class="task-list">
-<li class="fragment"><label><input type="checkbox">Prompt com <strong>contexto e restrições</strong></label></li>
-<li class="fragment"><label><input type="checkbox"><strong>3 alternativas</strong> da IA registradas</label></li>
-<li class="fragment"><label><input type="checkbox">Decisão <strong>humana</strong>, com justificativa</label></li>
-<li class="fragment"><label><input type="checkbox">Recorte implementado e <strong>rodando</strong></label></li>
-<li class="fragment"><label><input type="checkbox">Anotado <strong>o que a IA errou</strong></label></li>
-</ul>
-<p><em>Extra: peça um contra-argumento à recomendação.</em></p>
+<p><em>Extra: qual edge case mais inesperado a IA sugeriu?</em></p>
 </section>
 <section id="fechamento" class="slide level2">
 <h2>Fechamento</h2>
 <ul>
-<li class="fragment"><strong>Prompt</strong> com contexto, restrições e formato</li>
-<li class="fragment"><strong>Valide</strong> antes de aceitar</li>
-<li class="fragment"><strong>Registre</strong> a decisão</li>
+<li class="fragment"><strong>Integração:</strong> memória ou real, conforme o risco</li>
+<li class="fragment"><strong>Contrato:</strong> testa a borda pública, sobrevive a refatoração</li>
+<li class="fragment"><strong>IA:</strong> acha edge cases e gera E2E — você audita</li>
 </ul>
 </section>
 <section id="dever-de-casa" class="slide level2">
 <h2>Dever de casa</h2>
 <ol type="1">
-<li class="fragment"><strong>Finalize</strong> 1 Database Pattern com a IA como apoio</li>
-<li class="fragment"><strong>Registre</strong> a decisão</li>
-<li class="fragment">Prepare o <strong>seminário do E06</strong>: 1 princípio + 1 pattern</li>
-<li class="fragment">Leve <strong>3 dúvidas</strong></li>
+<li class="fragment">Escrever 1 teste de integração real no projeto</li>
+<li class="fragment">Pedir edge cases à IA antes de testar um endpoint</li>
+<li class="fragment">Levar 3 dúvidas para o próximo encontro</li>
 </ol>
-
-
 </section></section>
+<section id="ci-e-pipelines-com-testes-lint-e-coverage" class="title-slide slide level1 fim center">
+<h1>CI e pipelines com testes, lint e coverage</h1>
+<p class="kicker">
+Próximo encontro · E11
+</p>
+<p>Traga a suíte de integração.</p>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
