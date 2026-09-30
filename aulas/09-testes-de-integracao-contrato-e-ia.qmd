@@ -1,0 +1,216 @@
+---
+title: "Testes de integração, contrato e IA"
+subtitle: "Módulo 2 · Encontro 10 — Repositórios, contrato de API e edge cases com IA"
+format: revealjs
+---
+
+## Na aula passada
+
+- O que é (e não é) um teste unitário
+- PHPUnit e Jest lado a lado
+- LLMs gerando e auditando testes
+
+**Pergunta:** Achou alguma asserção tautológica na suíte gerada em casa?
+
+## Hoje
+
+- **Bloco 1:** banco em memória vs real · testando repositórios · contrato de API
+- **Bloco 2:** IA descobrindo edge cases · automação E2E · flaky tests e PRs
+
+::: {.fragment}
+**Saída:** testes de integração reais e IA usada com critério
+:::
+
+# Banco em memória vs banco real {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Duas opções
+
+| | Memória | Real |
+|---|---|---|
+| Velocidade | Rápido | Mais lento |
+| Setup | Nenhum | Docker/container |
+| Fidelidade | Aproximada | Garantida |
+
+## Regra prática
+
+> Unitário nunca toca banco. Integração escolhe conforme o risco.
+
+# Memória ou real? {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Por que um teste em SQLite pode passar e o mesmo código **falhar** no Postgres de produção?
+
+# Testando repositórios {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## O que valida
+
+- Salvar, buscar, atualizar
+- Constraints reais (unicidade, chaves estrangeiras)
+- Comportamento real de persistência
+
+## Setup e teardown {.smaller}
+
+```ts
+describe('OrderRepository (integração)', () => {
+  beforeEach(() => db.migrate.latest());
+  afterEach(() => db.migrate.rollback());
+
+  it('salva e recupera um pedido pelo id', async () => {
+    const repo = new OrderRepository(db);
+    const order = new Order([{ nome: 'Livro', preco: 50 }]);
+    await repo.salvar(order);
+    const encontrado = await repo.buscarPorId(order.id);
+    expect(encontrado.total).toBe(50);
+  });
+});
+```
+
+# Teste o repositório {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+O que acontece se um teste de integração **não limpar** o banco depois de rodar?
+
+*Extra: escreva o `afterEach` correto.*
+
+# Contrato de API {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Testar a borda pública
+
+> Request → Response sempre igual, não importa a implementação interna.
+
+## Contrato na prática
+
+```ts
+it('POST /pedidos com carrinho vazio retorna 400', async () => {
+  const response = await request(app)
+    .post('/pedidos').send({ itens: [] });
+  expect(response.status).toBe(400);
+  expect(response.body.erro).toBe('carrinho vazio');
+});
+```
+
+# Defina o contrato {.desafio}
+
+<p class="kicker">Mini desafio 3 · 7 min</p>
+
+Se eu reescrever toda a lógica interna do endpoint mas o contrato continuar igual, **o teste deveria quebrar?**
+
+*Extra: escreva o contrato de `GET /pedidos/:id`.*
+
+# IA descobrindo casos de borda {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Além do caminho feliz
+
+> O maior risco está nas fronteiras: nulos, vazios, negativos, estouro.
+
+A IA antecipa o que a pressão de prazo faz o humano esquecer.
+
+## Prompt de edge cases
+
+```text
+Atue como Engenheiro de QA Sênior especialista em
+segurança. Analise calcularFrete(peso, distancia).
+Identifique 5 cenários críticos de entradas inválidas,
+negativas, nulas e estouro. Depois escreva os testes.
+```
+
+# Peça os edge cases primeiro {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+Peça à IA a **lista de riscos** de uma função do seu projeto,
+antes de pedir os testes.
+
+*Extra: algum risco te surpreendeu?*
+
+# Automação E2E com IA {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Descrição vira script
+
+```text
+"O cliente clica no carrinho, aplica o cupom
+DESCONTO10 e finaliza o pedido"
+```
+
+LLM traduz para Playwright/Cypress executável.
+
+## Auto-healing de seletores
+
+> Se o botão muda de ID por motivo cosmético, o teste não quebra à toa.
+
+A IA reconhece o componente semanticamente.
+
+# Descreva e gere o E2E {.desafio}
+
+<p class="kicker">Mini desafio 5 · 7 min</p>
+
+Descreva um fluxo de checkout em texto simples.
+
+**Peça à IA o script Playwright correspondente.**
+
+# Flaky Tests e governança de PRs {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Diagnóstico com IA
+
+A IA examina logs do CI/CD e isola a causa raiz:
+concorrência, rede, assincronismo mal tratado.
+
+## Governança preditiva
+
+> IA bloqueia o PR se há regra nova sem teste de cobertura.
+
+Alerta antes da revisão humana.
+
+# Diagnostique o Flaky Test {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Um teste passa e falha sem mudança de código.
+
+**Que causas raiz você investigaria primeiro?**
+
+# Endpoint de pagamento com IA {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O que fazer
+
+1. Peça à IA a lista de **edge cases** do endpoint de pagamento
+2. Escreva o teste de **contrato** (`POST /pedidos/:id/pagar`)
+3. Escreva os testes dos casos de borda encontrados
+
+*Extra: qual edge case mais inesperado a IA sugeriu?*
+
+## Fechamento
+
+- **Integração:** memória ou real, conforme o risco
+- **Contrato:** testa a borda pública, sobrevive a refatoração
+- **IA:** acha edge cases e gera E2E — você audita
+
+## Dever de casa
+
+1. Escrever 1 teste de integração real no projeto
+2. Pedir edge cases à IA antes de testar um endpoint
+3. Levar 3 dúvidas para o próximo encontro
+
+# CI e pipelines com testes, lint e coverage {.fim}
+
+<p class="kicker">Próximo encontro · E11</p>
+
+Traga a suíte de integração.

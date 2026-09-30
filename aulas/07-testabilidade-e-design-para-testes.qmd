@@ -1,0 +1,262 @@
+---
+title: "Testabilidade e design para testes"
+subtitle: "Módulo 2 · Encontro 8 — AAA, TDD e inversão de dependência"
+format: revealjs
+---
+
+## Na aula passada
+
+- Valor econômico do QA e regra dos dez
+- Pirâmide de testes e sorvete de casquinha
+- Test doubles: Stub, Mock, Fake
+
+**Pergunta:** Já pensaram em como testar a parte de maior risco do projeto?
+
+## Hoje
+
+- **Bloco 1:** padrão AAA · TDD Red-Green-Refactor · 3 Leis de Uncle Bob
+- **Bloco 2:** inversão de dependência · anti-patterns · coverage
+
+::: {.fragment}
+**Saída:** código testável e ciclo TDD na prática
+:::
+
+# O padrão AAA {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+Arrange, Act, Assert
+
+## Três fases
+
+- **Arrange:** preparar ambiente, instâncias, dados
+- **Act:** executar a ação sob teste
+- **Assert:** verificar o resultado esperado
+
+> Um teste com AAA claro se explica sozinho
+
+## AAA no domínio de Pedidos
+
+```ts
+describe('CarrinhoDeCompras', () => {
+  it('aplica desconto de 10% acima de R$ 100', () => {
+    // Arrange
+    const carrinho = new CarrinhoDeCompras();
+    carrinho.adicionarItem({ nome: 'Livro', preco: 120 });
+    // Act
+    const total = carrinho.calcularTotalComDesconto();
+    // Assert
+    expect(total).toBe(108.00);
+  });
+});
+```
+
+# Separe o AAA {.desafio}
+
+<p class="kicker">Mini desafio 1 · 7 min</p>
+
+Pegue um teste "bagunçado" (sem fases claras).
+
+Separe em **Arrange**, **Act** e **Assert**.
+
+*Extra: aponte onde o teste original misturava Act e Assert.*
+
+# TDD {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+Red, Green, Refactor
+
+## Não é técnica de teste
+
+> TDD é metodologia de design: o teste nasce antes do código.
+
+## O ciclo
+
+| Fase | O que fazer |
+|---|---|
+| **RED** | Escreva um teste que falha |
+| **GREEN** | Código mais simples possível para passar |
+| **REFACTOR** | Melhore mantendo os testes verdes |
+
+## Benefício de design
+
+- Escrever o teste primeiro força pensar na **interface** antes da implementação
+- Gera naturalmente **menor acoplamento** e **maior coesão**
+
+# Siga o ciclo RED-GREEN-REFACTOR {.desafio}
+
+<p class="kicker">Mini desafio 2 · 6 min</p>
+
+Implemente `Order.podeCancelar()`:
+não pode cancelar se `status === 'entregue'`.
+
+1. Escreva o teste (**RED**)
+2. Código mínimo (**GREEN**)
+3. Melhore (**REFACTOR**)
+
+# As 3 Leis de Uncle Bob {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## As leis
+
+1. Não escreva código de produção sem um teste que falhe
+2. Não escreva mais teste do que o necessário para falhar
+3. Não escreva mais código de produção do que o necessário para passar
+
+## O erro mais comum
+
+> Escrever a classe inteira e só depois tentar fazer o teste passar.
+
+TDD de verdade é **passo a passo minúsculo**.
+
+# Aponte a violação da lei {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+Um colega escreveu a função inteira e só depois criou 1 teste.
+
+**Qual lei foi violada? Por quê?**
+
+# Inversão de dependência {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+e testabilidade
+
+## O problema: `new` escondido
+
+```ts
+class OrderService {
+  aprovar(order: Order) {
+    const gateway = new StripeGateway(); // concreto!
+    return gateway.autorizar(order.total);
+  }
+}
+```
+
+Impossível trocar por um Stub no teste.
+
+## A solução: injetar
+
+```ts
+class OrderService {
+  constructor(private gateway: PaymentGateway) {}
+  aprovar(order: Order) {
+    return this.gateway.autorizar(order.total);
+  }
+}
+```
+
+A classe depende de uma **abstração**, não do concreto.
+
+# Injete a dependência {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+No seu projeto, encontre um `new` de dependência externa escondido.
+
+**Transforme em injeção via construtor.**
+
+*Extra: escreva o teste que só ficou possível depois da injeção.*
+
+# Anti-patterns que matam testes {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Os 4 mais comuns
+
+- **`new` interno** de dependência concreta
+- **Métodos estáticos** que fazem I/O
+- **Efeitos colaterais escondidos** (calcula e também salva)
+- **Estado global** compartilhado entre testes
+
+## Efeito colateral escondido
+
+```ts
+// "Só calcula", mas também grava e manda e-mail
+function calcularEAprovar(order: Order) {
+  const total = order.calcularTotal();
+  db.save(order);
+  emailService.send(order.clienteEmail);
+  return total;
+}
+```
+
+Separe **decisão** (pura) de **ação** (efeito colateral).
+
+# Caçada aos anti-patterns {.desafio}
+
+<p class="kicker">Mini desafio 5 · 7 min</p>
+
+No seu projeto, encontre **1 anti-pattern** de testabilidade.
+
+**Descreva como ele dificulta o teste.**
+
+*Extra: proponha a correção.*
+
+# Coverage {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+O que mede e o que não mede
+
+## Três métricas
+
+| Métrica | O que mede |
+|---|---|
+| Line coverage | % de linhas executadas |
+| Branch coverage | % de condicionais percorridos |
+| Function coverage | % de funções chamadas |
+
+## 100% não garante ausência de bugs
+
+> Cobertura mede o que rodou, não o que foi validado.
+
+Busque **qualidade de asserção**, não métrica vaidosa.
+
+# 100% de coverage, teste ruim {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+```ts
+it('calcula total', () => {
+  const total = carrinho.calcularTotal();
+  expect(total).toBe(total); // sempre passa!
+});
+```
+
+**O que há de errado com este teste?**
+
+# Refatore e teste com TDD {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O que fazer
+
+1. Escolha uma classe do projeto com um **anti-pattern** de testabilidade
+2. **Refatore** para injeção de dependência
+3. Adicione uma regra nova aplicando **TDD completo**
+
+*Extra: um commit por cor do ciclo (RED, GREEN, REFACTOR).*
+
+## Fechamento
+
+- **AAA:** Arrange, Act, Assert
+- **TDD:** Red, Green, Refactor
+- **Inversão de dependência** torna o código testável
+
+## Dever de casa
+
+1. Refatorar 1 dependência concreta para injeção
+2. Escrever 2 testes novos com TDD
+3. Levar 3 dúvidas para o próximo encontro
+
+# Testes unitários no backend {.fim}
+
+<p class="kicker">Próximo encontro · E09</p>
+
+Traga o projeto refatorado.

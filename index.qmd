@@ -7,3 +7,4 @@ format: html
 ## Módulos {#modulos}
 
 - [**Engenharia de Software e IA Aplicada**<span class="card-desc">Containers com Docker, métodos ágeis, POO, Design Patterns e IA aplicada ao fluxo de engenharia.</span><span class="card-meta">5 encontros</span>](modulos/modulo-01.html)
+- [**Qualidade de Software e Testes com IA**<span class="card-desc">Pirâmide de testes, TDD, testes unitários e de integração, e uso de IA para gerar e auditar testes.</span><span class="card-meta">4 encontros</span>](modulos/modulo-02.html)

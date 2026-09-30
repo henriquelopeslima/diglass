@@ -1,0 +1,18 @@
+---
+title: "Módulo 2"
+subtitle: "Qualidade de Software e Testes com IA"
+format: html
+---
+
+::: {.nav-back}
+[← Voltar aos módulos](../index.html)
+:::
+
+Slides e materiais das aulas do Módulo 2.
+
+## Aulas {#aulas}
+
+- [**Qualidade de software e cultura de testes**<span class="card-desc">Valor econômico do QA, pirâmide de testes, o anti-padrão sorvete de casquinha e test doubles.</span>](../aulas/06-qualidade-de-software-e-cultura-de-testes.html)
+- [**Testabilidade e design para testes**<span class="card-desc">Padrão AAA, TDD (Red-Green-Refactor), inversão de dependência e anti-patterns que matam testes.</span>](../aulas/07-testabilidade-e-design-para-testes.html)
+- [**Testes unitários no backend**<span class="card-desc">PHPUnit e Jest lado a lado, mocks e stubs avançados, geração e auditoria de testes com IA.</span>](../aulas/08-testes-unitarios-no-backend.html)
+- [**Testes de integração, contrato e IA**<span class="card-desc">Banco em memória vs real, contrato de API, descoberta de edge cases e automação E2E com IA.</span>](../aulas/09-testes-de-integracao-contrato-e-ia.html)

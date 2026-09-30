@@ -1,0 +1,262 @@
+---
+title: "Qualidade de software e cultura de testes"
+subtitle: "Módulo 2 · Encontro 7 — Valor do QA, pirâmide de testes e test doubles"
+format: revealjs
+---
+
+## Na aula passada
+
+- Duplas apresentaram 1 princípio + 1 pattern
+- Feedback coletivo sobre o uso de IA no design
+- Módulo 1 fechado: código com responsabilidades separadas
+
+**Pergunta:** Código bem desenhado (SOLID) já é código confiável?
+
+## Hoje
+
+- **Bloco 1:** valor econômico do QA · pirâmide de testes · sorvete de casquinha
+- **Bloco 2:** testes como documentação viva · test doubles · velocidade × pressão
+
+::: {.fragment}
+**Saída:** todos sabendo classificar e priorizar testes
+:::
+
+# O valor econômico do QA {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Testar não é burocracia
+
+> Testar é reduzir o custo de mudar o sistema amanhã.
+
+Não é "procurar bug por procurar".
+
+## A regra dos dez (Boehm)
+
+| Fase | Custo de corrigir |
+|---|---|
+| Requisitos / Design | $1x |
+| Dev / teste unitário | $10x |
+| QA / Homologação | $100x |
+| Produção | $1000x+ |
+
+O custo cresce ~10x por fase.
+
+## O princípio de Dijkstra
+
+> "Testes podem mostrar a presença de bugs, nunca a sua ausência."
+
+- A suíte não **prova** correção
+- Ela reduz o risco a um nível **aceitável**
+- Funciona como rede de segurança contra **regressão**
+
+# Meu primeiro parecer {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Um desconto é aplicado com carrinho **vazio** no `OrderService`.
+
+1. Em que fase corrigir custa **$1x**?
+2. Em que fase custa **$1000x+**?
+
+*Extra: estime em horas o custo real no seu projeto.*
+
+# A Pirâmide de Testes {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+Mike Cohn
+
+## Três camadas
+
+| Camada | Velocidade | Isolamento |
+|---|---|---|
+| Unitário | < 5ms | Total (sem I/O) |
+| Integração | 100ms – 2s | Parcial (DB/API) |
+| E2E (UI) | 5s – 30s+ | Nenhum (sistema real) |
+
+Mais testes embaixo, menos no topo.
+
+## Analogia da casa
+
+- **Unitário:** testar a lâmpada na bancada
+- **Integração:** rosquear a lâmpada e checar a fiação
+- **E2E:** entrar na casa, ligar o disjuntor, checar a sala
+
+> Cada camada testa uma coisa diferente
+
+# Classifique a camada {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+Para cada teste, diga se é unitário, integração ou E2E:
+
+1. `calcularDesconto(100)` retorna `10`
+2. `OrderRepository.salvar()` grava no Postgres real
+3. Usuário clica em "finalizar pedido" no navegador
+
+# O Sorvete de Casquinha {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+Ice Cream Cone
+
+## A pirâmide invertida
+
+> Poucos testes unitários, muitos testes manuais ou E2E.
+
+- Suíte **lenta**
+- **Cara** de manter
+- Sujeita a **Flaky Tests**
+
+## O cenário da PaySafe
+
+- Deploy demora **1h30**
+- Centenas de testes abrem **Chrome de verdade**
+- Gateway de pagamento **real** é chamado nos testes
+
+## Flaky Tests
+
+> Passam e falham sem nenhuma mudança no código.
+
+**Vocês confiariam nessa suíte?**
+
+# Diagnostique o sorvete de casquinha {.desafio}
+
+<p class="kicker">Mini desafio 3 · 8 min</p>
+
+No cenário da PaySafe:
+
+1. Qual camada da pirâmide está **desproporcional**?
+2. Qual é o efeito disso na **confiança** do time?
+
+*Extra: proponha a nova proporção ideal entre as camadas.*
+
+# Testes como documentação viva {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Especificação executável
+
+```ts
+it('deve aplicar desconto de 10% para compras acima de R$ 100', () => {
+  // ...
+});
+```
+
+O nome do teste é o **contrato** do método.
+
+## Documentação que nunca mente
+
+- README pode ficar **desatualizado**
+- Teste **quebra** quando o comportamento muda
+- O CI garante isso a cada commit
+
+> Teste bom = especificação sempre em dia
+
+# Teste como especificação {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+Leia um teste do `OrderService` sem ver o código de produção.
+
+**Adivinhe a regra de negócio** só pelo nome do teste.
+
+*Extra: reescreva um nome de teste ruim (`test1`) para um nome-especificação.*
+
+# Test Doubles {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+Stub, Mock e Fake
+
+## Três papéis diferentes
+
+| Tipo | O que faz |
+|---|---|
+| **Stub** | Resposta fixa e combinada |
+| **Mock** | Responde **e** verifica se foi chamado certo |
+| **Fake** | Implementação simplificada mas funcional |
+
+## Stub e Mock no domínio de Pedidos
+
+```ts
+// Stub: resposta fixa
+const gatewayStub = {
+  autorizar: () => ({ sucesso: true, transacaoId: 'TX1' })
+};
+
+// Mock/spy: registra chamadas
+const emailMock = vi.spyOn(notifier, 'enviar');
+expect(emailMock).toHaveBeenCalledWith(
+  'cliente@email.com', 'Pedido aprovado'
+);
+```
+
+# Stub, Mock ou Fake? {.desafio}
+
+<p class="kicker">Mini desafio 5 · 7 min</p>
+
+Para testar o `OrderService`, qual Test Double você usaria para:
+
+1. Simular sempre uma resposta de pagamento **aprovado**
+2. Verificar se o **e-mail** foi disparado com o texto certo
+3. Substituir o banco por uma **lista em memória**
+
+# Testes × velocidade × negócio {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## "Não temos tempo para testar"
+
+> Sem teste, a velocidade cai com o tempo.
+
+- Medo de mexer no código
+- Regressão constante
+- Comece pela área de **maior risco**
+
+# Priorize o que testar primeiro {.desafio}
+
+<p class="kicker">Mini desafio 6 · 9 min</p>
+
+No projeto da dupla, liste **3 partes do sistema** por risco.
+
+O que mais doeria quebrar em produção?
+
+# Parecer técnico da PaySafe {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O cenário
+
+- Deploy de 1h30, testes abrindo Chrome real
+- Gateway de pagamento real chamado nos testes
+- Sistema quebra em produção por falta de testes de borda
+
+## O que entregar
+
+1. Qual **anti-padrão** está presente
+2. Como **redistribuir** a pirâmide
+3. Qual **Test Double** resolve as chamadas reais ao gateway
+
+*Extra: qual seria o primeiro PR da reestruturação?*
+
+## Fechamento
+
+- **Pirâmide** de testes: unitário, integração, E2E
+- **Sorvete de casquinha:** o anti-padrão a evitar
+- **Stub × Mock × Fake**
+
+## Dever de casa
+
+1. Questionário "Testes de Software" na plataforma
+2. Listar 3 partes do projeto por ordem de risco
+3. Levar 3 dúvidas para o próximo encontro
+
+# Testabilidade e design para testes {.fim}
+
+<p class="kicker">Próximo encontro · E08</p>
+
+Traga o projeto da dupla.

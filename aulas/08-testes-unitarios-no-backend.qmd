@@ -1,0 +1,235 @@
+---
+title: "Testes unitários no backend"
+subtitle: "Módulo 2 · Encontro 9 — PHPUnit, Jest e geração de testes com IA"
+format: revealjs
+---
+
+## Na aula passada
+
+- Padrão AAA e ciclo TDD (Red-Green-Refactor)
+- As 3 Leis de Uncle Bob
+- Inversão de dependência e anti-patterns
+
+**Pergunta:** Quem completou o ciclo TDD em casa? O que travou?
+
+## Hoje
+
+- **Bloco 1:** o que é (e não é) unitário · PHPUnit/Jest · mocks e stubs na prática
+- **Bloco 2:** LLMs gerando testes · prompts eficazes · auditoria de testes de IA
+
+::: {.fragment}
+**Saída:** testes unitários de verdade, com e sem IA
+:::
+
+# O que é (e não é) um teste unitário {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## É
+
+- Testa uma unidade **isolada**
+- Sem banco, rede, filesystem ou relógio real
+- Roda em **milissegundos**
+- **Determinístico:** mesmo input, mesmo output
+
+## Não é
+
+> Um teste que precisa de sleep(), container rodando ou falha "às vezes".
+
+Isso é integração disfarçada.
+
+# É unitário ou não? {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Um teste chama `Date.now()` direto dentro do método testado.
+
+**É um bom teste unitário? Por quê?**
+
+# PHPUnit e Jest {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+Lado a lado
+
+## A estrutura não muda
+
+> describe/it no Jest = métodos test* no PHPUnit
+
+Sintaxe muda, AAA continua o mesmo.
+
+## PHPUnit
+
+```php
+final class OrderTest extends TestCase
+{
+    public function test_aplica_desconto_acima_de_100(): void
+    {
+        $order = new Order([new Item('Livro', 120.0)]);
+        $total = $order->calcularTotalComDesconto();
+        $this->assertEquals(108.0, $total);
+    }
+}
+```
+
+## Jest / Vitest
+
+```ts
+describe('Order', () => {
+  it('aplica desconto acima de R$ 100', () => {
+    const order = new Order([{ nome: 'Livro', preco: 120 }]);
+    expect(order.calcularTotalComDesconto()).toBe(108.0);
+  });
+});
+```
+
+# Traduza o teste {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+Pegue um teste em PHPUnit e escreva o **equivalente em Jest**.
+
+*Extra: o inverso também.*
+
+# Mocks e Stubs na prática {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Além do caminho feliz
+
+> Um bom mock simula latência, timeout e erros reais.
+
+Não só a resposta de sucesso.
+
+## Simulando caos
+
+```ts
+const gatewayInstavel = {
+  autorizar: vi.fn()
+    .mockRejectedValueOnce(new Error('timeout'))
+    .mockResolvedValueOnce({ sucesso: true })
+};
+```
+
+Testa se o `OrderService` **tenta de novo** (retry) após o timeout.
+
+# Simule o caos {.desafio}
+
+<p class="kicker">Mini desafio 3 · 7 min</p>
+
+Faça o `OrderService` receber um **erro 503** do gateway.
+
+**O sistema reage com elegância?**
+
+*Extra: implemente um retry simples.*
+
+# LLMs gerando testes unitários {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## O que a IA faz bem
+
+- Decompõe a árvore de sintaxe do código
+- Infere ramificações condicionais
+- Gera suítes inteiras em **segundos**
+
+## Do digitador ao arquiteto de qualidade
+
+> A IA escreve. Você valida se cobre a regra de negócio real.
+
+A IA mantém o mesmo rigor do 1º ao 100º teste.
+
+# Gere com IA {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+Peça a um LLM 3 testes unitários para um método do seu projeto.
+
+**Leia cada um antes de aceitar.**
+
+# Boas práticas de prompt {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## O que incluir no prompt
+
+- **Contexto completo** da função/classe
+- **Framework oficial** declarado (Jest, PHPUnit...)
+- Exigir **caminho feliz + erros** explicitamente
+
+## Prompt eficaz
+
+```text
+Atue como Engenheiro de QA Sênior. Gere testes
+em Vitest para OrderService.aprovar(order).
+Cubra: (1) pagamento aprovado, (2) recusado,
+(3) gateway lança timeout. Use padrão AAA.
+```
+
+# Escreva o prompt perfeito {.desafio}
+
+<p class="kicker">Mini desafio 5 · 7 min</p>
+
+Escreva um prompt para gerar testes de uma função do seu projeto.
+
+**Inclua contexto, framework e cenários de erro.**
+
+# Auditoria de testes gerados por IA {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6</p>
+
+## Asserção tautológica
+
+```ts
+it('calcula total', () => {
+  const total = order.calcularTotal();
+  expect(total).toBe(total); // sempre passa!
+});
+```
+
+O maior risco de aceitar testes de IA sem revisão.
+
+## Checklist de auditoria
+
+1. A asserção compara com um valor **esperado e conhecido**?
+2. Cobre os cenários pedidos no **prompt**?
+3. O teste **falha de verdade** se eu quebrar a implementação?
+
+# Audite o teste da IA {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Receba um teste gerado por IA.
+
+**Aplique o checklist e aponte o problema.**
+
+# Gere e audite com IA {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O que fazer
+
+1. Escreva um prompt eficaz para uma classe do projeto
+2. Gere a suíte com um LLM
+3. **Audite** cada teste com o checklist
+4. Corrija o que estiver tautológico ou superficial
+
+## Fechamento
+
+- Teste unitário **real** não toca I/O
+- PHPUnit e Jest: mesma estrutura, sintaxe diferente
+- IA acelera, **você audita**
+
+## Dever de casa
+
+1. Questionário "Testes Automatizados com IA" na plataforma
+2. Gerar 3 testes com IA e auditar cada um
+3. Levar 3 dúvidas para o próximo encontro
+
+# Testes de integração, contrato e IA {.fim}
+
+<p class="kicker">Próximo encontro · E10</p>
+
+Traga a suíte gerada e auditada.
