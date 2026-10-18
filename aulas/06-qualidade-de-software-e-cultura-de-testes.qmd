@@ -5,14 +5,6 @@ format: revealjs
 footer: "Full Cycle · Módulo 2 · Encontro 7"
 ---
 
-## Na aula passada
-
-- Duplas apresentaram 1 princípio + 1 pattern
-- Feedback coletivo sobre o uso de IA no design
-- Módulo 1 fechado: código com responsabilidades separadas
-
-**Pergunta:** Código bem desenhado (SOLID) já é código confiável?
-
 ## Hoje
 
 - **Bloco 1:** valor econômico do QA · pirâmide de testes · sorvete de casquinha
