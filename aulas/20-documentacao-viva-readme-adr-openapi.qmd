@@ -1,0 +1,304 @@
+---
+title: "Documentação viva"
+subtitle: "Módulo 4 · Encontro 21 — README, ADRs no PR e contratos OpenAPI"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Encontro 21"
+---
+
+## Na aula passada
+
+- Linguagem ubíqua: os mesmos termos no código e na conversa
+- Bounded context: onde a palavra muda de sentido
+- ADR: o campo de alternativas é o que evita a rediscussão
+
+**Pergunta:** alguém lê as alternativas do ADR que escreveu?
+
+## Hoje
+
+Vocês produziram artefatos. Como mantê-los **vivos**?
+
+- **Bloco 1:** documentação como código · README · ADR no PR
+- **Bloco 2:** OpenAPI · validação no pipeline · code-first ou contract-first
+
+# Documentação como código {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Por que ela falha
+
+<p class="big">É escrita num lugar que o código não obriga ninguém a atualizar</p>
+
+Um wiki separado do repositório envelhece no dia seguinte à publicação.
+
+## A alternativa que funciona
+
+- Mesmo repositório
+- Revisão em PR
+- **Verificada pelo pipeline**
+
+## Documente o que o código não diz
+
+- Por que a arquitetura é assim
+- Como colocar o sistema no ar
+- Qual o contrato com os outros serviços
+- O que acontece quando algo falha
+
+::: {.fragment}
+O que o código já diz claramente não precisa ser repetido em prosa.
+:::
+
+# Vale documentar {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+1. O que `calcularTotal(itens)` faz
+2. Por que o total arredonda **para cima**
+3. A lista de endpoints
+4. Como subir o ambiente local
+
+**Quais merecem prosa? E os outros, que forma melhor têm?**
+
+# O README do primeiro dia {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Nesta ordem
+
+1. O que o sistema faz, em duas frases
+2. **Como rodar localmente**
+3. Como rodar os testes
+4. Variáveis de ambiente
+5. Onde estão as decisões de arquitetura
+6. A quem perguntar
+
+## Um README que resolve {.smaller}
+
+```markdown
+# Serviço de pedidos
+
+Recebe pedidos da loja, valida estoque e publica `PedidoConfirmado`.
+
+## Rodando localmente
+Requer Docker e Node 20.
+
+    cp .env.example .env
+    docker compose up -d
+    npm ci && npm run dev
+
+## Testes
+    npm test                 # unitários
+    npm run test:integracao  # exige o docker compose no ar
+```
+
+## O teste do README
+
+Siga-o **literalmente**, numa máquina limpa.
+
+<p class="big">Cada passo que exige conhecimento tácito é uma falha do documento</p>
+
+E a correção é escrever o passo.
+
+# Teste o README {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+> "## Setup
+> Instale as dependências e configure o banco. Rode as migrations. Depois é só subir a aplicação."
+
+**O que uma pessoa nova não consegue fazer seguindo isso?**
+
+# ADR no fluxo de PR {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## A rotina, não o formato
+
+1. Decisão proposta → ADR escrito com status **proposto**
+2. A **discussão acontece na PR**
+3. A aprovação muda o status para **aceito**
+
+::: {.fragment}
+A decisão e a documentação dela passam pela **mesma revisão**.
+:::
+
+## O que merece ADR
+
+| Merece | Não merece |
+|---|---|
+| Estrutura do sistema | Mudança de estilo |
+| Escolha de tecnologia | Renomeação |
+| Formato de contrato | Refatoração local |
+| Estratégia de dados | |
+
+::: {.fragment}
+ADR para tudo enterra os importantes no ruído.
+:::
+
+# Merece ADR {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+1. Renomear `UserSvc` para `UsuarioService`
+2. Trocar MySQL por Postgres
+3. Extrair uma função de 40 linhas
+4. Comunicação entre pedidos e pagamentos por evento
+
+**Quais merecem? Justifique as exclusões.**
+
+# Contratos com OpenAPI {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Sem contrato explícito
+
+Frontend, aplicativo e parceiros descobrem o formato **por tentativa e erro**.
+
+A mudança de um campo quebra alguém sem aviso.
+
+## OpenAPI 3.1 {.smaller}
+
+```yaml
+paths:
+  /pedidos/{id}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Pedido" }
+        "404":
+          description: Pedido não existe ou não pertence ao usuário
+components:
+  schemas:
+    Pedido:
+      type: object
+      required: [id, status, total]
+      properties:
+        status: { type: string, enum: [aberto, pago, cancelado] }
+        total:  { type: number, minimum: 0 }
+```
+
+## O 404 é uma decisão de segurança
+
+> "Pedido não existe **ou não pertence ao usuário**"
+
+Não revela se o recurso existe para outra pessoa.
+
+::: {.fragment}
+É a decisão 403-vs-404 do E16, agora **documentada no contrato**.
+:::
+
+## Documente os erros
+
+<p class="big">O contrato existe principalmente para os erros</p>
+
+O caminho feliz todo mundo adivinha.
+
+# Complete o contrato {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+`POST /pedidos` devolve na prática: `201`, `400`, `401`, `409` e `422`.
+
+O contrato documenta só o `201`.
+
+**Por que isso é pior do que não ter contrato?**
+
+# Validar no pipeline {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Contrato não verificado vira ficção
+
+**Camada 1 — lint do arquivo:**
+
+```bash
+npx @stoplight/spectral-cli lint openapi.yaml
+```
+
+Estilo e consistência: toda resposta de erro usa o mesmo schema?
+
+## Camada 2 — contra o comportamento real
+
+```bash
+schemathesis run openapi.yaml --base-url http://localhost:3000
+```
+
+Gera casos a partir do **próprio contrato** e executa contra a API.
+
+::: {.fragment}
+Encontra divergências que teste escrito à mão deixa passar.
+:::
+
+# O contrato mente {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+> O contrato declara `total` como `number`, `minimum: 0`. O servidor respondeu `total: null` para um pedido cancelado.
+
+**Quem está errado? Que informação falta para decidir?**
+
+# Code-first ou contract-first {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## As duas abordagens {.smaller}
+
+| | Contract-first | Code-first |
+|---|---|---|
+| Como | Contrato antes do código | Gerado do código |
+| Vantagem | Design discutido antes; consumidores em paralelo | Menos manutenção |
+| Risco | Exige disciplina | Expõe detalhe interno; contrato desenhado pelo código |
+
+## Na prática, híbrido
+
+O contrato é o **artefato revisado**, e a verificação automática garante que o código o cumpre.
+
+<p class="big">O que não pode é ter dois documentos divergindo sem ninguém perceber</p>
+
+# Qual abordagem {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+1. API nova, frontend desenvolvido **em paralelo** por outra equipe
+2. Serviço maduro, 60 endpoints, nenhuma documentação
+3. API pública com parceiros sob contrato comercial
+
+**Recomende para cada um.**
+
+# Contrato e README de um serviço {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## Quatro entregáveis {.smaller}
+
+1. **README** que permita rodar a aplicação e os testes em **15 minutos**
+2. **ADR** de uma decisão real, com alternativas e consequências
+3. **OpenAPI 3.1** com dois endpoints, schemas reutilizáveis e **todas** as respostas de erro
+4. **Lint do OpenAPI no pipeline**, falhando em erro
+
+## Verificação {.smaller}
+
+| Verificação | Saída esperada |
+|---|---|
+| Lint do OpenAPI | Nenhum erro de severidade alta |
+| Criar pedido com total negativo | Validação coerente com `minimum: 0` |
+| Consultar pedido inexistente | `404`, conforme documentado |
+
+*Nos últimos 10 minutos, troquem de README com outra dupla e tentem rodar.*
+
+## Fechamento
+
+- **Documentação como código:** repositório, PR, pipeline
+- **README:** testado numa máquina limpa, não na sua
+- **ADR:** status *proposto*, discussão na PR
+- **Contrato:** todos os erros, não só o sucesso
+- **Verificação:** lint do arquivo + confronto com o comportamento real
+
+# Gerando e mantendo documentação com IA {.fim}
+
+<p class="kicker">Próximo encontro · E22</p>
+
+Escrever isso dá trabalho. A IA ajuda muito — e inventa endpoints que nunca existiram.

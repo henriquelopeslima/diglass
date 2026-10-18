@@ -1,0 +1,302 @@
+---
+title: "Latência, cache, filas e banco de dados"
+subtitle: "Módulo 4 · Encontro 23 — Percentis, cache-aside, idempotência e índices"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Encontro 23"
+---
+
+## Na aula passada
+
+- A IA redige, o código prova
+- Contexto controlado: roteador, schemas, **testes**
+- Schemathesis: bug no servidor ou contrato errado
+
+**Pergunta:** quem rodou o script e tem 500 mil pedidos no banco?
+
+## Hoje
+
+*"O chefe disse que o sistema está lento. O que você faz?"*
+
+::: {.fragment}
+A maioria responde **cache** ou **mais máquina**. As duas são respostas erradas antes de medir.
+:::
+
+::: {.fragment}
+<p class="big">Medir → corrigir a consulta → só então cachear</p>
+:::
+
+# Medir antes de otimizar {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Desempenho é medido, não percebido
+
+Defina o que significa "rápido" **para este sistema**:
+
+> p95 do checkout abaixo de 800 ms em horário de pico
+
+::: {.fragment}
+Sem alvo, toda otimização parece útil e **nenhuma pode ser declarada concluída**.
+:::
+
+## A cauda se acumula
+
+Cinco serviços, cada um com p99 de 200 ms.
+
+Chance de **nenhum** cair na cauda: 0,99⁵ ≈ 95%
+
+<p class="big">5% das requisições pegam a cauda de alguém</p>
+
+# Defina o alvo {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+*"Deixar a busca de produtos mais rápida."*
+
+**Reescreva como alvo verificável. O que precisa estar definido para alguém dizer "pronto"?**
+
+# Cache {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Cache-aside
+
+```ts
+async function obterProduto(id: string): Promise<Produto> {
+  const chave = `produto:${id}`;
+  const cacheado = await cache.get(chave);
+  if (cacheado) return JSON.parse(cacheado);
+
+  const produto = await repo.buscarProduto(id);
+  await cache.set(chave, JSON.stringify(produto), { EX: 300 });
+  return produto;
+}
+```
+
+## As três perguntas
+
+1. **Tolerância à desatualização** — o preço pode estar 5 min atrás; o **saldo na hora da compra, não**
+2. **Invalidação** — TTL é o caminho mais simples
+3. **Stampede** — a chave quente expira e milhares vão ao banco juntas
+
+## Contra o stampede
+
+- TTL com **variação aleatória**
+- Bloqueio: só uma requisição recalcula
+- Atualização antecipada, antes de expirar
+
+```ts
+const ttl = 300 + Math.floor(Math.random() * 60);
+```
+
+## O aviso do tópico
+
+<p class="big">Cache não corrige consulta lenta</p>
+
+Ele esconde o problema enquanto a chave está quente — e o problema volta na primeira falta.
+
+# As três perguntas do cache {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+1. Nome e descrição do produto
+2. Preço
+3. Saldo de estoque **na listagem**
+4. Saldo de estoque **na confirmação da compra**
+
+**Quanto tempo cada um pode estar desatualizado?**
+
+# Filas {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Desacoplar e suavizar picos
+
+Mil pedidos chegam num minuto. O serviço de e-mail processa cem por minuto.
+
+A fila guarda a diferença: o e-mail atrasa, **mas não se perde**.
+
+## Três conceitos
+
+- **Backpressure:** o consumidor sinaliza que não aguenta. *Fila sem limite é falha adiada.*
+- **Idempotência:** entregas são **pelo menos uma vez**
+- **Dead letter queue:** a mensagem problemática sai, em vez de travar a fila
+
+## O erro mais caro
+
+```ts
+async function processar(msg) {
+  await gateway.cobrar(msg.pedidoId, msg.valor, {
+    idempotencyKey: `cobranca:${msg.pedidoId}`,
+  });
+  await repo.marcarComoPago(msg.pedidoId);
+}
+```
+
+Sem a chave, uma retentativa após timeout **cobra duas vezes**.
+
+# Cobrança dupla {.desafio}
+
+<p class="kicker">Mini desafio 3 · 7 min</p>
+
+O gateway responde em 2 s. O timeout do consumidor é 1,5 s. A mensagem volta para a fila.
+
+**O que acontece com o cliente? Torne o consumidor idempotente.**
+
+# Índices e EXPLAIN {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## O banco é o gargalo
+
+```sql
+EXPLAIN ANALYZE
+SELECT id, status, total FROM pedidos
+WHERE cliente_id = 42
+ORDER BY criado_em DESC
+LIMIT 10;
+```
+
+## O plano denuncia {.smaller}
+
+```text
+Limit  (cost=18452.31..18452.33 rows=10)
+  ->  Sort  (cost=18452.31..18463.88 rows=4628)
+        Sort Key: criado_em DESC
+        ->  Seq Scan on pedidos  (cost=0.00..18352.00 rows=4628)
+              Filter: (cliente_id = 42)
+              Rows Removed by Filter: 495372
+```
+
+**Dois problemas:** varredura sequencial e ordenação.
+
+## O índice composto
+
+```sql
+CREATE INDEX idx_pedidos_cliente_data
+  ON pedidos (cliente_id, criado_em DESC);
+```
+
+**Filtro primeiro, ordenação depois.**
+
+::: {.fragment}
+Índice só em `cliente_id` tira o `Seq Scan` e **mantém o `Sort`**.
+:::
+
+## Índice tem custo
+
+Acelera leitura · encarece escrita · ocupa espaço
+
+<p class="big">Índice que nenhuma consulta usa é só custo</p>
+
+# Leia o plano {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+**Identifique os dois problemas no plano acima. Escreva o índice que resolve.**
+
+*Extra: por que um índice só em `cliente_id` não resolveria tudo?*
+
+# Paginação e N+1 {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## OFFSET fica lento
+
+```sql
+SELECT * FROM pedidos
+ORDER BY criado_em DESC
+LIMIT 20 OFFSET 20000;
+```
+
+O banco percorre e **descarta 20.000 linhas** antes de devolver.
+
+::: {.fragment}
+Página 1 instantânea, página 1.000 lenta — e em dev só existem três páginas.
+:::
+
+## Cursor: custo constante
+
+```sql
+SELECT * FROM pedidos
+WHERE (criado_em, id) < ('2026-03-02 14:31:00', 'abc-123')
+ORDER BY criado_em DESC, id DESC
+LIMIT 20;
+```
+
+O desempate pelo `id` evita o bug de fronteira entre páginas.
+
+# Troque o OFFSET {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+**Por que a consulta fica mais lenta nas páginas altas? Reescreva com cursor.**
+
+*Extra: que bug aparece se dois pedidos tiverem o mesmo `criado_em`?*
+
+# Escalar {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Vertical e horizontal
+
+- **Vertical:** máquina maior. Simples, **e tem limite**
+- **Horizontal:** mais instâncias. Escala melhor, **se a aplicação não guarda estado local**
+
+::: {.fragment}
+Sessão, upload temporário e cache em memória precisam de armazenamento compartilhado.
+:::
+
+## A armadilha
+
+<p class="big">Escalar uma aplicação que espera o banco aumenta a pressão sobre o banco</p>
+
+O sistema fica mais lento, não mais rápido.
+
+# Escalar piorou {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Dobraram as instâncias de 4 para 8. A latência **piorou** e apareceram erros de conexão.
+
+**Explique o que aconteceu.**
+
+# Encontrar e corrigir um gargalo {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla · 500 mil pedidos
+
+## Cinco etapas {.smaller}
+
+1. **Definir o alvo** — p95 abaixo de 200 ms com 50 requisições simultâneas
+2. **Medir o estado inicial** com `EXPLAIN ANALYZE`
+3. **Criar o índice** e medir de novo
+4. **Trocar `OFFSET` por cursor** e medir a **página 1.000**
+5. **Identificar e corrigir o N+1**, se existir
+
+## Medições esperadas {.smaller}
+
+| Medição | Resultado |
+|---|---|
+| `EXPLAIN` antes do índice | `Seq Scan` sobre a tabela |
+| `EXPLAIN` depois | `Index Scan`, custo muito menor |
+| Página 1.000 com `OFFSET` | Latência bem maior que a página 1 |
+| Página 1.000 com cursor | Latência próxima da página 1 |
+
+*Mesmo método de medição antes e depois. E explique **por que** melhorou.*
+
+## Fechamento
+
+- **A ordem:** medir, corrigir a consulta, depois cachear
+- **Cache:** tolerância, invalidação, stampede
+- **Fila:** backpressure, idempotência, DLQ
+- **Índice composto:** filtro, depois ordenação
+- **Cursor** no lugar de `OFFSET`
+- **Escalar** sem saber o gargalo piora o sistema
+
+# Testes de carga, profiling e consistência {.fim}
+
+<p class="kicker">Último encontro · E24</p>
+
+Hoje medimos uma requisição por vez. Lá, o sistema sob carga de verdade — e a apresentação do projeto final.

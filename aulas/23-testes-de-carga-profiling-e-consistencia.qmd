@@ -1,0 +1,291 @@
+---
+title: "Testes de carga, profiling e consistência"
+subtitle: "Módulo 4 · Encontro 24 — k6, thresholds, CAP e PACELC · fecha o curso"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Encontro 24"
+---
+
+## Na aula passada
+
+- Medir → corrigir a consulta → só então cachear
+- Cache: tolerância, invalidação, stampede
+- Índice composto: filtro, depois ordenação
+
+**Pergunta:** quanto caiu o p95 depois do índice?
+
+## Hoje, fechando o curso
+
+O E23 mediu **uma requisição por vez**. Hoje, o sistema sob carga de verdade.
+
+- **Bloco 1:** tipos de teste · k6 · thresholds como gate
+- **Bloco 2:** profiling · CAP e PACELC · IA para hipóteses
+
+::: {.fragment}
+A última hora é do **projeto final**.
+:::
+
+# Tipos de teste de carga {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Quatro perguntas diferentes {.smaller}
+
+| Tipo | Pergunta que responde |
+|---|---|
+| **Smoke** | O sistema responde? E **o teste funciona**? |
+| **Carga** | Atende o alvo no volume esperado de pico? |
+| **Estresse** | Onde está o limite, e **como** ele falha? |
+| **Soak** | Vaza memória? Esgota conexões? (horas) |
+
+## O erro mais comum
+
+Rodar um teste de carga de dois minutos e declarar que o sistema aguenta.
+
+<p class="big">Ele não revela nada sobre estabilidade ao longo do tempo</p>
+
+::: {.fragment}
+No estresse, o **modo de falha** importa tanto quanto o número: degrada com elegância, ou cai de uma vez?
+:::
+
+# Qual teste responde {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+1. "O sistema aguenta a Black Friday?"
+2. "Esse cenário que escrevi está correto?"
+3. "A partir de quantos usuários cai, e como?"
+4. "Por que o serviço precisa reiniciar toda terça?"
+
+**Qual tipo responde cada uma?**
+
+# Um teste com k6 {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Cenário em JavaScript {.smaller}
+
+```js
+export const options = {
+  stages: [
+    { duration: "2m", target: 200 },
+    { duration: "10m", target: 200 },
+    { duration: "1m", target: 0 },
+  ],
+  thresholds: {
+    http_req_duration: ["p(95)<300"],
+    http_req_failed: ["rate<0.01"],
+  },
+};
+
+export default function () {
+  const res = http.get("http://api:8000/catalogo");
+  check(res, { "status 200": (r) => r.status === 200 });
+  sleep(1);
+}
+```
+
+## Dois detalhes que mudam o resultado
+
+- A **subida gradual** evita medir o *cold start* — pool vazio, cache frio
+- O **`sleep(1)`** simula um usuário real
+
+::: {.fragment}
+Sem `sleep`, o teste roda em laço fechado e mede o throughput máximo, não o uso real.
+:::
+
+# Escreva o cenário {.desafio}
+
+<p class="kicker">Mini desafio 2 · 7 min</p>
+
+A busca precisa suportar **200 usuários simultâneos**, com **p95 < 300 ms** e falha abaixo de **1%**.
+
+**Escreva o `options` com estágios e thresholds.**
+
+# Thresholds como quality gate {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Critério objetivo
+
+Se o p95 passar de 200 ms ou a falha passar de 1%, **o k6 termina com erro** e o pipeline falha.
+
+::: {.fragment}
+É o mesmo padrão da cobertura (M2) e do scanner de imagem (M3), agora em desempenho.
+:::
+
+## O viés que invalida tudo
+
+<p class="big">Um teste numa máquina local com o banco na mesma máquina mede a máquina, não o sistema</p>
+
+**Registre sempre as características do ambiente.**
+
+## E o threshold vem de onde?
+
+Do **alvo de negócio** — não da medição.
+
+::: {.fragment}
+Threshold definido depois de medir ("deu 180, ponho 200") sempre passa, e portanto nunca protege ninguém.
+:::
+
+# O resultado vale? {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+> "A API suporta 500 usuários simultâneos com p95 de 180 ms. Teste de 10 minutos com k6."
+
+**Que informação essencial falta?**
+
+# Profiling {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Onde o tempo é gasto no processo
+
+```bash
+node --cpu-prof app.js
+python -m cProfile -s cumtime app.py > perfil.txt
+```
+
+::: {.fragment}
+O profiler responde **"onde"**, não **"por quê"**.
+:::
+
+## O detalhe que engana
+
+<p class="big">Tempo de espera por I/O não aparece como consumo de CPU</p>
+
+O profiler mostra a aplicação "ociosa" mesmo quando ela está lenta por espera.
+
+::: {.fragment}
+**Profiler** para gargalo de CPU. **Trace** para gargalo de espera.
+:::
+
+# Profiler ou trace {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+Três endpoints, todos respondendo em 3 s:
+
+1. CPU em **8%**
+2. CPU em **95%**
+3. CPU em 40%, com quatro chamadas externas
+
+**Qual ferramenta primeiro, em cada um?**
+
+# CAP e PACELC {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## CAP, com a letra miúda
+
+Durante uma **partição de rede**, escolha entre consistência e disponibilidade.
+
+::: {.fragment}
+Partições são **raras, mas inevitáveis**. E a escolha vale **só durante a falha**.
+:::
+
+## PACELC completa
+
+**P**artição → escolha entre **A** e **C**.
+
+**E**lse → mesmo sem falha, escolha entre **L**atência e **C**onsistência.
+
+::: {.fragment}
+O segundo é o que afeta o dia a dia: replicação síncrona dá consistência ao custo de latência em **toda** escrita.
+:::
+
+## A decisão é de negócio {.smaller}
+
+| Decisão | Pergunta | Escolha |
+|---|---|---|
+| Saldo de pontos no perfil | Pode estar segundos atrás? Sim | Latência |
+| Disponibilidade no pagamento | Pode vender o que acabou? Não | Consistência |
+| Contagem de avaliações | Pode errar por um minuto? Sim | Latência |
+
+As três convivem **no mesmo sistema**. PACELC classifica a decisão, não a marca do banco.
+
+# Traduza para o negócio {.desafio}
+
+<p class="kicker">Mini desafio 5 · 7 min</p>
+
+**Traduza as três decisões acima em perguntas de negócio e responda.**
+
+*Extra: "usamos Postgres, então somos CP". O que está errado nessa frase?*
+
+# IA para hipóteses de gargalo {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Hipótese, não diagnóstico
+
+Curva de latência que sobe com as conexões sugere **esgotamento de pool**. Que sobe com o tamanho da resposta sugere **serialização**.
+
+::: {.fragment}
+Mesmo método do E18: **fato, hipótese, teste.**
+:::
+
+## A nota que fecha o curso
+
+<p class="big">Aumentar limites costuma mover o gargalo, não eliminá-lo</p>
+
+Pool, threads, memória. Meça o efeito de cada mudança **isoladamente**.
+
+# Mover ou eliminar {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+A IA sugeriu aumentar o pool de 10 para 50. O p95 caiu de 1,2 s para 900 ms — **e voltou a subir com mais usuários**.
+
+**A sugestão foi boa? O que aconteceu com o gargalo?**
+
+# Arquitetura de um marketplace {.secao}
+
+<p class="kicker">Projeto final · parcela 6</p>
+
+Em dupla
+
+## As seis parcelas {.smaller}
+
+| # | Entregável | Encontro |
+|---|---|---|
+| 1 | Maturidade arquitetural + ADR | E19 |
+| 2 | Bounded contexts + C4 | E20 |
+| 3 | Contrato OpenAPI | E21 |
+| 4 | Documentação verificada | E22 |
+| 5 | Plano de desempenho | E23 |
+| 6 | **k6 em três estágios + relatório** | **hoje** |
+
+## O que a plataforma cobra
+
+- O **ADR** cita alternativas descartadas
+- O **alvo de latência** tem número e unidade
+- O **relatório** indica as **características do ambiente**
+
+::: {.fragment}
+No estresse, os thresholds **vão falhar** — e isso é o resultado, não o erro.
+:::
+
+## O curso em quatro linhas {.smaller}
+
+| Módulo | O que ficou |
+|---|---|
+| **1** | Construir: containers, POO, design, IA no fluxo |
+| **2** | Provar: pirâmide, TDD, contrato, CI |
+| **3** | Entregar e observar: DORA, flags, segredos, SLO |
+| **4** | Projetar: maturidade, modelagem, documentação, desempenho |
+
+## O fio de tudo
+
+<p class="big">Cada módulo reduziu o custo de mudar o sistema com segurança</p>
+
+## E sobre a IA
+
+Gerar testes · achar edge cases · diagnosticar incidentes · redigir documentação · propor hipóteses
+
+<p class="big">A IA acelera a proposta. A verificação continua sendo sua.</p>
+
+# Obrigado {.fim}
+
+<p class="kicker">Full Cycle Specialist Developer</p>
+
+Rodem um soak. Transformem o threshold em SLO. Escrevam o ADR da decisão que vocês já tomam sem perceber.

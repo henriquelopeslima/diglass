@@ -1,0 +1,297 @@
+---
+title: "Níveis de maturidade arquitetural"
+subtitle: "Módulo 4 · Encontro 19 — Custo de mudança, monólito modular e microsserviços"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Encontro 19"
+---
+
+## Nos módulos anteriores
+
+- **M1:** construir · **M2:** provar que funciona
+- **M3:** entregar com segurança e saber o que acontece depois
+
+::: {.fragment}
+Vocês fizeram tudo isso com **um** sistema.
+:::
+
+## A pergunta do Módulo 4
+
+<p class="big">Como projetar o próximo?</p>
+
+E a primeira decisão é de ambição: **quanta estrutura esse sistema precisa ter?**
+
+## Hoje
+
+- **Bloco 1:** custo de mudança · o emaranhado · monólito modular
+- **Bloco 2:** quando microsserviços valem · critérios · Richardson
+
+::: {.fragment}
+**Regra da aula:** toda resposta precisa citar um fator do caso concreto.
+:::
+
+# Arquitetura é custo de mudança {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## O que arquitetura não é
+
+Não é diagrama bonito. Não é lista de tecnologias.
+
+> É o conjunto de decisões **difíceis de reverter**, e como elas afetam o custo de mudar o sistema.
+
+## A consequência incômoda
+
+Um monólito com módulos bem separados pode ser **mais fácil de evoluir** do que microsserviços que compartilham banco e se chamam em cadeia.
+
+::: {.fragment}
+A pergunta útil não é "qual padrão usar?", e sim:
+
+**o que precisa ser fácil de mudar nos próximos dois anos?**
+:::
+
+# O que precisa ser fácil de mudar {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Em dois anos a loja vai: trocar de gateway, somar três formas de entrega, e expandir para outro país.
+
+**Que parte precisa estar isolada para cada uma?**
+
+# O emaranhado {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Big Ball of Mud
+
+Foote e Yoder, 1997: o padrão arquitetural **mais comum da indústria**.
+
+- Sem estrutura perceptível
+- Quase tudo depende de quase tudo
+- Nasce de decisões locais **razoáveis**, sob pressão, por anos
+
+::: {.fragment}
+O artigo trata isso como realidade, não como vergonha.
+:::
+
+## O primeiro nível de maturidade
+
+Reconhecer o emaranhado e **isolá-lo**. Sem reescrever tudo.
+
+1. Achar duas ou três áreas que **mudam juntas**
+2. Criar fronteira explícita entre elas
+3. Restringir o acesso aos dados ao próprio módulo
+
+# Ache a fronteira {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+- `faturamento/` e `contratos/` mudam juntos em 80% dos commits
+- `relatorios/` quase nunca muda com os outros
+- `usuarios/` aparece em commits de todos
+
+**O que isso diz sobre as fronteiras? Por onde começar?**
+
+# Monólito modular {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Uma unidade de implantação
+
+```text
+src/
+  pedidos/       # regras e API pública do módulo
+  pagamentos/    # só expõe PagamentoService e eventos
+  estoque/
+  shared/        # tipos e utilitários sem regra de negócio
+```
+
+## A regra que faz a diferença
+
+<p class="big">Cada módulo tem suas tabelas, e nenhum outro as consulta diretamente</p>
+
+::: {.fragment}
+Esse nível resolve a maioria dos problemas de equipes de tamanho médio — e **costuma ser subestimado**.
+:::
+
+## A fronteira só existe se o CI aplica
+
+```js
+'no-restricted-imports': ['error', {
+  patterns: [{
+    group: ['**/pedidos/infra/*', '**/pagamentos/infra/*'],
+    message: 'Importe apenas a API pública do módulo.',
+  }],
+}]
+```
+
+Em PHP, o equivalente é o Deptrac.
+
+# A fronteira foi violada {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+```ts
+// src/pagamentos/CobrancaService.ts
+import { PedidoRepository } from '../pedidos/infra/PedidoRepository';
+```
+
+**Qual regra foi violada? Reescreva usando a API pública.**
+
+# Quando microsserviços valem a pena {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## O ganho é independência
+
+Cada serviço tem processo, ciclo de release e, idealmente, banco próprios.
+
+Pagamentos publica sem coordenar com catálogo. Um serviço escala sozinho.
+
+## O custo é igualmente real
+
+- Chamadas de rede falham; a latência se acumula
+- A consistência deixa de ser automática
+- O diagnóstico exige rastreamento distribuído
+
+::: {.fragment}
+E cada serviço exige pipeline, monitoramento, plantão e documentação. O Módulo 3 inteiro, multiplicado.
+:::
+
+## Os três fatores {.smaller}
+
+| Fator | Pergunta |
+|---|---|
+| **Equipes** | Há menos de 3 ou 4 no mesmo código? Então modular basta |
+| **Escala / isolamento** | Alguma parte precisa escalar muito diferente? |
+| **Maturidade operacional** | Sem pipeline e observabilidade, amplifica o caos |
+
+## A nota que fecha o tópico
+
+> "Migrar para microsserviços" não é uma meta de arquitetura.
+
+<p class="big">Se o problema não está descrito, a migração vai criar outros</p>
+
+# Os três fatores {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+Uma equipe de seis pessoas, tráfego estável, sem CI confiável, quer migrar "para escalar e modernizar a stack".
+
+**Avalie pelos três fatores. O que vai acontecer?**
+
+# Critérios para decidir {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Não é um número a alcançar
+
+As três perguntas de contexto:
+
+1. **Quanto** o sistema precisa mudar?
+2. **Quem** vai mudá-lo?
+3. **O que acontece** se uma parte falhar?
+
+## Os extremos e o meio
+
+- Cadastro interno, 20 pessoas, uma equipe → monólito organizado
+- Checkout para milhões, com isolamento de falha → separação em serviços
+
+::: {.fragment}
+**A maioria fica no meio** — e aí a decisão precisa ser registrada e revisada.
+:::
+
+## A pior decisão
+
+<p class="big">É a que foi tomada sem registro</p>
+
+No E20: ADRs, para a equipe não repetir a mesma discussão todo ano.
+
+# As três perguntas {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+Aprovação de despesas, 300 funcionários, duas pessoas mantendo. Vai integrar com ERP e folha no próximo ano.
+
+**Responda às três perguntas e recomende um nível.**
+
+# Richardson para APIs {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Quatro níveis {.smaller}
+
+| Nível | O que é |
+|---|---|
+| 0 | Um endpoint só, geralmente POST, recebe e devolve tudo |
+| 1 | Recursos com URLs próprias (`/pedidos/42`) |
+| 2 | Verbos e códigos corretos; `201` com `Location` |
+| 3 | Hipermídia: a resposta traz links das ações possíveis |
+
+## Nível 2, na prática
+
+```http
+POST /pedidos HTTP/1.1
+Content-Type: application/json
+
+{"itens": [{"sku": "LIV-1", "quantidade": 2}]}
+
+HTTP/1.1 201 Created
+Location: /pedidos/9187
+```
+
+## Não é uma escada
+
+<p class="big">O nível 3 não é sempre melhor</p>
+
+Uma API de nível 2 bem feita, com contrato claro, basta para a maioria dos casos.
+
+# Em que nível está {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+1. `POST /api` com `{"acao": "criarPedido"}`, sempre `200`
+2. `GET /pedidos/42` · `POST /pedidos` → `201` + `Location`
+3. Como a 2, mas com `"_links"` na resposta
+
+**Classifique as três.**
+
+# Classificar e justificar {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## Quatro sistemas {.smaller}
+
+1. **Clínica:** 40 usuários internos, equipe de quatro, carga estável
+2. **Marketplace:** quatro equipes com release próprio, picos sazonais
+3. **Faturamento legado:** módulos acessando o banco entre si, sem testes, duas pessoas
+4. **API de CEP:** alto volume de leitura, um único tipo de recurso
+
+## A regra de ouro
+
+<p class="big">A justificativa precisa citar um fator do enunciado</p>
+
+"Escala melhor" não vale. "Quatro equipes com ciclos de release próprios" vale.
+
+## Fechamento
+
+- **Arquitetura:** decisões difíceis de reverter, medidas pelo custo de mudar
+- **Emaranhado:** o padrão mais comum; isole, não reescreva
+- **Modular:** tabelas próprias, API pública, fronteira no CI
+- **Microsserviços:** três fatores, não moda
+- **Decisão sem registro** é decisão que será refeita
+
+## O projeto final do módulo
+
+O marketplace do sistema 2 é o cenário do projeto, entregue em **seis parcelas**:
+
+maturidade e ADR · contextos e C4 · OpenAPI · documentação verificada · plano de desempenho · teste de carga
+
+**Parcela 1 começa hoje.**
+
+# Modelagem: domínio, C4 e registros de decisão {.fim}
+
+<p class="kicker">Próximo encontro · E20</p>
+
+Decidido o nível, vem o modelo. E a primeira armadilha: modelar pela estrutura de dados que já existe.

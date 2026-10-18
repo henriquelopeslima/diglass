@@ -1,0 +1,20 @@
+---
+title: "Módulo 4"
+subtitle: "System Design e Arquitetura Escalável com IA"
+format: html
+---
+
+::: {.nav-back}
+[← Voltar aos módulos](../index.html)
+:::
+
+Slides e materiais das aulas do Módulo 4.
+
+## Aulas {#aulas}
+
+- [**Níveis de maturidade arquitetural**<span class="card-desc">Arquitetura como custo de mudança, Big Ball of Mud, monólito modular, microsserviços e o modelo de Richardson.</span>](../aulas/18-niveis-de-maturidade-arquitetural.html)
+- [**Modelagem: domínio, C4 e registros de decisão**<span class="card-desc">Linguagem ubíqua, bounded contexts, o modelo C4 em texto, ADRs e atributos de qualidade com números.</span>](../aulas/19-modelagem-dominio-c4-e-adrs.html)
+- [**Documentação viva**<span class="card-desc">Documentação como código, README do primeiro dia, ADR no fluxo de PR e contratos OpenAPI validados no pipeline.</span>](../aulas/20-documentacao-viva-readme-adr-openapi.html)
+- [**Gerando e mantendo documentação com IA**<span class="card-desc">Onde a IA inventa, contexto controlado, regra de CI, verificação executável e manutenção de documentos.</span>](../aulas/21-documentacao-com-ia.html)
+- [**Latência, cache, filas e banco de dados**<span class="card-desc">Percentis e cauda, cache-aside e stampede, backpressure e idempotência, índices, EXPLAIN e paginação por cursor.</span>](../aulas/22-latencia-cache-filas-e-banco.html)
+- [**Testes de carga, profiling e consistência**<span class="card-desc">Smoke, carga, estresse e soak com k6, thresholds como quality gate, profiling e os trade-offs de CAP e PACELC.</span>](../aulas/23-testes-de-carga-profiling-e-consistencia.html)

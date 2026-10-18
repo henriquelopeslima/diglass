@@ -1,0 +1,297 @@
+---
+title: "Gerando e mantendo documentação com IA"
+subtitle: "Módulo 4 · Encontro 22 — Contexto controlado, verificação executável e manutenção"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Encontro 22"
+---
+
+## Na aula passada
+
+- Documentação como código: repositório, PR, pipeline
+- README testado numa máquina limpa
+- Contrato documenta **todos** os erros, não só o sucesso
+
+**Pergunta:** conseguiram rodar o projeto da outra dupla em 15 minutos?
+
+## Hoje
+
+Escrever aquilo deu trabalho. Quem pensou em pedir para a IA?
+
+<p class="big">A IA redige e o código prova</p>
+
+::: {.fragment}
+**Bloco 1:** onde ela inventa · contexto controlado · regra de CI
+**Bloco 2:** verificação executável · onboarding · manutenção
+:::
+
+# Onde a IA ajuda e onde inventa {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Ajuda com material que existe
+
+Código · diff · conjunto de testes · conversa de design
+
+::: {.fragment}
+**É perigosa quando recebe poucos dados e precisa completar lacunas.**
+
+Ela descreve um sistema **plausível** — não o real.
+:::
+
+## A invenção bem formatada
+
+> Um endpoint que nunca existiu aparece no contrato com parâmetros bem formados.
+
+E é **por serem bem formados** que ninguém desconfia.
+
+## A regra do encontro
+
+<p class="big">A IA redige e o código prova</p>
+
+Toda afirmação é verificável contra código, testes ou comportamento.
+
+::: {.fragment}
+O que não puder ser verificado vira **decisão de design, com autor e data**.
+:::
+
+# Ache a invenção {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Dado só o roteador com `res.status(201)`, o rascunho documentou `201`, `400`, `401`, **`403`**, **`429`** e **`?incluirItens=true`**.
+
+**Quais afirmações não têm fonte? O que você faz com cada uma?**
+
+# Contexto controlado {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## O que fornecer
+
+- O roteador
+- Os schemas de entrada e saída
+- **Os testes de integração**
+- O middleware de validação e autenticação
+
+::: {.fragment}
+Os testes são o insumo mais valioso: trazem exemplos reais de entrada e saída.
+:::
+
+## O prompt {.smaller}
+
+```text
+Gere a seção OpenAPI para POST /pedidos a partir dos arquivos
+abaixo. Use apenas o que está nos arquivos. Se um código de
+resposta não aparecer no código ou nos testes, não o inclua e
+liste a dúvida ao final.
+Formato: YAML OpenAPI 3.1, sem comentários adicionais.
+
+[src/routes/pedidos.ts]
+[src/schemas/pedido.ts]
+[tests/pedidos.integracao.test.ts]
+```
+
+## As duas instruções
+
+1. *"Use apenas o que está nos arquivos"*
+2. *"Liste a dúvida ao final"*
+
+::: {.fragment}
+Sem elas, **o modelo preenche as lacunas em silêncio**.
+:::
+
+::: {.fragment}
+Verificação imediata: o teste espera `422` e o rascunho diz `400`? Um dos dois está errado.
+:::
+
+# Monte o contexto {.desafio}
+
+<p class="kicker">Mini desafio 2 · 7 min</p>
+
+Você vai gerar o contrato de `PUT /pedidos/{id}/itens`.
+
+**Quais arquivos você fornece, e por quê?**
+
+*Extra: o rascunho diz `400`, o teste espera `422`. Como decidir?*
+
+# Documentação como parte da mudança {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## A regra de CI
+
+```bash
+git diff --name-only origin/main...HEAD | grep -q "src/routes/" \
+  && ! git diff --name-only origin/main...HEAD | grep -q "openapi.yaml" \
+  && echo "Rota alterada sem atualizar openapi.yaml" && exit 1
+exit 0
+```
+
+## Ela gera falso positivo — e tudo bem
+
+<p class="big">O objetivo é tornar a decisão explícita, não impedir o trabalho</p>
+
+A exceção, com justificativa na PR, **é parte da regra**.
+
+::: {.fragment}
+Regra sem exceção é regra contornada: alguém adiciona uma linha em branco e segue.
+:::
+
+# Falso positivo {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+A regra barrou três PRs:
+
+1. `let` → `const` dentro de um handler
+2. Campo `cupom` novo no corpo de `POST /pedidos`
+3. Função auxiliar extraída para um serviço
+
+**Qual bloqueio foi correto?**
+
+# Verificação executável {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Documentação que roda
+
+Exemplos de requisição e resposta viram testes.
+
+> Se o exemplo deixa de funcionar, o teste falha — e a documentação não mente por mais tempo do que um pipeline.
+
+## Schemathesis
+
+```bash
+schemathesis run openapi.yaml --base-url http://localhost:3000
+```
+
+Gera casos a partir do contrato e executa contra a API.
+
+::: {.fragment}
+Acha o campo documentado como obrigatório que o servidor aceita sem ele, e a resposta com tipo diferente do declarado.
+:::
+
+## A regra de decisão
+
+Cada falha é **uma de duas coisas**:
+
+- Um **bug no servidor**
+- Um **contrato errado**
+
+<p class="big">Decida qual, corrija e registre</p>
+
+Não existe terceira opção. "Ignorar" não está na lista.
+
+# Bug ou contrato errado {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+1. Contrato diz `cupom` obrigatório; servidor aceita sem
+2. Contrato diz `total: number`; servidor devolveu `"189.90"`
+3. Contrato não declara `429`; servidor devolveu `429`
+
+**De quem é o erro em cada uma?**
+
+# Onboarding e operação {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## As perguntas que a pessoa nova faz
+
+- Onde fica cada responsabilidade?
+- Como uma mudança típica atravessa o sistema?
+- Qual o fluxo de um pedido, do início ao fim?
+- Onde mais se quebra coisa sem querer?
+
+## A divisão de trabalho
+
+<p class="big">A equipe responde. A IA organiza.</p>
+
+::: {.fragment}
+Documento gerado sem insumo da equipe descreve **qualquer** sistema em camadas — verdadeiro e inútil.
+:::
+
+## Runbook tem o mesmo problema
+
+Um runbook gerado sem o conhecimento de quem já resolveu o problema descreve o **caminho genérico**.
+
+E o caminho genérico costuma não funcionar às 3h da manhã.
+
+# Onboarding de verdade {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+> "O projeto segue uma arquitetura em camadas, com separação clara de responsabilidades..."
+
+**Três perguntas que uma pessoa nova tem e que esse texto não responde.**
+
+# Manutenção {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Documentação não é projeto com fim
+
+Para cada documento:
+
+1. **Responsável** — papel, não nome
+2. **Data de revisão**
+3. **Gatilho** que obriga atualizar
+
+## A prática que funciona
+
+Revisão de documentação **na retrospectiva**.
+
+Cada incidente e cada onboarding geram uma lista de lacunas.
+
+::: {.fragment}
+Lacuna que se repetiu vira item de trabalho com dono e prazo — como qualquer outro defeito.
+:::
+
+# Quem mantém {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+`README` · `openapi.yaml` · runbook da fila · ADR 007
+
+**Defina responsável, data de revisão e gatilho para cada um.**
+
+*Extra: um deles não precisa de data de revisão. Qual?*
+
+# Documentar uma rota com verificação {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## Cinco etapas {.smaller}
+
+1. **Gerar o rascunho** com o prompt de contexto controlado — guardar prompt e resposta
+2. **Listar as afirmações sem fonte** — removida ou confirmada em outra fonte?
+3. **Rodar o Schemathesis** e registrar as falhas
+4. **Corrigir** contrato ou código, uma frase por decisão
+5. **Adicionar a regra de CI**, com a exceção documentada
+
+## Verificação {.smaller}
+
+| Verificação | Saída esperada |
+|---|---|
+| Afirmações sem fonte | Lista explícita, com ação para cada uma |
+| Schemathesis após correção | Sem falhas, ou falhas justificadas |
+| PR que muda a rota sem o contrato | Check vermelho |
+| PR que muda a rota com o contrato | Check verde |
+
+*A documentação final não pode ter afirmação não verificável.*
+
+## Fechamento
+
+- **A IA redige, o código prova**
+- **Contexto controlado:** roteador, schemas, testes, middleware
+- **Duas instruções:** só os arquivos, e liste as dúvidas
+- **Schemathesis:** bug no servidor ou contrato errado — decida
+- **Manutenção:** responsável, data, gatilho
+
+# Latência, cache, filas e banco {.fim}
+
+<p class="kicker">Próximo encontro · E23</p>
+
+Começa a última unidade: desempenho. Rodem o script de 500 mil pedidos antes — sem volume, nada aparece.

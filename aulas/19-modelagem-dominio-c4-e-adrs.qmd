@@ -1,0 +1,298 @@
+---
+title: "Modelagem: domínio, C4 e registros de decisão"
+subtitle: "Módulo 4 · Encontro 20 — Linguagem ubíqua, bounded contexts, C4 e ADRs"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Encontro 20"
+---
+
+## Na aula passada
+
+- Arquitetura é o custo de mudar, não o diagrama
+- Big Ball of Mud: isole, não reescreva
+- Microsserviços: três fatores, não moda
+
+**Pergunta:** qual nível vocês recomendaram para o marketplace?
+
+## Hoje
+
+O E19 decidiu **quanta** estrutura. Hoje: **quais são as peças** — e por quê.
+
+- **Bloco 1:** linguagem ubíqua · bounded contexts · modelo C4
+- **Bloco 2:** ADRs · atributos de qualidade · workshop de eventos
+
+::: {.fragment}
+**Saída:** um mapa de contextos, um diagrama C4 e um ADR.
+:::
+
+# Modelar o domínio {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## O erro mais caro
+
+Modelar pela **estrutura de dados que já existe**, em vez de modelar o problema de negócio.
+
+::: {.fragment}
+O resultado: tabelas com nomes técnicos, e "cliente" significando três coisas dependendo da tela.
+:::
+
+## Linguagem ubíqua
+
+> Uma linguagem comum, construída com o negócio, que aparece **no código, nas conversas e nos documentos**.
+
+Eric Evans, *Domain-Driven Design*, 2003.
+
+::: {.fragment}
+Se o código não usa os termos, não é ubíqua — é glossário.
+:::
+
+# Traduza para o negócio {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+```ts
+class TbApolRec {
+  flgSt: number;   // 0, 1, 2, 3
+  processar(): void {}
+}
+```
+
+**Reescreva com a linguagem de quem vende seguro.**
+
+*O que você precisa perguntar ao negócio para conseguir?*
+
+# Bounded contexts {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Onde um termo significa uma coisa
+
+**"Cliente" em faturamento:** CNPJ, endereço fiscal, condição de pagamento
+
+**"Cliente" em entregas:** endereço de entrega, janela de horário, contato do recebedor
+
+::: {.fragment}
+Forçar um modelo único gera um objeto gigante, que todos alteram e ninguém entende.
+:::
+
+## Contextos conversam por contrato
+
+Um contexto publica `PedidoConfirmado` com o que os outros precisam — **sem expor seu modelo interno**.
+
+<p class="big">Bounded context é a unidade natural de decomposição</p>
+
+## O mapa de contextos {.smaller}
+
+| Contexto | Publica | Consome |
+|---|---|---|
+| Disponibilidade | `DisponibilidadeAtualizada` | `ReservaConfirmada` |
+| Reservas | `ReservaConfirmada`, `ReservaCancelada` | `PagamentoAutorizado` |
+| Pagamentos | `PagamentoAutorizado`, `ReembolsoEmitido` | `ReservaSolicitada` |
+
+Um arquivo de texto basta — **desde que seja mantido**.
+
+# Um termo, dois significados {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+Numa transportadora, "entrega" aparece em comercial, operação e financeiro.
+
+**Que atributos importam em cada um?**
+
+*Extra: o que acontece se as três compartilharem uma classe `Entrega`?*
+
+# O modelo C4 {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Quatro níveis de zoom {.smaller}
+
+| Nível | Pergunta | Público |
+|---|---|---|
+| **Contexto** | Qual é o sistema, e quem interage com ele? | Todos, incluindo negócio |
+| **Contêineres** | Quais aplicações e armazenamentos o compõem? | Engenharia e operação |
+| **Componentes** | Como um contêiner se organiza por dentro? | Equipe responsável |
+| **Código** | Como um componente é implementado? | Desenvolvedores |
+
+## O erro mais comum
+
+Misturar os níveis num único diagrama.
+
+> Um desenho com clientes, serviços, classes e tabelas ao mesmo tempo não serve a ninguém.
+
+**Um diagrama por nível, cada um pequeno.**
+
+## Diagrama como texto
+
+```text
+flowchart LR
+  cliente[Cliente] -->|faz pedido| loja[Loja online]
+  loja -->|cobra| gateway[Gateway de pagamento]
+  loja -->|reserva itens| estoque[Sistema de estoque]
+  loja -->|envia pedido| logistica[Operador logístico]
+```
+
+## Por que texto ganha
+
+<p class="big">Diagramas em texto envelhecem junto com o código</p>
+
+Vivem no repositório, aparecem no diff, são revisados no PR.
+
+::: {.fragment}
+Um diagrama bonito que ninguém atualiza é pior que nenhum — ele engana.
+:::
+
+# Separe os níveis {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+Um diagrama tem: usuário, app móvel, API, `PedidoController`, Postgres, tabela `pedidos`, gateway, Redis.
+
+**Classifique cada um por nível. Quantos estão misturados?**
+
+# Registros de decisão {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## O que é um ADR
+
+Documento curto com **decisão**, **contexto**, **alternativas consideradas** e **consequências**.
+
+Vive em `docs/adr/`, numerado. Michael Nygard, 2011.
+
+::: {.fragment}
+**Imutável depois de aceito.** Decisão nova substitui a anterior, e o histórico do raciocínio fica preservado.
+:::
+
+## Um ADR real {.smaller}
+
+```markdown
+# ADR 007: Usar fila para envio de notificações
+Status: aceito · Data: 2026-03-02
+
+## Contexto
+O envio de e-mail no checkout levou o p95 a 2,1 s quando
+o provedor responde devagar.
+
+## Decisão
+Publicar evento em fila ao confirmar o pedido.
+
+## Alternativas consideradas
+- Síncrono com timeout de 500 ms: perde notificações sob falha.
+- Thread local: sem garantia de entrega.
+```
+
+## O campo que ninguém escreve
+
+<p class="big">Alternativas consideradas</p>
+
+Ele impede que alguém proponha, daqui a um ano, a mesma solução já descartada — sem conhecer o motivo.
+
+# Complete o ADR {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+Um ADR tem só título, status e uma linha de decisão: *"Vamos usar Redis para cachear o catálogo."*
+
+**Escreva as seções que faltam.**
+
+*Extra: seis meses depois a decisão muda. O que acontece com este ADR?*
+
+# Atributos de qualidade {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Toda decisão troca algo por algo
+
+- Escalar horizontal: disponibilidade ↑, complexidade operacional ↑
+- Cache: latência ↓, risco de dado velho ↑
+- Fila: acoplamento ↓, dificuldade de rastrear ↑
+
+## Com números, dá para comparar
+
+- O checkout responde em até **800 ms no p95**
+- O estoque aceita divergência de até **1 minuto**
+- Perda de pedido confirmado é **inaceitável**
+
+<p class="big">Sem números, a discussão vira preferência pessoal</p>
+
+# Ponha números {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+1. "O sistema deve ser rápido"
+2. "Não podemos perder reservas"
+3. "A disponibilidade precisa estar atualizada"
+4. "Precisa aguentar o pico de fim de ano"
+
+**Reescreva com número e unidade.**
+
+*Extra: dois desses conflitam. Quais?*
+
+# Workshop de eventos {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Como começar com o time
+
+1. Produto, operação e engenharia na mesma sala
+2. Cada um descreve o negócio em **verbos no passado**
+3. Tudo numa parede, em ordem de tempo
+4. **Agrupar** por assunto
+5. Marcar os termos que geraram discussão
+
+## O que sai disso
+
+*"pedido foi realizado" · "pagamento foi recusado" · "entrega foi devolvida"*
+
+::: {.fragment}
+Os grupos são candidatos a **bounded context**.
+
+E a discussão sobre o que uma palavra significa **é a modelagem acontecendo**.
+:::
+
+# Eventos no passado {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Domínio: reservas de hotel.
+
+**Escrevam 10 eventos de domínio, em verbos no passado.**
+
+*Extra: agrupem por assunto. Quantos grupos aparecem?*
+
+# Modelar um sistema de reservas {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## Quatro entregáveis {.smaller}
+
+1. **Mapa de bounded contexts** com 4+ contextos, o que publicam e consomem — e por que a fronteira entre dois deles foi escolhida
+2. **Diagrama C4 de contexto** em Mermaid, com 3+ sistemas externos
+3. **Um ADR** com ao menos duas alternativas descartadas
+4. **Quatro atributos de qualidade** com números concretos
+
+## Verificação {.smaller}
+
+| Entregável | Critério |
+|---|---|
+| Mapa de contextos | Cada contexto tem um termo com significado próprio nele |
+| Diagrama C4 | Renderiza, e mostra **só** o nível de contexto |
+| ADR | Status, contexto, decisão, alternativas, consequências |
+| Atributos | Cada um com valor numérico e unidade |
+
+## Fechamento
+
+- **Linguagem ubíqua:** os mesmos termos no código e na conversa
+- **Bounded context:** onde a palavra muda de sentido, passa a fronteira
+- **C4:** um diagrama por nível, em texto, versionado
+- **ADR:** o campo de alternativas é o que evita a rediscussão
+- **Atributos:** número e unidade, ou é preferência
+
+# Documentação viva {.fim}
+
+<p class="kicker">Próximo encontro · E21</p>
+
+Vocês produziram artefatos hoje. Como mantê-los vivos? Tragam o mapa de contextos e o ADR.
