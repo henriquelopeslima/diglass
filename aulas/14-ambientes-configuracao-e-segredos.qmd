@@ -1,0 +1,303 @@
+---
+title: "Ambientes, configuração e segredos"
+subtitle: "Módulo 3 · Encontro 15 — Paridade, Doze Fatores, menor privilégio e IaC"
+format: revealjs
+footer: "Full Cycle · Módulo 3 · Encontro 15"
+---
+
+## Na aula passada
+
+- Trunk-based: branch curta, integração frequente
+- Feature flag: deploy desligado, com dono e data
+- Rollback ensaiado, com gatilho numérico
+
+**Pergunta:** quanto tempo levou o rollback que você cronometrou?
+
+## Hoje
+
+A flag de ontem veio de uma variável de ambiente. O que mais vive ali?
+
+- **Bloco 1:** paridade · configuração fora do código · segredos
+- **Bloco 2:** menor privilégio · IaC · GitOps
+
+::: {.fragment}
+**Saída:** a API rodando em três ambientes, sem mudar uma linha de código
+:::
+
+# Ambientes precisam ser parecidos {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## O bug que só acontece em produção
+
+- Versão do banco muda
+- Uma variável está ausente
+- Existe um proxy só em produção
+
+<p class="big">Ele nasce de uma diferença que ninguém registrou</p>
+
+## Paridade não é ser idêntico
+
+> Fator 10 dos Doze Fatores: as diferenças devem ser **conhecidas, pequenas e documentadas**.
+
+::: {.fragment}
+A mesma imagem Docker sobe em todos os ambientes.
+
+**A imagem é o artefato. O que muda é a configuração.**
+:::
+
+# Só acontece em produção {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+A busca de pedidos funciona local e falha em produção, com erro de **ordenação**. Mesmo código.
+
+**Liste quatro diferenças de ambiente que explicariam isso.**
+
+# Configuração fora do código {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Obrigatória ou opcional
+
+```ts
+const DATABASE_URL = process.env.DATABASE_URL;
+if (!DATABASE_URL) {
+  throw new Error('Variável obrigatória ausente: DATABASE_URL');
+}
+
+const LOG_LEVEL = process.env.LOG_LEVEL ?? 'INFO';
+```
+
+## A mesma regra em PHP {.smaller}
+
+```php
+$databaseUrl = getenv('DATABASE_URL');
+if ($databaseUrl === false || $databaseUrl === '') {
+    throw new RuntimeException(
+        'Variável obrigatória ausente: DATABASE_URL'
+    );
+}
+
+$logLevel = getenv('LOG_LEVEL') ?: 'INFO';
+```
+
+## Por que falhar cedo
+
+Padrão para algo obrigatório faz a aplicação **subir apontando para o lugar errado**.
+
+> Padrão só serve quando é seguro em qualquer ambiente.
+
+::: {.fragment}
+`.env.example` versionado, com todas as variáveis e **nenhum valor real**.
+:::
+
+# Obrigatória ou opcional {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+`DATABASE_URL` · `LOG_LEVEL` · `STRIPE_SECRET_KEY` · `PORT` · `FEATURE_NOVO_CHECKOUT`
+
+**Classifique cada uma. Qual é o padrão das opcionais?**
+
+# Segredos {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Nunca no repositório
+
+Nem em commit antigo. Nem em branch esquecida. Nem em log.
+
+::: {.fragment}
+O histórico do Git é **permanente na prática**. Apagar num commit novo não remove nada.
+:::
+
+## Segredo comitado é segredo comprometido
+
+1. **Revogar** e gerar novo
+2. Atualizar os sistemas
+3. Reescrever o histórico
+
+<p class="big">O passo 3 ajuda. Não substitui o passo 1.</p>
+
+## Onde guardar, do pior ao melhor
+
+1. Variável de ambiente do sistema
+2. `.env` fora do controle de versão
+3. Cofre (Secrets Manager, Vault, cofre do CI)
+4. **Credencial de curta duração, sob demanda**
+
+## Detector em duas camadas
+
+```bash
+gitleaks detect --source . --verbose
+```
+
+`pre-commit` **e** CI.
+
+> A primeira camada que pegar é a que impede o vazamento.
+
+# O segredo vazou {.desafio}
+
+<p class="kicker">Mini desafio 3 · 7 min</p>
+
+Há três semanas você comitou a chave do gateway. Já apagou o arquivo num commit novo.
+
+**Está resolvido? Liste os passos a partir de agora.**
+
+# Menor privilégio {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Saltzer e Schroeder, 1975
+
+Cada componente só com as permissões da sua função.
+
+- A aplicação conecta com usuário do próprio schema, não superusuário
+- O job de lint não tem escrita no repositório
+- O token que publica imagem não serve para mais nada
+
+## A pergunta que dimensiona
+
+Para cada credencial: quem usa, para quê, **e o que aconteceria se vazasse**.
+
+<p class="big">Se a resposta for "tudo", ela é grande demais</p>
+
+## O GRANT mínimo
+
+```sql
+CREATE ROLE app_pedidos LOGIN PASSWORD 'trocar-por-gerenciado';
+
+GRANT SELECT, INSERT, UPDATE
+  ON pedidos, itens_pedido TO app_pedidos;
+
+REVOKE ALL ON SCHEMA administracao FROM app_pedidos;
+```
+
+Repare no que não está ali: `DELETE`.
+
+# Dimensione a credencial {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+1. Usuário do banco da API
+2. Token do CI que roda lint
+3. Token que publica a imagem
+
+**Quem usa, para quê, e o que acontece se vazar?**
+
+# Infraestrutura como código {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Em vez de clicar no painel
+
+- A infraestrutura vira arquivo **versionado**
+- A revisão acontece **antes** da mudança, em PR
+- O ambiente pode ser recriado de forma previsível
+
+## Um recurso em HCL {.smaller}
+
+```hcl
+resource "aws_db_instance" "pedidos" {
+  identifier                  = "pedidos-${var.ambiente}"
+  engine                      = "postgres"
+  engine_version              = "16"
+  instance_class              = var.classe_banco
+  allocated_storage           = 20
+  publicly_accessible         = false
+  manage_master_user_password = true
+}
+```
+
+## As duas últimas linhas
+
+- `publicly_accessible = false` — o banco não recebe conexão da internet
+- `manage_master_user_password = true` — a senha não aparece no código **nem no estado**
+
+::: {.fragment}
+O arquivo de **estado** também tem dado sensível: backend remoto, nunca comitado.
+:::
+
+# Leia o recurso {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+**O que cada uma das duas últimas linhas protege?**
+
+*Extra: o arquivo de definição pode ir para o repositório. E o arquivo de estado?*
+
+# GitOps {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## O repositório como fonte da verdade
+
+O estado desejado fica no Git. Um agente reconcilia o cluster com ele.
+
+- Mudança em produção vira **commit aprovado em PR**
+- Rollback vira **revert**
+- Auditoria sai de graça
+
+## O preço é disciplina
+
+> Alteração feita direto no cluster **será desfeita** pelo agente.
+
+Isso é desejável — e surpreende quem não conhece o modelo.
+
+::: {.fragment}
+Adote quando Git, revisão e pipeline já estiverem consolidados.
+:::
+
+# O cluster desfez minha mudança {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Durante um incidente alguém subiu as réplicas de 3 para 10. Vinte minutos depois voltou para 3 sozinho.
+
+**O que aconteceu, e por que isso é desejável?**
+
+# A API em três ambientes {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O que entregar
+
+1. `.env.example` com todas as variáveis e **nenhum valor real**
+2. Falha na inicialização sem `DATABASE_URL`, citando o nome
+3. Detector de segredos achando uma chave falsa
+4. SQL do usuário com permissão só no domínio
+
+## Os testes {.smaller}
+
+| Teste | Saída esperada |
+|---|---|
+| Subir sem `DATABASE_URL` | Erro citando `DATABASE_URL` |
+| Subir com `LOG_LEVEL=DEBUG` | Logs em debug, sem mudar código |
+| Detector sobre `AKIA` + 16 maiúsculas | Achado com arquivo e linha |
+| Usuário da app tentando `DROP TABLE` | Erro de permissão |
+
+*Nenhum valor real no repositório — incluindo no histórico.*
+
+## Fechamento
+
+- **Paridade:** diferença conhecida, pequena e documentada
+- **Configuração:** obrigatória falha cedo, opcional tem padrão seguro
+- **Segredo:** comitado é comprometido — revogar primeiro
+- **Menor privilégio:** se vazar tudo, a credencial era grande demais
+- **IaC:** infra em PR; o estado é sensível
+
+## Dever de casa
+
+1. Terminar o integrador
+2. Auditar o repositório com `gitleaks` e registrar o resultado
+3. Listar por escrito as diferenças entre o seu ambiente local e produção
+4. Levar 3 dúvidas
+
+# Segurança na cadeia de entrega {.fim}
+
+<p class="kicker">Próximo encontro · E16</p>
+
+Hoje protegemos a configuração. E o código que você não escreveu? Traga o repositório de hoje — é o que vamos auditar.

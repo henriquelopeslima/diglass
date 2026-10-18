@@ -1,0 +1,296 @@
+---
+title: "Logs, métricas e traces"
+subtitle: "Módulo 3 · Encontro 17 — Observabilidade, RED/USE, percentis e SLO"
+format: revealjs
+footer: "Full Cycle · Módulo 3 · Encontro 17"
+---
+
+## Na aula passada
+
+- Modelagem de ameaças em uma página
+- Ferramenta não pega controle de acesso — o teste pega
+- Dependências: alcançabilidade antes de severidade
+
+**Pergunta:** alguém mudou de ideia sobre um achado ao justificar por escrito?
+
+## Hoje
+
+O sistema está entregue e protegido. Agora ele está **rodando**.
+
+- **Bloco 1:** monitoramento vs observabilidade · logs · métricas
+- **Bloco 2:** percentis · SLO e orçamento de erro · traces
+
+::: {.fragment}
+**Como vocês descobrem hoje que a aplicação está com problema?**
+:::
+
+# Monitoramento e observabilidade {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Duas perguntas diferentes
+
+- **Monitoramento:** sinais que você **já sabe** que precisa observar. Um alerta por condição conhecida.
+- **Observabilidade:** responder o que você **não previu**, sem adicionar código no meio do incidente.
+
+## O painel verde
+
+<p class="big">Ele não prova que os usuários estão bem</p>
+
+Prova que as condições que você previu não aconteceram.
+
+## Cada pilar, uma pergunta {.smaller}
+
+| Pilar | Responde |
+|---|---|
+| Métrica | Quantas? Quão rápido, no agregado? |
+| Log | O que aconteceu com **esta** requisição? |
+| Trace | **Onde** foi gasto o tempo desta requisição? |
+
+# Qual pilar responde {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+1. Quantas requisições falharam na última hora?
+2. O que houve com o cliente X às 14h07?
+3. Por que o checkout demorou 3 segundos?
+4. Timeouts numa região, só às quintas — por quê?
+
+# Logs estruturados {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Texto livre não se consulta
+
+```ts
+function registrar(evento: string, campos = {}) {
+  process.stdout.write(
+    JSON.stringify({ ts: Date.now(), evento, ...campos }) + '\n'
+  );
+}
+
+registrar('pedido_recebido', { requestId, usuarioId: 42 });
+registrar('gateway_timeout', { requestId, gateway: 'cartao' });
+```
+
+## O mesmo em PHP {.smaller}
+
+```php
+function registrar(string $evento, array $campos = []): void
+{
+    $linha = ['ts' => microtime(true), 'evento' => $evento] + $campos;
+    fwrite(STDOUT, json_encode($linha, JSON_UNESCAPED_UNICODE) . "\n");
+}
+
+$requestId = bin2hex(random_bytes(16));
+registrar('pedido_recebido', ['requestId' => $requestId]);
+```
+
+## O request_id é o elo
+
+Gerado na entrada, propagado em cabeçalho, presente em **toda** linha.
+
+::: {.fragment}
+Sem ele, o log de cada serviço é uma ilha.
+:::
+
+```bash
+cat pedidos.log | jq 'select(.requestId == "a3f2...")'
+```
+
+## Duas regras de conteúdo
+
+- **Nunca** segredo, token ou dado pessoal completo
+- Nível com critério: DEBUG, INFO, WARNING, ERROR
+
+<p class="big">Se todo evento é ERROR, nenhum deles é</p>
+
+# Estruture o log {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+```ts
+console.log(`Erro no pedido do usuario ${usuario.email}: ${erro.message}`);
+```
+
+**Reescreva como JSON, com request_id.**
+
+*Extra: há um problema de segurança aí. Qual?*
+
+# Métricas {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Três tipos
+
+- **Contador:** só cresce (requisições atendidas)
+- **Medidor:** sobe e desce (conexões ativas)
+- **Histograma:** distribui em faixas (latência)
+
+## O que medir
+
+- **RED**, para serviços: **R**ate, **E**rrors, **D**uration
+- **USE**, para recursos: **U**tilization, **S**aturation, **E**rrors
+
+::: {.fragment}
+CPU baixa com 100% de erro é um sistema parado e "saudável".
+:::
+
+# RED ou USE {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+Requisições por segundo · CPU do container · % de 5xx · profundidade da fila · tempo de resposta · conexões no pool
+
+**Classifique em RED ou USE, e diga o tipo de métrica.**
+
+# Percentis e cardinalidade {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## A média esconde a cauda
+
+90 requisições de 100 ms · 10 requisições de 4 s
+
+- **Média:** 490 ms
+- **p95:** cerca de 4 s
+
+::: {.fragment}
+Qual dos dois você mostra para o produto?
+:::
+
+## Cardinalidade é o custo escondido
+
+Um rótulo com `usuario_id` cria **uma série por usuário**.
+
+> Rótulos de baixa cardinalidade na métrica: rota, método, status.
+
+Detalhe por usuário vai para log ou trace.
+
+# A média que mente {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+**Calcule a média e estime o p95 do caso acima.**
+
+*Extra: alguém quer pôr `usuario_id` como rótulo do histograma "para saber quem está lento". Qual o problema?*
+
+# SLI, SLO e orçamento de erro {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## O dilema do alerta
+
+Alerta que dispara toda hora é ignorado. Alerta que nunca dispara não protege nada.
+
+## Os três conceitos {.smaller}
+
+| Conceito | O que é | Exemplo |
+|---|---|---|
+| **SLI** | Medida da experiência do usuário | % de checkouts com sucesso em < 800 ms |
+| **SLO** | Meta para o SLI, numa janela | 99,5% em 30 dias |
+| **Orçamento de erro** | Fração que pode falhar | 0,5% → 5.000 de 1.000.000 |
+
+## A consequência operacional
+
+- Orçamento **consumido rápido** → reduzir ritmo de mudanças
+- Orçamento **sobrando** → pode assumir mais risco
+
+<p class="big">Combinado antes do incidente, entre produto e engenharia</p>
+
+## Por que isso muda a conversa
+
+Sem SLO: *"acho que o sistema está instável"* contra *"acho que dá para lançar"*.
+
+::: {.fragment}
+Com SLO: 75% do orçamento consumido em um terço do mês. A regra já estava acordada.
+:::
+
+# Calcule o orçamento {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+2 milhões de requisições/mês · SLO de **99,9%** em 30 dias
+
+**Qual o orçamento em requisições? E se no dia 10 já houve 1.500 falhas?**
+
+# Traces distribuídos {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## A árvore de spans
+
+Um **span** é uma operação com início, duração e atributos.
+
+O span de checkout tem filhos: estoque, gateway, banco.
+
+::: {.fragment}
+Quando fica lento, o trace mostra **qual filho** concentrou o tempo.
+:::
+
+## OpenTelemetry
+
+```ts
+const tracer = trace.getTracer('pedidos');
+
+await tracer.startActiveSpan('finalizar_pedido', async (span) => {
+  span.setAttribute('pedido.id', pedidoId);
+  await verificarEstoque(pedidoId);
+  await cobrar(pedidoId);
+  span.end();
+});
+```
+
+Automático cobre infraestrutura. **Manual cobre o domínio.**
+
+# Onde foi o tempo {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Checkout levou 3,2 s. O log diz que começou e terminou. A métrica diz que o p99 subiu.
+
+**Como o trace responde onde o tempo foi gasto?**
+
+# Instrumentar e definir um SLO {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O que entregar
+
+1. Logs **JSON** com `request_id` em todas as linhas do fluxo
+2. **Contador** por rota e status, e **histograma** de latência
+3. **SLI e SLO** do endpoint, com justificativa escrita
+4. **Orçamento de erro** para 1 milhão de requisições/mês
+
+## Verificação {.smaller}
+
+| Entrada | Saída esperada |
+|---|---|
+| SLO 99,5% · 1.000.000 req | 5.000 podem falhar |
+| SLO 99,9% · 1.000.000 req | 1.000 podem falhar |
+| 3.000 falhas com SLO 99,5% | 60% consumido, restam 2.000 |
+
+*Sem dado pessoal no log. Sem id de usuário no rótulo do histograma.*
+
+## Fechamento
+
+- **Observabilidade:** responder o que você não previu
+- **Log:** JSON, `request_id`, sem dado pessoal
+- **Métrica:** RED e USE, baixa cardinalidade
+- **Percentil**, nunca média
+- **SLO:** acordo com número, combinado antes
+
+## Dever de casa
+
+1. Log estruturado com `request_id` no endpoint principal
+2. Contador por rota e status, e histograma de latência
+3. SLI, SLO com justificativa, e orçamento de erro do mês
+4. Levar 3 dúvidas
+
+# Performance e incidentes com apoio de IA {.fim}
+
+<p class="kicker">Próximo encontro · E18 · fecha o módulo</p>
+
+Vamos provocar um incidente de propósito. Tragam a instrumentação de hoje funcionando.

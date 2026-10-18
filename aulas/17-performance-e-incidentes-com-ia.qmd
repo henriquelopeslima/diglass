@@ -1,0 +1,293 @@
+---
+title: "Performance e incidentes com apoio de IA"
+subtitle: "Módulo 3 · Encontro 18 — Sintoma, hipótese, experimento e pós-incidente"
+format: revealjs
+footer: "Full Cycle · Módulo 3 · Encontro 18"
+---
+
+## Na aula passada
+
+- Observabilidade responde o que você **não** previu
+- Log JSON com `request_id` em toda linha
+- Percentil, nunca média. SLO é acordo com número
+
+**Pergunta:** quem conseguiu o `request_id` em todas as linhas do fluxo?
+
+## Hoje, fechando o módulo
+
+Vamos quebrar a aplicação de vocês **de propósito**.
+
+- **Bloco 1:** sintoma em quatro partes · sanitizar · fato, hipótese e teste
+- **Bloco 2:** correlação vs causa · performance medida · pós-incidente
+
+::: {.fragment}
+**A IA acelera o diagnóstico. A verificação continua sendo sua.**
+:::
+
+# O sintoma bem descrito {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## A pior abertura possível
+
+> "O sistema está lento."
+
+O modelo não sabe o que você mediu, quando, nem onde. Responde genérico.
+
+## As quatro partes
+
+1. **O que** está errado — métrica, antes e depois
+2. **Desde quando**
+3. **Onde** — serviço, rota, região
+4. **O que mudou** perto desse horário
+
+## Um sintoma que permite investigar
+
+> "O p95 da rota de checkout subiu de 300 ms para 2,4 s a partir das 14h10, só na região sul, logo após o deploy da versão 2.7.1."
+
+::: {.fragment}
+Repare: as quatro partes só são respondíveis **com a instrumentação de ontem**.
+:::
+
+# Escreva o sintoma {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+*"Pessoal, o sistema tá lento."*
+
+**Reescreva nas quatro partes, com valores plausíveis.**
+
+*Extra: qual parte você não conseguiria responder hoje?*
+
+# Sanitizar o contexto {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Log de incidente é dado sensível
+
+```bash
+grep "ERROR" pedidos.log \
+  | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+/<email>/g' \
+  | sed -E 's/Bearer [A-Za-z0-9._-]+/Bearer <token>/g' \
+  | head -200 > trecho_sanitizado.log
+```
+
+## O filtro é ponto de partida
+
+<p class="big">A regex pega o padrão previsível</p>
+
+Não pega o nome de um cliente escrito num campo livre.
+
+::: {.fragment}
+**Releia o trecho antes de enviar.**
+:::
+
+## Reduza o volume também
+
+Um log de um milhão de linhas não cabe no contexto — e é quase todo ruído.
+
+Filtre por janela, por nível e por `request_id`. Envie amostra com início e fim do problema.
+
+# O que a regex não pega {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+```json
+{"evento":"erro_cobranca","observacao":"cliente Maria Souza
+ligou, cartao final 4412, cpf 123.456.789-00","ip":"187.23.45.9"}
+```
+
+**O que vazou mesmo depois do filtro? Qual a correção estrutural?**
+
+# Fato, hipótese e teste {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## O prompt que investiga {.smaller}
+
+```text
+Dados: latência p95 por minuto de 13h às 15h, rota /checkout,
+região sul. Versões: 2.6.9 até 14h10, 2.7.1 depois.
+
+Pedido:
+1) descreva a mudança observada, sem interpretar;
+2) liste três hipóteses com a evidência a favor e contra;
+3) para cada uma, diga qual consulta ou medição confirmaria
+   ou descartaria a hipótese.
+```
+
+## Por que separar as três
+
+A armadilha mais comum: a IA apresenta explicação convincente e você aceita porque ela **soa** correta.
+
+<p class="big">Texto fluente não é evidência</p>
+
+# Separe fato de hipótese {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+> "A latência subiu porque o novo cálculo de frete tem consulta sem índice. Recomendo adicionar o índice e reverter."
+
+**Separe em fato, hipótese e ação. O que falta?**
+
+# Correlação não é causa {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Duas linhas subindo juntas
+
+A latência subiu no mesmo minuto em que o backup começou.
+
+- Pode ser a causa
+- Pode ser coincidência
+- Podem **ambas** depender de um terceiro fator
+
+## Como separar
+
+Reproduza ou isole: pause o backup em staging e meça. Desvie parte do tráfego e observe.
+
+<p class="big">Um diagnóstico só vira causa depois de um experimento que poderia tê-lo refutado</p>
+
+## O aviso que vale o módulo
+
+> Não aplique mudança em produção só porque o assistente sugeriu uma causa plausível.
+
+::: {.fragment}
+Reiniciar ou reverter sem entender pode **esconder** o problema e ainda causar outro incidente.
+:::
+
+# Projete o experimento {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+A latência sobe todo dia entre 2h e 3h. No mesmo horário roda o backup.
+
+**Três explicações possíveis — e o experimento que distingue entre elas.**
+
+# Performance guiada por medição {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Medir antes de mudar
+
+Otimizar sem medir é a forma mais eficiente de gastar tempo.
+
+- *Profiler*: quais funções consomem CPU
+- *Trace*: qual serviço ou chamada domina a latência
+
+::: {.fragment}
+Achado o gargalo, a correção costuma ser pequena: um índice, uma consulta no laço, um cache não usado.
+:::
+
+## O N+1
+
+```ts
+// 101 consultas para 50 pedidos
+const pedidos = await repo.listarPedidos();
+for (const p of pedidos) {
+  p.cliente = await repo.buscarCliente(p.clienteId);
+  p.itens = await repo.listarItens(p.id);
+}
+
+// 1 consulta, com junção feita pelo banco
+const pedidos = await repo.listarPedidosComClienteEItens();
+```
+
+## Por que não aparece em dev
+
+Com 10 registros na mesma máquina, 101 consultas somam milissegundos.
+
+> Falta de paridade de **volume de dados** (E15).
+
+**Meça de novo depois**, com o mesmo método.
+
+# Ache o N+1 {.desafio}
+
+<p class="kicker">Mini desafio 5 · 7 min</p>
+
+**Quantas consultas o trecho acima dispara para 50 pedidos?**
+
+Reescreva para reduzir drasticamente.
+
+*Extra: que conceito do E15 explica a invisibilidade em dev?*
+
+# Pós-incidente assistido {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## O que a IA faz bem aqui
+
+- Organiza a linha do tempo a partir do canal de incidente
+- Rascunha o resumo
+- Sugere perguntas que ninguém fez durante a crise
+
+## O que continua sendo seu
+
+> A causa é atribuída por **quem investigou**, com evidência documentada.
+
+Linha do tempo automática inverte ordem. Causa sugerida pode não estar em log nenhum.
+
+::: {.fragment}
+O pedido mais útil: *"liste o que ficou sem resposta nesta investigação."*
+:::
+
+# O que ficou sem resposta {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Um pós-incidente foi rascunhado por IA. Está coerente e bem escrito.
+
+**Três verificações antes de publicar.**
+
+# Um incidente simulado {.secao}
+
+<p class="kicker">Exercício integrado do módulo · 45 min</p>
+
+Em dupla
+
+## Cinco etapas {.smaller}
+
+1. Escrever o **sintoma** nas quatro partes
+2. Extrair logs e métricas, **sanitizar**, pedir hipóteses — anexar prompt, resposta e sua avaliação
+3. **Confirmar a causa com um experimento**
+4. Aplicar a correção **por feature flag**, com plano de rollback
+5. Escrever a **revisão pós-incidente**, com ações e responsáveis
+
+## Verificação {.smaller}
+
+| Verificação | Saída esperada |
+|---|---|
+| Sintoma com as quatro partes | Serviço, rota, horário e mudança citados |
+| Trecho enviado ao assistente | Nenhum e-mail, token ou CPF |
+| Causa confirmada | Experimento mostrando a melhora |
+| Revisão pós-incidente | Três ações com responsável e prazo |
+
+*Sem culpar pessoas. E indicando qual alerta teria detectado antes.*
+
+## O módulo em seis linhas {.smaller}
+
+| | |
+|---|---|
+| E13 | O muro é incentivo; métricas do time, sempre mediana |
+| E14 | Lote pequeno, flag com dono, rollback ensaiado |
+| E15 | Paridade, config fora do código, segredo comitado é comprometido |
+| E16 | Ameaças em uma página; alcançabilidade antes de severidade |
+| E17 | Observabilidade responde o não previsto; SLO é acordo |
+| E18 | Fato, hipótese, teste — a verificação continua sua |
+
+## O fio de tudo
+
+<p class="big">Cada encontro reduz o tempo entre "algo mudou" e "alguém sabe disso"</p>
+
+## Dever de casa
+
+1. Terminar a revisão pós-incidente, com três ações
+2. Implementar **uma** das ações — a do alerta que teria detectado antes
+3. O SLO do E17 teria sido violado? Calcule o orçamento consumido
+4. Levar 3 dúvidas para o Módulo 4
+
+# System Design e Arquitetura Escalável {.fim}
+
+<p class="kicker">Próximo módulo · E19</p>
+
+Vocês construíram, testaram, entregaram e observaram um sistema. Agora: como projetar o próximo?

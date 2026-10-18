@@ -1,0 +1,20 @@
+---
+title: "Módulo 3"
+subtitle: "DevOps Inteligente e Integração Contínua"
+format: html
+---
+
+::: {.nav-back}
+[← Voltar aos módulos](../index.html)
+:::
+
+Slides e materiais das aulas do Módulo 3.
+
+## Aulas {#aulas}
+
+- [**Cultura de DevOps, fluxo e métricas**<span class="card-desc">Problema de incentivos, os Três Caminhos, CALMS e as quatro métricas DORA sem punir pessoas.</span>](../aulas/12-cultura-de-devops-fluxo-e-metricas.html)
+- [**Práticas de entrega**<span class="card-desc">Trunk-based, feature flags, deploy contínuo com blue-green e canary, rollback ensaiado e pós-incidente sem culpa.</span>](../aulas/13-praticas-de-entrega-e-deploy-continuo.html)
+- [**Ambientes, configuração e segredos**<span class="card-desc">Paridade entre ambientes, Doze Fatores, gestão de segredos, menor privilégio, IaC e GitOps.</span>](../aulas/14-ambientes-configuracao-e-segredos.html)
+- [**Segurança na cadeia de entrega**<span class="card-desc">Modelagem de ameaças, OWASP, controle de acesso, análise de dependências, imagens, SBOM e supply chain.</span>](../aulas/15-seguranca-na-cadeia-de-entrega.html)
+- [**Logs, métricas e traces**<span class="card-desc">Observabilidade, logs estruturados, RED e USE, percentis, OpenTelemetry e SLI, SLO e orçamento de erro.</span>](../aulas/16-logs-metricas-e-traces.html)
+- [**Performance e incidentes com apoio de IA**<span class="card-desc">Sintoma em quatro partes, sanitização de contexto, correlação versus causa, N+1 e pós-incidente assistido.</span>](../aulas/17-performance-e-incidentes-com-ia.html)

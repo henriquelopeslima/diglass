@@ -1,0 +1,315 @@
+---
+title: "Segurança na cadeia de entrega"
+subtitle: "Módulo 3 · Encontro 16 — Ameaças, OWASP, dependências, imagens e supply chain"
+format: revealjs
+footer: "Full Cycle · Módulo 3 · Encontro 16"
+---
+
+## Na aula passada
+
+- Paridade: a diferença tem que ser conhecida e documentada
+- Configuração fora do código; obrigatória falha cedo
+- Segredo comitado é segredo comprometido
+
+**Pergunta:** o `gitleaks` achou alguma coisa no repositório de vocês?
+
+## Hoje
+
+Ontem protegemos o que você escreve. Hoje, **o que você não escreveu**.
+
+- **Bloco 1:** ameaças · injeção · controle de acesso
+- **Bloco 2:** dependências · imagens e SBOM · cadeia de suprimentos
+
+::: {.fragment}
+**Quanto do código que roda na sua aplicação foi escrito por você?**
+:::
+
+# Segurança no ciclo, não no fim {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## A auditoria final falha
+
+- Lista longa de achados, semanas antes do lançamento
+- Ninguém corrige a tempo
+- Lança-se com risco aceito
+
+<p class="big">...sem que ninguém tenha realmente decidido</p>
+
+## Modelagem de ameaças em uma página
+
+As quatro perguntas de Shostack:
+
+1. O que estamos construindo?
+2. O que pode dar errado?
+3. O que vamos fazer a respeito?
+4. **Como saberemos que fizemos um bom trabalho?**
+
+## Uma folha, não cem páginas
+
+> Uma página por serviço, revisada quando a arquitetura muda, protege mais do que um relatório arquivado.
+
+::: {.fragment}
+A quarta pergunta é a que vira **teste automatizado**.
+:::
+
+# Ameaças em uma página {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+`POST /pedidos/:id/pagar` recebe dados do cartão e confirma por **webhook** do gateway.
+
+**Responda às quatro perguntas, com duas ameaças.**
+
+# Injeção {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## O OWASP Top 10
+
+Categorias de risco, não checklist completo. Onde a maior parte dos problemas reais acontece.
+
+::: {.fragment}
+**Confira a edição vigente antes de citar.** A lista é revisada e os nomes mudam.
+:::
+
+## Vulnerável e seguro em TypeScript
+
+```ts
+// A entrada vira parte da consulta
+db.query(`SELECT * FROM usuarios WHERE email = '${email}'`);
+
+// O driver envia o valor separado da instrução
+db.query('SELECT * FROM usuarios WHERE email = $1', [email]);
+```
+
+## O mesmo em PHP
+
+```php
+// Vulnerável
+$pdo->query("SELECT * FROM usuarios WHERE email = '$email'");
+
+// Seguro
+$stmt = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
+$stmt->execute([$email]);
+```
+
+## Dois detalhes que pegam
+
+- **ORM não imuniza:** SQL cru concatenado dentro dele tem o mesmo problema
+- **Identificador não se parametriza:** nome de coluna exige lista de permissão
+
+```ts
+const COLUNAS = ['criado_em', 'total', 'status'] as const;
+if (!COLUNAS.includes(coluna)) throw new Error('inválida');
+```
+
+# Parametrize {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+```ts
+const filtro = req.query.status;
+db.query(`SELECT * FROM pedidos WHERE status = '${filtro}'`);
+```
+
+**Reescreva. E o que acontece hoje com `' OR '1'='1`?**
+
+# Controle de acesso quebrado {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## A ferramenta não pega
+
+`GET /pedidos/{id}` sem verificar o dono: qualquer um lê pedido alheio **trocando o número**.
+
+::: {.fragment}
+O scanner vê uma API devolvendo um recurso por id. Só **você** sabe a regra.
+:::
+
+## A defesa é barata
+
+```ts
+it('usuário B não acessa o pedido do usuário A', async () => {
+  const pedido = await criarPedidoComo(usuarioA);
+  const resposta = await request(app)
+    .get(`/pedidos/${pedido.id}`)
+    .set('Authorization', tokenDe(usuarioB));
+
+  expect([403, 404]).toContain(resposta.status);
+});
+```
+
+# 403 ou 404 {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+Escreva o teste que prova a falha, com **dois usuários autenticados**.
+
+*Extra: quando o pedido existe mas é de outro, responder 403 ou 404? Defenda.*
+
+# Dependências {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## O código que você não escreveu
+
+A maior parte da aplicação moderna é dependência de terceiro. Vantagem e superfície de ataque.
+
+- **Lockfile:** a versão testada é a implantada
+- **Atualizações pequenas e frequentes** > salto de seis meses
+- **Avalie a necessidade:** 300 KB para formatar data?
+
+## A suíte é o que permite atualizar
+
+```bash
+npm audit --omit=dev
+composer audit
+```
+
+> Se a suíte não é confiável, o problema real não é a atualização.
+
+## A pergunta que prioriza
+
+Não é a severidade. É: **esse código é alcançável na minha aplicação?**
+
+::: {.fragment}
+Remoto, não autenticado e sem interação vale mais que dez achados em código nunca executado.
+:::
+
+# Explorável ou não {.desafio}
+
+<p class="kicker">Mini desafio 4 · 7 min</p>
+
+1. *Prototype pollution* em função que o projeto **nunca chama**
+2. ReDoS na validação de e-mail, em **endpoint público**
+3. Falha em dependência **de desenvolvimento**
+
+**Classifique: corrigir já, ciclo normal, ou documentar exceção.**
+
+# Imagens e SBOM {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## A base define a superfície
+
+Imagem com compilador, shell e utilitário de rede é mais vulnerável que imagem mínima.
+
+- Base pequena e mantida
+- **Versão fixa**, nunca `latest`
+- *Distroless* em produção, quando a linguagem permitir
+
+## Varredura no pipeline {.smaller}
+
+```yaml
+imagem:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - run: docker build -t minha-api:${{ github.sha }} .
+    - uses: aquasecurity/trivy-action@0.28.0
+      with:
+        image-ref: minha-api:${{ github.sha }}
+        severity: CRITICAL
+        exit-code: "1"
+```
+
+## Comece pelo grave
+
+<p class="big">Pipeline vermelho no primeiro dia vira job desabilitado na semana seguinte</p>
+
+::: {.fragment}
+**SBOM:** a lista completa de componentes. Quando sair a próxima vulnerabilidade crítica, você responde em minutos quais serviços são afetados.
+:::
+
+# Enxugue a imagem {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+```dockerfile
+FROM node:latest
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["node", "server.js"]
+```
+
+**Quatro problemas, de superfície de ataque e de reprodutibilidade.**
+
+# Cadeia de suprimentos {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## A confiança é o alvo
+
+- Pacote com nome parecido com biblioteca popular
+- Ação de CI de terceiro comprometida
+- Imagem base alterada
+
+::: {.fragment}
+O código malicioso roda **dentro do seu pipeline**, com os seus segredos.
+:::
+
+## Fixe por commit, não por tag
+
+```yaml
+- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+```
+
+Tag pode ser movida. Hash não.
+
+::: {.fragment}
+Some a isso `permissions:` mínimo no job — menor privilégio do E15 aplicado ao CI.
+:::
+
+# Tag ou commit {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+A org que mantém a ação é comprometida e a tag `v3` é movida.
+
+**O que acontece no próximo pipeline? Que acesso o código malicioso tem?**
+
+# Auditoria da cadeia de uma API {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## Quatro partes
+
+1. **Modelagem de ameaças** de uma página, com três ameaças e mitigações
+2. **Análise de dependências**: para cada achado alto, é explorável aqui? Por quê?
+3. **Scanner de imagem** no pipeline, falhando em crítico
+4. **Teste de autorização** entre dois usuários
+
+## Verificação {.smaller}
+
+| Verificação | Saída esperada |
+|---|---|
+| Consulta parametrizada | Nenhuma concatenação de entrada em SQL |
+| Autorização entre dois usuários | B no recurso de A retorna 403 ou 404 |
+| Scanner no pipeline | Vermelho com crítico, ou verde sem nenhum |
+
+*Exceção documentada precisa de justificativa escrita **e data de revisão**.*
+
+## Fechamento
+
+- **Modelagem:** uma folha, quatro perguntas, revisada quando muda
+- **Injeção:** parametrizar; ORM não imuniza
+- **Autorização:** ferramenta não pega — o teste pega
+- **Dependências:** alcançabilidade antes de severidade
+- **Imagem:** base mínima, versão fixa, SBOM
+
+## Dever de casa
+
+1. Modelagem de ameaças de uma página do seu projeto, com três ameaças
+2. Teste de autorização entre dois usuários, verde no repositório
+3. Classificar cada achado alto como explorável ou não, com justificativa
+4. Levar 3 dúvidas
+
+# Logs, métricas e traces {.fim}
+
+<p class="kicker">Próximo encontro · E17</p>
+
+O sistema está entregue e protegido. Com ele rodando, como você sabe o que está acontecendo?

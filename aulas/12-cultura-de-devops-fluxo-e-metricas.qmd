@@ -1,0 +1,254 @@
+---
+title: "Cultura de DevOps, fluxo e métricas"
+subtitle: "Módulo 3 · Encontro 13 — Incentivos, Três Caminhos, CALMS e métricas DORA"
+format: revealjs
+footer: "Full Cycle · Módulo 3 · Encontro 13"
+---
+
+## Até aqui
+
+- **Módulo 1:** construir — Docker, POO, design, IA no fluxo
+- **Módulo 2:** provar que funciona — pirâmide de testes, TDD, CI
+
+**Pergunta:** quem já viu um deploy ser adiado por **medo**, e não por motivo técnico?
+
+## Hoje
+
+- **Bloco 1:** incentivos · Três Caminhos · CALMS
+- **Bloco 2:** métricas DORA · medir sem punir · retrospectiva de causas
+
+::: {.fragment}
+**Saída:** as quatro métricas do seu projeto calculadas, e uma hipótese de melhoria
+:::
+
+# O muro é feito de incentivo {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Dois lados, duas metas
+
+| | Desenvolvimento | Operações |
+|---|---|---|
+| Medido por | Entregar rápido | Estabilidade |
+| Cada mudança é | Progresso | Risco |
+| Reação natural | Empurrar | Segurar |
+
+## DevOps não é um cargo
+
+> Quando a empresa cria o cargo "engenheiro DevOps" e mantém o muro de pé, ela só construiu mais um pedaço do muro.
+
+DevOps é alinhar os incentivos dos dois lados.
+
+# Ache o incentivo {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Dev é bonificado por features entregues. Ops, por zero incidentes.
+
+**O que cada um faz diante de um deploy na quinta à noite?**
+
+*Extra: reescreva o critério de bônus.*
+
+# Os Três Caminhos {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Fluxo, feedback, aprendizado
+
+- **Fluxo:** da ideia ao cliente. Alavanca: reduzir **tamanho de lote**
+- **Feedback:** problema detectado cedo, para quem pode corrigir
+- **Aprendizado:** tempo e segurança para errar
+
+::: {.fragment}
+Não são fases. São três princípios simultâneos.
+:::
+
+## Por que lote pequeno
+
+Um lote de três meses é difícil de testar, de implantar e de reverter.
+
+Um lote de um dia é o oposto.
+
+> Cultura que pune erro recebe relatório maquiado.
+
+# Classifique a prática {.desafio}
+
+<p class="kicker">Mini desafio 2 · 5 min</p>
+
+1. PR médio de 800 para 150 linhas
+2. Suíte de testes em cada push
+3. Post-mortem publicado para a empresa
+
+**Qual caminho cada uma sustenta?**
+
+# CALMS {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Cinco pilares culturais {.smaller}
+
+| Pilar | Em uma frase |
+|---|---|
+| **C**ultura | Quem escreve acompanha em produção |
+| **A**utomação | Deploy manual por uma pessoa é ponto único de falha |
+| **L**ean | Eliminar fila de aprovação e retrabalho |
+| **M**edição | Sem dado, decide quem fala mais alto |
+| **S**haring | Documentação, revisão cruzada, rotação de plantão |
+
+## O que o CALMS não é
+
+Não é metodologia com passos, nem selo de maturidade.
+
+<p class="big">Serve para achar o pilar que está faltando</p>
+
+# Qual pilar está faltando {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+Time com CI completo e testes verdes. Mas: só o tech lead faz deploy, ninguém conta deploys, nada documentado, e quem escreve não sabe quando falha em produção.
+
+**Quais pilares estão ausentes?**
+
+# As métricas DORA {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## As quatro {.smaller}
+
+| Métrica | Como medir |
+|---|---|
+| Frequência de deploys | Deploys em produção por semana |
+| Lead time para mudanças | **Mediana** do commit até o deploy |
+| Taxa de falhas em mudanças | % que exigiu correção imediata |
+| Tempo para restaurar | **Mediana** do incidente à restauração |
+
+## A tese que derruba o muro
+
+> Velocidade e estabilidade não são opostos.
+
+Times de elite entregam com frequência **e** falham pouco.
+
+::: {.fragment}
+Fonte: *Accelerate* (Forsgren, Humble, Kim, 2018)
+:::
+
+## Sempre mediana
+
+Lead time de 12 mudanças: 2, 2, 3, 3, 3, 4, 4, 5, 6, 8, 11, 14
+
+- Mediana: **4 dias**
+- Média: **5,4 dias**
+
+A média deixa dois casos extremos descreverem o time todo.
+
+# Calcule as quatro {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+12 deploys no mês · 3 exigiram correção · lead times 2, 2, 3, 3, 3, 4, 4, 5, 6, 8, 11, 14 dias · incidentes restaurados em 1h, 2h e 6h.
+
+**Calcule as quatro métricas.**
+
+# Medir sem punir {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## A regra de Goodhart
+
+> Quando uma medida vira alvo, ela deixa de ser uma boa medida.
+
+"Meta: 10 deploys por semana por pessoa."
+
+::: {.fragment}
+O time quebra uma mudança em dez. O número sobe, o valor não.
+:::
+
+## Três práticas
+
+- Publique métricas **do time**, nunca de indivíduos
+- Revise **tendências** em retrospectiva, não em meta de bônus
+- Quando o número piorar, pergunte o que mudou no **sistema**
+
+<p class="big">A resposta quase nunca é "fulano"</p>
+
+# Conserte a meta {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+*"Cada dev faz no mínimo 10 deploys por semana. Quem não bater entra em plano de melhoria."*
+
+**Duas formas de bater isso sem entregar mais valor.**
+
+*Extra: reescreva a meta sem o efeito de Goodhart.*
+
+# Da métrica à ação {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## A métrica agregada esconde a fila
+
+Lead time subiu de 4 para 12 dias. Onde?
+
+- Tempo até abrir o PR
+- Espera **até a primeira revisão**
+- Revisão em si
+- Fila e duração do pipeline
+- Espera por aprovação
+
+## Retrospectiva de causas
+
+Três perguntas: o que aconteceu, o que nos atrasou, o que mudamos na próxima semana.
+
+> O sujeito da pergunta é o PR, não a pessoa.
+
+# Quebre o lead time {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+**Em quais etapas você quebraria o lead time para achar a fila?**
+
+*Extra: escreva a pergunta de retrospectiva para a etapa mais provável — sem citar pessoas.*
+
+# Diagnosticar um time fictício {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## Os dados de um trimestre {.smaller}
+
+| Semana | Deploys | Lead time (d) | Rollbacks | Restauração (h) |
+|---|---|---|---|---|
+| 1 | 2 | 9 | 0 | 0 |
+| 2 | 1 | 11 | 1 | 14 |
+| 3 | 3 | 8 | 0 | 0 |
+| 4 | 1 | 14 | 1 | 6 |
+| 5 | 1 | 15 | 0 | 0 |
+| 6 | 0 | 17 | 1 | 5 |
+
+## O que entregar
+
+1. Frequência média de deploys e taxa de rollback
+2. Qual métrica tem tendência negativa, e **uma hipótese** para a causa
+3. Uma mudança concreta e **mensurável** para testar a hipótese
+
+*A hipótese tem que ser sobre o sistema, não sobre pessoas.*
+
+## Fechamento
+
+- **Incentivo:** o muro é desenho, não personalidade
+- **Três Caminhos:** fluxo, feedback, aprendizado
+- **DORA:** quatro números, sempre do time, sempre mediana
+- **Goodhart:** métrica que vira meta deixa de medir
+
+## Dever de casa
+
+1. Levantar as quatro métricas DORA do seu projeto — dado que falta é um achado
+2. Escrever uma hipótese de melhoria do sistema, com indicador e valor-alvo
+3. Levar 3 dúvidas para o próximo encontro
+
+# Práticas de entrega: trunk-based, feature flags e deploy contínuo {.fim}
+
+<p class="kicker">Próximo encontro · E14</p>
+
+Se lote pequeno é o segredo, como integrar várias vezes por dia sem expor código incompleto?

@@ -1,0 +1,287 @@
+---
+title: "Práticas de entrega"
+subtitle: "Módulo 3 · Encontro 14 — Trunk-based, feature flags e deploy contínuo"
+format: revealjs
+footer: "Full Cycle · Módulo 3 · Encontro 14"
+---
+
+## Na aula passada
+
+- O muro é feito de incentivo, não de personalidade
+- Três Caminhos: fluxo, feedback, aprendizado
+- Quatro métricas DORA, sempre do time
+
+**Pergunta:** qual métrica você não conseguiu medir no seu projeto?
+
+## A tensão de hoje
+
+No E13 eu disse: **lote pequeno é o segredo do fluxo.**
+
+::: {.fragment}
+Objeção óbvia: se eu integro dez vezes por dia, o usuário não vê código pela metade?
+:::
+
+::: {.fragment}
+**Bloco 1:** trunk-based · flags · estratégias de liberação
+**Bloco 2:** rollback ensaiado · pós-incidente · runbooks
+:::
+
+# Trunk-based development {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 1</p>
+
+## Branch longa custa caro
+
+- Gitflow com `develop` e `release` **acumula** mudança
+- Quanto mais tempo sem integrar, pior o merge
+- E pior o diagnóstico quando quebra
+
+::: {.fragment}
+**Trunk-based:** todos integram no trunk, commits pequenos, ao longo do dia.
+:::
+
+## Branch curta ainda é branch
+
+Uma ou duas dias de vida é aceitável.
+
+> Trunk-based é sobre a **duração** da branch, não sobre abrir mão do code review.
+
+A pesquisa DORA liga a prática a melhor desempenho de entrega.
+
+# O merge de três semanas {.desafio}
+
+<p class="kicker">Mini desafio 1 · 5 min</p>
+
+Branch de 3 semanas, 40 commits. No merge o build quebra e 7 testes falham.
+
+**Três motivos para o diagnóstico ser mais difícil do que com integração diária.**
+
+# Feature flags {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 2</p>
+
+## Separar deploy de release
+
+Condicional controlado por configuração. O código vai para produção **desligado**.
+
+<p class="big">Deploy é evento técnico. Release é decisão de negócio.</p>
+
+## A flag em TypeScript
+
+```ts
+const flags = {
+  novoCalculoFrete: process.env.FLAG_NOVO_FRETE === 'true',
+};
+
+export function calcularFrete(pedido: Pedido): number {
+  return flags.novoCalculoFrete
+    ? calcularFreteV2(pedido)
+    : calcularFreteV1(pedido);
+}
+```
+
+## A mesma flag em PHP {.smaller}
+
+```php
+final class Flags
+{
+    public static function novoCalculoFrete(): bool
+    {
+        return getenv('FLAG_NOVO_FRETE') === 'true';
+    }
+}
+
+function calcularFrete(Pedido $pedido): float
+{
+    return Flags::novoCalculoFrete()
+        ? calcularFreteV2($pedido)
+        : calcularFreteV1($pedido);
+}
+```
+
+## As duas regras
+
+1. Toda flag tem **dono** e **data de remoção**
+2. O caminho antigo é removido depois da liberação total
+
+::: {.fragment}
+Flag esquecida vira teia de condicionais que multiplica os casos de teste.
+:::
+
+# A flag que ninguém removeu {.desafio}
+
+<p class="kicker">Mini desafio 2 · 7 min</p>
+
+14 flags em produção. Seis ligadas a 100% há mais de um ano. Ninguém sabe quem criou.
+
+**Dois custos concretos para o time hoje.**
+
+*Extra: que regra de processo teria evitado isso?*
+
+# Estratégias de liberação {.secao}
+
+<p class="kicker">Bloco 1 · Tópico 3</p>
+
+## Três formas de publicar {.smaller}
+
+| Estratégia | Como | Reverter | Exige |
+|---|---|---|---|
+| **Blue-green** | Sobe na cópia inativa e troca o tráfego | Trocar de volta | Dobro de infra |
+| **Canary** | Parcela pequena do tráfego, que cresce | Parcela a zero | Métrica boa |
+| **Rolling** | Uma instância por vez | Mais lento | Tolerar 2 versões |
+
+## O canary em números
+
+1% → observa p95 e taxa de erro por 10 min → 10% → 50% → 100%
+
+::: {.fragment}
+**Onde está o gatilho de reversão?**
+:::
+
+::: {.fragment}
+Sem métrica instrumentada, canary é deploy às cegas com passos menores.
+:::
+
+# Escolha a estratégia {.desafio}
+
+<p class="kicker">Mini desafio 3 · 5 min</p>
+
+1. Pagamento, 4 instâncias, **sem métricas**, orçamento apertado
+2. Busca, 40 instâncias, métricas em painel
+3. RH interno, 1 instância, janela de manutenção aceita
+
+**Qual estratégia para cada um?**
+
+# Rollback ensaiado {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 4</p>
+
+## Plano nunca executado é suposição
+
+- Ensaie a reversão em staging e **cronometre**
+- O número alimenta a métrica de tempo para restaurar
+- Reverter por **flag** não exige build nem deploy
+
+## O gatilho precisa de três coisas
+
+Métrica · limite numérico · janela de tempo
+
+> "Reverter se a taxa de 5xx passar de 1% em qualquer janela de 5 min."
+
+::: {.fragment}
+"Reverter se parecer ruim" não é critério: duas pessoas decidem diferente às 3h.
+:::
+
+## O banco não volta sozinho
+
+Reverter código é fácil. Reverter migração destrutiva não é.
+
+**Migração em duas fases:** adicionar antes, remover muito depois.
+
+# Defina o gatilho {.desafio}
+
+<p class="kicker">Mini desafio 4 · 5 min</p>
+
+*"Acompanhar as métricas durante o canary e reverter se o comportamento estiver ruim."*
+
+**Reescreva para que duas pessoas, às 3h da manhã, decidam igual.**
+
+# Pós-incidente sem culpa {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 5</p>
+
+## Quatro perguntas
+
+1. O que aconteceu
+2. Qual foi o impacto
+3. Por que aconteceu
+4. **O que vamos mudar**
+
+<p class="big">"Ter mais cuidado" não é uma ação</p>
+
+## A sequência de condições
+
+Quase sempre há uma cadeia: mudança sem teste, alerta que não disparou, runbook desatualizado, pessoa cansada no terceiro plantão.
+
+> Corrigir apenas a pessoa deixa todas as outras condições intactas.
+
+O documento é publicado para a organização toda.
+
+# Reescreva a ação {.desafio}
+
+<p class="kicker">Mini desafio 5 · 5 min</p>
+
+1. "O desenvolvedor deve ter mais cuidado"
+2. "Reforçar a importância de rodar os testes"
+3. "Revisar melhor os PRs"
+
+**Reescreva as três como ações sobre o sistema.**
+
+# Plantão e runbooks {.secao}
+
+<p class="kicker">Bloco 2 · Tópico 6 · Extra</p>
+
+## Às três da manhã
+
+Um runbook cobre **um sintoma**:
+
+- Sintoma em destaque
+- Como confirmar (comando ou painel)
+- Mitigação **em ordem**
+- Critério para escalar
+- Contato de quem conhece
+
+## O custo humano do plantão
+
+Plantão sem ajuda, sem compensação e sem melhoria no sistema desgasta o time rápido.
+
+<p class="big">Alerta que não exige ação deve ser removido</p>
+
+# Runbook de uma página {.desafio}
+
+<p class="kicker">Mini desafio 6 · 7 min</p>
+
+Sintoma: **a fila de notificações passa de 10.000 pendentes.**
+
+Escreva: como confirmar, mitigar em ordem, critério para escalar, contato.
+
+# Planejar uma entrega segura {.secao}
+
+<p class="kicker">Desafio integrador · 45 min</p>
+
+Em dupla
+
+## O cenário
+
+Novo **cálculo de frete**, liberado gradualmente para clientes de três regiões. O cálculo antigo continua disponível.
+
+## O plano de uma página {.smaller}
+
+1. Qual estratégia de branch, e por quê
+2. Como a flag é criada, **quem é o dono**, **quando é removida**
+3. Sequência de liberação: regiões, métricas, **limite de erro que reverte**
+4. Passo a passo do rollback e quanto tempo leva
+5. Runbook para "latência do frete acima de 2 segundos"
+
+*O plano precisa de números. "Reverter se piorar" não vale.*
+
+## Fechamento
+
+- **Trunk-based:** branch curta, integração frequente
+- **Flag:** deploy desligado, dono e data de remoção
+- **Liberação:** blue-green, canary, rolling — conforme risco e infra
+- **Rollback:** ensaiado e cronometrado, com gatilho numérico
+- **Pós-incidente:** muda o sistema, não a pessoa
+
+## Dever de casa
+
+1. Implementar uma feature flag com dono e data registrados no PR
+2. Ensaiar um rollback e cronometrar
+3. Escrever um runbook de uma página para o seu projeto
+4. Levar 3 dúvidas
+
+# Ambientes, configuração e segredos {.fim}
+
+<p class="kicker">Próximo encontro · E15</p>
+
+Hoje a flag veio de uma variável de ambiente. O que mais vive ali — e o que nunca pode entrar no repositório?
