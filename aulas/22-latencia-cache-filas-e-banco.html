@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-da6801bb47887cffec19aab6b5fb5c7d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
+
+  <title>Full Cycle – Latência, cache, filas e banco de dados</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2e3440; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #75715e; } /* Annotation */
+    code span.at { color: #f92672; } /* Attribute */
+    code span.bn { color: #ae81ff; } /* BaseN */
+    code span.bu { color: #66d9ef; } /* BuiltIn */
+    code span.cf { color: #f92672; } /* ControlFlow */
+    code span.ch { color: #e6db74; } /* Char */
+    code span.cn { color: #ae81ff; } /* Constant */
+    code span.co { color: #75715e; } /* Comment */
+    code span.cv { color: #75715e; } /* CommentVar */
+    code span.do { color: #75715e; } /* Documentation */
+    code span.dt { color: #66d9ef; font-style: italic; } /* DataType */
+    code span.dv { color: #ae81ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #a6e22e; font-weight: bold; } /* Extension */
+    code span.fl { color: #ae81ff; } /* Float */
+    code span.fu { color: #a6e22e; } /* Function */
+    code span.im { color: #f92672; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #f92672; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #a6e22e; } /* Other */
+    code span.pp { color: #f92672; } /* Preprocessor */
+    code span.re { color: #75715e; } /* RegionMarker */
+    code span.sc { color: #ae81ff; } /* SpecialChar */
+    code span.ss { color: #e6db74; } /* SpecialString */
+    code span.st { color: #e6db74; } /* String */
+    code span.va { color: #f8f8f2; } /* Variable */
+    code span.vs { color: #e6db74; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-1bb263a969d99cce4e6586e047504279.css">
+  <link rel="stylesheet" href="../theme/blueprint-terracota.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var urlTheme = params.get('theme');
+        if (urlTheme === 'light' || urlTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', urlTheme);
+          try { localStorage.setItem('diglass-theme', urlTheme); } catch (e) {}
+          return;
+        }
+        var saved = localStorage.getItem('diglass-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+          return;
+        }
+        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        // Default padrão: escuro (Blueprint Terracota original), ou claro se sistema solicitar
+        var theme = prefersLight ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Latência, cache, filas e banco de dados</h1>
+  <p class="subtitle">Módulo 4 · Encontro 23 — Percentis, cache-aside, idempotência e índices</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="na-aula-passada" class="slide level2">
+<h2>Na aula passada</h2>
+<ul>
+<li class="fragment">A IA redige, o código prova</li>
+<li class="fragment">Contexto controlado: roteador, schemas, <strong>testes</strong></li>
+<li class="fragment">Schemathesis: bug no servidor ou contrato errado</li>
+</ul>
+<p><strong>Pergunta:</strong> quem rodou o script e tem 500 mil pedidos no banco?</p>
+</section>
+<section id="hoje" class="slide level2">
+<h2>Hoje</h2>
+<p><em>“O chefe disse que o sistema está lento. O que você faz?”</em></p>
+<div class="fragment">
+<p>A maioria responde <strong>cache</strong> ou <strong>mais máquina</strong>. As duas são respostas erradas antes de medir.</p>
+</div>
+<div class="fragment">
+<p class="big">
+Medir → corrigir a consulta → só então cachear
+</p>
+</div>
+</section>
+<section>
+<section id="medir-antes-de-otimizar" class="title-slide slide level1 secao center">
+<h1>Medir antes de otimizar</h1>
+<p class="kicker">
+Bloco 1 · Tópico 1
+</p>
+</section>
+<section id="desempenho-é-medido-não-percebido" class="slide level2">
+<h2>Desempenho é medido, não percebido</h2>
+<p>Defina o que significa “rápido” <strong>para este sistema</strong>:</p>
+<blockquote>
+<p>p95 do checkout abaixo de 800 ms em horário de pico</p>
+</blockquote>
+<div class="fragment">
+<p>Sem alvo, toda otimização parece útil e <strong>nenhuma pode ser declarada concluída</strong>.</p>
+</div>
+</section>
+<section id="a-cauda-se-acumula" class="slide level2">
+<h2>A cauda se acumula</h2>
+<p>Cinco serviços, cada um com p99 de 200 ms.</p>
+<p>Chance de <strong>nenhum</strong> cair na cauda: 0,99⁵ ≈ 95%</p>
+<p class="big">
+5% das requisições pegam a cauda de alguém
+</p>
+</section></section>
+<section id="defina-o-alvo" class="title-slide slide level1 desafio center">
+<h1>Defina o alvo</h1>
+<p class="kicker">
+Mini desafio 1 · 5 min
+</p>
+<p><em>“Deixar a busca de produtos mais rápida.”</em></p>
+<p><strong>Reescreva como alvo verificável. O que precisa estar definido para alguém dizer “pronto”?</strong></p>
+</section>
+
+<section>
+<section id="cache" class="title-slide slide level1 secao center">
+<h1>Cache</h1>
+<p class="kicker">
+Bloco 1 · Tópico 2
+</p>
+</section>
+<section id="cache-aside" class="slide level2">
+<h2>Cache-aside</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource ts number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb1-1"><a aria-label="1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">obterProduto</span>(id<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span>Produto<span class="op">&gt;</span> {</span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="kw">const</span> chave <span class="op">=</span> <span class="vs">`produto:</span><span class="sc">${</span>id<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="kw">const</span> cacheado <span class="op">=</span> <span class="cf">await</span> cache<span class="op">.</span><span class="fu">get</span>(chave)<span class="op">;</span></span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="cf">if</span> (cacheado) <span class="cf">return</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(cacheado)<span class="op">;</span></span>
+<span id="cb1-5"><a aria-label="5"></a></span>
+<span id="cb1-6"><a aria-label="6"></a>  <span class="kw">const</span> produto <span class="op">=</span> <span class="cf">await</span> repo<span class="op">.</span><span class="fu">buscarProduto</span>(id)<span class="op">;</span></span>
+<span id="cb1-7"><a aria-label="7"></a>  <span class="cf">await</span> cache<span class="op">.</span><span class="fu">set</span>(chave<span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(produto)<span class="op">,</span> { EX<span class="op">:</span> <span class="dv">300</span> })<span class="op">;</span></span>
+<span id="cb1-8"><a aria-label="8"></a>  <span class="cf">return</span> produto<span class="op">;</span></span>
+<span id="cb1-9"><a aria-label="9"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="as-três-perguntas" class="slide level2">
+<h2>As três perguntas</h2>
+<ol type="1">
+<li class="fragment"><strong>Tolerância à desatualização</strong> — o preço pode estar 5 min atrás; o <strong>saldo na hora da compra, não</strong></li>
+<li class="fragment"><strong>Invalidação</strong> — TTL é o caminho mais simples</li>
+<li class="fragment"><strong>Stampede</strong> — a chave quente expira e milhares vão ao banco juntas</li>
+</ol>
+</section>
+<section id="contra-o-stampede" class="slide level2">
+<h2>Contra o stampede</h2>
+<ul>
+<li class="fragment">TTL com <strong>variação aleatória</strong></li>
+<li class="fragment">Bloqueio: só uma requisição recalcula</li>
+<li class="fragment">Atualização antecipada, antes de expirar</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource ts number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb2-1"><a aria-label="1"></a><span class="kw">const</span> ttl <span class="op">=</span> <span class="dv">300</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="o-aviso-do-tópico" class="slide level2">
+<h2>O aviso do tópico</h2>
+<p class="big">
+Cache não corrige consulta lenta
+</p>
+<p>Ele esconde o problema enquanto a chave está quente — e o problema volta na primeira falta.</p>
+</section></section>
+<section id="as-três-perguntas-do-cache" class="title-slide slide level1 desafio center">
+<h1>As três perguntas do cache</h1>
+<p class="kicker">
+Mini desafio 2 · 5 min
+</p>
+<ol type="1">
+<li class="fragment">Nome e descrição do produto</li>
+<li class="fragment">Preço</li>
+<li class="fragment">Saldo de estoque <strong>na listagem</strong></li>
+<li class="fragment">Saldo de estoque <strong>na confirmação da compra</strong></li>
+</ol>
+<p><strong>Quanto tempo cada um pode estar desatualizado?</strong></p>
+</section>
+
+<section>
+<section id="filas" class="title-slide slide level1 secao center">
+<h1>Filas</h1>
+<p class="kicker">
+Bloco 1 · Tópico 3
+</p>
+</section>
+<section id="desacoplar-e-suavizar-picos" class="slide level2">
+<h2>Desacoplar e suavizar picos</h2>
+<p>Mil pedidos chegam num minuto. O serviço de e-mail processa cem por minuto.</p>
+<p>A fila guarda a diferença: o e-mail atrasa, <strong>mas não se perde</strong>.</p>
+</section>
+<section id="três-conceitos" class="slide level2">
+<h2>Três conceitos</h2>
+<ul>
+<li class="fragment"><strong>Backpressure:</strong> o consumidor sinaliza que não aguenta. <em>Fila sem limite é falha adiada.</em></li>
+<li class="fragment"><strong>Idempotência:</strong> entregas são <strong>pelo menos uma vez</strong></li>
+<li class="fragment"><strong>Dead letter queue:</strong> a mensagem problemática sai, em vez de travar a fila</li>
+</ul>
+</section>
+<section id="o-erro-mais-caro" class="slide level2">
+<h2>O erro mais caro</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource ts number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb3-1"><a aria-label="1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">processar</span>(msg) {</span>
+<span id="cb3-2"><a aria-label="2"></a>  <span class="cf">await</span> gateway<span class="op">.</span><span class="fu">cobrar</span>(msg<span class="op">.</span><span class="at">pedidoId</span><span class="op">,</span> msg<span class="op">.</span><span class="at">valor</span><span class="op">,</span> {</span>
+<span id="cb3-3"><a aria-label="3"></a>    idempotencyKey<span class="op">:</span> <span class="vs">`cobranca:</span><span class="sc">${</span>msg<span class="op">.</span><span class="at">pedidoId</span><span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb3-4"><a aria-label="4"></a>  })<span class="op">;</span></span>
+<span id="cb3-5"><a aria-label="5"></a>  <span class="cf">await</span> repo<span class="op">.</span><span class="fu">marcarComoPago</span>(msg<span class="op">.</span><span class="at">pedidoId</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a aria-label="6"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Sem a chave, uma retentativa após timeout <strong>cobra duas vezes</strong>.</p>
+</section></section>
+<section id="cobrança-dupla" class="title-slide slide level1 desafio center">
+<h1>Cobrança dupla</h1>
+<p class="kicker">
+Mini desafio 3 · 7 min
+</p>
+<p>O gateway responde em 2 s. O timeout do consumidor é 1,5 s. A mensagem volta para a fila.</p>
+<p><strong>O que acontece com o cliente? Torne o consumidor idempotente.</strong></p>
+</section>
+
+<section>
+<section id="índices-e-explain" class="title-slide slide level1 secao center">
+<h1>Índices e EXPLAIN</h1>
+<p class="kicker">
+Bloco 2 · Tópico 4
+</p>
+</section>
+<section id="o-banco-é-o-gargalo" class="slide level2">
+<h2>O banco é o gargalo</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a aria-label="1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
+<span id="cb4-2"><a aria-label="2"></a><span class="kw">SELECT</span> <span class="kw">id</span>, status, total <span class="kw">FROM</span> pedidos</span>
+<span id="cb4-3"><a aria-label="3"></a><span class="kw">WHERE</span> cliente_id <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="kw">ORDER</span> <span class="kw">BY</span> criado_em <span class="kw">DESC</span></span>
+<span id="cb4-5"><a aria-label="5"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="o-plano-denuncia" class="slide level2 smaller">
+<h2>O plano denuncia</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a aria-label="1"></a>Limit  (cost=18452.31..18452.33 rows=10)</span>
+<span id="cb5-2"><a aria-label="2"></a>  -&gt;  Sort  (cost=18452.31..18463.88 rows=4628)</span>
+<span id="cb5-3"><a aria-label="3"></a>        Sort Key: criado_em DESC</span>
+<span id="cb5-4"><a aria-label="4"></a>        -&gt;  Seq Scan on pedidos  (cost=0.00..18352.00 rows=4628)</span>
+<span id="cb5-5"><a aria-label="5"></a>              Filter: (cliente_id = 42)</span>
+<span id="cb5-6"><a aria-label="6"></a>              Rows Removed by Filter: 495372</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Dois problemas:</strong> varredura sequencial e ordenação.</p>
+</section>
+<section id="o-índice-composto" class="slide level2">
+<h2>O índice composto</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a aria-label="1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_pedidos_cliente_data</span>
+<span id="cb6-2"><a aria-label="2"></a>  <span class="kw">ON</span> pedidos (cliente_id, criado_em <span class="kw">DESC</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Filtro primeiro, ordenação depois.</strong></p>
+<div class="fragment">
+<p>Índice só em <code>cliente_id</code> tira o <code>Seq Scan</code> e <strong>mantém o <code>Sort</code></strong>.</p>
+</div>
+</section>
+<section id="índice-tem-custo" class="slide level2">
+<h2>Índice tem custo</h2>
+<p>Acelera leitura · encarece escrita · ocupa espaço</p>
+<p class="big">
+Índice que nenhuma consulta usa é só custo
+</p>
+</section></section>
+<section id="leia-o-plano" class="title-slide slide level1 desafio center">
+<h1>Leia o plano</h1>
+<p class="kicker">
+Mini desafio 4 · 7 min
+</p>
+<p><strong>Identifique os dois problemas no plano acima. Escreva o índice que resolve.</strong></p>
+<p><em>Extra: por que um índice só em <code>cliente_id</code> não resolveria tudo?</em></p>
+</section>
+
+<section>
+<section id="paginação-e-n1" class="title-slide slide level1 secao center">
+<h1>Paginação e N+1</h1>
+<p class="kicker">
+Bloco 2 · Tópico 5
+</p>
+</section>
+<section id="offset-fica-lento" class="slide level2">
+<h2>OFFSET fica lento</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a aria-label="1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> pedidos</span>
+<span id="cb7-2"><a aria-label="2"></a><span class="kw">ORDER</span> <span class="kw">BY</span> criado_em <span class="kw">DESC</span></span>
+<span id="cb7-3"><a aria-label="3"></a><span class="kw">LIMIT</span> <span class="dv">20</span> OFFSET <span class="dv">20000</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O banco percorre e <strong>descarta 20.000 linhas</strong> antes de devolver.</p>
+<div class="fragment">
+<p>Página 1 instantânea, página 1.000 lenta — e em dev só existem três páginas.</p>
+</div>
+</section>
+<section id="cursor-custo-constante" class="slide level2">
+<h2>Cursor: custo constante</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a aria-label="1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> pedidos</span>
+<span id="cb8-2"><a aria-label="2"></a><span class="kw">WHERE</span> (criado_em, <span class="kw">id</span>) <span class="op">&lt;</span> (<span class="st">'2026-03-02 14:31:00'</span>, <span class="st">'abc-123'</span>)</span>
+<span id="cb8-3"><a aria-label="3"></a><span class="kw">ORDER</span> <span class="kw">BY</span> criado_em <span class="kw">DESC</span>, <span class="kw">id</span> <span class="kw">DESC</span></span>
+<span id="cb8-4"><a aria-label="4"></a><span class="kw">LIMIT</span> <span class="dv">20</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O desempate pelo <code>id</code> evita o bug de fronteira entre páginas.</p>
+</section></section>
+<section id="troque-o-offset" class="title-slide slide level1 desafio center">
+<h1>Troque o OFFSET</h1>
+<p class="kicker">
+Mini desafio 5 · 5 min
+</p>
+<p><strong>Por que a consulta fica mais lenta nas páginas altas? Reescreva com cursor.</strong></p>
+<p><em>Extra: que bug aparece se dois pedidos tiverem o mesmo <code>criado_em</code>?</em></p>
+</section>
+
+<section>
+<section id="escalar" class="title-slide slide level1 secao center">
+<h1>Escalar</h1>
+<p class="kicker">
+Bloco 2 · Tópico 6 · Extra
+</p>
+</section>
+<section id="vertical-e-horizontal" class="slide level2">
+<h2>Vertical e horizontal</h2>
+<ul>
+<li class="fragment"><strong>Vertical:</strong> máquina maior. Simples, <strong>e tem limite</strong></li>
+<li class="fragment"><strong>Horizontal:</strong> mais instâncias. Escala melhor, <strong>se a aplicação não guarda estado local</strong></li>
+</ul>
+<div class="fragment">
+<p>Sessão, upload temporário e cache em memória precisam de armazenamento compartilhado.</p>
+</div>
+</section>
+<section id="a-armadilha" class="slide level2">
+<h2>A armadilha</h2>
+<p class="big">
+Escalar uma aplicação que espera o banco aumenta a pressão sobre o banco
+</p>
+<p>O sistema fica mais lento, não mais rápido.</p>
+</section></section>
+<section id="escalar-piorou" class="title-slide slide level1 desafio center">
+<h1>Escalar piorou</h1>
+<p class="kicker">
+Mini desafio 6 · 7 min
+</p>
+<p>Dobraram as instâncias de 4 para 8. A latência <strong>piorou</strong> e apareceram erros de conexão.</p>
+<p><strong>Explique o que aconteceu.</strong></p>
+</section>
+
+<section>
+<section id="encontrar-e-corrigir-um-gargalo" class="title-slide slide level1 secao center">
+<h1>Encontrar e corrigir um gargalo</h1>
+<p class="kicker">
+Desafio integrador · 45 min
+</p>
+<p>Em dupla · 500 mil pedidos</p>
+</section>
+<section id="cinco-etapas" class="slide level2 smaller">
+<h2>Cinco etapas</h2>
+<ol type="1">
+<li class="fragment"><strong>Definir o alvo</strong> — p95 abaixo de 200 ms com 50 requisições simultâneas</li>
+<li class="fragment"><strong>Medir o estado inicial</strong> com <code>EXPLAIN ANALYZE</code></li>
+<li class="fragment"><strong>Criar o índice</strong> e medir de novo</li>
+<li class="fragment"><strong>Trocar <code>OFFSET</code> por cursor</strong> e medir a <strong>página 1.000</strong></li>
+<li class="fragment"><strong>Identificar e corrigir o N+1</strong>, se existir</li>
+</ol>
+</section>
+<section id="medições-esperadas" class="slide level2 smaller">
+<h2>Medições esperadas</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Medição</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>EXPLAIN</code> antes do índice</td>
+<td><code>Seq Scan</code> sobre a tabela</td>
+</tr>
+<tr class="even">
+<td><code>EXPLAIN</code> depois</td>
+<td><code>Index Scan</code>, custo muito menor</td>
+</tr>
+<tr class="odd">
+<td>Página 1.000 com <code>OFFSET</code></td>
+<td>Latência bem maior que a página 1</td>
+</tr>
+<tr class="even">
+<td>Página 1.000 com cursor</td>
+<td>Latência próxima da página 1</td>
+</tr>
+</tbody>
+</table>
+<p><em>Mesmo método de medição antes e depois. E explique <strong>por que</strong> melhorou.</em></p>
+</section>
+<section id="fechamento" class="slide level2">
+<h2>Fechamento</h2>
+<ul>
+<li class="fragment"><strong>A ordem:</strong> medir, corrigir a consulta, depois cachear</li>
+<li class="fragment"><strong>Cache:</strong> tolerância, invalidação, stampede</li>
+<li class="fragment"><strong>Fila:</strong> backpressure, idempotência, DLQ</li>
+<li class="fragment"><strong>Índice composto:</strong> filtro, depois ordenação</li>
+<li class="fragment"><strong>Cursor</strong> no lugar de <code>OFFSET</code></li>
+<li class="fragment"><strong>Escalar</strong> sem saber o gargalo piora o sistema</li>
+</ul>
+</section></section>
+<section id="testes-de-carga-profiling-e-consistência" class="title-slide slide level1 fim center">
+<h1>Testes de carga, profiling e consistência</h1>
+<p class="kicker">
+Último encontro · E24
+</p>
+<p>Hoje medimos uma requisição por vez. Lá, o sistema sob carga de verdade — e a apresentação do projeto final.</p>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Full Cycle · Módulo 4 · Encontro 23</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'slide',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/henriquelopeslima\.github\.io\/diglass\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">
+      <span class="theme-toggle-bracket">[</span>
+      <span class="theme-toggle-icon">
+        <svg class="theme-svg theme-svg-moon" viewbox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </span>
+      <span class="theme-toggle-bracket">]</span>
+    </button>
+
+    <script>
+    (function() {
+      var toggleBtn = document.getElementById('theme-toggle');
+      if (!toggleBtn) return;
+
+      var moonSvg = '<svg class="theme-svg theme-svg-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+      var sunSvg = '<svg class="theme-svg theme-svg-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+
+      function updateToggleUI(theme) {
+        var isLight = theme === 'light';
+        var iconEl = toggleBtn.querySelector('.theme-toggle-icon');
+        if (iconEl) {
+          iconEl.innerHTML = isLight ? sunSvg : moonSvg;
+        }
+        var nextTheme = isLight ? 'escuro' : 'claro';
+        toggleBtn.setAttribute('title', 'Alternar para tema ' + nextTheme);
+        toggleBtn.setAttribute('aria-label', 'Tema atual: ' + (isLight ? 'claro' : 'escuro') + '. Clique para alternar para ' + nextTheme);
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem('diglass-theme', theme);
+        } catch (e) {}
+        updateToggleUI(theme);
+        window.dispatchEvent(new CustomEvent('diglass-theme-change', { detail: { theme: theme } }));
+      }
+
+      var currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateToggleUI(currentTheme);
+
+      toggleBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var current = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = current === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        toggleBtn.blur();
+      });
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'diglass-theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+          document.documentElement.setAttribute('data-theme', e.newValue);
+          updateToggleUI(e.newValue);
+        }
+      });
+    })();
+    </script>
+    
+
+</body></html>
