@@ -10,3 +10,7 @@ format: html
 - [**Qualidade de Software e Testes com IA**<span class="card-desc">Pirâmide de testes, TDD, testes unitários e de integração, e uso de IA para gerar e auditar testes.</span><span class="card-meta">4 encontros</span>](modulos/modulo-02.html)
 - [**DevOps Inteligente e Integração Contínua**<span class="card-desc">Cultura DevOps e métricas DORA, entrega com feature flags, ambientes e segredos, segurança da cadeia, observabilidade e SLO.</span><span class="card-meta">6 encontros</span>](modulos/modulo-03.html)
 - [**System Design e Arquitetura Escalável com IA**<span class="card-desc">Maturidade arquitetural, bounded contexts e C4, ADRs, documentação viva e verificada, desempenho e testes de carga.</span><span class="card-meta">6 encontros</span>](modulos/modulo-04.html)
+
+::: {.destaque}
+[**Projeto final**<span class="card-meta">Entrega 13/11 →</span><span class="card-desc">Fecha a trilha: dois níveis de projeto, entrega no Moodle, apresentação opcional e rubrica de avaliação.</span>](aulas/24-projeto-final.html)
+:::

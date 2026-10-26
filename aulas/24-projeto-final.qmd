@@ -1,0 +1,263 @@
+---
+title: "Projeto final"
+subtitle: "Módulo 4 · Encontro 24 — Níveis, entrega até 13/11 e avaliação"
+format: revealjs
+footer: "Full Cycle · Módulo 4 · Projeto final"
+---
+
+## O que combinamos hoje
+
+- **Cronograma:** duas datas que importam
+- **Formato:** individual ou grupo de até 3
+- **Dois níveis:** Projeto A e Projeto B
+- **Entrega e avaliação:** Moodle e rubrica
+
+**Saída:** todos saem daqui com o nível escolhido
+
+## Objetivo
+
+- Projeto **prático** que compõe a nota de conclusão
+- Cobre **todo o conteúdo**: do container ao teste de carga
+- Não é trabalho novo: é o seu projeto com as camadas que já viu
+
+<p class="big">Mostrar engenharia, não tamanho</p>
+
+## Cronograma
+
+| Data | O que acontece |
+|---|---|
+| **03/11** | Hoje: diretrizes, níveis e escolha |
+| **até 13/11** | Entrega oficial, direto pelo **Moodle** |
+| **16/11** | Aula ao vivo para as apresentações |
+
+São **10 dias**. Se o seu escopo não cabe nisso, corte o escopo.
+
+## Você já tem parte disso pronto
+
+- As parcelas do Módulo 4 já são entregáveis daqui
+- ADR, contextos, C4, OpenAPI, plano de p95, k6
+- Reaproveite: o projeto final **consolida**, não recomeça
+
+# Formato {.secao}
+
+<p class="kicker">Parte 1 · Regras do jogo</p>
+
+## Individual ou em grupo
+
+- Grupo de **até 3 pessoas**, ou individual
+- O escopo entregue é o **mesmo** nos dois casos
+- Em grupo, divida por **módulo do sistema**, não por tarefa de nota
+
+## A nota é individual
+
+- **Commits e PRs no seu nome** — o histórico é a evidência
+- Um `CONTRIBUTORS.md` dizendo quem fez o quê
+- Na apresentação, cada um defende a **sua** parte
+
+::: {.fragment}
+Quem não aparece no histórico não tem o que ser avaliado.
+:::
+
+# Dois níveis {.secao}
+
+<p class="kicker">Parte 2 · Escolha</p>
+
+## Projeto A × Projeto B
+
+<div class="cols">
+<div>
+
+**A — avançado**
+
+- Marketplace modular
+- Arquitetura documentada
+- k6 em 3 estágios
+
+</div>
+<div>
+
+**B — simples**
+
+- Uma API de domínio único
+- README, 1 ADR, OpenAPI
+- 1 smoke test
+
+</div>
+</div>
+
+Mesma espinha dorsal, menos artefatos.
+
+# Projeto A {.secao}
+
+<p class="kicker">Nível avançado</p>
+
+## Projeto A — o sistema
+
+- **Marketplace** como monólito modular: catálogo, pedidos, pagamento
+- Módulos com fronteira explícita, não pastas soltas
+- Banco com volume: pelo menos **100 mil** pedidos sintéticos
+
+## Projeto A — base e qualidade {.smaller}
+
+| Origem | Entregável |
+|---|---|
+| **M1** | Compose que sobe com 1 comando, SOLID, 1 pattern justificado |
+| **M1** | Um Database Pattern aplicado e a decisão registrada |
+| **M2** | Testes unitários, de integração e de **contrato de API** |
+| **M2** | Coverage acima do mínimo declarado no próprio pipeline |
+
+## Projeto A — entrega e operação {.smaller}
+
+| Origem | Entregável |
+|---|---|
+| **M3** | CI com lint, testes, coverage e **SCA** de dependências |
+| **M3** | Três ambientes, configuração no ambiente, segredos fora do código |
+| **M3** | Logs estruturados, métricas RED, 1 trace e **1 SLO** declarado |
+| **M3** | Uma feature flag e a estratégia de deploy escolhida |
+
+## Projeto A — arquitetura e desempenho {.smaller}
+
+| Origem | Entregável |
+|---|---|
+| **M4** | ADR com a alternativa descartada, C4 de contexto e de contêiner |
+| **M4** | OpenAPI 3.1 do catálogo e do pedido, com **lint no pipeline** |
+| **M4** | Plano de p95: cache com tolerância, idempotência da fila |
+| **M4** | k6 em 3 estágios e relatório com gargalo, antes e depois |
+
+# Projeto B {.secao}
+
+<p class="kicker">Nível simples</p>
+
+## Projeto B — o sistema
+
+- Uma API de **domínio único**: pedidos, biblioteca, agenda, o que for seu
+- **Um** fluxo principal funcionando de ponta a ponta
+- Sem decomposição em módulos, sem exigência de volume
+
+::: {.fragment}
+Simples não é incompleto: o fluxo tem que funcionar de verdade.
+:::
+
+## Projeto B — base e qualidade {.smaller}
+
+| Origem | Entregável |
+|---|---|
+| **M1** | Compose que sobe com 1 comando, SOLID, 1 pattern justificado |
+| **M2** | Testes unitários do domínio e **1** teste de integração |
+| **M2** | Coverage mínimo declarado e respeitado |
+| **M3** | CI verde: install, lint, test |
+
+## Projeto B — operação e documentação {.smaller}
+
+| Origem | Entregável |
+|---|---|
+| **M3** | `.env.example` no repositório, segredos fora dele |
+| **M3** | Logs estruturados, 1 métrica e 1 SLO simples |
+| **M4** | README do primeiro dia e **1 ADR** |
+| **M4** | OpenAPI do endpoint principal e 1 smoke test k6 com p95 medido |
+
+## Como escolher
+
+- **B não é desistência:** um B impecável vale mais que um A pela metade
+- **A** se já tem CI e testes rodando; **B** se começa esta semana
+- Declare o nível na **primeira linha do README**
+
+# Moodle, até 13/11 {.secao}
+
+<p class="kicker">Parte 3 · Entrega</p>
+
+## O que enviar
+
+1. **Link do repositório** (ou convite, se privado)
+2. **README**: nível, como subir, como testar
+3. **Link da execução verde do CI**
+4. `docs/desempenho.md` e `CONTRIBUTORS.md`
+
+::: {.fragment}
+Commit depois de 13/11 não é avaliado.
+:::
+
+## Estrutura esperada {.smaller}
+
+```text
+.
+├─ docker-compose.yml
+├─ README.md
+├─ docs/
+│  ├─ adr/0001-decisao.md
+│  ├─ c4/contexto.md
+│  ├─ openapi.yaml
+│  └─ desempenho.md
+├─ src/
+├─ tests/
+└─ .github/workflows/ci.yml
+```
+
+No Projeto B, `docs/` tem README, 1 ADR e `openapi.yaml` — sem `c4/`.
+
+# Opcional, e conta {.secao}
+
+<p class="kicker">Parte 4 · Apresentação</p>
+
+## Apresentar é opcional
+
+- **Não** é obrigatório, mas **conta**: bônus de até 10 pontos
+- Ao vivo em **16/11**, ou **vídeo** enviado pelo Moodle
+- O vídeo segue o prazo da entrega: **13/11**
+
+## Roteiro de 10 minutos
+
+| Tempo | O que mostrar |
+|---|---|
+| 1 min | O problema e o nível escolhido |
+| 3 min | Demonstração: sobe, roda, responde |
+| 3 min | Uma decisão técnica e a alternativa descartada |
+| 3 min | Números e o que faria diferente |
+
+# Como a nota sai {.secao}
+
+<p class="kicker">Parte 5 · Avaliação</p>
+
+## Rubrica
+
+| Critério | Peso |
+|---|---|
+| **M1** Funciona, código e design | 35 |
+| **M2** Testes e CI verde | 20 |
+| **M3** Ambientes, segredos e observabilidade | 15 |
+| **M4** Arquitetura, documentação e desempenho | 30 |
+
+::: {.fragment}
+Mesma rubrica para A e B: muda o tamanho da evidência, não o rigor.
+:::
+
+## Uso de IA
+
+- Permitido e esperado — foi metade do curso
+- **Declare** em `docs/ia.md` os prompts que importaram
+- A IA sugere alternativas; a **decisão continua sendo sua**
+- Código que você não sabe explicar não conta como seu
+
+## O que mais derruba nota
+
+1. **Escopo inflado** e nada funcionando
+2. CI vermelha, ou inexistente
+3. README que não deixa a aplicação subir
+4. **Segredos commitados** no repositório
+5. Teste sem asserção e número sem medição
+
+# Decida antes de sair {.desafio}
+
+<p class="kicker">Agora · 15 min</p>
+
+1. Nível: **A** ou **B**
+2. Grupo (até 3 nomes) ou individual
+3. Qual repositório será entregue
+
+*Extra: abrir o PR com o README declarando o nível.*
+
+# Foi o curso inteiro {.fim}
+
+<p class="kicker">Entrega 13/11 · Apresentações 16/11</p>
+
+O projeto é só a prova de que ficou.

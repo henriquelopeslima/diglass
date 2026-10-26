@@ -191,7 +191,8 @@ h2#módulos + ul li { margin: 0; counter-increment: modulo; }
 
 h2#aulas + ul li a,
 h2#modulos + ul li a,
-h2#módulos + ul li a {
+h2#módulos + ul li a,
+.destaque a {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -209,7 +210,9 @@ h2#aulas + ul li a:focus-visible,
 h2#modulos + ul li a:hover,
 h2#modulos + ul li a:focus-visible,
 h2#módulos + ul li a:hover,
-h2#módulos + ul li a:focus-visible {
+h2#módulos + ul li a:focus-visible,
+.destaque a:hover,
+.destaque a:focus-visible {
   border-style: solid;
   background: var(--card-hover-bg, rgba(193, 89, 45, .14));
   transform: translateY(-3px);
@@ -236,10 +239,25 @@ h2#módulos + ul li a::before {
   width: fit-content;
 }
 
+/* chamada de largura total abaixo da grade (projeto final) */
+.destaque { margin-top: 18px; }
+.destaque a { flex-flow: row wrap; align-items: center; gap: 10px 16px; }
+.destaque a::before {
+  content: "[ PF ]";
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--terracota-bright);
+}
+.destaque .card-desc { flex: 1 1 100%; }
+.destaque .card-meta { margin: 0 0 0 auto; padding: 0; }
+
 /* elementos internos dos cards */
 h2#aulas + ul li a strong,
 h2#modulos + ul li a strong,
-h2#módulos + ul li a strong {
+h2#módulos + ul li a strong,
+.destaque a strong {
   font-size: 19px;
   font-weight: 600;
   color: var(--text);
