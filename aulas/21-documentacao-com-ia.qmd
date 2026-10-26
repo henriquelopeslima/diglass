@@ -35,7 +35,7 @@ Código · diff · conjunto de testes · conversa de design
 ::: {.fragment}
 **É perigosa quando recebe poucos dados e precisa completar lacunas.**
 
-Ela descreve um sistema **plausível** — não o real.
+Ela descreve um sistema **plausível**, não o real.
 :::
 
 ## A invenção bem formatada
@@ -74,7 +74,7 @@ Dado só o roteador com `res.status(201)`, o rascunho documentou `201`, `400`, `
 - O middleware de validação e autenticação
 
 ::: {.fragment}
-Os testes são o insumo mais valioso: trazem exemplos reais de entrada e saída.
+Os testes são o insumo que mais ajuda: trazem exemplos reais de entrada e saída.
 :::
 
 ## O prompt {.smaller}
@@ -127,7 +127,7 @@ git diff --name-only origin/main...HEAD | grep -q "src/routes/" \
 exit 0
 ```
 
-## Ela gera falso positivo — e tudo bem
+## Ela gera falso positivo, e tudo bem
 
 <p class="big">O objetivo é tornar a decisão explícita, não impedir o trabalho</p>
 
@@ -157,7 +157,7 @@ A regra barrou três PRs:
 
 Exemplos de requisição e resposta viram testes.
 
-> Se o exemplo deixa de funcionar, o teste falha — e a documentação não mente por mais tempo do que um pipeline.
+> Se o exemplo deixa de funcionar, o teste falha, e a documentação não mente por mais tempo do que um pipeline.
 
 ## Schemathesis
 
@@ -208,7 +208,7 @@ Não existe terceira opção. "Ignorar" não está na lista.
 <p class="big">A equipe responde. A IA organiza.</p>
 
 ::: {.fragment}
-Documento gerado sem insumo da equipe descreve **qualquer** sistema em camadas — verdadeiro e inútil.
+Documento gerado sem insumo da equipe descreve **qualquer** sistema em camadas: verdadeiro e inútil.
 :::
 
 ## Runbook tem o mesmo problema
@@ -233,7 +233,7 @@ E o caminho genérico costuma não funcionar às 3h da manhã.
 
 Para cada documento:
 
-1. **Responsável** — papel, não nome
+1. **Responsável**: papel, não nome
 2. **Data de revisão**
 3. **Gatilho** que obriga atualizar
 
@@ -244,7 +244,7 @@ Revisão de documentação **na retrospectiva**.
 Cada incidente e cada onboarding geram uma lista de lacunas.
 
 ::: {.fragment}
-Lacuna que se repetiu vira item de trabalho com dono e prazo — como qualquer outro defeito.
+Lacuna que se repetiu vira item de trabalho com dono e prazo, como qualquer outro defeito.
 :::
 
 # Quem mantém {.desafio}
@@ -265,8 +265,8 @@ Em dupla
 
 ## Cinco etapas {.smaller}
 
-1. **Gerar o rascunho** com o prompt de contexto controlado — guardar prompt e resposta
-2. **Listar as afirmações sem fonte** — removida ou confirmada em outra fonte?
+1. **Gerar o rascunho** com o prompt de contexto controlado; guardar prompt e resposta
+2. **Listar as afirmações sem fonte**: removida ou confirmada em outra fonte?
 3. **Rodar o Schemathesis** e registrar as falhas
 4. **Corrigir** contrato ou código, uma frase por decisão
 5. **Adicionar a regra de CI**, com a exceção documentada
@@ -287,11 +287,11 @@ Em dupla
 - **A IA redige, o código prova**
 - **Contexto controlado:** roteador, schemas, testes, middleware
 - **Duas instruções:** só os arquivos, e liste as dúvidas
-- **Schemathesis:** bug no servidor ou contrato errado — decida
+- **Schemathesis:** bug no servidor ou contrato errado; decida qual
 - **Manutenção:** responsável, data, gatilho
 
 # Latência, cache, filas e banco {.fim}
 
 <p class="kicker">Próximo encontro · E23</p>
 
-Começa a última unidade: desempenho. Rodem o script de 500 mil pedidos antes — sem volume, nada aparece.
+Começa a última unidade: desempenho. Rodem o script de 500 mil pedidos antes: sem volume, nada aparece.

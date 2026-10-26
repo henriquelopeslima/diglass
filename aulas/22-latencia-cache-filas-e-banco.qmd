@@ -75,9 +75,9 @@ async function obterProduto(id: string): Promise<Produto> {
 
 ## As três perguntas
 
-1. **Tolerância à desatualização** — o preço pode estar 5 min atrás; o **saldo na hora da compra, não**
-2. **Invalidação** — TTL é o caminho mais simples
-3. **Stampede** — a chave quente expira e milhares vão ao banco juntas
+1. **Tolerância à desatualização**: o preço pode estar 5 min atrás; o **saldo na hora da compra, não**
+2. **Invalidação**: TTL é o caminho mais simples
+3. **Stampede**: a chave quente expira e milhares vão ao banco juntas
 
 ## Contra o stampede
 
@@ -93,7 +93,7 @@ const ttl = 300 + Math.floor(Math.random() * 60);
 
 <p class="big">Cache não corrige consulta lenta</p>
 
-Ele esconde o problema enquanto a chave está quente — e o problema volta na primeira falta.
+Ele esconde o problema enquanto a chave está quente, e o problema volta na primeira falta.
 
 # As três perguntas do cache {.desafio}
 
@@ -212,7 +212,7 @@ LIMIT 20 OFFSET 20000;
 O banco percorre e **descarta 20.000 linhas** antes de devolver.
 
 ::: {.fragment}
-Página 1 instantânea, página 1.000 lenta — e em dev só existem três páginas.
+Página 1 instantânea, página 1.000 lenta. E em dev só existem três páginas.
 :::
 
 ## Cursor: custo constante
@@ -269,7 +269,7 @@ Em dupla · 500 mil pedidos
 
 ## Cinco etapas {.smaller}
 
-1. **Definir o alvo** — p95 abaixo de 200 ms com 50 requisições simultâneas
+1. **Definir o alvo**: p95 abaixo de 200 ms com 50 requisições simultâneas
 2. **Medir o estado inicial** com `EXPLAIN ANALYZE`
 3. **Criar o índice** e medir de novo
 4. **Trocar `OFFSET` por cursor** e medir a **página 1.000**
@@ -299,4 +299,4 @@ Em dupla · 500 mil pedidos
 
 <p class="kicker">Último encontro · E24</p>
 
-Hoje medimos uma requisição por vez. Lá, o sistema sob carga de verdade — e a apresentação do projeto final.
+Hoje medimos uma requisição por vez. Lá, o sistema sob carga de verdade, e a apresentação do projeto final.

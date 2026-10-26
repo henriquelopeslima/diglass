@@ -375,7 +375,7 @@ return r}
     Nunca commite direto na <code>main</code>
   </div>
   <div class="takeaway-contrast">
-    O fluxo garante <strong>isolamento no desenvolvimento</strong>, <strong>visibilidade no PR</strong> e <strong>qualidade no code review</strong> antes da integração.
+    A branch isola o trabalho, o PR mostra o que mudou e o review pega o problema antes da integração.
   </div>
 </div>
 ```
@@ -445,7 +445,7 @@ Closes #12
 - **Prevenir bugs** antes da produção
 - **Nivelar** o conhecimento do time
 
-Não é competição. Não é julgamento de pessoa.
+Review não é competição nem julgamento de pessoa.
 
 ## Autor e revisor
 

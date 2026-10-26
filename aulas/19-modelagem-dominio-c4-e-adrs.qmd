@@ -15,7 +15,7 @@ footer: "Full Cycle · Módulo 4 · Encontro 20"
 
 ## Hoje
 
-O E19 decidiu **quanta** estrutura. Hoje: **quais são as peças** — e por quê.
+O E19 decidiu **quanta** estrutura. Hoje: **quais são as peças**, e por quê.
 
 - **Bloco 1:** linguagem ubíqua · bounded contexts · modelo C4
 - **Bloco 2:** ADRs · atributos de qualidade · workshop de eventos
@@ -43,7 +43,7 @@ O resultado: tabelas com nomes técnicos, e "cliente" significando três coisas 
 Eric Evans, *Domain-Driven Design*, 2003.
 
 ::: {.fragment}
-Se o código não usa os termos, não é ubíqua — é glossário.
+Se o código não usa os termos, não é ubíqua: é glossário.
 :::
 
 # Traduza para o negócio {.desafio}
@@ -77,7 +77,7 @@ Forçar um modelo único gera um objeto gigante, que todos alteram e ninguém en
 
 ## Contextos conversam por contrato
 
-Um contexto publica `PedidoConfirmado` com o que os outros precisam — **sem expor seu modelo interno**.
+Um contexto publica `PedidoConfirmado` com o que os outros precisam, **sem expor seu modelo interno**.
 
 <p class="big">Bounded context é a unidade natural de decomposição</p>
 
@@ -89,7 +89,7 @@ Um contexto publica `PedidoConfirmado` com o que os outros precisam — **sem ex
 | Reservas | `ReservaConfirmada`, `ReservaCancelada` | `PagamentoAutorizado` |
 | Pagamentos | `PagamentoAutorizado`, `ReembolsoEmitido` | `ReservaSolicitada` |
 
-Um arquivo de texto basta — **desde que seja mantido**.
+Um arquivo de texto basta, **desde que seja mantido**.
 
 # Um termo, dois significados {.desafio}
 
@@ -139,7 +139,7 @@ flowchart LR
 Vivem no repositório, aparecem no diff, são revisados no PR.
 
 ::: {.fragment}
-Um diagrama bonito que ninguém atualiza é pior que nenhum — ele engana.
+Um diagrama bonito que ninguém atualiza é pior que nenhum: ele engana.
 :::
 
 # Separe os níveis {.desafio}
@@ -186,7 +186,7 @@ Publicar evento em fila ao confirmar o pedido.
 
 <p class="big">Alternativas consideradas</p>
 
-Ele impede que alguém proponha, daqui a um ano, a mesma solução já descartada — sem conhecer o motivo.
+Ele impede que alguém proponha, daqui a um ano, a mesma solução já descartada, sem conhecer o motivo.
 
 # Complete o ADR {.desafio}
 
@@ -269,7 +269,7 @@ Em dupla
 
 ## Quatro entregáveis {.smaller}
 
-1. **Mapa de bounded contexts** com 4+ contextos, o que publicam e consomem — e por que a fronteira entre dois deles foi escolhida
+1. **Mapa de bounded contexts** com 4+ contextos, o que publicam e consomem, e por que a fronteira entre dois deles foi escolhida
 2. **Diagrama C4 de contexto** em Mermaid, com 3+ sistemas externos
 3. **Um ADR** com ao menos duas alternativas descartadas
 4. **Quatro atributos de qualidade** com números concretos

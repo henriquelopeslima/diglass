@@ -202,7 +202,7 @@ Em dupla
 
 - **Integração:** memória ou real, conforme o risco
 - **Contrato:** testa a borda pública, sobrevive a refatoração
-- **IA:** acha edge cases e gera E2E — você audita
+- **IA:** acha edge cases e gera E2E; você audita
 
 ## Dever de casa
 

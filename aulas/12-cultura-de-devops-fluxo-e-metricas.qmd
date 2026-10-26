@@ -7,8 +7,8 @@ footer: "Full Cycle · Módulo 3 · Encontro 13"
 
 ## Até aqui
 
-- **Módulo 1:** construir — Docker, POO, design, IA no fluxo
-- **Módulo 2:** provar que funciona — pirâmide de testes, TDD, CI
+- **Módulo 1:** construir com Docker, POO, design e IA no fluxo
+- **Módulo 2:** provar que funciona, com pirâmide de testes, TDD e CI
 
 **Pergunta:** quem já viu um deploy ser adiado por **medo**, e não por motivo técnico?
 
@@ -60,7 +60,7 @@ Dev é bonificado por features entregues. Ops, por zero incidentes.
 - **Aprendizado:** tempo e segurança para errar
 
 ::: {.fragment}
-Não são fases. São três princípios simultâneos.
+São três princípios simultâneos, não fases em sequência.
 :::
 
 ## Por que lote pequeno
@@ -207,7 +207,7 @@ Três perguntas: o que aconteceu, o que nos atrasou, o que mudamos na próxima s
 
 **Em quais etapas você quebraria o lead time para achar a fila?**
 
-*Extra: escreva a pergunta de retrospectiva para a etapa mais provável — sem citar pessoas.*
+*Extra: escreva a pergunta de retrospectiva para a etapa mais provável, sem citar pessoas.*
 
 # Diagnosticar um time fictício {.secao}
 
@@ -243,7 +243,7 @@ Em dupla
 
 ## Dever de casa
 
-1. Levantar as quatro métricas DORA do seu projeto — dado que falta é um achado
+1. Levantar as quatro métricas DORA do seu projeto; dado que falta é um achado
 2. Escrever uma hipótese de melhoria do sistema, com indicador e valor-alvo
 3. Levar 3 dúvidas para o próximo encontro
 

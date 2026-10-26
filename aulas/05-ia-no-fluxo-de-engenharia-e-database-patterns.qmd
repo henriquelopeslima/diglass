@@ -46,7 +46,7 @@ Nunca cole `.env`, tokens nem dados de clientes.
 
 > A IA sugere. Você decide.
 
-A IA acelera quem já sabe pensar. Não quem terceiriza decisões.
+A IA acelera quem já sabe pensar, não quem terceiriza a decisão.
 
 Se o erro for para produção, **de quem é o erro?** De quem fez o merge.
 

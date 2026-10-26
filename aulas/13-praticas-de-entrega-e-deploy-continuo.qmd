@@ -42,7 +42,7 @@ Objeção óbvia: se eu integro dez vezes por dia, o usuário não vê código p
 
 ## Branch curta ainda é branch
 
-Uma ou duas dias de vida é aceitável.
+Um ou dois dias de vida é aceitável.
 
 > Trunk-based é sobre a **duração** da branch, não sobre abrir mão do code review.
 
@@ -269,7 +269,7 @@ Novo **cálculo de frete**, liberado gradualmente para clientes de três regiõe
 
 - **Trunk-based:** branch curta, integração frequente
 - **Flag:** deploy desligado, dono e data de remoção
-- **Liberação:** blue-green, canary, rolling — conforme risco e infra
+- **Liberação:** blue-green, canary ou rolling, conforme risco e infra
 - **Rollback:** ensaiado e cronometrado, com gatilho numérico
 - **Pós-incidente:** muda o sistema, não a pessoa
 
@@ -284,4 +284,4 @@ Novo **cálculo de frete**, liberado gradualmente para clientes de três regiõe
 
 <p class="kicker">Próximo encontro · E15</p>
 
-Hoje a flag veio de uma variável de ambiente. O que mais vive ali — e o que nunca pode entrar no repositório?
+Hoje a flag veio de uma variável de ambiente. O que mais vive ali, e o que nunca pode entrar no repositório?

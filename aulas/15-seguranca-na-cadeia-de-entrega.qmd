@@ -259,7 +259,7 @@ O código malicioso roda **dentro do seu pipeline**, com os seus segredos.
 Tag pode ser movida. Hash não.
 
 ::: {.fragment}
-Some a isso `permissions:` mínimo no job — menor privilégio do E15 aplicado ao CI.
+Some a isso `permissions:` mínimo no job. É o menor privilégio do E15 aplicado ao CI.
 :::
 
 # Tag ou commit {.desafio}
@@ -297,7 +297,7 @@ Em dupla
 
 - **Modelagem:** uma folha, quatro perguntas, revisada quando muda
 - **Injeção:** parametrizar; ORM não imuniza
-- **Autorização:** ferramenta não pega — o teste pega
+- **Autorização:** a ferramenta não pega; o teste pega
 - **Dependências:** alcançabilidade antes de severidade
 - **Imagem:** base mínima, versão fixa, SBOM
 

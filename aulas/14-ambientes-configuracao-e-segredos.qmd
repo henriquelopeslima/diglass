@@ -212,8 +212,8 @@ resource "aws_db_instance" "pedidos" {
 
 ## As duas últimas linhas
 
-- `publicly_accessible = false` — o banco não recebe conexão da internet
-- `manage_master_user_password = true` — a senha não aparece no código **nem no estado**
+- `publicly_accessible = false`: o banco não recebe conexão da internet
+- `manage_master_user_password = true`: a senha não aparece no código **nem no estado**
 
 ::: {.fragment}
 O arquivo de **estado** também tem dado sensível: backend remoto, nunca comitado.
@@ -243,7 +243,7 @@ O estado desejado fica no Git. Um agente reconcilia o cluster com ele.
 
 > Alteração feita direto no cluster **será desfeita** pelo agente.
 
-Isso é desejável — e surpreende quem não conhece o modelo.
+Isso é desejável, e surpreende quem não conhece o modelo.
 
 ::: {.fragment}
 Adote quando Git, revisão e pipeline já estiverem consolidados.
@@ -279,13 +279,13 @@ Em dupla
 | Detector sobre `AKIA` + 16 maiúsculas | Achado com arquivo e linha |
 | Usuário da app tentando `DROP TABLE` | Erro de permissão |
 
-*Nenhum valor real no repositório — incluindo no histórico.*
+*Nenhum valor real no repositório, incluindo no histórico.*
 
 ## Fechamento
 
 - **Paridade:** diferença conhecida, pequena e documentada
 - **Configuração:** obrigatória falha cedo, opcional tem padrão seguro
-- **Segredo:** comitado é comprometido — revogar primeiro
+- **Segredo:** comitado é comprometido; revogar primeiro
 - **Menor privilégio:** se vazar tudo, a credencial era grande demais
 - **IaC:** infra em PR; o estado é sensível
 
@@ -300,4 +300,4 @@ Em dupla
 
 <p class="kicker">Próximo encontro · E16</p>
 
-Hoje protegemos a configuração. E o código que você não escreveu? Traga o repositório de hoje — é o que vamos auditar.
+Hoje protegemos a configuração. E o código que você não escreveu? Traga o repositório de hoje: é o que vamos auditar.

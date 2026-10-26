@@ -86,7 +86,7 @@ export default function () {
 
 ## Dois detalhes que mudam o resultado
 
-- A **subida gradual** evita medir o *cold start* — pool vazio, cache frio
+- A **subida gradual** evita medir o *cold start*: pool vazio, cache frio
 - O **`sleep(1)`** simula um usuário real
 
 ::: {.fragment}
@@ -121,7 +121,7 @@ Se o p95 passar de 200 ms ou a falha passar de 1%, **o k6 termina com erro** e o
 
 ## E o threshold vem de onde?
 
-Do **alvo de negócio** — não da medição.
+Do **alvo de negócio**, não da medição.
 
 ::: {.fragment}
 Threshold definido depois de medir ("deu 180, ponho 200") sempre passa, e portanto nunca protege ninguém.
@@ -234,7 +234,7 @@ Pool, threads, memória. Meça o efeito de cada mudança **isoladamente**.
 
 <p class="kicker">Mini desafio 6 · 7 min</p>
 
-A IA sugeriu aumentar o pool de 10 para 50. O p95 caiu de 1,2 s para 900 ms — **e voltou a subir com mais usuários**.
+A IA sugeriu aumentar o pool de 10 para 50. O p95 caiu de 1,2 s para 900 ms, **e voltou a subir com mais usuários**.
 
 **A sugestão foi boa? O que aconteceu com o gargalo?**
 
@@ -262,7 +262,7 @@ Em dupla
 - O **relatório** indica as **características do ambiente**
 
 ::: {.fragment}
-No estresse, os thresholds **vão falhar** — e isso é o resultado, não o erro.
+No estresse, os thresholds **vão falhar**, e isso é o resultado, não o erro.
 :::
 
 ## O curso em quatro linhas {.smaller}

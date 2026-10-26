@@ -8,7 +8,7 @@ footer: "Full Cycle · Módulo 3 · Encontro 17"
 ## Na aula passada
 
 - Modelagem de ameaças em uma página
-- Ferramenta não pega controle de acesso — o teste pega
+- Ferramenta não pega controle de acesso; o teste pega
 - Dependências: alcançabilidade antes de severidade
 
 **Pergunta:** alguém mudou de ideia sobre um achado ao justificar por escrito?
@@ -54,7 +54,7 @@ Prova que as condições que você previu não aconteceram.
 1. Quantas requisições falharam na última hora?
 2. O que houve com o cliente X às 14h07?
 3. Por que o checkout demorou 3 segundos?
-4. Timeouts numa região, só às quintas — por quê?
+4. Timeouts numa região, só às quintas. Por quê?
 
 # Logs estruturados {.secao}
 

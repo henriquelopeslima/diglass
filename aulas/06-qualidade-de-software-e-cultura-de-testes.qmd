@@ -22,8 +22,6 @@ footer: "Full Cycle · Módulo 2 · Encontro 7"
 
 > Testar é reduzir o custo de mudar o sistema amanhã.
 
-Não é "procurar bug por procurar".
-
 ## A regra dos dez (Boehm)
 
 | Fase | Custo de corrigir |
@@ -65,8 +63,8 @@ Mike Cohn
 | Camada | Velocidade | Isolamento |
 |---|---|---|
 | Unitário | < 5ms | Total (sem I/O) |
-| Integração | 100ms – 2s | Parcial (DB/API) |
-| E2E (UI) | 5s – 30s+ | Nenhum (sistema real) |
+| Integração | 100ms a 2s | Parcial (DB/API) |
+| E2E (UI) | 5s a 30s+ | Nenhum (sistema real) |
 
 Mais testes embaixo, menos no topo.
 

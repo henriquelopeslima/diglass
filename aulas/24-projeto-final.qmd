@@ -50,7 +50,7 @@ São **10 dias**. Se o seu escopo não cabe nisso, corte o escopo.
 
 ## A nota é individual
 
-- **Commits e PRs no seu nome** — o histórico é a evidência
+- **Commits e PRs no seu nome**: o histórico é a evidência
 - Um `CONTRIBUTORS.md` dizendo quem fez o quê
 - Na apresentação, cada um defende a **sua** parte
 
@@ -193,7 +193,7 @@ Commit depois de 13/11 não é avaliado.
 └─ .github/workflows/ci.yml
 ```
 
-No Projeto B, `docs/` tem README, 1 ADR e `openapi.yaml` — sem `c4/`.
+No Projeto B, `docs/` tem README, 1 ADR e `openapi.yaml`, sem `c4/`.
 
 # Opcional, e conta {.secao}
 
@@ -233,7 +233,7 @@ Mesma rubrica para A e B: muda o tamanho da evidência, não o rigor.
 
 ## Uso de IA
 
-- Permitido e esperado — foi metade do curso
+- Permitido e esperado: foi metade do curso
 - **Declare** em `docs/ia.md` os prompts que importaram
 - A IA sugere alternativas; a **decisão continua sendo sua**
 - Código que você não sabe explicar não conta como seu

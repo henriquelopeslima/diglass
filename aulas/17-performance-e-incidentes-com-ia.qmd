@@ -36,9 +36,9 @@ O modelo não sabe o que você mediu, quando, nem onde. Responde genérico.
 
 ## As quatro partes
 
-1. **O que** está errado — métrica, antes e depois
+1. **O que** está errado: métrica, antes e depois
 2. **Desde quando**
-3. **Onde** — serviço, rota, região
+3. **Onde**: serviço, rota, região
 4. **O que mudou** perto desse horário
 
 ## Um sintoma que permite investigar
@@ -84,7 +84,7 @@ Não pega o nome de um cliente escrito num campo livre.
 
 ## Reduza o volume também
 
-Um log de um milhão de linhas não cabe no contexto — e é quase todo ruído.
+Um log de um milhão de linhas não cabe no contexto, e é quase todo ruído.
 
 Filtre por janela, por nível e por `request_id`. Envie amostra com início e fim do problema.
 
@@ -162,7 +162,7 @@ Reiniciar ou reverter sem entender pode **esconder** o problema e ainda causar o
 
 A latência sobe todo dia entre 2h e 3h. No mesmo horário roda o backup.
 
-**Três explicações possíveis — e o experimento que distingue entre elas.**
+**Três explicações possíveis, e o experimento que distingue entre elas.**
 
 # Performance guiada por medição {.secao}
 
@@ -248,7 +248,7 @@ Em dupla
 ## Cinco etapas {.smaller}
 
 1. Escrever o **sintoma** nas quatro partes
-2. Extrair logs e métricas, **sanitizar**, pedir hipóteses — anexar prompt, resposta e sua avaliação
+2. Extrair logs e métricas, **sanitizar**, pedir hipóteses; anexar prompt, resposta e sua avaliação
 3. **Confirmar a causa com um experimento**
 4. Aplicar a correção **por feature flag**, com plano de rollback
 5. Escrever a **revisão pós-incidente**, com ações e responsáveis
@@ -273,7 +273,7 @@ Em dupla
 | E15 | Paridade, config fora do código, segredo comitado é comprometido |
 | E16 | Ameaças em uma página; alcançabilidade antes de severidade |
 | E17 | Observabilidade responde o não previsto; SLO é acordo |
-| E18 | Fato, hipótese, teste — a verificação continua sua |
+| E18 | Fato, hipótese, teste; a verificação continua sua |
 
 ## O fio de tudo
 
@@ -282,7 +282,7 @@ Em dupla
 ## Dever de casa
 
 1. Terminar a revisão pós-incidente, com três ações
-2. Implementar **uma** das ações — a do alerta que teria detectado antes
+2. Implementar **uma** das ações: a do alerta que teria detectado antes
 3. O SLO do E17 teria sido violado? Calcule o orçamento consumido
 4. Levar 3 dúvidas para o Módulo 4
 

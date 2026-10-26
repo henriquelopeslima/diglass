@@ -301,4 +301,4 @@ Em dupla
 
 <p class="kicker">Próximo encontro · E22</p>
 
-Escrever isso dá trabalho. A IA ajuda muito — e inventa endpoints que nunca existiram.
+Escrever isso dá trabalho. A IA ajuda muito, e inventa endpoints que nunca existiram.

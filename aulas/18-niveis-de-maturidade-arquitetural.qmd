@@ -35,7 +35,7 @@ E a primeira decisão é de ambição: **quanta estrutura esse sistema precisa t
 
 ## O que arquitetura não é
 
-Não é diagrama bonito. Não é lista de tecnologias.
+Não é diagrama bonito nem lista de tecnologias.
 
 > É o conjunto de decisões **difíceis de reverter**, e como elas afetam o custo de mudar o sistema.
 
@@ -110,7 +110,7 @@ src/
 <p class="big">Cada módulo tem suas tabelas, e nenhum outro as consulta diretamente</p>
 
 ::: {.fragment}
-Esse nível resolve a maioria dos problemas de equipes de tamanho médio — e **costuma ser subestimado**.
+Esse nível resolve a maioria dos problemas de equipes de tamanho médio, e **costuma ser subestimado**.
 :::
 
 ## A fronteira só existe se o CI aplica
@@ -197,7 +197,7 @@ As três perguntas de contexto:
 - Checkout para milhões, com isolamento de falha → separação em serviços
 
 ::: {.fragment}
-**A maioria fica no meio** — e aí a decisão precisa ser registrada e revisada.
+**A maioria fica no meio**, e aí a decisão precisa ser registrada e revisada.
 :::
 
 ## A pior decisão
