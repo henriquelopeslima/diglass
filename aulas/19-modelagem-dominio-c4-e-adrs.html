@@ -6,13 +6,13 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-da6801bb47887cffec19aab6b5fb5c7d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.19">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-204e14f15910316c170267f8d0a55226.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
 
   <title>Full Cycle – Modelagem: domínio, C4 e registros de decisão</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
@@ -100,7 +100,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-1bb263a969d99cce4e6586e047504279.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-b394dcedcf7b73c02072fe9d433de3ad.css">
   <link rel="stylesheet" href="../theme/blueprint-terracota.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -241,7 +241,7 @@
 </section>
 <section id="hoje" class="slide level2">
 <h2>Hoje</h2>
-<p>O E19 decidiu <strong>quanta</strong> estrutura. Hoje: <strong>quais são as peças</strong> — e por quê.</p>
+<p>O E19 decidiu <strong>quanta</strong> estrutura. Hoje: <strong>quais são as peças</strong>, e por quê.</p>
 <ul>
 <li class="fragment"><strong>Bloco 1:</strong> linguagem ubíqua · bounded contexts · modelo C4</li>
 <li class="fragment"><strong>Bloco 2:</strong> ADRs · atributos de qualidade · workshop de eventos</li>
@@ -271,7 +271,7 @@ Bloco 1 · Tópico 1
 </blockquote>
 <p>Eric Evans, <em>Domain-Driven Design</em>, 2003.</p>
 <div class="fragment">
-<p>Se o código não usa os termos, não é ubíqua — é glossário.</p>
+<p>Se o código não usa os termos, não é ubíqua: é glossário.</p>
 </div>
 </section></section>
 <section id="traduza-para-o-negócio" class="title-slide slide level1 desafio center">
@@ -304,7 +304,7 @@ Bloco 1 · Tópico 2
 </section>
 <section id="contextos-conversam-por-contrato" class="slide level2">
 <h2>Contextos conversam por contrato</h2>
-<p>Um contexto publica <code>PedidoConfirmado</code> com o que os outros precisam — <strong>sem expor seu modelo interno</strong>.</p>
+<p>Um contexto publica <code>PedidoConfirmado</code> com o que os outros precisam, <strong>sem expor seu modelo interno</strong>.</p>
 <p class="big">
 Bounded context é a unidade natural de decomposição
 </p>
@@ -342,7 +342,7 @@ Bounded context é a unidade natural de decomposição
 </tr>
 </tbody>
 </table>
-<p>Um arquivo de texto basta — <strong>desde que seja mantido</strong>.</p>
+<p>Um arquivo de texto basta, <strong>desde que seja mantido</strong>.</p>
 </section></section>
 <section id="um-termo-dois-significados" class="title-slide slide level1 desafio center">
 <h1>Um termo, dois significados</h1>
@@ -423,7 +423,7 @@ Diagramas em texto envelhecem junto com o código
 </p>
 <p>Vivem no repositório, aparecem no diff, são revisados no PR.</p>
 <div class="fragment">
-<p>Um diagrama bonito que ninguém atualiza é pior que nenhum — ele engana.</p>
+<p>Um diagrama bonito que ninguém atualiza é pior que nenhum: ele engana.</p>
 </div>
 </section></section>
 <section id="separe-os-níveis" class="title-slide slide level1 desafio center">
@@ -471,7 +471,7 @@ Bloco 2 · Tópico 4
 <p class="big">
 Alternativas consideradas
 </p>
-<p>Ele impede que alguém proponha, daqui a um ano, a mesma solução já descartada — sem conhecer o motivo.</p>
+<p>Ele impede que alguém proponha, daqui a um ano, a mesma solução já descartada, sem conhecer o motivo.</p>
 </section></section>
 <section id="complete-o-adr" class="title-slide slide level1 desafio center">
 <h1>Complete o ADR</h1>
@@ -570,7 +570,7 @@ Desafio integrador · 45 min
 <section id="quatro-entregáveis" class="slide level2 smaller">
 <h2>Quatro entregáveis</h2>
 <ol type="1">
-<li class="fragment"><strong>Mapa de bounded contexts</strong> com 4+ contextos, o que publicam e consomem — e por que a fronteira entre dois deles foi escolhida</li>
+<li class="fragment"><strong>Mapa de bounded contexts</strong> com 4+ contextos, o que publicam e consomem, e por que a fronteira entre dois deles foi escolhida</li>
 <li class="fragment"><strong>Diagrama C4 de contexto</strong> em Mermaid, com 3+ sistemas externos</li>
 <li class="fragment"><strong>Um ADR</strong> com ao menos duas alternativas descartadas</li>
 <li class="fragment"><strong>Quatro atributos de qualidade</strong> com números concretos</li>
@@ -663,7 +663,7 @@ Próximo encontro · E21
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -918,7 +918,8 @@ Próximo encontro · E21
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
           // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
           for (var i=0; i<links.length; i++) {
             const link = links[i];
             if (!isInternal(link.href)) {
@@ -927,8 +928,69 @@ Próximo encontro · E21
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+              if (!link.classList.contains('no-external-icon')) {
+              }
             }
           }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
           const config = {
             allowHTML: true,
@@ -942,6 +1004,7 @@ Próximo encontro · E21
             interactiveBorder: 10,
             theme: 'light-border',
             placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
           };
           if (contentFn) {
             config.content = contentFn;
