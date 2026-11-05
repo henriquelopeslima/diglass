@@ -26,11 +26,11 @@ footer: "Full Cycle · Módulo 4 · Projeto final"
 
 | Data | O que acontece |
 |---|---|
-| **03/11** | Hoje: diretrizes, níveis e escolha |
+| **05/11** | Hoje: diretrizes, níveis e escolha |
 | **até 13/11** | Entrega oficial, direto pelo **Moodle** |
 | **16/11** | Aula ao vivo para as apresentações |
 
-São **10 dias**. Se o seu escopo não cabe nisso, corte o escopo.
+São **8 dias**. Se o seu escopo não cabe nisso, corte o escopo.
 
 ## Você já tem parte disso pronto
 
@@ -97,32 +97,32 @@ Mesma espinha dorsal, menos artefatos.
 - Módulos com fronteira explícita, não pastas soltas
 - Banco com volume: pelo menos **100 mil** pedidos sintéticos
 
-## Projeto A — base e qualidade {.smaller}
+## Projeto A — base e qualidade {.smaller .densa}
 
-| Origem | Entregável |
-|---|---|
-| **M1** | Compose que sobe com 1 comando, SOLID, 1 pattern justificado |
-| **M1** | Um Database Pattern aplicado e a decisão registrada |
-| **M2** | Testes unitários, de integração e de **contrato de API** |
-| **M2** | Coverage acima do mínimo declarado no próprio pipeline |
+| Origem | Entregável | Ferramentas (exemplos) |
+|--|--------|------|
+| **M1** | Compose que sobe com 1 comando, SOLID, 1 pattern justificado | Docker Compose, ESLint |
+| **M1** | Um Database Pattern aplicado e a decisão registrada | Prisma, TypeORM ou Knex |
+| **M2** | Testes unitários, de integração e de **contrato de API** | Vitest ou Jest, Testcontainers, Pact |
+| **M2** | Coverage acima do mínimo declarado no próprio pipeline | Vitest coverage (v8), Codecov |
 
-## Projeto A — entrega e operação {.smaller}
+## Projeto A — entrega e operação {.smaller .densa}
 
-| Origem | Entregável |
-|---|---|
-| **M3** | CI com lint, testes, coverage e **SCA** de dependências |
-| **M3** | Três ambientes, configuração no ambiente, segredos fora do código |
-| **M3** | Logs estruturados, métricas RED, 1 trace e **1 SLO** declarado |
-| **M3** | Uma feature flag e a estratégia de deploy escolhida |
+| Origem | Entregável | Ferramentas (exemplos) |
+|--|--------|------|
+| **M3** | CI com lint, testes, coverage e **SCA** de dependências | GitHub Actions, npm audit, Trivy |
+| **M3** | Dois ambientes, configuração no ambiente, segredos fora do código | dotenv, GitHub Environments e Secrets, gitleaks |
+| **M3** | Logs estruturados, métricas RED, 1 trace e **1 SLO** declarado | pino, Prometheus + Grafana, OpenTelemetry + Jaeger |
+| **M3** | Uma feature flag e a estratégia de deploy escolhida | Unleash ou GrowthBook, Render ou Railway |
 
-## Projeto A — arquitetura e desempenho {.smaller}
+## Projeto A — arquitetura e desempenho {.smaller .densa}
 
-| Origem | Entregável |
-|---|---|
-| **M4** | ADR com a alternativa descartada, C4 de contexto e de contêiner |
-| **M4** | OpenAPI 3.1 do catálogo e do pedido, com **lint no pipeline** |
-| **M4** | Plano de p95: cache com tolerância, idempotência da fila |
-| **M4** | k6 em 3 estágios e relatório com gargalo, antes e depois |
+| Origem | Entregável | Ferramentas (exemplos) |
+|--|--------|------|
+| **M4** | ADR com a alternativa descartada, C4 de contexto e de contêiner | Template MADR, Mermaid C4, Structurizr |
+| **M4** | OpenAPI 3.1 do catálogo e do pedido, com **lint no pipeline** | Spectral, Redocly CLI, Swagger UI |
+| **M4** | Plano de p95: cache com tolerância, idempotência da fila | Redis, BullMQ ou RabbitMQ |
+| **M4** | k6 em 3 estágios e relatório com gargalo, antes e depois | k6, clinic.js, `EXPLAIN ANALYZE` |
 
 # Projeto B {.secao}
 
@@ -138,23 +138,23 @@ Mesma espinha dorsal, menos artefatos.
 Simples não é incompleto: o fluxo tem que funcionar de verdade.
 :::
 
-## Projeto B — base e qualidade {.smaller}
+## Projeto B — base e qualidade {.smaller .densa}
 
-| Origem | Entregável |
-|---|---|
-| **M1** | Compose que sobe com 1 comando, SOLID, 1 pattern justificado |
-| **M2** | Testes unitários do domínio e **1** teste de integração |
-| **M2** | Coverage mínimo declarado e respeitado |
-| **M3** | CI verde: install, lint, test |
+| Origem | Entregável | Ferramentas (exemplos) |
+|--|--------|------|
+| **M1** | Compose que sobe com 1 comando, SOLID, 1 pattern justificado | Docker Compose, ESLint |
+| **M2** | Testes unitários do domínio e **1** teste de integração | Vitest ou Jest, Supertest |
+| **M2** | Coverage mínimo declarado e respeitado | Vitest coverage (v8) |
+| **M3** | CI verde: install, lint, test | GitHub Actions, ESLint |
 
-## Projeto B — operação e documentação {.smaller}
+## Projeto B — operação e documentação {.smaller .densa}
 
-| Origem | Entregável |
-|---|---|
-| **M3** | `.env.example` no repositório, segredos fora dele |
-| **M3** | Logs estruturados, 1 métrica e 1 SLO simples |
-| **M4** | README do primeiro dia e **1 ADR** |
-| **M4** | OpenAPI do endpoint principal e 1 smoke test k6 com p95 medido |
+| Origem | Entregável | Ferramentas (exemplos) |
+|--|--------|------|
+| **M3** | `.env.example` no repositório, segredos fora dele | dotenv, gitleaks |
+| **M3** | Logs estruturados, 1 métrica e 1 SLO simples | pino, prom-client |
+| **M4** | README do primeiro dia e **1 ADR** | Markdown, template MADR |
+| **M4** | OpenAPI do endpoint principal e 1 smoke test k6 com p95 medido | Swagger Editor, Spectral, k6 |
 
 ## Como escolher
 

@@ -297,6 +297,8 @@ html, body { margin: 0; height: 100%; background: var(--bg); }
 .reveal table td { padding: 14px 20px; text-align: left; border-bottom: 1px dashed var(--line); }
 .reveal table tr:last-child td { border-bottom: 0; }
 .reveal table tr { animation: rowIn .4s ease-out both; }
+.reveal section.densa table { font-size: 22px; }
+.reveal section.densa table td, .reveal section.densa table th { padding: 10px 14px; }
 
 @keyframes rowIn {
   from { opacity: 0; transform: translateX(-12px); }
