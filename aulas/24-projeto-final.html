@@ -262,7 +262,7 @@ Mostrar engenharia, não tamanho
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>03/11</strong></td>
+<td><strong>05/11</strong></td>
 <td>Hoje: diretrizes, níveis e escolha</td>
 </tr>
 <tr class="even">
@@ -275,7 +275,7 @@ Mostrar engenharia, não tamanho
 </tr>
 </tbody>
 </table>
-<p>São <strong>10 dias</strong>. Se o seu escopo não cabe nisso, corte o escopo.</p>
+<p>São <strong>8 dias</strong>. Se o seu escopo não cabe nisso, corte o escopo.</p>
 </section>
 <section id="você-já-tem-parte-disso-pronto" class="slide level2">
 <h2>Você já tem parte disso pronto</h2>
@@ -355,101 +355,119 @@ Nível avançado
 <li class="fragment">Banco com volume: pelo menos <strong>100 mil</strong> pedidos sintéticos</li>
 </ul>
 </section>
-<section id="projeto-a-base-e-qualidade" class="slide level2 smaller">
+<section id="projeto-a-base-e-qualidade" class="slide level2 smaller densa">
 <h2>Projeto A — base e qualidade</h2>
 <table class="caption-top">
 <colgroup>
+<col style="width: 12%">
 <col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Origem</th>
 <th>Entregável</th>
+<th>Ferramentas (exemplos)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>M1</strong></td>
 <td>Compose que sobe com 1 comando, SOLID, 1 pattern justificado</td>
+<td>Docker Compose, ESLint</td>
 </tr>
 <tr class="even">
 <td><strong>M1</strong></td>
 <td>Um Database Pattern aplicado e a decisão registrada</td>
+<td>Prisma, TypeORM ou Knex</td>
 </tr>
 <tr class="odd">
 <td><strong>M2</strong></td>
 <td>Testes unitários, de integração e de <strong>contrato de API</strong></td>
+<td>Vitest ou Jest, Testcontainers, Pact</td>
 </tr>
 <tr class="even">
 <td><strong>M2</strong></td>
 <td>Coverage acima do mínimo declarado no próprio pipeline</td>
+<td>Vitest coverage (v8), Codecov</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="projeto-a-entrega-e-operação" class="slide level2 smaller">
+<section id="projeto-a-entrega-e-operação" class="slide level2 smaller densa">
 <h2>Projeto A — entrega e operação</h2>
 <table class="caption-top">
 <colgroup>
+<col style="width: 12%">
 <col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Origem</th>
 <th>Entregável</th>
+<th>Ferramentas (exemplos)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>M3</strong></td>
 <td>CI com lint, testes, coverage e <strong>SCA</strong> de dependências</td>
+<td>GitHub Actions, npm audit, Trivy</td>
 </tr>
 <tr class="even">
 <td><strong>M3</strong></td>
-<td>Três ambientes, configuração no ambiente, segredos fora do código</td>
+<td>Dois ambientes, configuração no ambiente, segredos fora do código</td>
+<td>dotenv, GitHub Environments e Secrets, gitleaks</td>
 </tr>
 <tr class="odd">
 <td><strong>M3</strong></td>
 <td>Logs estruturados, métricas RED, 1 trace e <strong>1 SLO</strong> declarado</td>
+<td>pino, Prometheus + Grafana, OpenTelemetry + Jaeger</td>
 </tr>
 <tr class="even">
 <td><strong>M3</strong></td>
 <td>Uma feature flag e a estratégia de deploy escolhida</td>
+<td>Unleash ou GrowthBook, Render ou Railway</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="projeto-a-arquitetura-e-desempenho" class="slide level2 smaller">
+<section id="projeto-a-arquitetura-e-desempenho" class="slide level2 smaller densa">
 <h2>Projeto A — arquitetura e desempenho</h2>
 <table class="caption-top">
 <colgroup>
+<col style="width: 12%">
 <col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Origem</th>
 <th>Entregável</th>
+<th>Ferramentas (exemplos)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>M4</strong></td>
 <td>ADR com a alternativa descartada, C4 de contexto e de contêiner</td>
+<td>Template MADR, Mermaid C4, Structurizr</td>
 </tr>
 <tr class="even">
 <td><strong>M4</strong></td>
 <td>OpenAPI 3.1 do catálogo e do pedido, com <strong>lint no pipeline</strong></td>
+<td>Spectral, Redocly CLI, Swagger UI</td>
 </tr>
 <tr class="odd">
 <td><strong>M4</strong></td>
 <td>Plano de p95: cache com tolerância, idempotência da fila</td>
+<td>Redis, BullMQ ou RabbitMQ</td>
 </tr>
 <tr class="even">
 <td><strong>M4</strong></td>
 <td>k6 em 3 estágios e relatório com gargalo, antes e depois</td>
+<td>k6, clinic.js, <code>EXPLAIN ANALYZE</code></td>
 </tr>
 </tbody>
 </table>
@@ -472,68 +490,80 @@ Nível simples
 <p>Simples não é incompleto: o fluxo tem que funcionar de verdade.</p>
 </div>
 </section>
-<section id="projeto-b-base-e-qualidade" class="slide level2 smaller">
+<section id="projeto-b-base-e-qualidade" class="slide level2 smaller densa">
 <h2>Projeto B — base e qualidade</h2>
 <table class="caption-top">
 <colgroup>
+<col style="width: 12%">
 <col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Origem</th>
 <th>Entregável</th>
+<th>Ferramentas (exemplos)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>M1</strong></td>
 <td>Compose que sobe com 1 comando, SOLID, 1 pattern justificado</td>
+<td>Docker Compose, ESLint</td>
 </tr>
 <tr class="even">
 <td><strong>M2</strong></td>
 <td>Testes unitários do domínio e <strong>1</strong> teste de integração</td>
+<td>Vitest ou Jest, Supertest</td>
 </tr>
 <tr class="odd">
 <td><strong>M2</strong></td>
 <td>Coverage mínimo declarado e respeitado</td>
+<td>Vitest coverage (v8)</td>
 </tr>
 <tr class="even">
 <td><strong>M3</strong></td>
 <td>CI verde: install, lint, test</td>
+<td>GitHub Actions, ESLint</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="projeto-b-operação-e-documentação" class="slide level2 smaller">
+<section id="projeto-b-operação-e-documentação" class="slide level2 smaller densa">
 <h2>Projeto B — operação e documentação</h2>
 <table class="caption-top">
 <colgroup>
+<col style="width: 12%">
 <col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Origem</th>
 <th>Entregável</th>
+<th>Ferramentas (exemplos)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>M3</strong></td>
 <td><code>.env.example</code> no repositório, segredos fora dele</td>
+<td>dotenv, gitleaks</td>
 </tr>
 <tr class="even">
 <td><strong>M3</strong></td>
 <td>Logs estruturados, 1 métrica e 1 SLO simples</td>
+<td>pino, prom-client</td>
 </tr>
 <tr class="odd">
 <td><strong>M4</strong></td>
 <td>README do primeiro dia e <strong>1 ADR</strong></td>
+<td>Markdown, template MADR</td>
 </tr>
 <tr class="even">
 <td><strong>M4</strong></td>
 <td>OpenAPI do endpoint principal e 1 smoke test k6 com p95 medido</td>
+<td>Swagger Editor, Spectral, k6</td>
 </tr>
 </tbody>
 </table>

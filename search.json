@@ -3413,7 +3413,7 @@
     "href": "aulas/24-projeto-final.html#cronograma",
     "title": "Projeto final",
     "section": "Cronograma",
-    "text": "Cronograma\n\n\n\nData\nO que acontece\n\n\n\n\n03/11\nHoje: diretrizes, níveis e escolha\n\n\naté 13/11\nEntrega oficial, direto pelo Moodle\n\n\n16/11\nAula ao vivo para as apresentações\n\n\n\nSão 10 dias. Se o seu escopo não cabe nisso, corte o escopo."
+    "text": "Cronograma\n\n\n\nData\nO que acontece\n\n\n\n\n05/11\nHoje: diretrizes, níveis e escolha\n\n\naté 13/11\nEntrega oficial, direto pelo Moodle\n\n\n16/11\nAula ao vivo para as apresentações\n\n\n\nSão 8 dias. Se o seu escopo não cabe nisso, corte o escopo."
   },
   {
     "objectID": "aulas/24-projeto-final.html#você-já-tem-parte-disso-pronto",
@@ -3455,21 +3455,21 @@
     "href": "aulas/24-projeto-final.html#projeto-a-base-e-qualidade",
     "title": "Projeto final",
     "section": "Projeto A — base e qualidade",
-    "text": "Projeto A — base e qualidade\n\n\n\n\n\n\n\nOrigem\nEntregável\n\n\n\n\nM1\nCompose que sobe com 1 comando, SOLID, 1 pattern justificado\n\n\nM1\nUm Database Pattern aplicado e a decisão registrada\n\n\nM2\nTestes unitários, de integração e de contrato de API\n\n\nM2\nCoverage acima do mínimo declarado no próprio pipeline"
+    "text": "Projeto A — base e qualidade\n\n\n\n\n\n\n\n\nOrigem\nEntregável\nFerramentas (exemplos)\n\n\n\n\nM1\nCompose que sobe com 1 comando, SOLID, 1 pattern justificado\nDocker Compose, ESLint\n\n\nM1\nUm Database Pattern aplicado e a decisão registrada\nPrisma, TypeORM ou Knex\n\n\nM2\nTestes unitários, de integração e de contrato de API\nVitest ou Jest, Testcontainers, Pact\n\n\nM2\nCoverage acima do mínimo declarado no próprio pipeline\nVitest coverage (v8), Codecov"
   },
   {
     "objectID": "aulas/24-projeto-final.html#projeto-a-entrega-e-operação",
     "href": "aulas/24-projeto-final.html#projeto-a-entrega-e-operação",
     "title": "Projeto final",
     "section": "Projeto A — entrega e operação",
-    "text": "Projeto A — entrega e operação\n\n\n\n\n\n\n\nOrigem\nEntregável\n\n\n\n\nM3\nCI com lint, testes, coverage e SCA de dependências\n\n\nM3\nTrês ambientes, configuração no ambiente, segredos fora do código\n\n\nM3\nLogs estruturados, métricas RED, 1 trace e 1 SLO declarado\n\n\nM3\nUma feature flag e a estratégia de deploy escolhida"
+    "text": "Projeto A — entrega e operação\n\n\n\n\n\n\n\n\nOrigem\nEntregável\nFerramentas (exemplos)\n\n\n\n\nM3\nCI com lint, testes, coverage e SCA de dependências\nGitHub Actions, npm audit, Trivy\n\n\nM3\nDois ambientes, configuração no ambiente, segredos fora do código\ndotenv, GitHub Environments e Secrets, gitleaks\n\n\nM3\nLogs estruturados, métricas RED, 1 trace e 1 SLO declarado\npino, Prometheus + Grafana, OpenTelemetry + Jaeger\n\n\nM3\nUma feature flag e a estratégia de deploy escolhida\nUnleash ou GrowthBook, Render ou Railway"
   },
   {
     "objectID": "aulas/24-projeto-final.html#projeto-a-arquitetura-e-desempenho",
     "href": "aulas/24-projeto-final.html#projeto-a-arquitetura-e-desempenho",
     "title": "Projeto final",
     "section": "Projeto A — arquitetura e desempenho",
-    "text": "Projeto A — arquitetura e desempenho\n\n\n\n\n\n\n\nOrigem\nEntregável\n\n\n\n\nM4\nADR com a alternativa descartada, C4 de contexto e de contêiner\n\n\nM4\nOpenAPI 3.1 do catálogo e do pedido, com lint no pipeline\n\n\nM4\nPlano de p95: cache com tolerância, idempotência da fila\n\n\nM4\nk6 em 3 estágios e relatório com gargalo, antes e depois"
+    "text": "Projeto A — arquitetura e desempenho\n\n\n\n\n\n\n\n\nOrigem\nEntregável\nFerramentas (exemplos)\n\n\n\n\nM4\nADR com a alternativa descartada, C4 de contexto e de contêiner\nTemplate MADR, Mermaid C4, Structurizr\n\n\nM4\nOpenAPI 3.1 do catálogo e do pedido, com lint no pipeline\nSpectral, Redocly CLI, Swagger UI\n\n\nM4\nPlano de p95: cache com tolerância, idempotência da fila\nRedis, BullMQ ou RabbitMQ\n\n\nM4\nk6 em 3 estágios e relatório com gargalo, antes e depois\nk6, clinic.js, EXPLAIN ANALYZE"
   },
   {
     "objectID": "aulas/24-projeto-final.html#projeto-b-o-sistema",
@@ -3483,14 +3483,14 @@
     "href": "aulas/24-projeto-final.html#projeto-b-base-e-qualidade",
     "title": "Projeto final",
     "section": "Projeto B — base e qualidade",
-    "text": "Projeto B — base e qualidade\n\n\n\n\n\n\n\nOrigem\nEntregável\n\n\n\n\nM1\nCompose que sobe com 1 comando, SOLID, 1 pattern justificado\n\n\nM2\nTestes unitários do domínio e 1 teste de integração\n\n\nM2\nCoverage mínimo declarado e respeitado\n\n\nM3\nCI verde: install, lint, test"
+    "text": "Projeto B — base e qualidade\n\n\n\n\n\n\n\n\nOrigem\nEntregável\nFerramentas (exemplos)\n\n\n\n\nM1\nCompose que sobe com 1 comando, SOLID, 1 pattern justificado\nDocker Compose, ESLint\n\n\nM2\nTestes unitários do domínio e 1 teste de integração\nVitest ou Jest, Supertest\n\n\nM2\nCoverage mínimo declarado e respeitado\nVitest coverage (v8)\n\n\nM3\nCI verde: install, lint, test\nGitHub Actions, ESLint"
   },
   {
     "objectID": "aulas/24-projeto-final.html#projeto-b-operação-e-documentação",
     "href": "aulas/24-projeto-final.html#projeto-b-operação-e-documentação",
     "title": "Projeto final",
     "section": "Projeto B — operação e documentação",
-    "text": "Projeto B — operação e documentação\n\n\n\n\n\n\n\nOrigem\nEntregável\n\n\n\n\nM3\n.env.example no repositório, segredos fora dele\n\n\nM3\nLogs estruturados, 1 métrica e 1 SLO simples\n\n\nM4\nREADME do primeiro dia e 1 ADR\n\n\nM4\nOpenAPI do endpoint principal e 1 smoke test k6 com p95 medido"
+    "text": "Projeto B — operação e documentação\n\n\n\n\n\n\n\n\nOrigem\nEntregável\nFerramentas (exemplos)\n\n\n\n\nM3\n.env.example no repositório, segredos fora dele\ndotenv, gitleaks\n\n\nM3\nLogs estruturados, 1 métrica e 1 SLO simples\npino, prom-client\n\n\nM4\nREADME do primeiro dia e 1 ADR\nMarkdown, template MADR\n\n\nM4\nOpenAPI do endpoint principal e 1 smoke test k6 com p95 medido\nSwagger Editor, Spectral, k6"
   },
   {
     "objectID": "aulas/24-projeto-final.html#como-escolher",
